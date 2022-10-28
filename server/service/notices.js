@@ -1,3 +1,5 @@
+const schema = require('../models');
+
 const getAll = ({ category }) => {};
 const getById = ({ id }) => {};
 
