@@ -3,6 +3,8 @@ const logger = require('morgan');
 const cors = require('cors');
 const path = require('path');
 
+const {newsRouter} = require("./controller");
+
 const app = express();
 
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
@@ -14,6 +16,7 @@ app.use(express.json());
 app.use(express.static(publicDirPath));
 
 /* Тут роуты подключаем  */
+app.use("/api/news", newsRouter);
 
 app.use((req, res) => {
   res.status(404).json({ message: 'Not Found' });
