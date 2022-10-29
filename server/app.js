@@ -17,7 +17,7 @@ app.use(express.static(publicDirPath));
 
 /* Тут роуты подключаем  */
 app.use("/news", newsRouter);
-app.use("/friends", friendsRouter);
+app.use("/api/friends", friendsRouter);
 
 app.use((req, res) => {
   res.status(404).json({ message: 'Not Found' });
