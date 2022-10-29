@@ -8,19 +8,19 @@ const { schemas } = require("../../server/models/user");
 const router = express.Router();
 
 router.post(
-  "/users/signup",
+  "/signup",
   validateSchema(schemas.singupSchema),
   ctrlWrapper(controller.signup)
 );
 
 router.post(
-  "/users/login",
+  "/login",
   validateSchema(schemas.loginSchema),
   ctrlWrapper(controller.login)
 );
 
-router.get("/users/logout", authenticate, ctrlWrapper(controller.logout));
+router.get("/logout", authenticate, ctrlWrapper(controller.logout));
 
-router.get("/users/current", authenticate, ctrlWrapper(controller.currentUser));
+router.get("/checkemail", ctrlWrapper(controller.checkEmail));
 
 module.exports = router;
