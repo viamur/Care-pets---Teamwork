@@ -19,6 +19,10 @@ app.use(express.static(publicDirPath));
 
 /* Тут роуты подключаем  */
 app.use('/notices', router.notices);
+app.use('/news', newsRouter);
+app.use('/friends', friendsRouter);
+
+app.use('/auth', auth);
 
 app.use((req, res) => {
   res.status(404).json({ message: 'Not Found' });
