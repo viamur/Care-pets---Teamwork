@@ -1,7 +1,14 @@
 const service = require('../../service');
 
 const all = async (req, res) => {
-  const category = req.query;
+  const { category } = req.query;
+  const user = req.user;
+  console.log(user._id);
+  /* Якщо нема  category в query то помилку видаэмо*/
+  if (!category) {
+    res.status(400).json({ message: "Required in the 'category' query" });
+    return;
+  }
   try {
     const response = await service.notices.getAll({ category });
     res.status(200).json(response);

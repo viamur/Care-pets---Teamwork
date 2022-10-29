@@ -32,6 +32,16 @@ const remove = async (req, res) => {
   }
   try {
     const response = await service.notices.delUserPets({ owner: user.id, id });
+
+    /* Якщо незнайдено то помилка */
+    if (!response) {
+      res.status(404).json({
+        message: 'Not found',
+      });
+      return;
+    }
+
+    /* Якщо видалило з БД запис */
     res.status(204).json(response);
   } catch (error) {
     res.status(500).json({ message: error.message });

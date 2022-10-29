@@ -5,7 +5,7 @@ const noticesSchema = new Schema(
   {
     category: {
       type: String,
-      enum: [lostFound, inGoodHands, sell],
+      enum: ['lostFound', 'inGoodHands', 'sell'],
       required: true,
     },
     title: {
@@ -29,7 +29,7 @@ const noticesSchema = new Schema(
     },
     sex: {
       type: String,
-      enum: [male, female],
+      enum: ['male', 'female'],
       required: true,
     },
     location: {
@@ -55,7 +55,6 @@ const noticesSchema = new Schema(
     owner: {
       type: Schema.Types.ObjectId,
       ref: 'users',
-      required: true,
     },
     favorite: {
       type: Array,
@@ -65,6 +64,6 @@ const noticesSchema = new Schema(
   { versionKey: false, timestamps: true }
 );
 
-const Notices = mongoose.models('notices', noticesSchema);
+const Notices = mongoose.model('notices', noticesSchema);
 
 module.exports = { Notices };
