@@ -1,0 +1,29 @@
+@import '../../../sass/mixin';
+
+.link {
+    text-align: center;
+
+    width: 100%;
+    padding: 28px 0;
+    
+    font-size: 32px;
+    font-weight: 500;
+
+    @include mq(mob) {
+        width: 480px;
+    }
+
+    @include mq(tab) {
+        width: 768px;
+    }
+
+    @include mq(desk) {
+        width: 1280px;
+    }
+}
+
+.linkActive {
+    font-weight: 700;
+    color: var(--accent-color);
+    text-decoration: underline solid var(--accent-color);
+}

@@ -1,0 +1,16 @@
+.menuContainer {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    justify-content: space-between;
+    align-items: center
+}
+
+.navContainer {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border-bottom: 1px solid #E2E3E5;
+}

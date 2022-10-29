@@ -1,0 +1,22 @@
+@import '../../sass/_mixin.scss';
+
+.logo {
+ font-size: 28px;
+
+@include mq(tab) {
+    font-size: 32px;
+}
+}
+
+.logoT {
+    color: var(--accent-color);
+}
+
+.menuButton{
+    display: flex;
+    width: 40px;
+    height: 40px;
+    border: none;
+    
+    cursor: pointer;
+}
