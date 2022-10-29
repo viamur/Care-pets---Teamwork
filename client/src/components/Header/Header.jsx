@@ -1,5 +1,7 @@
 import s from './Header.module.css';
 
-const Header = () => {};
+const Header = () => {
+  return <></>;
+};
 
 export default Header;
