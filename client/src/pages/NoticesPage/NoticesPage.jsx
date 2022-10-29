@@ -1,4 +1,4 @@
-import s from './NoticesPage.module.css';
+import s from './NoticesPage.module.scss';
 
 const NoticesPage = () => {
   return <></>;

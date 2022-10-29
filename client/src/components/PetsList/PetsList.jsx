@@ -1,4 +1,4 @@
-import s from './PetsList.module.css';
+import s from './PetsList.module.scss';
 
 const PetsList = () => {};
 

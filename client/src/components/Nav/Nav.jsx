@@ -1,4 +1,4 @@
-import s from './Nav.module.css';
+import s from './Nav.module.scss';
 
 const Nav = () => {};
 

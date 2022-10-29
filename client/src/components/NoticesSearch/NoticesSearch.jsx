@@ -1,4 +1,4 @@
-import s from './NoticesSearch.module.css';
+import s from './NoticesSearch.module.scss';
 
 const NoticesSearch = () => {};
 

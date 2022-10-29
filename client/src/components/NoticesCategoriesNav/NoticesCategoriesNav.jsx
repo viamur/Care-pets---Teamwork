@@ -1,4 +1,4 @@
-import s from './NoticesCategoriesNav';
+import s from './NoticesCategoriesNav.module.scss';
 
 const NoticesCategoriesNav = () => {};
 
