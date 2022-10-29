@@ -1,7 +1,7 @@
 const { Notices } = require('../models');
 
 const getAll = async ({ category }) => {
-  const result = await Notices.findOne({ category });
+  const result = await Notices.find({ category });
   return result;
 };
 const getById = async ({ id }) => {
@@ -37,12 +37,8 @@ const addFavorites = async ({ id, userId }) => {
 };
 const delFavorites = async ({ id, userId }) => {
   const notices = await Notices.findById(id);
-  const newNotices = notices.favorite.filter(el => el !== userId);
-  const result = await Notices.findByIdAndUpdate(
-    id,
-    { favorite: [...newNotices.favorite] },
-    { new: true }
-  );
+  const newNotices = notices.favorite.filter(el => el.toString() !== userId.toString());
+  const result = await Notices.findByIdAndUpdate(id, { favorite: [...newNotices] }, { new: true });
   return result;
 };
 

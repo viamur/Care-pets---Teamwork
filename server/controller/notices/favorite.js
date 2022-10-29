@@ -3,7 +3,7 @@ const service = require('../../service');
 const get = async (req, res) => {
   const user = req.user;
   try {
-    const response = await service.notices.sergetFavorites({ id: user.id });
+    const response = await service.notices.getFavorites({ id: user.id });
     res.status(200).json({ data: response });
   } catch (error) {
     res.status(500).json({ message: error.message });

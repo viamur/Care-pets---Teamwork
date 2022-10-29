@@ -11,6 +11,7 @@ const auth = async (req, res, next) => {
   /* Якщо нема токена або тип не той то переходимо далi */
   if (bearer !== 'Bearer' || token === '') {
     next();
+    return;
   }
 
   try {
@@ -22,13 +23,14 @@ const auth = async (req, res, next) => {
     /* Якщо користувача не знайдено або він розлогінен то теж переходимо далі просто */
     if (!user || !user.token) {
       next();
+      return;
     }
 
     /* Записуємо данні в req i переходимо далі */
     req.user = user;
     next();
   } catch (error) {
-    next(createError(401, error.message));
+    res.status(500).json({ message: error.message });
   }
 };
 
