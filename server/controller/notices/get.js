@@ -1,11 +1,12 @@
 const service = require('../../service');
 
+/* ========================GET CATEGORY====================== */
 const all = async (req, res) => {
   const { category } = req.query;
   const user = req.user;
   /* Якщо нема  category в query то помилку видаэмо*/
   if (!category) {
-    res.status(400).json({ message: "Required in the 'category' query" });
+    res.status(400).json({ message: "Required in the 'category' query", success: false });
     return;
   }
   try {
@@ -15,15 +16,16 @@ const all = async (req, res) => {
         let fa = el.favorite.includes(user.id);
         return { ...el?._doc, fa };
       });
-      res.status(200).json(result);
+      res.status(200).json({ data: result, success: true });
       return;
     }
-    res.status(200).json(response);
+    res.status(200).json({ data: response, success: true });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error.message, success: false });
   }
 };
 
+/* ========================GET ID====================== */
 const id = async (req, res) => {
   try {
     const id = req.params.id;
@@ -31,13 +33,14 @@ const id = async (req, res) => {
     if (!id) {
       res.status(400).json({
         message: 'id is required',
+        success: false,
       });
       return;
     }
     const response = await service.notices.getById({ id });
-    res.status(200).json(response);
+    res.status(200).json({ data: response, success: true });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error.message, success: false });
   }
 };
 

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const Joi = require('joi');
 
 const noticesSchema = new Schema(
   {
@@ -41,7 +42,6 @@ const noticesSchema = new Schema(
     price: {
       type: Number,
       min: 0,
-      required: true,
     },
     imgURL: {
       type: String,
@@ -66,4 +66,38 @@ const noticesSchema = new Schema(
 
 const Notices = mongoose.model('notices', noticesSchema);
 
-module.exports = { Notices };
+/* Joi Валідація ========================= */
+
+//GET notices/
+const joiSchemaGetCategory = Joi.object({
+  category: Joi.string().valid('lostFound', 'inGoodHands', 'sell').required(),
+});
+const joiValidGetCategory = (req, res, next) => {
+  const { error } = joiSchemaGetCategory.validate(req.query);
+  if (error) {
+    return res.status(400).json(error.message);
+  }
+  next();
+};
+//POST notices/user/ ₴₴ перевірка required для price у самому контроллері
+const joiSchemaPostUser = Joi.object({
+  category: Joi.string().valid('lostFound', 'inGoodHands', 'sell').required(),
+  title: Joi.string().min(2).max(48).required(),
+  name: Joi.string().min(2).max(16),
+  birthdate: Joi.date(),
+  bread: Joi.string().min(2).max(24),
+  sex: Joi.string().valid('male', 'female').required(),
+  location: Joi.string().min(2).max(24).required(),
+  price: Joi.number().min(0),
+  comments: Joi.string().min(8).max(120),
+});
+const joiValidPostUser = (req, res, next) => {
+  const { error } = joiSchemaPostUser.validate(req.body);
+  if (error) {
+    return res.status(400).json(error.message);
+  }
+  next();
+};
+
+// EXPORTS
+module.exports = { Notices, joiValidGetCategory, joiValidPostUser };

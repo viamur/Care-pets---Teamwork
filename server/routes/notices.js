@@ -1,5 +1,6 @@
 const express = require('express');
 const { notices } = require('../controller');
+const { joiValidGetCategory, joiValidPostUser } = require('../models');
 const { authFaforite, authenticate } = require('../middlewares');
 
 const router = express.Router();
@@ -7,7 +8,7 @@ const router = express.Router();
 /* створити ендпоінт для отримання оголошень авторизованого кристувача створених цим же користувачем  */
 router.get('/user', authenticate, notices.user.get);
 /* створити ендпоінт для додавання оголошень відповідно до обраної категорії */
-router.post('/user', authenticate, notices.user.add);
+router.post('/user', authenticate, joiValidPostUser, notices.user.add);
 /* створити ендпоінт для видалення оголошення авторизованого користувача створеного цим же користувачем   */
 router.delete('/user/:id', authenticate, notices.user.remove);
 
@@ -19,7 +20,7 @@ router.patch('/favorite/:id', authenticate, notices.favorite.add);
 router.delete('/favorite/:id', authenticate, notices.favorite.remove);
 
 /* створити ендпоінт для отримання оголошень по категоріям по query  */
-router.get('/', authFaforite, notices.get.all);
+router.get('/', joiValidGetCategory, authFaforite, notices.get.all);
 /* створити ендпоінт для отримання одного оголошення  */
 router.get('/:id', authFaforite, notices.get.id);
 
