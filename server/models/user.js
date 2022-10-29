@@ -5,6 +5,8 @@ const { handleSchemaValidationErrors } = require("../helpers");
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const phoneRegex = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/;
+const passwordRegex =
+  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,1024}$/;
 
 const userShema = new Schema(
   {
@@ -25,6 +27,7 @@ const userShema = new Schema(
       type: String,
       minlength: 6,
       required: [true, "Password is required"],
+      match: passwordRegex,
     },
     birthday: {
       type: Date,
@@ -80,7 +83,7 @@ userShema.post("save", handleSchemaValidationErrors);
 
 const singupSchema = Joi.object({
   email: Joi.string().pattern(emailRegex).min(6).required(),
-  password: Joi.string().min(6).max(63).required(),
+  password: Joi.string().pattern(passwordRegex).min(7).max(32).required(),
   confirm_password: Joi.string().required().valid(Joi.ref("password")),
   name: Joi.string().min(2).max(10).required(),
   city: Joi.string().min(3).max(20).required(),
