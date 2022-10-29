@@ -4,9 +4,11 @@ const Joi = require("joi");
 const { handleSchemaValidationErrors } = require("../helpers");
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const phoneRegex = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/;
-const passwordRegex =
-  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,1024}$/;
+// const phoneRegex = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/;
+// const phoneRegex = /[+380]+[0-9].{10}/;
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z0-9]).{7,32}$/;
+const cityRegex =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z0-9]).{3,32},(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z0-9]).{3,32}$/;
 
 const userShema = new Schema(
   {
@@ -25,9 +27,6 @@ const userShema = new Schema(
     },
     password: {
       type: String,
-      minlength: 6,
-      required: [true, "Password is required"],
-      match: passwordRegex,
     },
     birthday: {
       type: Date,
@@ -35,14 +34,10 @@ const userShema = new Schema(
     },
     phone: {
       type: String,
-      minlength: 7,
-      maxLength: 15,
-      match: phoneRegex,
+      unique: true,
     },
     city: {
       type: String,
-      minlength: 3,
-      maxLength: 20,
     },
     pets: [
       {
@@ -86,8 +81,9 @@ const singupSchema = Joi.object({
   password: Joi.string().pattern(passwordRegex).min(7).max(32).required(),
   confirm_password: Joi.string().required().valid(Joi.ref("password")),
   name: Joi.string().min(2).max(10).required(),
-  city: Joi.string().min(3).max(20).required(),
-  phone: Joi.string().pattern(phoneRegex).required(),
+  city: Joi.string().pattern(cityRegex).required(),
+  phone: Joi.string().min(9).max(13).required(),
+  // phone: Joi.string().pattern(phoneRegex).required(),
 });
 
 const loginSchema = Joi.object({
