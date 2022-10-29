@@ -1,4 +1,4 @@
-import s from './NoticesCategoriesList.module.css';
+import s from './NoticesCategoriesList.module.scss';
 
 const NoticesCategoriesList = () => {};
 

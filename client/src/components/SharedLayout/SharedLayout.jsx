@@ -1,4 +1,4 @@
-import s from './SharedLayout.module.css';
+import s from './SharedLayout.module.scss';
 
 const SharedLayout = () => {};
 

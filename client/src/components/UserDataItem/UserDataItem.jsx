@@ -1,4 +1,4 @@
-import s from './UserDataItem.module.css';
+import s from './UserDataItem.module.scss';
 
 const UserDataItem = () => {};
 

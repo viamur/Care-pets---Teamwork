@@ -1,4 +1,4 @@
-import s from './RegisterPage.module.css';
+import s from './RegisterPage.module.scss';
 
 const RegisterPage = () => {};
 

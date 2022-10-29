@@ -1,4 +1,4 @@
-import s from './NoticeCategoryItem.module.css';
+import s from './NoticeCategoryItem.module.scss';
 
 const NoticeCategoryItem = () => {};
 

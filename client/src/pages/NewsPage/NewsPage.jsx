@@ -1,4 +1,4 @@
-import s from './NewsPage.module.css';
+import s from './NewsPage.module.scss';
 
 const NewsPage = () => {};
 
