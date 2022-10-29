@@ -1,7 +1,7 @@
 const { Notices } = require('../models');
 
 const getAll = async ({ category }) => {
-  const result = await Notices.find({ category });
+  const result = await Notices.find({ category }, '-createdAt -updatedAt -comments -sex -name');
   return result;
 };
 const getById = async ({ id }) => {

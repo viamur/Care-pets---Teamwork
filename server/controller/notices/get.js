@@ -11,10 +11,12 @@ const all = async (req, res) => {
   }
   try {
     const response = await service.notices.getAll({ category });
+
+    /* Якщо користувач авторизован то перебираємо массив оголошень, шукаємо чи оголошення у користувача в favorite */
     if (user) {
       const result = response.map(el => {
-        let fa = el.favorite.includes(user.id);
-        return { ...el?._doc, fa };
+        const favorite = el.favorite.includes(user.id);
+        return { ...el?._doc, favorite };
       });
       res.status(200).json({ data: result, success: true });
       return;

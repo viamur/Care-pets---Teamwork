@@ -15,7 +15,7 @@ const add = async (req, res) => {
   const { user, body } = req;
 
   /* Делаем валидацию поля price */
-  if (body.category === 'sell' && typeof body?.price !== 'number' && body.price < 1) {
+  if (body.category === 'sell' && typeof body?.price !== 'number') {
     return res.status(400).json({
       message: 'The price field type must be a number and a number greater than 0',
       success: false,

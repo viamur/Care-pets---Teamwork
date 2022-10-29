@@ -75,7 +75,7 @@ const joiSchemaGetCategory = Joi.object({
 const joiValidGetCategory = (req, res, next) => {
   const { error } = joiSchemaGetCategory.validate(req.query);
   if (error) {
-    return res.status(400).json(error.message);
+    return res.status(400).json({ message: error.message, success: false });
   }
   next();
 };
@@ -88,13 +88,13 @@ const joiSchemaPostUser = Joi.object({
   bread: Joi.string().min(2).max(24),
   sex: Joi.string().valid('male', 'female').required(),
   location: Joi.string().min(2).max(24).required(),
-  price: Joi.number().min(0),
+  price: Joi.number().integer().min(1),
   comments: Joi.string().min(8).max(120),
 });
 const joiValidPostUser = (req, res, next) => {
   const { error } = joiSchemaPostUser.validate(req.body);
   if (error) {
-    return res.status(400).json(error.message);
+    return res.status(400).json({ message: error.message, success: false });
   }
   next();
 };
