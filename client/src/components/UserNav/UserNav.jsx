@@ -1,4 +1,4 @@
-import s from './UserNav.module.css';
+import s from './UserNav.module.scss';
 
 const UserNav = () => {};
 

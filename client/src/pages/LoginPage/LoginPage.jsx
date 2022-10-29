@@ -1,5 +1,7 @@
-import s from './LoginPage.module.css';
+import s from './LoginPage.module.scss';
 
-const LoginPage = () => {};
+const LoginPage = () => {
+  return <>LOGIN PAGE</>;
+};
 
 export default LoginPage;

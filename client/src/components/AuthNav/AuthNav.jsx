@@ -1,4 +1,4 @@
-import s from './AuthNav.module.css';
+import s from './AuthNav.module.scss';
 
 const AuthNav = () => {};
 

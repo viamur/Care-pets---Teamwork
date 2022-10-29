@@ -1,4 +1,4 @@
-import s from './ModalAddNotice.module.css';
+import s from './ModalAddNotice.module.scss';
 
 const ModalAddNotice = () => {};
 

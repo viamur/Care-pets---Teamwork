@@ -1,5 +1,9 @@
-const getNews = require('./newsService')
+const notices = require('./notices');
+const getNews = require('./newsService');
+const getOurFriends = require('./ourFriendsService');
 
 module.exports = {
-    getNews
-}
+  getNews,
+  getOurFriends,
+  notices,
+};

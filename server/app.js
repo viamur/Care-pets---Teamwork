@@ -2,8 +2,10 @@ const express = require('express');
 const logger = require('morgan');
 const cors = require('cors');
 const path = require('path');
+const router = require('./routes');
 
-const {newsRouter} = require("./controller");
+const { auth } = require('../server/routes');
+const { newsRouter, friendsRouter } = require('./controller');
 
 const app = express();
 
@@ -16,7 +18,11 @@ app.use(express.json());
 app.use(express.static(publicDirPath));
 
 /* Тут роуты подключаем  */
-app.use("/api/news", newsRouter);
+app.use('/notices', router.notices);
+app.use('/news', newsRouter);
+app.use('/friends', friendsRouter);
+
+app.use('/auth', auth);
 
 app.use((req, res) => {
   res.status(404).json({ message: 'Not Found' });

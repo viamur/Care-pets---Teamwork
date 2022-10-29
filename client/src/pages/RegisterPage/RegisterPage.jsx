@@ -1,5 +1,7 @@
-import s from './RegisterPage.module.css';
+import s from './RegisterPage.module.scss';
 
-const RegisterPage = () => {};
+const RegisterPage = () => {
+  return <p>REGISTER PAGE</p>;
+};
 
 export default RegisterPage;

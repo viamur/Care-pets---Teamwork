@@ -1,5 +1,7 @@
-import s from './OurFriendsPage.module.css';
+import s from './OurFriendsPage.module.scss';
 
-const OurFriendsPage = () => {};
+const OurFriendsPage = () => {
+  return <></>;
+};
 
 export default OurFriendsPage;

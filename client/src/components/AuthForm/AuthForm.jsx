@@ -1,4 +1,4 @@
-import s from './AuthForm.module.css';
+import s from './AuthForm.module.scss';
 
 const AuthForm = () => {};
 

@@ -1,5 +1,7 @@
-import s from './NewsPage.module.css';
+import s from './NewsPage.module.scss';
 
-const NewsPage = () => {};
+const NewsPage = () => {
+  return <></>;
+};
 
 export default NewsPage;
