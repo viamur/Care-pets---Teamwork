@@ -1,3 +1,3 @@
-const notices = require('./notices');
+const { Notices } = require('./notices');
 
-module.exports = { notices };
+module.exports = { Notices };

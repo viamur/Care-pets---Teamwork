@@ -1,15 +1,30 @@
-const schema = require('../models');
+const { Notices } = require('../models');
 
-const getAll = ({ category }) => {};
-const getById = ({ id }) => {};
+const getAll = async ({ category }) => {
+  const result = await Notices.find({ category });
+  return result;
+};
+const getById = async ({ id }) => {
+  const result = await Notices.findById(id);
+  return result;
+};
 
-const getUserPets = ({ id }) => {};
-const addUserPets = ({ id, body }) => {};
-const delUserPets = ({ owner, id }) => {};
+const getUserPets = async ({ id }) => {
+  const result = await Notices.find({ owner: id });
+  return result;
+};
+const addUserPets = async ({ id, body }) => {
+  const result = await Notices.create({ ...body, owner: id });
+  return result;
+};
+const delUserPets = async ({ owner, id }) => {
+  const result = await Notices.findOneAndDelete({ _id: id, owner });
+  return result;
+};
 
-const getFavorites = ({ id }) => {};
-const addFavorites = ({ id, userId }) => {};
-const delFavorites = ({ id, userId }) => {};
+const getFavorites = async ({ id }) => {};
+const addFavorites = async ({ id, userId }) => {};
+const delFavorites = async ({ id, userId }) => {};
 
 module.exports = {
   getAll,
