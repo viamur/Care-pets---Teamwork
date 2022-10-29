@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 
-import s from './modal.module.css';
+import s from './mobileModal.module.scss';
 
 const modalRoot = document.getElementById('modal-root');
 

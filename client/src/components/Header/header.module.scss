@@ -1,22 +1,49 @@
 @import '../../sass/_mixin.scss';
 
-.logo {
- font-size: 28px;
+.navContainer {
+    position: relative;
+    padding: 12px 0 45px 0;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
 
-@include mq(tab) {
-    font-size: 32px;
+
+    @include mq(tab) {
+    padding: 24px 0 45px 0;
+    }
 }
+
+.logo {
+    font-size: 28px;
+    font-family: 'Poppins Bold';
+
+    @include mq(tab) {
+        font-size: 32px;
+    }
 }
 
 .logoT {
     color: var(--accent-color);
+
 }
 
-.menuButton{
+.menu {
+    display: none;
+
+    @include mq(desk) {
+        display: flex;
+    }
+}
+
+.menuButton {
     display: flex;
     width: 40px;
     height: 40px;
     border: none;
-    
+
     cursor: pointer;
+
+    @include mq(desk) {
+        display: none;
+    }
 }
