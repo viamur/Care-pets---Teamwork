@@ -4,6 +4,8 @@ const { auth } = require("../server/routes");
 const cors = require("cors");
 const path = require("path");
 
+const {newsRouter, friendsRouter} = require("./controller");
+
 const app = express();
 
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
@@ -15,6 +17,8 @@ app.use(express.json());
 app.use(express.static(publicDirPath));
 
 /* Тут роуты подключаем  */
+app.use("/news", newsRouter);
+app.use("/friends", friendsRouter);
 
 app.use("/auth", auth);
 

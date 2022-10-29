@@ -5,9 +5,12 @@
 
 body {
   margin: 0;
-  font-family: 'Roboto Regular', sans-serif;
+  font-family: 'Manrope-Regular', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background-color: var(--bg-color);
+  color: var(--font-color);
 }
 
 code {
