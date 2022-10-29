@@ -1,5 +1,7 @@
 import s from './UserPage.module.scss';
 
-const UserPage = () => {};
+const UserPage = () => {
+  return <></>;
+};
 
 export default UserPage;
