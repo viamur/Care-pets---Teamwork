@@ -4,6 +4,9 @@ const cors = require('cors');
 const path = require('path');
 const router = require('./routes');
 
+const { auth } = require('../server/routes');
+const { newsRouter, friendsRouter } = require('./controller');
+
 const app = express();
 
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
