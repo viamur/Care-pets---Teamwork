@@ -1,0 +1,62 @@
+.mainTitle {
+  margin: 60px 0px;
+  text-align: center;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 66px;
+  /* identical to box height */
+
+  color: #000000;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  display: flex;
+  background: #ffffff;
+  /* Тень для карточек */
+
+  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
+  border-radius: 40px;
+}
+
+.card.icon {
+  align-items: flex-start;
+}
+
+.icon {
+  background-color: aqua;
+}
+
+.cardTitle {
+  text-align: center;
+
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 27px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  text-decoration-line: underline;
+
+  /* Акцентный */
+
+  color: #f59256;
+}
+
+.discriptionWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.discription {
+  display: flex;
+  flex-direction: column;
+}
