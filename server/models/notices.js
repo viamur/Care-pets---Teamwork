@@ -45,7 +45,7 @@ const noticesSchema = new Schema(
     },
     imgURL: {
       type: String,
-      default: 'notices/default.png',
+      default: 'notices/default.jpg',
     },
     comments: {
       type: String,

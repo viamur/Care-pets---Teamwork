@@ -21,7 +21,10 @@ const all = async (req, res) => {
       res.status(200).json({ data: result, success: true });
       return;
     }
-    res.status(200).json({ data: response, success: true });
+    /* Якщо користувач не авторизован перебираєм массив і просто замінюємо favorite і ставимо false */
+    const newResponse = response.map(el => ({ ...el?._doc, favorite: false }));
+
+    res.status(200).json({ data: newResponse, success: true });
   } catch (error) {
     res.status(500).json({ message: error.message, success: false });
   }
@@ -30,6 +33,7 @@ const all = async (req, res) => {
 /* ========================GET ID====================== */
 const id = async (req, res) => {
   try {
+    const user = req.user;
     const id = req.params.id;
     /* Перевіряємо чи є id якщо ні то видаємо помилку */
     if (!id) {
@@ -40,7 +44,14 @@ const id = async (req, res) => {
       return;
     }
     const response = await service.notices.getById({ id });
-    res.status(200).json({ data: response, success: true });
+    /* Якщо користувач авторизован то шукаємо чи оголошення у користувача в favorite */
+    if (user) {
+      const favorite = response.favorite.includes(user.id);
+      res.status(200).json({ data: { ...response?._doc, favorite }, success: true });
+      return;
+    }
+    /* Якщо користувач не авторизован і просто замінюємо favorite і ставимо false */
+    res.status(200).json({ data: { ...response?._doc, favorite: false }, success: true });
   } catch (error) {
     res.status(500).json({ message: error.message, success: false });
   }

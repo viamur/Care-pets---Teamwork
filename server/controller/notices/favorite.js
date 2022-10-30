@@ -5,7 +5,8 @@ const get = async (req, res) => {
   const user = req.user;
   try {
     const response = await service.notices.getFavorites({ id: user.id });
-    res.status(200).json({ data: response, success: true });
+    const result = response.map(el => ({ ...el?._doc, favorite: true }));
+    res.status(200).json({ data: result, success: true });
   } catch (error) {
     res.status(500).json({ message: error.message, success: false });
   }
@@ -24,8 +25,8 @@ const add = async (req, res) => {
     return;
   }
   try {
-    const response = await service.notices.addFavorites({ id, userId: user.id });
-    res.status(201).json({ data: response, success: true });
+    await service.notices.addFavorites({ id, userId: user.id });
+    res.status(201).json({ success: true });
   } catch (error) {
     res.status(500).json({ message: error.message, success: false });
   }
@@ -44,8 +45,8 @@ const remove = async (req, res) => {
     return;
   }
   try {
-    const response = await service.notices.delFavorites({ id, userId: user.id });
-    res.status(200).json({ data: response, success: true });
+    await service.notices.delFavorites({ id, userId: user.id });
+    res.status(200).json({ success: true });
   } catch (error) {
     res.status(500).json({ message: error.message, success: false });
   }
