@@ -55,6 +55,10 @@ const userShema = new Schema(
           minlength: 2,
           maxLength: 10,
         },
+        imgURL: {
+          type: String,
+          default: 'pet/default.jpg',
+        },
         comments: {
           type: String,
           minlength: 2,
@@ -96,13 +100,22 @@ const pathUser = Joi.object({
   name: Joi.string().min(2).max(10),
   city: Joi.string().pattern(cityRegex),
   phone: Joi.string().min(9).max(13),
-  birthday: Joi.date()
+  birthday: Joi.date(),
+});
+
+const addPet = Joi.object({
+  name: Joi.string().min(2).max(16).required(),
+  birthday: Joi.date().required(),
+  breed: Joi.string().min(2).max(24).required(),
+  imgURL: Joi.string(),
+  comments: Joi.string().min(8).max(120),
 });
 
 const schemas = {
   singupSchema,
   loginSchema,
   pathUser,
+  addPet,
 };
 
 const User = model('user', userShema);

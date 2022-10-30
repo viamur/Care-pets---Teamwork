@@ -5,7 +5,6 @@ const getUserInfo = async ({ id }) => {
   return response;
 };
 const updateUser = async ({ id, body }) => {
-  console.log(body);
   const response = await User.findByIdAndUpdate(id, body, {
     new: true,
     select: '-password -token -createdAt -updatedAt',
@@ -13,7 +12,13 @@ const updateUser = async ({ id, body }) => {
   return response;
 };
 
+const addPet = async ({ id, body }) => {
+  const response = await User.findByIdAndUpdate(id, { $addToSet: { pets: body } }, { new: true });
+  return response;
+};
+
 module.exports = {
   getUserInfo,
   updateUser,
+  addPet,
 };
