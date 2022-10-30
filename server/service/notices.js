@@ -18,7 +18,10 @@ const getById = async ({ id }) => {
 };
 
 const getUserPets = async ({ id }) => {
-  const result = await Notices.find({ owner: id });
+  const result = await Notices.find(
+    { owner: id },
+    '-createdAt -updatedAt -comments -sex -name -owner'
+  );
   return result;
 };
 const addUserPets = async ({ id, body }) => {

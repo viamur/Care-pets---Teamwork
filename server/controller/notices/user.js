@@ -4,7 +4,19 @@ const get = async (req, res) => {
   const user = req.user;
   try {
     const response = await service.notices.getUserPets({ id: user.id });
-    res.status(200).json({ data: response, success: true });
+    /* Якщо користувач авторизован то перебираємо массив оголошень, шукаємо чи оголошення у користувача в favorite */
+    if (user) {
+      const result = response.map(el => {
+        const favorite = el.favorite.includes(user.id);
+        return { ...el?._doc, favorite };
+      });
+      res.status(200).json({ data: result, success: true });
+      return;
+    }
+    /* Якщо користувач не авторизован перебираєм массив і просто замінюємо favorite і ставимо false */
+    const newResponse = response.map(el => ({ ...el?._doc, favorite: false }));
+
+    res.status(200).json({ data: newResponse, success: true });
   } catch (error) {
     res.status(500).json({ message: error.message, success: false });
   }
@@ -24,7 +36,8 @@ const add = async (req, res) => {
 
   try {
     const response = await service.notices.addUserPets({ id: user.id, body });
-    res.status(201).json({ data: response, success: true });
+
+    res.status(201).json({ data: { ...response?._doc, favorite: false }, success: true });
   } catch (error) {
     res.status(500).json({ message: error.message, success: false });
   }
