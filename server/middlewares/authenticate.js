@@ -1,28 +1,38 @@
-const jwt = require("jsonwebtoken");
-require("dotenv").config();
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
-const { User } = require("../models/user");
-const { createError } = require("../helpers");
+const { User } = require('../models/user');
+const { createError } = require('../helpers');
 
 const { SECRET_KEY } = process.env;
 
 const authenticate = async (req, res, next) => {
-  const { authorization = "" } = req.headers;
-  const [bearer, token] = authorization.split(" ");
-  if (bearer !== "Bearer") {
-    next(createError(401, "Unauthorized"));
+  /* Беремо з headers данні */
+  const { authorization = '' } = req.headers;
+  /* Розбиваємо строку на строки массива */
+  const [bearer, token] = authorization.split(' ');
+  /* Перевіряємо тип токену та чи є токін*/
+  if (bearer !== 'Bearer' || token === '') {
+    res.status(401).json({ message: 'Not authorized' });
+    return;
   }
   try {
+    /* Витягуємо id з payload нашого токену */
     const { id } = jwt.verify(token, SECRET_KEY);
+    /* Шукаємо користувача з id в БД */
     const user = await User.findById(id);
 
+    /* Перевіряємо якщо користувач не знайден, або якщо він вже розлогінен */
     if (!user || !user.token) {
-      next(createError(401, "Unauthorized"));
+      res.status(401).json({ message: 'Not authorized' });
+      return;
     }
+    /* Записуєм в реквест данні юзера */
     req.user = user;
+    /* Переходимо далі */
     next();
   } catch (error) {
-    next(createError(401, error.message));
+    res.status(400).json({ message: error.message });
   }
 };
 
