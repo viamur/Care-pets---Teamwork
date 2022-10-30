@@ -1,14 +1,15 @@
 const express = require('express');
 const { notices } = require('../controller');
-const { joiValidGetCategory, joiValidPostUser } = require('../models');
+const { joiValidGetCategory } = require('../models');
 const { authFaforite, authenticate } = require('../middlewares');
+const upload = require('../service/upload');
 
 const router = express.Router();
 
 /* створити ендпоінт для отримання оголошень авторизованого кристувача створених цим же користувачем  */
 router.get('/user', authenticate, notices.user.get);
 /* створити ендпоінт для додавання оголошень відповідно до обраної категорії */
-router.post('/user', authenticate, joiValidPostUser, notices.user.add);
+router.post('/user', authenticate, upload.single('notices'), notices.user.add);
 /* створити ендпоінт для видалення оголошення авторизованого користувача створеного цим же користувачем   */
 router.delete('/user/:id', authenticate, notices.user.remove);
 

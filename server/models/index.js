@@ -1,3 +1,3 @@
-const { Notices, joiValidGetCategory, joiValidPostUser } = require('./notices');
+const { Notices, joiValidGetCategory, joiValidPostUser, joiSchemaPostUser } = require('./notices');
 
-module.exports = { Notices, joiValidGetCategory, joiValidPostUser };
+module.exports = { Notices, joiValidGetCategory, joiValidPostUser, joiSchemaPostUser };

@@ -100,4 +100,4 @@ const joiValidPostUser = (req, res, next) => {
 };
 
 // EXPORTS
-module.exports = { Notices, joiValidGetCategory, joiValidPostUser };
+module.exports = { Notices, joiValidGetCategory, joiValidPostUser, joiSchemaPostUser };

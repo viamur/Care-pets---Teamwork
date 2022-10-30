@@ -1,4 +1,9 @@
 const service = require('../../service');
+const fs = require('fs').promises;
+const path = require('path');
+const { v4: uuidv4 } = require('uuid');
+const convertingImgNotices = require('../../service/convertingImgNotices');
+const { joiSchemaPostUser } = require('../../models');
 /* ======================GET================================== */
 const get = async (req, res) => {
   const user = req.user;
@@ -24,7 +29,16 @@ const get = async (req, res) => {
 
 /* ======================POST================================== */
 const add = async (req, res) => {
+  /* Беремо данні з request */
+  const file = req.file;
   const { user, body } = req;
+
+  /* ==============Joi Валідація ================ */
+  const { error } = joiSchemaPostUser.validate(req.body);
+  if (error) {
+    return res.status(400).json({ message: error.message, success: false });
+    return;
+  }
 
   /* Делаем валидацию поля price */
   if (body.category === 'sell' && typeof body?.price !== 'number') {
@@ -34,11 +48,38 @@ const add = async (req, res) => {
     });
   }
 
+  /* defaults img яку буде перезаписане якщо зображення прикріпленне к формі */
+  let imgURL = 'notices/default.jpg';
+
   try {
-    const response = await service.notices.addUserPets({ id: user.id, body });
+    /* -------------якщо є зоображення то функція виконуєтся-------------- */
+    if (file) {
+      /* Генеруємо нове імя файлу та новий шлях*/
+      const uuid = uuidv4();
+      const extension = file.originalname.split('.').reverse()[0];
+      const newName = `${uuid}.${extension}`;
+      const newPathNotices = path.join(__dirname, '../../public/notices/', newName);
+
+      /* Якщо тип файлу не  image/webp' то воно обрізає його, бібліотека не працює з циф форматом((*/
+      if (file.mimetype !== 'image/webp') {
+        /* Функція яка обрізає зображення та зберігає його у тій же папці  */
+        await convertingImgNotices({ tmpDir: file.path });
+      }
+
+      /* Переміщуємо файл в іншу директорію */
+      await fs.rename(file.path, newPathNotices);
+
+      /* Перезаписуємо шлях до зображення */
+      imgURL = `/notices/${newName}`;
+    }
+
+    const response = await service.notices.addUserPets({ id: user.id, body: { ...body, imgURL } });
 
     res.status(201).json({ data: { ...response?._doc, favorite: false }, success: true });
   } catch (error) {
+    /* Видаляємо файл якщо помилка */
+    fs.unlink(file.path);
+    /* Відповідь сервера при помилки */
     res.status(500).json({ message: error.message, success: false });
   }
 };
