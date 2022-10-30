@@ -1,4 +1,4 @@
-import s from './UserData.module.css';
+import s from './UserData.module.scss';
 
 const UserData = () => {};
 

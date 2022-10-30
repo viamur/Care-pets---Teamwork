@@ -1,4 +1,4 @@
-import s from './UserPage.module.css';
+import s from './UserPage.module.scss';
 
 const UserPage = () => {
   return <></>;

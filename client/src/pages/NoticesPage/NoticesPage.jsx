@@ -3,6 +3,9 @@ import NoticesCategoriesNav from 'components/NoticesCategoriesNav/NoticesCategor
 import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
 import { useState } from 'react';
 
+import s from './NoticesPage.module.scss';
+
+
 const NoticesPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
 

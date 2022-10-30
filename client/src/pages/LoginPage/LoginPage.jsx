@@ -1,4 +1,4 @@
-import s from './LoginPage.module.css';
+import s from './LoginPage.module.scss';
 
 const LoginPage = () => {
   return <></>;

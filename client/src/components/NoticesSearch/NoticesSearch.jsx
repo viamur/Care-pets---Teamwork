@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import sprite from '../../images/icons/sprite.svg';
+
 import s from './NoticesSearch.module.scss';
 
 const NoticesSearch = ({ onSubmit }) => {

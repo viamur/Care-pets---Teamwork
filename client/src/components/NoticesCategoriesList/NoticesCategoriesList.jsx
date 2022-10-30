@@ -1,4 +1,5 @@
 import NoticeCategoryItem from 'components/NoticeCategoryItem/NoticeCategoryItem';
+
 import s from './NoticesCategoriesList.module.scss';
 
 const NoticesCategoriesList = () => {

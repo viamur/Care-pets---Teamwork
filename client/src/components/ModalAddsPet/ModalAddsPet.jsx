@@ -1,4 +1,4 @@
-import s from './ModalAddsPet.module.css';
+import s from './ModalAddsPet.module.scss';
 
 const ModalAddsPet = () => {};
 
