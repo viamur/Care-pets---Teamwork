@@ -1,7 +1,7 @@
-const { Schema, model } = require("mongoose");
-const Joi = require("joi");
+const { Schema, model } = require('mongoose');
+const Joi = require('joi');
 
-const { handleSchemaValidationErrors } = require("../helpers");
+const { handleSchemaValidationErrors } = require('../helpers');
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 // const phoneRegex = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/;
@@ -21,7 +21,7 @@ const userShema = new Schema(
       type: String,
       minlength: 6,
       maxLength: 63,
-      required: [true, "Email is required"],
+      required: [true, 'Email is required'],
       match: emailRegex,
       unique: true,
     },
@@ -64,22 +64,22 @@ const userShema = new Schema(
     ],
     avatarURL: {
       type: String,
-      default: "avatar/avatar.png",
+      default: 'avatar/default.jpg',
     },
     token: {
       type: String,
-      default: "",
+      default: '',
     },
   },
   { versionKey: false, timestamps: true }
 );
 
-userShema.post("save", handleSchemaValidationErrors);
+userShema.post('save', handleSchemaValidationErrors);
 
 const singupSchema = Joi.object({
   email: Joi.string().pattern(emailRegex).min(6).required(),
   password: Joi.string().pattern(passwordRegex).min(7).max(32).required(),
-  confirm_password: Joi.string().required().valid(Joi.ref("password")),
+  confirm_password: Joi.string().required().valid(Joi.ref('password')),
   name: Joi.string().min(2).max(10).required(),
   city: Joi.string().pattern(cityRegex).required(),
   phone: Joi.string().min(9).max(13).required(),
@@ -91,12 +91,21 @@ const loginSchema = Joi.object({
   password: Joi.string().min(6).required(),
 });
 
+const pathUser = Joi.object({
+  email: Joi.string().pattern(emailRegex).min(6),
+  name: Joi.string().min(2).max(10),
+  city: Joi.string().pattern(cityRegex),
+  phone: Joi.string().min(9).max(13),
+  birthday: Joi.date()
+});
+
 const schemas = {
   singupSchema,
   loginSchema,
+  pathUser,
 };
 
-const User = model("user", userShema);
+const User = model('user', userShema);
 
 module.exports = {
   User,
