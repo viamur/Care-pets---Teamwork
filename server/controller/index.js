@@ -1,7 +1,9 @@
-const newsRouter = require("./newsController");
-const friendsRouter = require("./friendsController");
+const notices = require('./notices');
+const newsController = require('./newsController');
+const friendsController = require('./friendsController');
 
 module.exports = {
-  newsRouter,
-  friendsRouter,
+  newsController,
+  friendsController,
+  notices,
 };
