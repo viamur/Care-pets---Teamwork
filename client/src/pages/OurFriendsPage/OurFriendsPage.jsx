@@ -16,10 +16,8 @@ const OurFriendsPage = () => {
   const [friends, setFriends] = useState([]);
 
   const fetchQueryPhotos = () => {
-  return axios
-    .get('friends')
-    .then(response => response.data);
-};
+    return axios.get('friends').then(response => response.data);
+  };
 
   // const handleFormSubmit = query => {
   //   setQuery(query);
@@ -37,31 +35,51 @@ const OurFriendsPage = () => {
   useEffect(() => {
     // setLoading(true);
     fetchQueryPhotos()
-      .then((data) => {
+      .then(data => {
         setFriends(data);
       })
-      .catch(err => console.log(err))
-      // .finally(() => setLoading(false));
+      .catch(err => console.log(err));
+    // .finally(() => setLoading(false));
   }, []);
 
   console.log(friends);
-  return <>
-    <h1 className={s.mainTitle}>Our friend</h1>
+  return (
+    <>
+      <h1 className={s.mainTitle}>Our friend</h1>
       <ul className={s.list}>
-    {friends.map(friend => (
-      <li key={friend._id} className={s.card}>
-        <p className={s.cardTitle}>{friend.title}</p>
-        <img src={friend.icon} className={s.icon} alt="" width="158" height="112" />
-        <div className={s.discriptionWrapper}> 
-        <p className={s.discription}>Time: {friend.time}</p>
-        <p className={s.discription}>Adress:{friend.adress}</p>
-        <p className={s.discription}>Email: {friend.email}</p>
-          <p className={s.discription}>Phone: {friend.phone}</p>
-          </div>
-    </li>
-    ))}
-  </ul>
-  </>;
+        {friends.map(friend => (
+          <li key={friend._id} className={s.card}>
+            <h2 className={s.cardTitle}>{friend.title}</h2>
+            <div className={s.iconDescriptionWrapper}>
+            <img
+              src={friend.icon}
+              className={s.icon}
+              alt=""
+            />
+            <ul className={s.discriptionList}>
+              <li className={s.discriptionEl}>
+                <p className={s.discription}>Time:</p>
+                <p className={s.discription}>{friend.time}</p>
+              </li>
+              <li className={s.discriptionEl}>
+                <p className={s.discription}>Adress:</p>
+                <p className={s.discription}>{friend.adress}</p>
+              </li>
+              <li className={s.discriptionEl}>
+                <p className={s.discription}>Email:</p>
+                <p className={s.discription}>{friend.email}</p>
+              </li>
+              <li className={s.discriptionEl}>
+                <p className={s.discription}>Phone:</p>
+                <p className={s.discription}>{friend.phone}</p>
+              </li>
+              </ul>
+              </div>
+          </li>
+        ))}
+      </ul>
+    </>
+  );
 };
 
 export default OurFriendsPage;
