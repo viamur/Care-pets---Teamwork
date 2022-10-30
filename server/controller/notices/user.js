@@ -70,7 +70,7 @@ const add = async (req, res) => {
       await fs.rename(file.path, newPathNotices);
 
       /* Перезаписуємо шлях до зображення */
-      imgURL = `/notices/${newName}`;
+      imgURL = `notices/${newName}`;
     }
 
     const response = await service.notices.addUserPets({ id: user.id, body: { ...body, imgURL } });
