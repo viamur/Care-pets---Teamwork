@@ -17,8 +17,14 @@ const addPet = async ({ id, body }) => {
   return response;
 };
 
+const deletePet = async ({ id, userId }) => {
+  const response = await User.findByIdAndUpdate(userId, { $pull: { pets: { _id: id } } });
+  return response;
+};
+
 module.exports = {
   getUserInfo,
   updateUser,
   addPet,
+  deletePet,
 };

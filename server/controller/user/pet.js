@@ -56,7 +56,23 @@ const addPet = async (req, res) => {
 
 const removePet = async (req, res) => {
   const user = req.user;
-  const { id } = req.params;
+  const id = req.params.id;
+
+  /* Перевіряємо чи є id якщо ні то видаємо помилку */
+  if (!id) {
+    res.status(400).json({
+      message: 'id is required',
+      success: false,
+    });
+    return;
+  }
+
+  try {
+    await service.user.deletePet({ id, userId: user.id });
+    res.status(200).json({ success: true });
+  } catch (error) {
+    res.status(500).json({ message: error.message, success: false });
+  }
 };
 
 module.exports = { addPet, removePet };
