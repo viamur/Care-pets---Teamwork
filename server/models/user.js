@@ -4,8 +4,7 @@ const Joi = require('joi');
 const { handleSchemaValidationErrors } = require('../helpers');
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-// const phoneRegex = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/;
-// const phoneRegex = /[+380]+[0-9].{10}/;
+const phoneRegex = /^\+380\d{9}/;
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z0-9]).{7,32}$/;
 const cityRegex =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z0-9]).{3,32},(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z0-9]).{3,32}$/;
@@ -86,8 +85,7 @@ const singupSchema = Joi.object({
   confirm_password: Joi.string().required().valid(Joi.ref('password')),
   name: Joi.string().min(2).max(10).required(),
   city: Joi.string().pattern(cityRegex).required(),
-  phone: Joi.string().min(9).max(13).required(),
-  // phone: Joi.string().pattern(phoneRegex).required(),
+  phone: Joi.string().length(13).pattern(phoneRegex).required(),
 });
 
 const loginSchema = Joi.object({
