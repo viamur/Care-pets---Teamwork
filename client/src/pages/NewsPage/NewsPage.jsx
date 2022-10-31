@@ -1,16 +1,62 @@
+import { useEffect, useState } from 'react';
+// import { fetchNews } from '../../utils/api';
+import NewsList from '../../components/NewsList/NewsList';
+import NewsSearch from '../../components/NewsSearch/NewsSearch';
 import s from './NewsPage.module.scss';
 
+import newArr from './news.json';
+
 const NewsPage = () => {
+  const [news, setNews] = useState(newArr);
+  const [searchQuery, setSearchQuery] = useState('');
+  // const [queriedNews, setQueriedNews] = useState([]);
+
+  // console.log(newArr);
+
+  // запуститься на стадії монтування компонента
+  // useEffect(() => {
+  //   fetchNews()
+  //     .then(news => setNews(news))
+  //     .catch(err => console.log(err));
+  // }, []);
+
+  const onSubmitSearch = searchQuery => {
+    setSearchQuery(searchQuery);
+  };
+
+  let queriedNews = [];
+
+  if (searchQuery && news) {
+    const normalizeSearchQuery = searchQuery.toLowerCase();
+
+    console.log(news);
+
+    queriedNews = news.filter(el =>
+      el.title.toLowerCase().includes(normalizeSearchQuery)
+    );
+
+    console.log(queriedNews);
+
+    return queriedNews;
+  }
+
   return (
     <>
       <h1 className={s.title}>News</h1>
+
       {/* need to use  NoticeSearch Component*/}
-      <form className={s.form}>
+      <NewsSearch onSubmit={onSubmitSearch} />
+
+      {/* <form className={s.form}>
         <input type="text" placeholder="Search" className={s.input}></input>
         <button type="submit" className={s.btn}></button>
-      </form>
+      </form> */}
+
       {/* NEWS body */}
-      <ul className={s.list}>
+      {/* <NewsList news={searchQuery ? queriedNews : news} /> */}
+      <NewsList news={newArr} />
+
+      {/* <ul className={s.list}>
         <li className={s.item}>
           <h2 className={s.subtitle}>Обережно, кліщі! Як уберегти улюбленця</h2>
           <p className={s.text}>
@@ -181,7 +227,7 @@ const NewsPage = () => {
             </a>
           </div>
         </li>
-      </ul>
+      </ul> */}
     </>
   );
 };
