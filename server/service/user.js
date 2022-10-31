@@ -7,7 +7,7 @@ const getUserInfo = async ({ id }) => {
 const updateUser = async ({ id, body }) => {
   const response = await User.findByIdAndUpdate(id, body, {
     new: true,
-    select: '-password -token -createdAt -updatedAt',
+    select: '-password -token -createdAt -updatedAt -pets',
   });
   return response;
 };

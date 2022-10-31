@@ -23,7 +23,7 @@ const noticesSchema = new Schema(
     birthdate: {
       type: Date,
     },
-    bread: {
+    breed: {
       type: String,
       minLength: 2,
       maxLength: 24,
