@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-// axios.defaults.baseURL = 'https:';
+axios.defaults.baseURL = 'http://localhost:5000';
 
 export const fetchNews = () => {
   return axios
     .get('/news')
-    .then(({ data }) => data)
+    .then(response => response.data)
     .catch(error => console.log(error));
 };

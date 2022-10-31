@@ -43,6 +43,7 @@
 
 .subtitle {
     width: 100%;
+    min-height: 66px;
     margin-bottom: 16px;
 
     // allows only 2 lines to be displayed
@@ -60,6 +61,7 @@
 
 .text {
     width: 100%;
+    min-height: 154px;
     margin-bottom: 20px;
 
     // allows only 7 lines to be displayed
@@ -74,6 +76,7 @@
     color: var(--font-news-color);
 
     @include mq(tab) {
+        min-height: 132px;
         margin-bottom: 40px;
 
         // allows only 6 lines to be displayed
@@ -81,6 +84,7 @@
     }
 
     @include mq(desk) {
+        min-height: 110px;
        // allows only 5 lines to be displayed
         -webkit-line-clamp: 5;
     }
