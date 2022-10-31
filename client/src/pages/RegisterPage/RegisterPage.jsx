@@ -1,7 +1,7 @@
 import s from './RegisterPage.module.scss';
 
 const RegisterPage = () => {
-  return <p>REGISTER PAGE</p>;
+  return <></>;
 };
 
 export default RegisterPage;

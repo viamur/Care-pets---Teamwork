@@ -1,7 +1,13 @@
-const { Notices } = require('./notices');
+const notices = require('./notices');
 const auth = require('./auth');
+const news = require('./newsRoute');
+const friends = require('./friendsRoute');
+const user = require('./user');
 
 module.exports = {
   auth,
-  Notices,
+  notices,
+  news,
+  friends,
+  user,
 };

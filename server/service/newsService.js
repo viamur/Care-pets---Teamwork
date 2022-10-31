@@ -1,4 +1,4 @@
-const { newsSchema } = require("./mongooseSchema");
+const { newsSchema } = require("../models");
 
 async function getNews() {
   return newsSchema.find();

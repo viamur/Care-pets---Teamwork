@@ -4,7 +4,6 @@ import Header from 'components/Header/Header';
 import s from './SharedLayout.module.scss';
 import { Outlet } from 'react-router-dom';
 
-
 const SharedLayout = () => {
   return (
     <Container>

@@ -1,4 +1,4 @@
-const { ourFriendsSchema } = require("./mongooseSchema");
+const { ourFriendsSchema } = require("../models");
 
 async function getOurFriends() {
   return ourFriendsSchema.find();

@@ -4,9 +4,6 @@ const cors = require('cors');
 const path = require('path');
 const router = require('./routes');
 
-const { auth } = require('../server/routes');
-const { newsRouter, friendsRouter } = require('./controller');
-
 const app = express();
 
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
@@ -19,10 +16,10 @@ app.use(express.static(publicDirPath));
 
 /* Тут роуты подключаем  */
 app.use('/notices', router.notices);
-app.use('/news', newsRouter);
-app.use('/friends', friendsRouter);
-
-app.use('/auth', auth);
+app.use('/news', router.news);
+app.use('/friends', router.friends);
+app.use('/auth', router.auth);
+app.use('/user', router.user);
 
 app.use((req, res) => {
   res.status(404).json({ message: 'Not Found' });
