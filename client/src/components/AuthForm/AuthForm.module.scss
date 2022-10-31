@@ -1,0 +1,35 @@
+.container {
+  width: 618px;
+  text-align: center;
+  background-color: var(--white);
+  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+  border-radius: 40px;
+  padding: 60px 80px;
+  margin: 0 auto;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 1.36;
+  letter-spacing: 0.04em;
+  margin-bottom: 40px;
+}
+
+.question,
+.link {
+  display: inline-block;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: 0.04em;
+}
+
+.question {
+  color: var(--date-color);
+}
+
+.link {
+  text-decoration-line: underline;
+  color: #3091eb;
+}

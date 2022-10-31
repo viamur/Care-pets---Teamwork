@@ -20,13 +20,12 @@
 
 .card {
   width: 394px;
-  //   height: 287px;
   margin: 10px 16px;
   display: flex;
   flex-direction: column;
 
   padding: 16px 4px;
-  background: #ffffff;
+  background: var(--white);
   /* Тень для карточек */
 
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
@@ -42,9 +41,7 @@
   text-align: center;
   text-decoration-line: underline;
 
-  /* Акцентный */
-
-  color: #f59256;
+  color: var(--accent-color);
 }
 
 .iconDescriptionWrapper {
@@ -57,8 +54,8 @@
   margin-left: 4px;
   width: 158px;
   height: 112px;
-  background-color: aqua;
   margin-right: 16px;
+  border: 1px solid var(--accent-color);
 }
 
 .discriptionList {
@@ -82,6 +79,46 @@
   color: #000000;
 }
 
-// .time {
-//   position: fixed;
-// }
+.projectProduct {
+  overflow: hidden;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  &:hover,
+  &:focus {
+    overflow: visible;
+    cursor: pointer;
+  }
+}
+
+.projectOverlay {
+  position: absolute;
+
+  top: 45px;
+
+  width: 120px;
+  height: 160px;
+
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  justify-content: space-between;
+
+  background: var(--white);
+  border: 1px solid var(--accent-color);
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  align-items: center;
+  text-align: center;
+
+  color: #000000;
+}
