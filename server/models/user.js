@@ -109,11 +109,16 @@ const addPet = Joi.object({
   comments: Joi.string().min(8).max(120),
 });
 
+const checkEmail = Joi.object({
+  email: Joi.string().min(6).max(63).pattern(emailRegex).required(),
+});
+
 const schemas = {
   singupSchema,
   loginSchema,
   pathUser,
   addPet,
+  checkEmail,
 };
 
 const User = model('user', userShema);

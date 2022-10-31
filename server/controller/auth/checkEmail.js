@@ -1,10 +1,10 @@
-const { User } = require("../../models/user");
+const { User } = require('../../models/user');
 
 const checkEmail = async (req, res) => {
   const { email } = req.body;
   if (!email) {
     return res.status(400).json({
-      message: "email is required",
+      message: 'email is required',
     });
   }
 
@@ -14,7 +14,7 @@ const checkEmail = async (req, res) => {
       check: true,
     });
   }
-  res.status(201).json({
+  res.status(200).json({
     check: false,
   });
 };
