@@ -18,6 +18,6 @@ export const getRegisterApi = async userData => {
 
 export const getLoginApi = async userData => {
   const response = await axios.post('/auth/login', userData);
-  savedToken.set(response.data.accessToken);
+  savedToken.set(response.data.token);
   return response.data;
 };
