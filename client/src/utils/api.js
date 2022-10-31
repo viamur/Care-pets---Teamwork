@@ -6,6 +6,8 @@ export const fetchNews = () => {
     .get('/news')
     .then(response => response.data)
     .catch(error => console.log(error));
+}
+
 axios.defaults.baseURL = 'http://localhost:3000';
 
 const savedToken = {
@@ -26,4 +28,10 @@ export const getLoginApi = async userData => {
   const response = await axios.post('/auth/login', userData);
   savedToken.set(response.data.token);
   return response.data;
+};
+
+export const getCheckEmail = async email => {
+  const response = await axios.post('/auth/checkemail', email);
+  console.log(response.data.check);
+  return response.data.check;
 };

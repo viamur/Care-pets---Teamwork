@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { registerUser } from '../../redux/auth/authOperations';
+import { registerUser, getCheckEmail } from '../../redux/auth/authOperations';
 import s from './RegisterForm.module.scss';
 
 const RegisterForm = () => {
@@ -70,9 +70,14 @@ const RegisterForm = () => {
     phone: phoneError,
   } = formik.errors;
 
-  const onPageChange = () => {
+  const onPageChange = async () => {
     if (page === 1) {
-      setPage(2);
+      try {
+        await getCheckEmail({ email });
+        setPage(2);
+      } catch (error) {
+        alert('You have already registered, just login');
+      }
       return;
     }
     setPage(1);
