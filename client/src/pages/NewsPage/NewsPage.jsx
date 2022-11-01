@@ -40,7 +40,7 @@ const NewsPage = () => {
         <h2 className={s.subtitle}>No Results</h2>
       )}
 
-      <NewsList news={filterNews()} />
+      {/* <NewsList news={filterNews()} /> */}
     </>
   );
 };

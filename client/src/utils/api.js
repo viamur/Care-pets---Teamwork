@@ -14,7 +14,14 @@ const savedToken = {
 export const fetchNews = () => {
   return axios
     .get('/news')
-    .then(response => response.data)
+    .then(response => response.data.data)
+    .catch(error => console.log(error));
+};
+
+export const fetchFriends = () => {
+  return axios
+    .get('/friends')
+    .then(response => response.data.data)
     .catch(error => console.log(error));
 };
 
