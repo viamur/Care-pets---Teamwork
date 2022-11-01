@@ -108,4 +108,11 @@
     text-decoration-line: underline;
 
     color: var(--accent-color);
+
+    transition: all var(--transition);
+
+    &:hover,
+    &:focus {
+        letter-spacing: 0.7px;;
+    }
 }

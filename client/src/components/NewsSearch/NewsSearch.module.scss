@@ -58,7 +58,6 @@
     position: absolute;
     top: 9px;
     right: 12px;
-    z-index: 10;
 
     width: 20px;
     height: 20px;
@@ -71,7 +70,8 @@
     background-size: contain;
     
     background-color: var(--white);
-    transition: background-color var(--transition);
+
+    transition: all var(--transition);
 
     @include mq(tab) {
         top: 10px;
@@ -79,9 +79,12 @@
         width: 24px;
         height: 24px;
     }
-}
 
-.btn:hover,
-.btn:focus {
-    background-color: var(--accent-color);
+    &:hover,
+    &:focus {
+        -webkit-animation: none;
+        -webkit-transform: scale(1.4);
+        animation: none;
+        transform: scale(1.4);
+    }
 }
