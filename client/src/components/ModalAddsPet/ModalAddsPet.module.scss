@@ -1,0 +1,96 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1200;
+
+  opacity: 1;
+  transition: opacity 1000ms, visibility 1000ms;
+}
+
+.modal {
+  position: fixed;
+  width: 608px;
+  height: 570px;
+
+  padding: 40px 80px;
+  background-color: var(--white);
+  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+  border-radius: 40px;
+}
+
+.modalClose {
+  transform: rotate(45deg);
+  position: absolute;
+
+  top: 24px;
+  right: 24px;
+
+  width: 40px;
+  height: 40px;
+
+  margin-left: 20px;
+
+  font-size: 42px;
+  line-height: 18px;
+  border: none;
+  border-radius: 50%;
+  color: #000000;
+  background: #fdf7f2;
+  backdrop-filter: blur(2px);
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+  }
+}
+
+.modalTitle {
+  text-align: center;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 49px;
+
+  /* Черный */
+
+  color: #111111;
+}
+
+.modalForm {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+
+.modalFormLable {
+  display: flex;
+  flex-direction: column;
+}
+
+.modalFormLableTitle {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 26px;
+  /* identical to box height, or 110% */
+
+  display: flex;
+  align-items: center;
+
+  /* Черный */
+
+  color: #111111;
+}

@@ -72,8 +72,6 @@
 
   margin: 12px 12px 0px 4px;
 
-  border: 1px solid var(--accent-color);
-
   @include mq(tab) {
     width: 120px;
     height: 85px;
