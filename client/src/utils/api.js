@@ -1,14 +1,6 @@
 import axios from 'axios';
-\\ axios.defaults.baseURL = 'http://localhost:5000';
 
-export const fetchNews = () => {
-  return axios
-    .get('/news')
-    .then(response => response.data)
-    .catch(error => console.log(error));
-}
-
-axios.defaults.baseURL = 'http://localhost:3000';
+axios.defaults.baseURL = 'https://pet-support.herokuapp.com';
 
 const savedToken = {
   set(token) {
@@ -17,6 +9,13 @@ const savedToken = {
   unset() {
     axios.defaults.headers.common.Authorization = '';
   },
+};
+
+export const fetchNews = () => {
+  return axios
+    .get('/news')
+    .then(response => response.data)
+    .catch(error => console.log(error));
 };
 
 export const getRegisterApi = async userData => {
