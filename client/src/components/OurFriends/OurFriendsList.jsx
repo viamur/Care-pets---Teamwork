@@ -7,7 +7,7 @@ const OurFriendsList = ({ friends }) => {
           <li key={friend._id} className={s.card}>
             <h2 className={s.cardTitle}>{friend.title}</h2>
             <div className={s.iconDescriptionWrapper}>
-              <img src={friend.icon} className={s.icon} alt="Our Friend Icon" />
+              <img src={`https://pet-support.herokuapp.com/${friend.icon}`} className={s.icon} alt="Our Friend Icon" />
               <ul className={s.discriptionList}>
                 <li className={s.discriptionEl}>
                     <div className={s.time}>
