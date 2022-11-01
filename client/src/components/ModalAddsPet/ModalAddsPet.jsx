@@ -2,7 +2,7 @@ import { createPortal } from 'react-dom';
 import { useEffect } from 'react';
 import s from './ModalAddsPet.module.scss';
 
-const modalContainer = document.getElementById('modal');
+const modalContainer = document.getElementById('modal-root');
 
 const ModalAddsPet = ({ modal, setModal }) => {
   const handleModalClose = e => {
