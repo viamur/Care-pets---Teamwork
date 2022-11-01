@@ -28,31 +28,28 @@ const ModalAddsPet = ({ modal, setModal }) => {
           +
         </button>
         <h1 className={s.modalTitle}>Add Pet</h1>
-        <form class="modal__form">
-          <label class="form__lable">
-            <span class="form__title">Имя</span>
-            <input type="text" name="name" placeholder="" class="form__input" />
- 
+        <form className={s.modalForm}>
+          <label className={s.modalFormLable}>
+            <span>Name pet</span>
+            <input type="text" name="name" placeholder="Type name pet"/>
           </label>
 
-          <label class="form__lable">
-            <span class="form__title">Телефон</span>
-            <input type="tel" name="tel" class="form__input" />
-
+          <label className={s.modalFormLable}>
+            <span className={s.modalFormLableTitle} >Date of birth</span>
+            <input
+              type="birthday"
+              name="birthday"
+              placeholder="Type date of birth"
+            />
           </label>
 
-          <label class="form__lable">
-            <span class="form__title">Почта</span>
-            <input type="email" name="mail" class="form__input" />
-
+          <label className={s.modalFormLable}>
+            <span className={s.modalFormLableTitle} >Breed</span>
+            <input type="breed" name="breed" placeholder="Type breed" />
           </label>
 
-          <button type="submit" class="button">
-            Отправить
-          </button>
-          <button type="submit" class="button">
-            Отправить
-          </button>
+          <button type="submit">Cancel</button>
+          <button type="submit">Next</button>
         </form>
       </div>
     </div>,
