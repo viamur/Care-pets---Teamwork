@@ -1,19 +1,13 @@
 import s from './OurFriendsPage.module.scss';
-import axios from 'axios';
+import { fetchFriends } from '../../utils/api';
 import { useEffect, useState } from 'react';
-
-axios.defaults.baseURL = 'http://localhost:3005/';
+import OurFriendsList from '../../components/OurFriends/OurFriendsList';
 
 const OurFriendsPage = () => {
   const [friends, setFriends] = useState([]);
 
-  const fetchQueryPhotos = () => {
-    return axios.get('friends').then(response => response.data);
-  };
-
-
   useEffect(() => {
-    fetchQueryPhotos()
+    fetchFriends()
       .then(data => {
         setFriends(data);
       })
@@ -23,46 +17,7 @@ const OurFriendsPage = () => {
   return (
     <>
       <h1 className={s.mainTitle}>Our friend</h1>
-      <ul className={s.list}>
-        {friends.map(friend => (
-          <li key={friend._id} className={s.card}>
-            <h2 className={s.cardTitle}>{friend.title}</h2>
-            <div className={s.iconDescriptionWrapper}>
-              <img src={friend.icon} className={s.icon} alt="Our Friend Icon" />
-              <ul className={s.discriptionList}>
-                <li className={s.discriptionEl}>
-                    <div className={s.projectProduct}>
-                      <p className={s.discription}>Time:</p>
-                      <p className={s.discription}>{friend.time}</p>
-                      <div className={s.projectOverlay}>
-                        <p>MN {friend.time}</p>
-                        <p>TU {friend.time}</p>
-                        <p>WE {friend.time}</p>
-                        <p>TH {friend.time}</p>
-                        <p>FR {friend.time}</p>
-                        <p>SA {friend.time}</p>
-                        <p>SU {friend.time}</p>
-                      </div>
-                    </div>
-                </li>
-
-                <li className={s.discriptionEl}>
-                  <p className={s.discription}>Adress:</p>
-                  <p className={s.discription}>{friend.adress}</p>
-                </li>
-                <li className={s.discriptionEl}>
-                  <p className={s.discription}>Email:</p>
-                  <p className={s.discription}>{friend.email}</p>
-                </li>
-                <li className={s.discriptionEl}>
-                  <p className={s.discription}>Phone:</p>
-                  <p className={s.discription}>{friend.phone}</p>
-                </li>
-              </ul>
-            </div>
-          </li>
-        ))}
-      </ul>
+      <OurFriendsList friends={friends} />
     </>
   );
 };

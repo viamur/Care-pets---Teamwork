@@ -18,6 +18,13 @@ export const fetchNews = () => {
     .catch(error => console.log(error));
 };
 
+export const fetchFriends = () => {
+  return axios
+    .get('/friends')
+    .then(response => response.data.data)
+    .catch(error => console.log(error));
+};
+
 export const getRegisterApi = async userData => {
   const response = await axios.post('/auth/signup', userData);
   return response.data;
