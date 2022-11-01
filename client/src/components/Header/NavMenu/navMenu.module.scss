@@ -2,44 +2,39 @@
 
 .header {
 display: flex;
-flex-direction: column;
-    
+
 width: 100%;
 justify-content: space-between;
 align-items: center;
 
-    @include mq(desk) {
-    flex-direction: row-reverse;
+
+    @include mq(tab) {
+        justify-content: flex-end;
     }
+
+    @include mq(desk) {
+        flex-direction: row-reverse;
+        justify-content: space-between;
+    }
+
+        
 }
 
 .link {
     text-align: center;
 
-    width: 100%;
     padding: 20px 0;
+    margin-left: 80px;
     
     font-size: 32px;
     font-weight: 500;
 
-    @include mq(mob) {
-        // width: 480px;
-        width: 200px;
-    }
-
-    @include mq(tab) {
-        // width: 768px;
-        width: 200px;
-    }
-
     @include mq(desk) {
-        // width: 1280px;
-        width: 200px;
-        @include mq(desk) {
-                font-size: 20px;
-            }
+        font-size: 20px;
     }
 }
+
+
 
 .linkActive {
     font-weight: 700;
@@ -50,16 +45,29 @@ align-items: center;
 .auth {
     display: flex;
     padding-bottom: 40px;
+    display: none;
 
     @include mq(desk) {
-            padding: 0;
-        }
+        padding: 0;
+        display: flex;
+    }
+    
+         @include mq(tab) {
+             padding: 0;
+             display: flex;
+         }
 }
 
 .nav {
     display: flex;
-}
+    align-items: center;
 
+    display: none;
+    
+     @include mq(desk) {
+        display: flex;
+    }
+}
 
 .login {
     text-align: center;

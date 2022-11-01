@@ -1,12 +1,12 @@
 .overlay {
     position: fixed;
-    top: 0;
+    top: 1;
     left: 0;
     width: 100vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: white;
+    background-color: var(--bg-color);
     z-index: 1200;
 }
 

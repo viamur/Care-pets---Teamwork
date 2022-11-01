@@ -27,23 +27,20 @@
 
 }
 
-.menu {
-    display: none;
-
-    @include mq(desk) {
-        display: flex;
-    }
-}
-
 .menuButton {
     display: flex;
+
     width: 40px;
     height: 40px;
     border: none;
+    margin-left: 20px;
 
-    cursor: pointer;
+    align-items: center;
+    
 
     @include mq(desk) {
         display: none;
     }
+
+        cursor: pointer;
 }

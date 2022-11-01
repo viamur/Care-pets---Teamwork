@@ -22,8 +22,8 @@ const NavMenu = ({ isUserLoggedIn }) => {
         <NavLink className={getActiveLink} to="/notices">
           Find pet
         </NavLink>
-        <NavLink className={getActiveLink} to="/our-friends">
-          Friends
+        <NavLink className={getActiveLink} to="/friends">
+          Our Friend
         </NavLink>
       </div>
     </header>
