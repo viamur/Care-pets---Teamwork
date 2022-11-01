@@ -1,11 +1,16 @@
-import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import Notiflix from 'notiflix';
 import { loginUser } from '../../redux/auth/authOperations';
+import { getAuthError } from '../../redux/auth/authSelectors';
 import s from './LoginForm.module.scss';
 
 const LoginForm = () => {
+  const error = useSelector(getAuthError);
   const dispatch = useDispatch();
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -30,6 +35,11 @@ const LoginForm = () => {
         .required('This is a required field'),
     }),
   });
+
+  useEffect(() => {
+    if (!error) return;
+    Notiflix.Notify.failure(error);
+  }, [error]);
 
   const { email, password } = formik.values;
   const { email: emailError, password: passwordError } = formik.errors;
