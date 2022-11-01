@@ -14,13 +14,13 @@ const OurFriendsList = ({ friends }) => {
                       <p className={s.discription}>Time:</p>
                       <p className={s.discription}>{friend.time}</p>
                       <div className={s.timeOverlay}>
-                        <p>MN {friend.time}</p>
-                        <p>TU {friend.time}</p>
-                        <p>WE {friend.time}</p>
-                        <p>TH {friend.time}</p>
-                        <p>FR {friend.time}</p>
-                        <p>SA {friend.time}</p>
-                        <p>SU {friend.time}</p>
+                        <p className={s.timeDiscription}>MN {friend.time}</p>
+                        <p className={s.timeDiscription}>TU {friend.time}</p>
+                        <p className={s.timeDiscription}>WE {friend.time}</p>
+                        <p className={s.timeDiscription}>TH {friend.time}</p>
+                        <p className={s.timeDiscription}>FR {friend.time}</p>
+                        <p className={s.timeDiscription}>SA {friend.time}</p>
+                        <p className={s.timeDiscription}>SU {friend.time}</p>
                       </div>
                     </div>
                 </li>
