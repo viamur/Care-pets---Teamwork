@@ -1,12 +1,16 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import Notiflix from 'notiflix';
 import { registerUser } from '../../redux/auth/authOperations';
+import { getCheckEmail } from '../../utils/api';
+import { getAuthError } from '../../redux/auth/authSelectors';
 import s from './RegisterForm.module.scss';
 
 const RegisterForm = () => {
   const [page, setPage] = useState(1);
+  const error = useSelector(getAuthError);
   const dispatch = useDispatch();
 
   const formik = useFormik({
@@ -24,7 +28,9 @@ const RegisterForm = () => {
     },
 
     validationSchema: Yup.object({
-      email: Yup.string().email('Invalid email address').required('This is a required field'),
+      email: Yup.string()
+        .email('Invalid email address')
+        .required('This is a required field'),
       password: Yup.string()
         .min(7, 'Password must include more tnan 7 characters')
         .max(32, 'Password must be less tnan 32 characters')
@@ -34,7 +40,10 @@ const RegisterForm = () => {
         )
         .required('This is a required field'),
       confirm_password: Yup.string()
-        .oneOf([Yup.ref('password'), null], "Password and confirm password don't match")
+        .oneOf(
+          [Yup.ref('password'), null],
+          "Password and confirm password don't match"
+        )
         .required('This is a required field'),
       name: Yup.string()
         .min(2, 'Name must include more tnan 2 characters')
@@ -55,6 +64,11 @@ const RegisterForm = () => {
     }),
   });
 
+  useEffect(() => {
+    if (!error) return;
+    Notiflix.Notify.failure(error);
+  }, [error]);
+
   let { email, password, confirm_password, name, city, phone } = formik.values;
   const {
     email: emailError,
@@ -68,10 +82,10 @@ const RegisterForm = () => {
   const onPageChange = async () => {
     if (page === 1) {
       try {
-        // await getCheckEmail({ email });
+        await getCheckEmail({ email });
         setPage(2);
       } catch (error) {
-        alert('You have already registered, just login');
+        Notiflix.Notify.failure('You have already registered, just login');
       }
       return;
     }
@@ -106,7 +120,9 @@ const RegisterForm = () => {
               onBlur={formik.handleBlur}
               value={email}
             />
-            <p className={s.error}>{formik.touched.email && emailError && emailError}</p>
+            <p className={s.error}>
+              {formik.touched.email && emailError && emailError}
+            </p>
             <input
               className={s.input}
               type="password"
@@ -116,7 +132,9 @@ const RegisterForm = () => {
               onBlur={formik.handleBlur}
               value={password}
             />
-            <p className={s.error}>{formik.touched.password && passwordError && passwordError}</p>
+            <p className={s.error}>
+              {formik.touched.password && passwordError && passwordError}
+            </p>
             <input
               className={s.input}
               type="password"
@@ -142,7 +160,9 @@ const RegisterForm = () => {
               onBlur={formik.handleBlur}
               value={name}
             />
-            <p className={s.error}>{formik.touched.name && nameError && nameError}</p>
+            <p className={s.error}>
+              {formik.touched.name && nameError && nameError}
+            </p>
             <input
               className={s.input}
               type="text"
@@ -152,7 +172,9 @@ const RegisterForm = () => {
               onBlur={formik.handleBlur}
               value={city}
             />
-            <p className={s.error}>{formik.touched.city && cityError && cityError}</p>
+            <p className={s.error}>
+              {formik.touched.city && cityError && cityError}
+            </p>
             <input
               className={s.input}
               type="tel"
@@ -162,12 +184,19 @@ const RegisterForm = () => {
               onBlur={formik.handleBlur}
               value={phone}
             />
-            <p className={s['error--last']}>{formik.touched.phone && phoneError && phoneError}</p>
+            <p className={s['error--last']}>
+              {formik.touched.phone && phoneError && phoneError}
+            </p>
             <button
               className={s.button}
               type="submit"
               disabled={
-                name === '' || city === '' || phone === '' || nameError || cityError || phoneError
+                name === '' ||
+                city === '' ||
+                phone === '' ||
+                nameError ||
+                cityError ||
+                phoneError
                   ? true
                   : false
               }
