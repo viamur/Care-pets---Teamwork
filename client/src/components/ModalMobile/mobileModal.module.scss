@@ -1,0 +1,17 @@
+.overlay {
+    position: fixed;
+    top: 1;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-color);
+    z-index: 1200;
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+}

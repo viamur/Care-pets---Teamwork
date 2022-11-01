@@ -1,0 +1,81 @@
+.menuContainer {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    justify-content: space-between;
+    align-items: center
+}
+
+@import '../../../sass/mixin';
+
+.header {
+    display: flex;
+
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+
+    @include mq(desk) {
+        flex-direction: row-reverse;
+    }
+}
+
+.link {
+    text-align: center;
+
+    width: 100%;
+    padding: 20px 0;
+
+    font-size: 32px;
+    font-weight: 500;
+
+    @include mq(mob) {
+        // width: 480px;
+        width: 200px;
+    }
+
+    @include mq(tab) {
+        // width: 768px;
+        width: 200px;
+    }
+
+}
+
+.linkActive {
+    font-weight: 700;
+    color: var(--accent-color);
+    text-decoration: underline solid var(--accent-color);
+}
+
+.auth {
+    display: flex;
+    
+    padding-bottom: 40px;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.login {
+    text-align: center;
+    width: 95px;
+    padding: 8px 28px;
+    margin-right: 12px;
+    font-size: 14px;
+    background-color: var(--accent-color);
+    color: white;
+    border-radius: 40px;
+}
+
+.register {
+    width: 145px;
+    font-size: 14px;
+    text-align: center;
+    padding: 8px 28px;
+    border: 2px solid var(--accent-color);
+    border-radius: 40px;
+}
