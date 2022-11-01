@@ -31,6 +31,5 @@ export const getLoginApi = async userData => {
 
 export const getCheckEmail = async email => {
   const response = await axios.post('/auth/checkemail', email);
-  console.log(response.data.check);
   return response.data.check;
 };

@@ -10,7 +10,7 @@ export const registerUser = createAsyncThunk(
       const loginUserData = await getLoginApi({ email, password });
       return loginUserData;
     } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
+      return thunkApi.rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -22,7 +22,7 @@ export const loginUser = createAsyncThunk(
       const loginUserData = await getLoginApi(userData);
       return loginUserData;
     } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
+      return thunkApi.rejectWithValue(error.response.data.message);
     }
   }
 );

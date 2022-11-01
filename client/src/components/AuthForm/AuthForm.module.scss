@@ -1,19 +1,40 @@
+@import '../../sass/mixin';
+
 .container {
-  width: 618px;
+  width: 280px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
-  background-color: var(--white);
-  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
-  border-radius: 40px;
-  padding: 60px 80px;
-  margin: 0 auto;
+
+  @include mq(tab) {
+    width: 608px;
+    background-color: var(--white);
+    box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+    border-radius: 40px;
+    padding: 60px 80px;
+  }
+
+  @include mq(desk) {
+    width: 618px;
+  }
 }
 
 .title {
-  font-weight: 500;
-  font-size: 36px;
-  line-height: 1.36;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.38;
+
   letter-spacing: 0.04em;
+  color: var(--font-color);
   margin-bottom: 40px;
+
+  @include mq(tab) {
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 1.36;
+  }
 }
 
 .question,
