@@ -1,16 +1,27 @@
 const { Notices } = require('../models');
 
 const getAll = async ({ category }) => {
-  const result = await Notices.find({ category });
+  const result = await Notices.find(
+    { category },
+    '-createdAt -updatedAt -owner -comments -sex -name'
+  );
   return result;
 };
 const getById = async ({ id }) => {
-  const result = await Notices.findById(id);
+  /* paht - назва ключа. select - що показати. model - назва моделі к якій треба звернутися щоб взяти данні */
+  const result = await Notices.findById(id, '-createdAt -updatedAt').populate({
+    path: 'owner',
+    select: 'email phone -_id',
+    model: 'user',
+  });
   return result;
 };
 
 const getUserPets = async ({ id }) => {
-  const result = await Notices.find({ owner: id });
+  const result = await Notices.find(
+    { owner: id },
+    '-createdAt -updatedAt -comments -sex -name -owner'
+  );
   return result;
 };
 const addUserPets = async ({ id, body }) => {
@@ -23,27 +34,21 @@ const delUserPets = async ({ owner, id }) => {
 };
 
 const getFavorites = async ({ id }) => {
-  const result = await Notices.find({ favorite: id });
+  const result = await Notices.find(
+    { favorite: id },
+    '-createdAt -updatedAt -owner -comments -sex -name -favorite'
+  );
   return result;
 };
 const addFavorites = async ({ id, userId }) => {
-  const notices = await Notices.findById(id);
-  const result = await Notices.findByIdAndUpdate(
-    id,
-    { favorite: [...notices.favorite, userId] },
-    { new: true }
-  );
-  return result;
+  /* Додає в массив якщо його нема $addToSet*/
+  const notices = await Notices.findByIdAndUpdate(id, { $addToSet: { favorite: userId } });
+  return notices;
 };
 const delFavorites = async ({ id, userId }) => {
-  const notices = await Notices.findById(id);
-  const newNotices = notices.favorite.filter(el => el !== userId);
-  const result = await Notices.findByIdAndUpdate(
-    id,
-    { favorite: [...newNotices.favorite] },
-    { new: true }
-  );
-  return result;
+  /* Видаляє із массива те що треба за допомогою $pull */
+  const notices = await Notices.findByIdAndUpdate(id, { $pull: { favorite: userId } });
+  return notices;
 };
 
 module.exports = {

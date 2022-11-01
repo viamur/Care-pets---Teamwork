@@ -1,0 +1,17 @@
+@import "../../sass/fonts";
+@import "../../sass/mixin";
+
+.title {
+    margin-bottom: 28px;
+    text-align: center;
+
+    font-family: "Manrope Bold";
+    font-size: 24px;
+    line-height: 1.37;
+
+    @include mq(tab) {
+        margin-bottom: 40px;
+
+        font-size: 48px;
+    }
+}

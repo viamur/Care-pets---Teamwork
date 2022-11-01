@@ -1,7 +1,8 @@
+import AuthForm from 'components/AuthForm/AuthForm';
 import s from './LoginPage.module.scss';
 
 const LoginPage = () => {
-  return <></>;
+  return <AuthForm title="Login" />;
 };
 
 export default LoginPage;
