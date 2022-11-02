@@ -1,21 +1,25 @@
 import { useState } from 'react';
+import Notiflix from 'notiflix';
 import sprite from '../../images/icons/sprite.svg';
 
 import s from './NoticesSearch.module.scss';
 
-const NoticesSearch = ({ onSubmit }) => {
-  const [searchQuery, setSearchQuery] = useState('');
+const NoticesSearch = ({ setSearchQuery }) => {
+  const [query, setQuery] = useState('');
 
   const onHadleChange = e => {
-    const query = e.target.value.trim();
-    setSearchQuery(query);
+    setQuery(e.target.value.trim());
   };
 
   const onHandleSubmit = e => {
     e.preventDefault();
 
-    onSubmit(searchQuery);
-    setSearchQuery('');
+    if (query === '') {
+      Notiflix.Notify.failure('Please input your query');
+      return;
+    }
+    setSearchQuery(query);
+    setQuery('');
   };
 
   return (
@@ -29,13 +33,13 @@ const NoticesSearch = ({ onSubmit }) => {
           autoComplete="off"
           autoFocus
           placeholder="Search"
-          value={searchQuery}
+          value={query}
           onChange={onHadleChange}
         />
 
         <button className={s.btn} type="submit">
           <svg className={s.iconSearch}>
-            <use href={sprite + '#icon-search-icon'} />
+            <use href={sprite + '#search-icon'} />
           </svg>
         </button>
       </form>

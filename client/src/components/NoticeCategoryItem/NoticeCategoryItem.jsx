@@ -1,15 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
 import Notiflix from 'notiflix';
 import sprite from '../../images/icons/sprite.svg';
-import {
-  addFavoriteAd,
-  removeFavoriteAd,
-  fetchFavoriteAds,
-  deleteOwnAd,
-  fetchOwnAds,
-} from '../../utils/api';
+import { addFavoriteAd, removeFavoriteAd, deleteOwnAd } from '../../utils/api';
 import { getIsAuth } from '../../redux/auth/authSelectors';
 import s from './NoticeCategoryItem.module.scss';
 
@@ -19,14 +12,7 @@ const categoriesForFront = {
   inGoodHands: 'In good hands',
 };
 
-const NoticeCategoryItem = ({
-  data,
-  id,
-  setArrayFavorite,
-  setArrayOwn,
-  arrayOwn,
-  array,
-}) => {
+const NoticeCategoryItem = ({ data, id, array, setArray, category: path }) => {
   const {
     birthdate,
     category,
@@ -39,11 +25,8 @@ const NoticeCategoryItem = ({
   } = data;
   const [isFavorite, setIsFavorite] = useState(favorite);
   const isAuth = useSelector(getIsAuth);
-  const { pathname } = useLocation();
 
-  const path = pathname.split('/').reverse(0)[0];
-
-  const onClickFavorite = async e => {
+  const onClickFavorite = e => {
     if (!isAuth) {
       Notiflix.Notify.info('Please, log in for adding to favorite');
       return;
@@ -53,37 +36,28 @@ const NoticeCategoryItem = ({
       removeFavoriteAd(id)
         .then(data => {
           if (path === 'favorite') {
-            setArrayFavorite(array);
-            return fetchFavoriteAds();
+            const arrayNew = array.filter(({ _id }) => _id !== id);
+            setArray(arrayNew);
           }
         })
-        .then(arrayFavorite => {
-          if (path === 'favorite') {
-            setArrayFavorite(arrayFavorite);
-          }
-        })
-        .catch(error => console.log(error));
+        .catch(error => Notiflix.Notify.failure(error.response.data.message));
       setIsFavorite(!isFavorite);
       return;
     }
 
     addFavoriteAd(id)
       .then(data => console.log(data))
-      .catch(error => console.log(error));
+      .catch(error => Notiflix.Notify.failure(error.response.data.message));
     setIsFavorite(!isFavorite);
   };
 
   const onDeleteAdClick = () => {
     deleteOwnAd(id)
       .then(data => {
-        setArrayOwn(array);
-        return array;
+        const arrayNew = array.filter(({ _id }) => _id !== id);
+        setArray(arrayNew);
       })
-      .then(array => {
-        const newArrayAfterDelete = array.filter(({ _id }) => _id !== id);
-        setArrayOwn(newArrayAfterDelete);
-      })
-      .catch(error => console.log(error));
+      .catch(error => Notiflix.Notify.failure(error.response.data.message));
   };
 
   function convertAge(date) {
@@ -104,12 +78,14 @@ const NoticeCategoryItem = ({
 
     if (transformedYear > 0) {
       if (transformedMonth) {
-        return `${transformedYear} years ${transformedMonth} months`;
+        return `${transformedYear} ${
+          transformedYear === 1 ? 'year' : 'years'
+        } ${transformedMonth} ${transformedMonth === 1 ? 'month' : 'months'} `;
       }
-      return `${transformedYear} years`;
+      return `${transformedYear} ${transformedYear === 1 ? 'year' : 'years'}`;
     }
 
-    return `${transformedMonth} months`;
+    return `${transformedMonth} ${transformedMonth === 1 ? 'month' : 'months'}`;
   }
 
   return (
@@ -128,11 +104,11 @@ const NoticeCategoryItem = ({
       >
         {!isFavorite ? (
           <svg className={s.iconFavorite}>
-            <use href={sprite + '#icon-like0-icon'} />
+            <use href={sprite + '#like0-icon'} />
           </svg>
         ) : (
           <svg className={s.iconFavorite}>
-            <use href={sprite + '#icon-like1-icon'} />
+            <use href={sprite + '#like1-icon'} />
           </svg>
         )}
       </button>

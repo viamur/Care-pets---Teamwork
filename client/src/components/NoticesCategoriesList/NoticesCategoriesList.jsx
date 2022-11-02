@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import Notiflix from 'notiflix';
 import {
   fetchAdsByCategory,
   fetchFavoriteAds,
@@ -15,61 +15,55 @@ const categoriesForBack = {
   'for-free': 'inGoodHands',
 };
 
-const NoticesCategoriesList = () => {
+const NoticesCategoriesList = ({ category, searchQuery, setSearchQuery }) => {
   const [array, setArray] = useState([]);
-  const [arrayFavorite, setArrayFavorite] = useState([]);
-  const [arrayOwn, setArrayOwn] = useState([]);
-  const { pathname } = useLocation();
-
-  const path = pathname.split('/').reverse(0)[0];
 
   useEffect(() => {
-    if (path === 'favorite') {
+    if (category === 'favorite') {
       fetchFavoriteAds()
-        .then(data => setArray(data))
-        .catch(error => console.log(error));
+        .then(data => {
+          setSearchQuery('');
+          setArray(data);
+        })
+        .catch(error => Notiflix.Notify.failure(error.response.data.message));
       return;
     }
 
-    if (path === 'own') {
+    if (category === 'own') {
       fetchOwnAds()
-        .then(data => setArray(data))
-        .catch(error => console.log(error));
+        .then(data => {
+          setSearchQuery('');
+          setArray(data);
+        })
+        .catch(error => Notiflix.Notify.failure(error.response.data.message));
       return;
     }
 
-    fetchAdsByCategory(categoriesForBack[path])
-      .then(data => setArray(data))
-      .catch(error => console.log(error));
+    fetchAdsByCategory(categoriesForBack[category])
+      .then(data => {
+        setSearchQuery('');
+        setArray(data);
+      })
+      .catch(error => Notiflix.Notify.failure(error.response.data.message));
 
     // eslint-disable-next-line
-  }, [pathname]);
-
-  useEffect(() => {
-    if (path === 'favorite') {
-      setArray([...arrayFavorite]);
-      return;
-    }
-    if (path === 'own') {
-      setArray([...arrayOwn]);
-      return;
-    }
-  }, [arrayFavorite.length, arrayOwn.length]);
+  }, [category]);
 
   return (
     <ul className={s.list}>
       {array &&
-        array.map(({ _id, ...rest }) => (
-          <NoticeCategoryItem
-            key={_id}
-            data={rest}
-            id={_id}
-            setArrayFavorite={setArrayFavorite}
-            setArrayOwn={setArrayOwn}
-            array={array}
-            arrayOwn={arrayOwn}
-          />
-        ))}
+        array
+          .filter(({ title }) => title.includes(searchQuery))
+          .map(({ _id, ...rest }) => (
+            <NoticeCategoryItem
+              key={_id}
+              data={rest}
+              id={_id}
+              array={array}
+              setArray={setArray}
+              category={category}
+            />
+          ))}
     </ul>
   );
 };
