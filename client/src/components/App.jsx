@@ -1,8 +1,7 @@
 import { lazy } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import SharedLayout from './SharedLayout/SharedLayout';
-
-const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
+import UserPageContainer from '../pages/UserPage/UserPageContainer';
 const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
 const OurFriendsPage = lazy(() =>
@@ -16,13 +15,13 @@ export const App = () => {
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        <Route index element={<HomePage />} />
         <Route path="register" element={<RegisterPage />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="friends" element={<OurFriendsPage />} />
         <Route path="news" element={<NewsPage />} />
+        <Route path="notices/" element={<NoticesPage />} />
         <Route path="notices/:categoryName" element={<NoticesPage />} />
-        <Route path="user" element={<UserPage />} />
+        <Route path="user" element={<UserPageContainer />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Route>
     </Routes>
