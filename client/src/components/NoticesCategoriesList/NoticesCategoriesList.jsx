@@ -61,6 +61,7 @@ const NoticesCategoriesList = ({ category, searchQuery, setSearchQuery }) => {
               id={_id}
               array={array}
               setArray={setArray}
+              category={category}
             />
           ))}
     </ul>

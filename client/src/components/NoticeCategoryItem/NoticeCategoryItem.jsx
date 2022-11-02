@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
 import Notiflix from 'notiflix';
 import sprite from '../../images/icons/sprite.svg';
 import { addFavoriteAd, removeFavoriteAd, deleteOwnAd } from '../../utils/api';
@@ -13,7 +12,7 @@ const categoriesForFront = {
   inGoodHands: 'In good hands',
 };
 
-const NoticeCategoryItem = ({ data, id, array, setArray }) => {
+const NoticeCategoryItem = ({ data, id, array, setArray, category: path }) => {
   const {
     birthdate,
     category,
@@ -26,9 +25,6 @@ const NoticeCategoryItem = ({ data, id, array, setArray }) => {
   } = data;
   const [isFavorite, setIsFavorite] = useState(favorite);
   const isAuth = useSelector(getIsAuth);
-  const { pathname } = useLocation();
-
-  const path = pathname.split('/').reverse(0)[0];
 
   const onClickFavorite = async e => {
     if (!isAuth) {
