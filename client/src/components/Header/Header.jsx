@@ -10,8 +10,7 @@ import MobileMenu from './MobileMenu';
 const Header = () => {
   const [menuStatus, setMenuStatus] = useState(false);
   const body = document.querySelector('body');
-  console.log(body);
-
+  
   const handleClick = () => {
     setMenuStatus(prev => !prev);
 
