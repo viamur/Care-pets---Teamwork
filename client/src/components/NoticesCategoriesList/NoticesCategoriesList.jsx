@@ -65,7 +65,6 @@ const NoticesCategoriesList = ({ category, searchQuery, setSearchQuery }) => {
 
   return (
     <ul className={s.list}>
-      {console.log('searchQuery', searchQuery)}
       {array &&
         array
           .filter(({ title }) => title.includes(searchQuery))
