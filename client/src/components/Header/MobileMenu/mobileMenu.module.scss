@@ -52,6 +52,12 @@
     display: flex;
     
     padding-bottom: 40px;
+
+    @include mq(tab) {
+           
+            display: none;
+        }
+    
 }
 
 .nav {

@@ -13,13 +13,26 @@ function Modal({ close, children }) {
     return () => document.removeEventListener('keydown', closeModal);
   });
 
+  function changeClass(on, off) {
+    const body = document.querySelector('body');
+    if (body.classList.contains(on)) {
+      body.classList.remove(on);
+      body.classList.add(off);
+    } else if (body.classList.contains(off)) {
+      body.classList.remove(off);
+      body.classList.add(on);
+    }
+  }
+
   const closeModal = e => {
     if (e.code === 'Escape') {
       close();
+      changeClass('on', 'off');
       return;
     }
     if (e.target === e.currentTarget) {
       close();
+      changeClass('on', 'off');
     }
   };
 
