@@ -43,7 +43,8 @@
 .title {
     width: 100%;
     height: 100%;
-    padding-top: 18px;
+    padding-top: 16px;
+    padding-left: 20px;
     margin: 0;
 
     font-family: 'Manrope Bold';
@@ -56,12 +57,10 @@
 
     @include mq(tab) {
         width: 588px;
+        padding-top: 46px;
+        padding-left: 32px;
 
         font-size: 68px;
         line-height: 1.47;
-    }
-
-    @include mq(desk) {
-        padding-top: 34px;
     }
 }
