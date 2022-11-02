@@ -1,21 +1,21 @@
-import { Suspense, useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import NoticesCategoriesNav from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
 import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
+import NoticesCategoriesList from 'components/NoticesCategoriesList/NoticesCategoriesList';
 
 const NoticesPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
+  const { categoryName } = useParams();
 
-  const onSubmitSearch = searchQuery => {
-    setSearchQuery(searchQuery);
-  };
   return (
     <>
-      <NoticesSearch onSubmit={onSubmitSearch} />
+      <NoticesSearch setSearchQuery={setSearchQuery} />
       <NoticesCategoriesNav />
-      <Suspense fallback={''}>
-        <Outlet />
-      </Suspense>
+      <NoticesCategoriesList
+        category={categoryName}
+        searchQuery={searchQuery}
+      />
     </>
   );
 };

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 import {
   fetchAdsByCategory,
   fetchFavoriteAds,
@@ -15,45 +15,46 @@ const categoriesForBack = {
   'for-free': 'inGoodHands',
 };
 
-const NoticesCategoriesList = () => {
+const NoticesCategoriesList = ({ category, searchQuery }) => {
   const [array, setArray] = useState([]);
   const [arrayFavorite, setArrayFavorite] = useState([]);
   const [arrayOwn, setArrayOwn] = useState([]);
-  const { pathname } = useLocation();
-
-  const path = pathname.split('/').reverse(0)[0];
 
   useEffect(() => {
-    if (path === 'favorite') {
+    if (category === 'favorite') {
       fetchFavoriteAds()
         .then(data => setArray(data))
         .catch(error => console.log(error));
       return;
     }
 
-    if (path === 'own') {
+    if (category === 'own') {
       fetchOwnAds()
         .then(data => setArray(data))
         .catch(error => console.log(error));
       return;
     }
 
-    fetchAdsByCategory(categoriesForBack[path])
-      .then(data => setArray(data))
+    fetchAdsByCategory(categoriesForBack[category])
+      .then(data => {
+        console.log(data);
+        setArray(data);
+      })
       .catch(error => console.log(error));
 
     // eslint-disable-next-line
-  }, [pathname]);
+  }, [category]);
 
   useEffect(() => {
-    if (path === 'favorite') {
+    if (category === 'favorite') {
       setArray([...arrayFavorite]);
       return;
     }
-    if (path === 'own') {
+    if (category === 'own') {
       setArray([...arrayOwn]);
       return;
     }
+    // eslint-disable-next-line
   }, [arrayFavorite.length, arrayOwn.length]);
 
   return (

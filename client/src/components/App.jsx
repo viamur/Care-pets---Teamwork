@@ -12,10 +12,6 @@ const NewsPage = lazy(() => import('../pages/NewsPage/NewsPage'));
 const NoticesPage = lazy(() => import('../pages/NoticesPage/NoticesPage'));
 const UserPage = lazy(() => import('../pages/UserPage/UserPage'));
 
-const NoticesCategoriesList = lazy(() =>
-  import('components/NoticesCategoriesList/NoticesCategoriesList')
-);
-
 export const App = () => {
   return (
     <Routes>
@@ -25,13 +21,6 @@ export const App = () => {
         <Route path="login" element={<LoginPage />} />
         <Route path="friends" element={<OurFriendsPage />} />
         <Route path="news" element={<NewsPage />} />
-        <Route path="notices/" element={<NoticesPage />}>
-          <Route path="sell" element={<NoticesCategoriesList />} />
-          <Route path="lost-found" element={<NoticesCategoriesList />} />
-          <Route path="for-free" element={<NoticesCategoriesList />} />
-          <Route path="favorite" element={<NoticesCategoriesList />} />
-          <Route path="own" element={<NoticesCategoriesList />} />
-        </Route>
         <Route path="notices/:categoryName" element={<NoticesPage />} />
         <Route path="user" element={<UserPage />} />
         <Route path="*" element={<Navigate to="/" />} />
