@@ -1,6 +1,10 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import Notiflix from 'notiflix';
 import sprite from '../../images/icons/sprite.svg';
-
+import { addFavoriteAd, removeFavoriteAd } from '../../utils/api';
+import { getIsAuth } from '../../redux/auth/authSelectors';
 import s from './NoticeCategoryItem.module.scss';
 
 const categoriesForFront = {
@@ -20,10 +24,28 @@ const NoticeCategoryItem = ({
     title,
     breed,
   },
+  id,
 }) => {
   const [isFavorite, setIsFavorite] = useState(favorite);
+  const isAuth = useSelector(getIsAuth);
+  // const { pathname } = useLocation();
 
   const onClickFavorite = e => {
+    if (!isAuth) {
+      Notiflix.Notify.info('Please, log in for adding to favorite');
+      return;
+    }
+    // const path = pathname.split('/').reverse(0)[0];
+    if (isFavorite) {
+      removeFavoriteAd(id)
+        .then(data => console.log(data))
+        .catch(error => console.log(error));
+      setIsFavorite(!isFavorite);
+      return;
+    }
+    addFavoriteAd(id)
+      .then(data => console.log(data))
+      .catch(error => console.log(error));
     setIsFavorite(!isFavorite);
   };
 
@@ -84,17 +106,21 @@ const NoticeCategoryItem = ({
         <div className={s.descrBox}>
           <div className={s.containerDescr}>
             <div>
-              {breed && <p className={s.descr}>Breed:</p>}
+              {<p className={s.descr}>Breed:</p>}
               <p className={s.descr}>Place:</p>
-              {birthdate && <p className={s.descr}>Age:</p>}
-              {price && <p className={s.descr}>Price:</p>}
+              {<p className={s.descr}>Age:</p>}
+              {<p className={s.descr}>Price:</p>}
             </div>
 
             <div>
-              {breed && <p className={s.descr}>{breed}</p>}
+              {<p className={s.descr}>{breed ? breed : 'Unknown'}</p>}
               <p className={s.descr}>{location}</p>
-              {birthdate && <p className={s.descr}>{convertAge(birthdate)}</p>}
-              {price && <p className={s.descr}>{price}$</p>}
+              {
+                <p className={s.descr}>
+                  {birthdate ? convertAge(birthdate) : 'Unknown'}
+                </p>
+              }
+              {<p className={s.descr}>{price ? price : 'Unknown'}$</p>}
             </div>
           </div>
 

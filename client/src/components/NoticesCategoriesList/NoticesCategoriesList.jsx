@@ -46,7 +46,7 @@ const NoticesCategoriesList = () => {
     <ul className={s.list}>
       {array.length > 0 &&
         array.map(({ _id, ...rest }) => (
-          <NoticeCategoryItem key={_id} data={rest} />
+          <NoticeCategoryItem key={_id} data={rest} id={_id} />
         ))}
     </ul>
   );

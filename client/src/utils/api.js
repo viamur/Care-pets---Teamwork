@@ -60,3 +60,17 @@ export const fetchOwnAds = () => {
     return response.data.data;
   });
 };
+
+export const removeFavoriteAd = id => {
+  return axios.delete(`/notices/favorite/${id}`).then(response => {
+    console.log(response.data);
+    return response.data;
+  });
+};
+
+export const addFavoriteAd = id => {
+  return axios.patch(`/notices/favorite/${id}`).then(response => {
+    console.log(response.data);
+    return response.data;
+  });
+};
