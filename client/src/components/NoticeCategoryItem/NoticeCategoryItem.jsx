@@ -102,7 +102,9 @@ const NoticeCategoryItem = ({
 
     if (transformedYear > 0) {
       if (transformedMonth) {
-        return `${transformedYear} years ${transformedMonth} months`;
+        return `${transformedYear} ${
+          transformedYear === 1 ? 'year' : 'years'
+        } ${transformedMonth} ${transformedMonth === 1 ? 'month' : 'months'} `;
       }
       return `${transformedYear} years`;
     }
