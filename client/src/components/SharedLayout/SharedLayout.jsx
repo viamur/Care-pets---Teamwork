@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import Container from 'components/Container/Container';
 import Header from 'components/Header/Header';
-import s from './SharedLayout.module.scss';
+// import s from './SharedLayout.module.scss';
 import { Outlet } from 'react-router-dom';
 
 const SharedLayout = () => {
