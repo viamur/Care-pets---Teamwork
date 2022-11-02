@@ -35,7 +35,7 @@ const NoticesSearch = ({ onSubmit }) => {
 
         <button className={s.btn} type="submit">
           <svg className={s.iconSearch}>
-            <use href={sprite + '#icon-search-icon'} />
+            <use href={sprite + '#search-icon'} />
           </svg>
         </button>
       </form>

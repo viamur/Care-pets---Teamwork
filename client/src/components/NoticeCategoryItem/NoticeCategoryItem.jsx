@@ -24,7 +24,6 @@ const NoticeCategoryItem = ({
   id,
   setArrayFavorite,
   setArrayOwn,
-  arrayOwn,
   array,
 }) => {
   const {
@@ -77,11 +76,10 @@ const NoticeCategoryItem = ({
     deleteOwnAd(id)
       .then(data => {
         setArrayOwn(array);
-        return array;
+        return fetchOwnAds();
       })
       .then(array => {
-        const newArrayAfterDelete = array.filter(({ _id }) => _id !== id);
-        setArrayOwn(newArrayAfterDelete);
+        setArrayOwn(array);
       })
       .catch(error => console.log(error));
   };
@@ -128,11 +126,11 @@ const NoticeCategoryItem = ({
       >
         {!isFavorite ? (
           <svg className={s.iconFavorite}>
-            <use href={sprite + '#icon-like0-icon'} />
+            <use href={sprite + '#like0-icon'} />
           </svg>
         ) : (
           <svg className={s.iconFavorite}>
-            <use href={sprite + '#icon-like1-icon'} />
+            <use href={sprite + '#like1-icon'} />
           </svg>
         )}
       </button>

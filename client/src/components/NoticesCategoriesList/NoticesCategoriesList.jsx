@@ -67,7 +67,6 @@ const NoticesCategoriesList = () => {
             setArrayFavorite={setArrayFavorite}
             setArrayOwn={setArrayOwn}
             array={array}
-            arrayOwn={arrayOwn}
           />
         ))}
     </ul>
