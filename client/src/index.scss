@@ -3,6 +3,12 @@
 @import './sass/variables';
 @import './sass/mixin';
 
+
+// disable horizontal scroll on mobile
+html, body {
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   font-family: 'Manrope Regular', sans-serif;
