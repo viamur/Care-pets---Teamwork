@@ -17,8 +17,6 @@ const categoriesForBack = {
 
 const NoticesCategoriesList = ({ category, searchQuery, setSearchQuery }) => {
   const [array, setArray] = useState([]);
-  const [arrayFavorite, setArrayFavorite] = useState([]);
-  const [arrayOwn, setArrayOwn] = useState([]);
 
   useEffect(() => {
     if (category === 'favorite') {
@@ -51,18 +49,6 @@ const NoticesCategoriesList = ({ category, searchQuery, setSearchQuery }) => {
     // eslint-disable-next-line
   }, [category]);
 
-  useEffect(() => {
-    if (category === 'favorite') {
-      setArray([...arrayFavorite]);
-      return;
-    }
-    if (category === 'own') {
-      setArray([...arrayOwn]);
-      return;
-    }
-    // eslint-disable-next-line
-  }, [arrayFavorite.length, arrayOwn.length]);
-
   return (
     <ul className={s.list}>
       {array &&
@@ -73,9 +59,8 @@ const NoticesCategoriesList = ({ category, searchQuery, setSearchQuery }) => {
               key={_id}
               data={rest}
               id={_id}
-              setArrayFavorite={setArrayFavorite}
-              setArrayOwn={setArrayOwn}
               array={array}
+              setArray={setArray}
             />
           ))}
     </ul>

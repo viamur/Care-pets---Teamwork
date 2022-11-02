@@ -3,13 +3,7 @@ import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import Notiflix from 'notiflix';
 import sprite from '../../images/icons/sprite.svg';
-import {
-  addFavoriteAd,
-  removeFavoriteAd,
-  fetchFavoriteAds,
-  deleteOwnAd,
-  fetchOwnAds,
-} from '../../utils/api';
+import { addFavoriteAd, removeFavoriteAd, deleteOwnAd } from '../../utils/api';
 import { getIsAuth } from '../../redux/auth/authSelectors';
 import s from './NoticeCategoryItem.module.scss';
 
@@ -19,13 +13,7 @@ const categoriesForFront = {
   inGoodHands: 'In good hands',
 };
 
-const NoticeCategoryItem = ({
-  data,
-  id,
-  setArrayFavorite,
-  setArrayOwn,
-  array,
-}) => {
+const NoticeCategoryItem = ({ data, id, array, setArray }) => {
   const {
     birthdate,
     category,
@@ -52,13 +40,8 @@ const NoticeCategoryItem = ({
       removeFavoriteAd(id)
         .then(data => {
           if (path === 'favorite') {
-            setArrayFavorite(array);
-            return fetchFavoriteAds();
-          }
-        })
-        .then(arrayFavorite => {
-          if (path === 'favorite') {
-            setArrayFavorite(arrayFavorite);
+            const arrayNew = array.filter(({ _id }) => _id !== id);
+            setArray(arrayNew);
           }
         })
         .catch(error => console.log(error));
@@ -75,11 +58,8 @@ const NoticeCategoryItem = ({
   const onDeleteAdClick = () => {
     deleteOwnAd(id)
       .then(data => {
-        setArrayOwn(array);
-        return fetchOwnAds();
-      })
-      .then(array => {
-        setArrayOwn(array);
+        const arrayNew = array.filter(({ _id }) => _id !== id);
+        setArray(arrayNew);
       })
       .catch(error => console.log(error));
   };
