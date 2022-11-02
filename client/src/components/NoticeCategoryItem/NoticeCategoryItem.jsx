@@ -1,21 +1,125 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import Notiflix from 'notiflix';
 import sprite from '../../images/icons/sprite.svg';
-import testImg from '../../images/testNotice.jpg';
-
+import {
+  addFavoriteAd,
+  removeFavoriteAd,
+  fetchFavoriteAds,
+  deleteOwnAd,
+  fetchOwnAds,
+} from '../../utils/api';
+import { getIsAuth } from '../../redux/auth/authSelectors';
 import s from './NoticeCategoryItem.module.scss';
 
-const NoticeCategoryItem = () => {
-  const [isFavorite, setIsFavorite] = useState(false);
-  const isExistPrice = true;
+const categoriesForFront = {
+  sell: 'sell',
+  lostFound: 'lost/found',
+  inGoodHands: 'In good hands',
+};
 
-  const onClickFavorite = e => {
+const NoticeCategoryItem = ({
+  data,
+  id,
+  setArrayFavorite,
+  setArrayOwn,
+  arrayOwn,
+  array,
+}) => {
+  const {
+    birthdate,
+    category,
+    favorite,
+    imgURL,
+    location,
+    price,
+    title,
+    breed,
+  } = data;
+  const [isFavorite, setIsFavorite] = useState(favorite);
+  const isAuth = useSelector(getIsAuth);
+  const { pathname } = useLocation();
+
+  const path = pathname.split('/').reverse(0)[0];
+
+  const onClickFavorite = async e => {
+    if (!isAuth) {
+      Notiflix.Notify.info('Please, log in for adding to favorite');
+      return;
+    }
+
+    if (isFavorite) {
+      removeFavoriteAd(id)
+        .then(data => {
+          if (path === 'favorite') {
+            setArrayFavorite(array);
+            return fetchFavoriteAds();
+          }
+        })
+        .then(arrayFavorite => {
+          if (path === 'favorite') {
+            setArrayFavorite(arrayFavorite);
+          }
+        })
+        .catch(error => console.log(error));
+      setIsFavorite(!isFavorite);
+      return;
+    }
+
+    addFavoriteAd(id)
+      .then(data => console.log(data))
+      .catch(error => console.log(error));
     setIsFavorite(!isFavorite);
   };
 
+  const onDeleteAdClick = () => {
+    deleteOwnAd(id)
+      .then(data => {
+        setArrayOwn(array);
+        return array;
+      })
+      .then(array => {
+        const newArrayAfterDelete = array.filter(({ _id }) => _id !== id);
+        setArrayOwn(newArrayAfterDelete);
+      })
+      .catch(error => console.log(error));
+  };
+
+  function convertAge(date) {
+    const dif = Date.now() - new Date(date.split('T')[0]);
+    const second = 1000;
+    const minute = second * 60;
+    const hour = minute * 60;
+    const day = hour * 24;
+
+    const days = Math.floor(dif / day);
+    const months = Math.floor(days / 30.4);
+    const years = months / 12;
+    const transformedYear = years.toString().split('.')[0];
+    const restDivision = years.toString().split('.')[1];
+    const transformedMonth = restDivision
+      ? Math.floor(Number(`0.${restDivision}` * 12))
+      : null;
+
+    if (transformedYear > 0) {
+      if (transformedMonth) {
+        return `${transformedYear} years ${transformedMonth} months`;
+      }
+      return `${transformedYear} years`;
+    }
+
+    return `${transformedMonth} months`;
+  }
+
   return (
     <li className={s.item}>
-      <img src={testImg} className={s.imgCard} alt="animal" />
-      <p className={s.status}>In good hands</p>
+      <img
+        src={`https://pet-support.herokuapp.com/${imgURL}`}
+        className={s.imgCard}
+        alt="animal"
+      />
+      <p className={s.status}>{categoriesForFront[category]}</p>
 
       <button
         type="button"
@@ -34,28 +138,41 @@ const NoticeCategoryItem = () => {
       </button>
 
       <div className={s.commonContainerDescription}>
-        <h3 className={s.titleDescr}>Сute dog looking for a home</h3>
+        <h3 className={s.titleDescr}>{title}</h3>
 
         <div className={s.descrBox}>
           <div className={s.containerDescr}>
             <div>
-              <p className={s.descr}>Breed:</p>
+              {<p className={s.descr}>Breed:</p>}
               <p className={s.descr}>Place:</p>
-              <p className={s.descr}>Age:</p>
-              {isExistPrice && <p className={s.descr}>Price:</p>}
+              {<p className={s.descr}>Age:</p>}
+              {<p className={s.descr}>Price:</p>}
             </div>
 
             <div>
-              <p className={s.descr}>Pomeranian</p>
-              <p className={s.descr}>Lviv</p>
-              <p className={s.descr}>one year</p>
-              {isExistPrice && <p className={s.descr}>50$</p>}
+              {<p className={s.descr}>{breed ? breed : 'Unknown'}</p>}
+              <p className={s.descr}>{location}</p>
+              {
+                <p className={s.descr}>
+                  {birthdate ? convertAge(birthdate) : 'Unknown'}
+                </p>
+              }
+              {<p className={s.descr}>{price ? `${price}$` : 'Unknown'}</p>}
             </div>
           </div>
 
           <button className={s.btnMore} type="button">
             Learn more
           </button>
+          {path === 'own' && (
+            <button
+              className={`${s.btnMore} ${s.btnDelete}`}
+              type="button"
+              onClick={onDeleteAdClick}
+            >
+              Delete
+            </button>
+          )}
         </div>
       </div>
     </li>
