@@ -49,28 +49,34 @@ export const fetchAdsByCategory = category => {
 
 export const fetchFavoriteAds = () => {
   return axios.get('/notices/favorite').then(response => {
-    console.log(response.data);
+    console.log('фетч избранных');
     return response.data.data;
   });
 };
 
 export const fetchOwnAds = () => {
   return axios.get('/notices/user').then(response => {
-    console.log(response.data);
     return response.data.data;
   });
 };
 
 export const removeFavoriteAd = id => {
   return axios.delete(`/notices/favorite/${id}`).then(response => {
-    console.log(response.data);
+    console.log('удаление избранных');
     return response.data;
   });
 };
 
 export const addFavoriteAd = id => {
   return axios.patch(`/notices/favorite/${id}`).then(response => {
-    console.log(response.data);
+    console.log('добавление избранных');
+    return response.data;
+  });
+};
+
+export const deleteOwnAd = id => {
+  return axios.delete(`/notices/user/${id}`).then(response => {
+    console.log('удаление собственного');
     return response.data;
   });
 };

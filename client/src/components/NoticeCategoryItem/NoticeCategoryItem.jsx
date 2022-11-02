@@ -1,9 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import Notiflix from 'notiflix';
 import sprite from '../../images/icons/sprite.svg';
-import { addFavoriteAd, removeFavoriteAd } from '../../utils/api';
+import {
+  addFavoriteAd,
+  removeFavoriteAd,
+  fetchFavoriteAds,
+  deleteOwnAd,
+  fetchOwnAds,
+} from '../../utils/api';
 import { getIsAuth } from '../../redux/auth/authSelectors';
 import s from './NoticeCategoryItem.module.scss';
 
@@ -14,7 +20,13 @@ const categoriesForFront = {
 };
 
 const NoticeCategoryItem = ({
-  data: {
+  data,
+  id,
+  setArrayFavorite,
+  setArrayOwn,
+  array,
+}) => {
+  const {
     birthdate,
     category,
     favorite,
@@ -23,30 +35,64 @@ const NoticeCategoryItem = ({
     price,
     title,
     breed,
-  },
-  id,
-}) => {
+  } = data;
   const [isFavorite, setIsFavorite] = useState(favorite);
   const isAuth = useSelector(getIsAuth);
-  // const { pathname } = useLocation();
+  const { pathname } = useLocation();
 
-  const onClickFavorite = e => {
+  const path = pathname.split('/').reverse(0)[0];
+
+  const onClickFavorite = async e => {
     if (!isAuth) {
       Notiflix.Notify.info('Please, log in for adding to favorite');
       return;
     }
-    // const path = pathname.split('/').reverse(0)[0];
+
     if (isFavorite) {
       removeFavoriteAd(id)
-        .then(data => console.log(data))
+        .then(data => {
+          if (path === 'favorite') {
+            setArrayFavorite(array);
+            return fetchFavoriteAds();
+          }
+        })
+        .then(arrayFavorite => {
+          if (path === 'favorite') {
+            setArrayFavorite(arrayFavorite);
+            console.log(array);
+          }
+        })
         .catch(error => console.log(error));
       setIsFavorite(!isFavorite);
       return;
     }
+
     addFavoriteAd(id)
-      .then(data => console.log(data))
+      .then(data => {
+        if (path === 'favorite') {
+          setArrayFavorite(array);
+          return fetchFavoriteAds();
+        }
+      })
+      .then(arrayFavorite => {
+        if (path === 'favorite') {
+          setArrayFavorite(arrayFavorite);
+        }
+      })
       .catch(error => console.log(error));
     setIsFavorite(!isFavorite);
+  };
+
+  const onDeleteAdClick = () => {
+    deleteOwnAd(id)
+      .then(data => {
+        setArrayOwn(array);
+        return fetchOwnAds();
+      })
+      .then(arrayFavorite => {
+        setArrayOwn(arrayFavorite);
+      })
+      .catch(error => console.log(error));
   };
 
   function convertAge(date) {
@@ -120,13 +166,22 @@ const NoticeCategoryItem = ({
                   {birthdate ? convertAge(birthdate) : 'Unknown'}
                 </p>
               }
-              {<p className={s.descr}>{price ? price : 'Unknown'}$</p>}
+              {<p className={s.descr}>{price ? `${price}$` : 'Unknown'}</p>}
             </div>
           </div>
 
           <button className={s.btnMore} type="button">
             Learn more
           </button>
+          {path === 'own' && (
+            <button
+              className={`${s.btnMore} ${s.btnDelete}`}
+              type="button"
+              onClick={onDeleteAdClick}
+            >
+              Delete
+            </button>
+          )}
         </div>
       </div>
     </li>

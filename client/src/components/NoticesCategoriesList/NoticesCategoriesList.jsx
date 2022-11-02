@@ -17,10 +17,13 @@ const categoriesForBack = {
 
 const NoticesCategoriesList = () => {
   const [array, setArray] = useState([]);
+  const [arrayFavorite, setArrayFavorite] = useState([]);
+  const [arrayOwn, setArrayOwn] = useState([]);
   const { pathname } = useLocation();
 
+  const path = pathname.split('/').reverse(0)[0];
+
   useEffect(() => {
-    const path = pathname.split('/').reverse(0)[0];
     if (path === 'favorite') {
       fetchFavoriteAds()
         .then(data => setArray(data))
@@ -42,11 +45,28 @@ const NoticesCategoriesList = () => {
     // eslint-disable-next-line
   }, [pathname]);
 
+  useEffect(() => {
+    if (path === 'favorite') {
+      setArray([...arrayFavorite]);
+      return;
+    }
+    if (path === 'own') {
+      setArray([...arrayOwn]);
+    }
+  }, [arrayFavorite.length, arrayOwn.length]);
+
   return (
     <ul className={s.list}>
-      {array.length > 0 &&
+      {array &&
         array.map(({ _id, ...rest }) => (
-          <NoticeCategoryItem key={_id} data={rest} id={_id} />
+          <NoticeCategoryItem
+            key={_id}
+            data={rest}
+            id={_id}
+            setArrayFavorite={setArrayFavorite}
+            setArrayOwn={setArrayOwn}
+            array={array}
+          />
         ))}
     </ul>
   );

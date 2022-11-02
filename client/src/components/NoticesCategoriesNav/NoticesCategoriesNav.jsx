@@ -11,16 +11,9 @@ const setActiveLinkClass = ({ isActive }) =>
   isActive ? `${s.siteNav} ${s.activeSiteNav}` : s.siteNav;
 
 const NoticesCategoriesNav = () => {
-  // const [isFavoriteAds, setIsFavoriteAds] = useState(true);
-  // const [isMyAds, setIsMyAds] = useState(false);
   const isAuth = useSelector(getIsAuth);
 
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
-
-  // const onClickSelectAds = e => {
-  //   setIsFavoriteAds(!isFavoriteAds);
-  //   setIsMyAds(!isMyAds);
-  // };
 
   return (
     <div className={s.navigationWrapper}>
@@ -44,26 +37,6 @@ const NoticesCategoriesNav = () => {
             <NavLink to="/notices/own" className={setActiveLinkClass}>
               My ads
             </NavLink>
-            {/* <button
-              type="button"
-              className={
-                isFavoriteAds ? `${s.siteNav} ${s.activeSiteNav}` : s.siteNav
-              }
-              name="favoriteAds"
-              onClick={onClickSelectAds}
-            >
-              Favorite ads
-            </button>
-            <button
-              type="button"
-              className={
-                isMyAds ? `${s.siteNav} ${s.activeSiteNav}` : s.siteNav
-              }
-              name="myAds"
-              onClick={onClickSelectAds}
-            >
-              My ads
-            </button> */}
           </>
         )}
       </nav>
