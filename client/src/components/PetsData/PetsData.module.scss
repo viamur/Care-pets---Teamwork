@@ -1,48 +1,38 @@
-.headerPetsData {
+.petsBlock {
+  margin-top: 30px;
+}
+.petBlock {
   display: flex;
-  justify-content: space-between;
+  width: 850px;
+  height: 212px;
+  background: var(--bg-color);
+  border-radius: 25px;
+  margin-left: 55px;
+  margin-bottom: 20px;
+  padding-left: 15px;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.25);
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
 }
-
-.title {
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 28px;
-  line-height: 38px;
-
-  /* Черный */
-
-  color: #111111;
+.photoPet {
+  width: 157px;
+  height: 157px;
+  margin-top: 27.5px;
+  margin-bottom: 27.5px;
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
 }
-
-.addPettTitle {
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 27px;
-
-  /* Черный */
-
-  color: #111111;
+.infoAboutPets {
+  width: 600px;
+  margin-left: 32px;
+  margin-top: 20px;
 }
-
-.buttonToModal {
-  width: 40px;
-  height: 40px;
-
-  margin-left: 20px;
-
-  font-size: 42px;
-  line-height: 18px;
-  //   padding: 8px;
-  border: none;
-  border-radius: 50%;
-  color: var(--white);
-  background-color: var(--accent-color);
-}
-
-.addPetWrapper {
-  display: flex;
-  align-items: center;
+.deletePetIco {
+  margin-top: -100px;
+  width: 42px;
 }

@@ -1,5 +1,5 @@
-import changeInputIco from '../../../images/search-icon.svg'
-import s from './UserData.module.scss'
+import changeInputIco from '../../images/icons/search-icon.svg'
+import style from './UserData.module.scss'
 const UserForm = (props) => {
     const getChange = () => {
         props.createChanger(props.formName)

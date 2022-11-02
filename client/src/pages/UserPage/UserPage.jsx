@@ -1,7 +1,7 @@
 import Logout from 'components/Logout/Logout';
 import UserData from '../../components/UserData/UserData';
 import PetsData from '../../components/PetsData/PetsData';
-import s from './UserPage.module.scss';
+import style from './UserPage.module.scss';
 
 const UserPage = (props) => {
   return (

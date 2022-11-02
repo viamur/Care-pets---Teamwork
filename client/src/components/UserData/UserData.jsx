@@ -1,10 +1,10 @@
-import s from './UserData.module.scss';
+import style from './UserData.module.scss';
 
-// import photoUser from 
-import logOutIco from '../../../images/logout-icon.svg'
-import UserForm from './components/UserData/UserForm'
-import { getFormName,getFormObj } from '../../../utils/getForm'
-import UserFormChanger from './components/UserData/UserFormChanger';
+import photoUser from '../../images/bgs/woman-1x.png'
+import logOutIco from '../../images/icons/logout-icon.svg'
+import UserForm from './UserForm'
+import { getFormName,getFormObj } from '../../utils/getForm'
+import UserFormChanger from './UserFormChanger';
 
 const UserData = (props) => {
     let formsCreate = props.userStore.forms.map((form,index) => {

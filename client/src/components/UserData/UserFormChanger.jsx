@@ -1,6 +1,6 @@
 import React from 'react'
-import s from './components/UserData.module.scss'
-import checkMarkIco from '../../../images/pencil-icon.svg'
+import style from './UserData.module.scss'
+import checkMarkIco from '../../images/icons/pencil-icon.svg'
 
 const UserFormChanger = (props) => { 
     let inputRef = React.createRef()
