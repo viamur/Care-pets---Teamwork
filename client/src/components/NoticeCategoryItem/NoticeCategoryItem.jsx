@@ -40,14 +40,14 @@ const NoticeCategoryItem = ({ data, id, array, setArray, category: path }) => {
             setArray(arrayNew);
           }
         })
-        .catch(error => console.log(error));
+        .catch(error => Notiflix.Notify.failure(error.response.data.message));
       setIsFavorite(!isFavorite);
       return;
     }
 
     addFavoriteAd(id)
       .then(data => console.log(data))
-      .catch(error => console.log(error));
+      .catch(error => Notiflix.Notify.failure(error.response.data.message));
     setIsFavorite(!isFavorite);
   };
 
@@ -57,7 +57,7 @@ const NoticeCategoryItem = ({ data, id, array, setArray, category: path }) => {
         const arrayNew = array.filter(({ _id }) => _id !== id);
         setArray(arrayNew);
       })
-      .catch(error => console.log(error));
+      .catch(error => Notiflix.Notify.failure(error.response.data.message));
   };
 
   function convertAge(date) {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-// import { useLocation } from 'react-router-dom';
+import Notiflix from 'notiflix';
 import {
   fetchAdsByCategory,
   fetchFavoriteAds,
@@ -25,7 +25,7 @@ const NoticesCategoriesList = ({ category, searchQuery, setSearchQuery }) => {
           setSearchQuery('');
           setArray(data);
         })
-        .catch(error => console.log(error));
+        .catch(error => Notiflix.Notify.failure(error.response.data.message));
       return;
     }
 
@@ -35,7 +35,7 @@ const NoticesCategoriesList = ({ category, searchQuery, setSearchQuery }) => {
           setSearchQuery('');
           setArray(data);
         })
-        .catch(error => console.log(error));
+        .catch(error => Notiflix.Notify.failure(error.response.data.message));
       return;
     }
 
@@ -44,7 +44,7 @@ const NoticesCategoriesList = ({ category, searchQuery, setSearchQuery }) => {
         setSearchQuery('');
         setArray(data);
       })
-      .catch(error => console.log(error));
+      .catch(error => Notiflix.Notify.failure(error.response.data.message));
 
     // eslint-disable-next-line
   }, [category]);
