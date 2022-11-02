@@ -1,24 +1,25 @@
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
+import { getIsAuth } from '../../redux/auth/authSelectors';
 import sprite from '../../images/icons/sprite.svg';
 import s from './NoticesCategoriesNav.module.scss';
-import { useState } from 'react';
 
 const setActiveLinkClass = ({ isActive }) =>
   isActive ? `${s.siteNav} ${s.activeSiteNav}` : s.siteNav;
 
 const NoticesCategoriesNav = () => {
-  const [isFavoriteAds, setIsFavoriteAds] = useState(true);
-  const [isMyAds, setIsMyAds] = useState(false);
+  // const [isFavoriteAds, setIsFavoriteAds] = useState(true);
+  // const [isMyAds, setIsMyAds] = useState(false);
+  const isAuth = useSelector(getIsAuth);
 
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
-  const isAuth = true;
-
-  const onClickSelectAds = e => {
-    setIsFavoriteAds(!isFavoriteAds);
-    setIsMyAds(!isMyAds);
-  };
+  // const onClickSelectAds = e => {
+  //   setIsFavoriteAds(!isFavoriteAds);
+  //   setIsMyAds(!isMyAds);
+  // };
 
   return (
     <div className={s.navigationWrapper}>
@@ -36,7 +37,13 @@ const NoticesCategoriesNav = () => {
         </NavLink>
         {isAuth && (
           <>
-            <button
+            <NavLink to="/notices/favorite" className={setActiveLinkClass}>
+              Favorite ads
+            </NavLink>
+            <NavLink to="/notices/own" className={setActiveLinkClass}>
+              My ads
+            </NavLink>
+            {/* <button
               type="button"
               className={
                 isFavoriteAds ? `${s.siteNav} ${s.activeSiteNav}` : s.siteNav
@@ -55,7 +62,7 @@ const NoticesCategoriesNav = () => {
               onClick={onClickSelectAds}
             >
               My ads
-            </button>
+            </button> */}
           </>
         )}
       </nav>

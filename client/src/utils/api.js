@@ -40,3 +40,23 @@ export const getCheckEmail = async email => {
   const response = await axios.post('/auth/checkemail', email);
   return response.data.check;
 };
+
+export const fetchAdsByCategory = category => {
+  return axios
+    .get('/notices', { params: { category } })
+    .then(response => response.data.data);
+};
+
+export const fetchFavoriteAds = () => {
+  return axios.get('/notices/favorite').then(response => {
+    console.log(response.data);
+    return response.data.data;
+  });
+};
+
+export const fetchOwnAds = () => {
+  return axios.get('/notices/user').then(response => {
+    console.log(response.data);
+    return response.data.data;
+  });
+};

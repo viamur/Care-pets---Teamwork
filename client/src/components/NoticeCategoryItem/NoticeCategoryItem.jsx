@@ -1,21 +1,66 @@
 import { useState } from 'react';
 import sprite from '../../images/icons/sprite.svg';
-import testImg from '../../images/testNotice.jpg';
 
 import s from './NoticeCategoryItem.module.scss';
 
-const NoticeCategoryItem = () => {
-  const [isFavorite, setIsFavorite] = useState(false);
-  const isExistPrice = true;
+const categoriesForFront = {
+  sell: 'sell',
+  lostFound: 'lost/found',
+  inGoodHands: 'In good hands',
+};
+
+const NoticeCategoryItem = ({
+  data: {
+    birthdate,
+    category,
+    favorite,
+    imgURL,
+    location,
+    price,
+    title,
+    breed,
+  },
+}) => {
+  const [isFavorite, setIsFavorite] = useState(favorite);
 
   const onClickFavorite = e => {
     setIsFavorite(!isFavorite);
   };
 
+  function convertAge(date) {
+    const dif = Date.now() - new Date(date.split('T')[0]);
+    const second = 1000;
+    const minute = second * 60;
+    const hour = minute * 60;
+    const day = hour * 24;
+
+    const days = Math.floor(dif / day);
+    const months = Math.floor(days / 30.4);
+    const years = months / 12;
+    const transformedYear = years.toString().split('.')[0];
+    const restDivision = years.toString().split('.')[1];
+    const transformedMonth = restDivision
+      ? Math.floor(Number(`0.${restDivision}` * 12))
+      : null;
+
+    if (transformedYear > 0) {
+      if (transformedMonth) {
+        return `${transformedYear} years ${transformedMonth} months`;
+      }
+      return `${transformedYear} years`;
+    }
+
+    return `${transformedMonth} months`;
+  }
+
   return (
     <li className={s.item}>
-      <img src={testImg} className={s.imgCard} alt="animal" />
-      <p className={s.status}>In good hands</p>
+      <img
+        src={`https://pet-support.herokuapp.com/${imgURL}`}
+        className={s.imgCard}
+        alt="animal"
+      />
+      <p className={s.status}>{categoriesForFront[category]}</p>
 
       <button
         type="button"
@@ -34,22 +79,22 @@ const NoticeCategoryItem = () => {
       </button>
 
       <div className={s.commonContainerDescription}>
-        <h3 className={s.titleDescr}>Сute dog looking for a home</h3>
+        <h3 className={s.titleDescr}>{title}</h3>
 
         <div className={s.descrBox}>
           <div className={s.containerDescr}>
             <div>
-              <p className={s.descr}>Breed:</p>
+              {breed && <p className={s.descr}>Breed:</p>}
               <p className={s.descr}>Place:</p>
-              <p className={s.descr}>Age:</p>
-              {isExistPrice && <p className={s.descr}>Price:</p>}
+              {birthdate && <p className={s.descr}>Age:</p>}
+              {price && <p className={s.descr}>Price:</p>}
             </div>
 
             <div>
-              <p className={s.descr}>Pomeranian</p>
-              <p className={s.descr}>Lviv</p>
-              <p className={s.descr}>one year</p>
-              {isExistPrice && <p className={s.descr}>50$</p>}
+              {breed && <p className={s.descr}>{breed}</p>}
+              <p className={s.descr}>{location}</p>
+              {birthdate && <p className={s.descr}>{convertAge(birthdate)}</p>}
+              {price && <p className={s.descr}>{price}$</p>}
             </div>
           </div>
 
