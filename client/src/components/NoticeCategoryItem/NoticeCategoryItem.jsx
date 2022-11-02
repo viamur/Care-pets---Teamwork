@@ -26,7 +26,7 @@ const NoticeCategoryItem = ({ data, id, array, setArray, category: path }) => {
   const [isFavorite, setIsFavorite] = useState(favorite);
   const isAuth = useSelector(getIsAuth);
 
-  const onClickFavorite = async e => {
+  const onClickFavorite = e => {
     if (!isAuth) {
       Notiflix.Notify.info('Please, log in for adding to favorite');
       return;
