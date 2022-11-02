@@ -52,6 +52,7 @@ const NoticesCategoriesList = () => {
     }
     if (path === 'own') {
       setArray([...arrayOwn]);
+      return;
     }
   }, [arrayFavorite.length, arrayOwn.length]);
 
@@ -66,6 +67,7 @@ const NoticesCategoriesList = () => {
             setArrayFavorite={setArrayFavorite}
             setArrayOwn={setArrayOwn}
             array={array}
+            arrayOwn={arrayOwn}
           />
         ))}
     </ul>

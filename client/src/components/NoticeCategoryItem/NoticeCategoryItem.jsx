@@ -24,6 +24,7 @@ const NoticeCategoryItem = ({
   id,
   setArrayFavorite,
   setArrayOwn,
+  arrayOwn,
   array,
 }) => {
   const {
@@ -59,7 +60,6 @@ const NoticeCategoryItem = ({
         .then(arrayFavorite => {
           if (path === 'favorite') {
             setArrayFavorite(arrayFavorite);
-            console.log(array);
           }
         })
         .catch(error => console.log(error));
@@ -68,17 +68,7 @@ const NoticeCategoryItem = ({
     }
 
     addFavoriteAd(id)
-      .then(data => {
-        if (path === 'favorite') {
-          setArrayFavorite(array);
-          return fetchFavoriteAds();
-        }
-      })
-      .then(arrayFavorite => {
-        if (path === 'favorite') {
-          setArrayFavorite(arrayFavorite);
-        }
-      })
+      .then(data => console.log(data))
       .catch(error => console.log(error));
     setIsFavorite(!isFavorite);
   };
@@ -87,10 +77,11 @@ const NoticeCategoryItem = ({
     deleteOwnAd(id)
       .then(data => {
         setArrayOwn(array);
-        return fetchOwnAds();
+        return array;
       })
-      .then(arrayFavorite => {
-        setArrayOwn(arrayFavorite);
+      .then(array => {
+        const newArrayAfterDelete = array.filter(({ _id }) => _id !== id);
+        setArrayOwn(newArrayAfterDelete);
       })
       .catch(error => console.log(error));
   };
