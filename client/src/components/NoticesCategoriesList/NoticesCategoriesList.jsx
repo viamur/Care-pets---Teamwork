@@ -15,7 +15,7 @@ const categoriesForBack = {
   'for-free': 'inGoodHands',
 };
 
-const NoticesCategoriesList = ({ category, searchQuery }) => {
+const NoticesCategoriesList = ({ category, searchQuery, setSearchQuery }) => {
   const [array, setArray] = useState([]);
   const [arrayFavorite, setArrayFavorite] = useState([]);
   const [arrayOwn, setArrayOwn] = useState([]);
@@ -23,21 +23,27 @@ const NoticesCategoriesList = ({ category, searchQuery }) => {
   useEffect(() => {
     if (category === 'favorite') {
       fetchFavoriteAds()
-        .then(data => setArray(data))
+        .then(data => {
+          setSearchQuery('');
+          setArray(data);
+        })
         .catch(error => console.log(error));
       return;
     }
 
     if (category === 'own') {
       fetchOwnAds()
-        .then(data => setArray(data))
+        .then(data => {
+          setSearchQuery('');
+          setArray(data);
+        })
         .catch(error => console.log(error));
       return;
     }
 
     fetchAdsByCategory(categoriesForBack[category])
       .then(data => {
-        console.log(data);
+        setSearchQuery('');
         setArray(data);
       })
       .catch(error => console.log(error));
@@ -59,17 +65,20 @@ const NoticesCategoriesList = ({ category, searchQuery }) => {
 
   return (
     <ul className={s.list}>
+      {console.log('searchQuery', searchQuery)}
       {array &&
-        array.map(({ _id, ...rest }) => (
-          <NoticeCategoryItem
-            key={_id}
-            data={rest}
-            id={_id}
-            setArrayFavorite={setArrayFavorite}
-            setArrayOwn={setArrayOwn}
-            array={array}
-          />
-        ))}
+        array
+          .filter(({ title }) => title.includes(searchQuery))
+          .map(({ _id, ...rest }) => (
+            <NoticeCategoryItem
+              key={_id}
+              data={rest}
+              id={_id}
+              setArrayFavorite={setArrayFavorite}
+              setArrayOwn={setArrayOwn}
+              array={array}
+            />
+          ))}
     </ul>
   );
 };

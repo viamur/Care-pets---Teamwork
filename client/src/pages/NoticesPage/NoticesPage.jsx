@@ -15,6 +15,7 @@ const NoticesPage = () => {
       <NoticesCategoriesList
         category={categoryName}
         searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
       />
     </>
   );

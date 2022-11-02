@@ -8,8 +8,7 @@ const NoticesSearch = ({ setSearchQuery }) => {
   const [query, setQuery] = useState('');
 
   const onHadleChange = e => {
-    const inputData = e.target.value.trim();
-    setQuery(inputData);
+    setQuery(e.target.value.trim());
   };
 
   const onHandleSubmit = e => {
