@@ -34,6 +34,9 @@ const AuthForm = ({ title }) => {
       >
         {title === 'Registration' ? 'Login' : 'Register'}
       </Link>
+      <Link to="/notices" className={s.link}>
+        "к объявлениям"
+      </Link>
     </div>
   );
 };

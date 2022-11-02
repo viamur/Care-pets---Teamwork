@@ -1,10 +1,7 @@
-import NoticesCategoriesList from 'components/NoticesCategoriesList/NoticesCategoriesList';
+import { Suspense, useState } from 'react';
+import { Outlet } from 'react-router-dom';
 import NoticesCategoriesNav from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
 import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
-import { useState } from 'react';
-
-import s from './NoticesPage.module.scss';
-
 
 const NoticesPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -16,7 +13,9 @@ const NoticesPage = () => {
     <>
       <NoticesSearch onSubmit={onSubmitSearch} />
       <NoticesCategoriesNav />
-      <NoticesCategoriesList />
+      <Suspense fallback={''}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };
