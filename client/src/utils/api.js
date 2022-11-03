@@ -76,3 +76,9 @@ export const deleteOwnAd = id => {
     return response.data;
   });
 };
+
+export const getAdInfo = id => {
+  return axios.get(`/notices/${id}`).then(response => {
+    return response.data.data;
+  });
+};
