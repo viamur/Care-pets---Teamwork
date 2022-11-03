@@ -1,0 +1,146 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(17, 17, 17, 0.6);
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 704px;
+  max-height: 100%;
+  background: var(--white);
+  border-radius: 40px;
+  padding: 32px 20px;
+}
+
+s.descrBox {
+  margin-bottom: 28px;
+}
+
+.thumbImage {
+  position: relative;
+  width: 288px;
+  height: 328px;
+  margin-right: 20px;
+}
+
+.photo {
+  display: block;
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  border-radius: 0px 0px 40px 40px;
+}
+
+.category {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 158px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.25;
+  letter-spacing: 0.04em;
+  background-color: rgba(255, 255, 255, 0.6);
+  color: var(--font-color);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  padding: 6px 20px;
+  border-radius: 0 40px 40px 0;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.36;
+  letter-spacing: -0.01em;
+  color: var(--font-color);
+  margin-bottom: 20px;
+}
+
+.containerDescr {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.blockDescrTitle {
+  margin-right: 50px;
+}
+
+.descr {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.37;
+  color: var(--font-color);
+  margin-bottom: 8px;
+}
+
+.comments {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: var(--font-color);
+  margin-bottom: 32px;
+}
+
+.commentsDescr {
+  composes: comments;
+  font-weight: 600;
+}
+
+.blockOfBtn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.btn {
+  width: 160px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.37;
+  letter-spacing: 0.04em;
+  color: var(--font-color);
+  background-color: var(--white);
+  border: 2px solid var(--accent-color);
+  border-radius: 40px;
+  cursor: pointer;
+  padding-top: 9px;
+  padding-bottom: 9px;
+}
+
+.btn:not(:last-child) {
+  margin-right: 12px;
+}
+
+.btn:hover {
+  background-color: var(--accent-color);
+  color: var(--white);
+}
+
+.icon {
+  fill: #f59256;
+}
+
+.btn:hover .icon {
+  fill: #fff;
+}
