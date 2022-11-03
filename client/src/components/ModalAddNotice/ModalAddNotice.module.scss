@@ -1,0 +1,59 @@
+@import '../../sass/mixin';
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(17, 17, 17, 0.6);
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
+  width: 280px;
+  max-height: 100%;
+  border-radius: 20px;
+  padding: 40px 20px;
+  background: var(--white);
+
+  @include mq(tab) {
+    width: 608px;
+    border-radius: 40px;
+    padding: 40px 80px;
+  }
+}
+
+.btnClose {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+
+  background-color: var(--bg-color);
+
+  @include mq(tab) {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+.btnClose:hover {
+  background-color: var(--accent-color);
+}
+.btnClose:hover .iconClose {
+  fill: var(--white);
+}

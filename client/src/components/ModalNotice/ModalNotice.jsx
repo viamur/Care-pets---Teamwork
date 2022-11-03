@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useSelector } from 'react-redux';
+import { useMediaQuery } from 'react-responsive';
 import Notiflix from 'notiflix';
 import { getAdInfo } from '../../utils/api';
 import { getUserEmail } from '../../redux/auth/authSelectors';
@@ -16,13 +17,19 @@ const ModalNotice = ({
   isFavorite,
   onClickFavorite,
   onDeleteAdClick,
+  setShowButton,
 }) => {
   const [info, setInfo] = useState(null);
   const userEmail = useSelector(getUserEmail);
 
+  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
+
   useEffect(() => {
     const handleKeyDown = e => {
       if (e.code === 'Escape') setShowModal(false);
+      if (isMobile) {
+        setShowButton(true);
+      }
     };
     document.addEventListener('keydown', handleKeyDown);
 
@@ -43,10 +50,16 @@ const ModalNotice = ({
 
   const onBackdropClick = e => {
     if (e.currentTarget === e.target) setShowModal(false);
+    if (isMobile) {
+      setShowButton(true);
+    }
   };
 
   const onBtnCloseClick = () => {
     setShowModal(false);
+    if (isMobile) {
+      setShowButton(true);
+    }
   };
 
   const convertBirthday = birthday => {

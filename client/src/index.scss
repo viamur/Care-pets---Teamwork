@@ -3,9 +3,9 @@
 @import './sass/variables';
 @import './sass/mixin';
 
-
 // disable horizontal scroll on mobile
-html, body {
+html,
+body {
   overflow-x: hidden;
 }
 
@@ -17,11 +17,11 @@ body {
 
   background-color: var(--bg-color);
   color: var(--font-color);
-
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
 
 /* RESET */
@@ -63,4 +63,3 @@ img {
 .on {
   overflow: hidden;
 }
-
