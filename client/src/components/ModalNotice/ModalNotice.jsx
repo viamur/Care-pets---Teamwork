@@ -109,15 +109,15 @@ const ModalNotice = ({
               onClick={onClickFavorite}
             >
               {isFavorite ? 'Remove from' : 'Add to'}
-              {isFavorite ? (
+              {/* {isFavorite ? (
                 <svg width="16px" height="16px">
                   <use href={sprite + '#like0-icon'} />
                 </svg>
-              ) : (
-                <svg width="16px" height="16px" className={s.icon}>
-                  <use href={sprite + '#like2-icon'} />
-                </svg>
-              )}
+              ) : ( */}
+              <svg width="16px" height="16px" className={s.icon}>
+                <use href={sprite + '#like2-icon'} />
+              </svg>
+              {/* )} */}
             </button>
             <a className={s.btn} href="tel:info.owner?.phone">
               Contact
