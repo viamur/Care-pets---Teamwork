@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import s from './mobileMenu.module.scss';
 // import NavMenu from '../NavMenu';
 
-const MobileMenu = () => {
+const MobileMenu = ({ isUserLoggedIn }) => {
   const getActiveLink = ({ isActive }) =>
     isActive ? s.linkActive + ' ' + s.link : s.link;
   const getActiveButton = ({ isActive }) =>
@@ -13,12 +13,21 @@ const MobileMenu = () => {
   return (
     <div className={s.menuContainer}>
       <div className={s.auth}>
-        <NavLink className={getActiveButton} to="/login">
-          Login
-        </NavLink>
-        <NavLink className={getActiveButton} to="/register">
-          Registration
-        </NavLink>
+        {!isUserLoggedIn && (
+          <NavLink className={getActiveButton} to="/login">
+            Login
+          </NavLink>
+        )}
+        {!isUserLoggedIn && (
+          <NavLink className={getActiveButton} to="/register">
+            Registration
+          </NavLink>
+        )}
+        {isUserLoggedIn && (
+          <NavLink className={s.account} to="/user">
+            Account
+          </NavLink>
+        )}
       </div>
       <div className={s.nav}>
         <NavLink className={getActiveLink} to="/news">

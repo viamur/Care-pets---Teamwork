@@ -88,22 +88,18 @@ align-items: center;
     background-color: var(--accent-color);
 }
 
-// .login {
-//     text-align: center;
-//     width: 95px;
-//     padding: 8px 28px;
-//     margin-right: 12px;
-//     font-size:14px;
-//     background-color: var(--accent-color);
-//     color: white;
-//     border-radius: 40px;
-// }
+.account{
+    text-align: center;
+    padding: 8px 28px;
+    font-size: 14px;
+    border: 2px solid var(--accent-color);
+    border-radius: 40px;
 
-// .register {
-//     width: 145px;   
-//     font-size: 14px;
-//     text-align: center;
-//     padding: 8px 28px;
-//     border: 2px solid var(--accent-color);
-//     border-radius: 40px;
-// }
+    color: white;
+    background-color: var(--accent-color);
+    @include mq(tab) {
+    
+            font-size: 16px;
+            padding: 8px 28px;
+        }
+}

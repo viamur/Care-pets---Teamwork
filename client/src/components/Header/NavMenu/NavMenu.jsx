@@ -11,12 +11,21 @@ const NavMenu = ({ isUserLoggedIn }) => {
   return (
     <header className={s.header}>
       <div className={s.auth}>
-        <NavLink className={getActiveButton} to="/login">
-          Login
-        </NavLink>
-        <NavLink className={getActiveButton} to="/register">
-          Registration
-        </NavLink>
+        {!isUserLoggedIn && (
+          <NavLink className={getActiveButton} to="/login">
+            Login
+          </NavLink>
+        )}
+        {!isUserLoggedIn && (
+          <NavLink className={getActiveButton} to="/register">
+            Registration
+          </NavLink>
+        )}
+        {isUserLoggedIn && (
+          <NavLink className={s.account} to="/user">
+            Account
+          </NavLink>
+        )}
       </div>
       <div className={s.nav}>
         <NavLink className={getActiveLink} to="/news">
