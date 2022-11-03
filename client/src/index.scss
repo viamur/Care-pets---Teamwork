@@ -5,7 +5,8 @@
 
 
 // disable horizontal scroll on mobile
-html, body {
+
+ body {
   overflow-x: hidden;
 }
 
@@ -59,4 +60,3 @@ img {
 .on {
   overflow: hidden;
 }
-

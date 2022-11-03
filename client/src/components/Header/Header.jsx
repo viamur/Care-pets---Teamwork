@@ -3,14 +3,17 @@ import { NavLink } from 'react-router-dom';
 
 import NavMenu from './NavMenu';
 import Modal from 'components/ModalMobile/MobileModal';
+import MobileMenu from './MobileMenu';
 
 import s from './header.module.scss';
-import MobileMenu from './MobileMenu';
+import useMail from 'hooks/useLogin';
 
 const Header = () => {
   const [menuStatus, setMenuStatus] = useState(false);
   const body = document.querySelector('body');
-  
+
+  const isUserLoggenIn = useMail();
+
   const handleClick = () => {
     setMenuStatus(prev => !prev);
 
@@ -32,7 +35,6 @@ const Header = () => {
       <NavLink className={s.logo} to="/">
         pe<span className={s.logoT}>t</span>ly
       </NavLink>
-
       <NavMenu />
 
       <button onClick={handleClick} className={s.menuButton}>

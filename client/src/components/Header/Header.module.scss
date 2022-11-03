@@ -35,6 +35,8 @@
     margin-left: 20px;
 
     align-items: center;
+
+    background-color: var(--bg-color);
     
 
     @include mq(desk) {
