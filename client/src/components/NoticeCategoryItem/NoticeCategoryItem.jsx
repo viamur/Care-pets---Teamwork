@@ -56,8 +56,10 @@ const NoticeCategoryItem = ({ data, id, array, setArray, category: path }) => {
   const onDeleteAdClick = () => {
     deleteOwnAd(id)
       .then(data => {
-        const arrayNew = array.filter(({ _id }) => _id !== id);
-        setArray(arrayNew);
+        if (path === 'own') {
+          const arrayNew = array.filter(({ _id }) => _id !== id);
+          setArray(arrayNew);
+        }
       })
       .catch(error => Notiflix.Notify.failure(error.response.data.message));
   };
@@ -163,7 +165,15 @@ const NoticeCategoryItem = ({ data, id, array, setArray, category: path }) => {
           </div>
         </div>
       </li>
-      {showModal && <ModalNotice id={id} setShowModal={setShowModal} />}
+      {showModal && (
+        <ModalNotice
+          id={id}
+          setShowModal={setShowModal}
+          isFavorite={isFavorite}
+          onClickFavorite={onClickFavorite}
+          onDeleteAdClick={onDeleteAdClick}
+        />
+      )}
     </>
   );
 };

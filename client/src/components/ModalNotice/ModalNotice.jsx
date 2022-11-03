@@ -9,9 +9,14 @@ import s from './ModalNotice.module.scss';
 
 const portalModal = document.querySelector('#modal-root');
 
-const ModalNotice = ({ id, setShowModal }) => {
+const ModalNotice = ({
+  id,
+  setShowModal,
+  isFavorite,
+  onClickFavorite,
+  onDeleteAdClick,
+}) => {
   const [info, setInfo] = useState(null);
-  const [isFavorite, setIsFavorite] = useState(null);
   const userEmail = useSelector(getUserEmail);
 
   const onBackdropClick = e => {
@@ -34,16 +39,10 @@ const ModalNotice = ({ id, setShowModal }) => {
     getAdInfo(id)
       .then(data => {
         setInfo(data);
-        setIsFavorite(data.favorite);
       })
       .catch(error => Notiflix.Notify.failure(error.response.data.message));
     // eslint-disable-next-line
   }, []);
-
-  const onClickFavorite = () => {
-    console.log(isFavorite);
-    setIsFavorite(!isFavorite);
-  };
 
   const convertBirthday = birthday => {
     const date = birthday.split('T')[0];
@@ -100,7 +99,7 @@ const ModalNotice = ({ id, setShowModal }) => {
           )}
           <div style={{ display: 'flex', justifyContent: 'right' }}>
             {userEmail === info.owner?.email && (
-              <button className={s.btn} type="button">
+              <button className={s.btn} type="button" onClick={onDeleteAdClick}>
                 Delete
               </button>
             )}
