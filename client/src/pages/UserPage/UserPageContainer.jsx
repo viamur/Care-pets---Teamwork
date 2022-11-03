@@ -1,8 +1,8 @@
 import {connect} from 'react-redux'
-import UserPage from './pages/Userpage/UserPage'
+import UserPage from './UserPage'
 
-import {onChangeUser,createChanger, saveChange} from '../../Redux/userReducer'
-import {deletePet} from '../../Redux/petsReducer'
+import {onChangeUser,createChanger, saveChange} from '../../redux/user/userReducer'
+import {deletePet} from '../../redux/user/petsReducer'
 
 let mapStateToProps = (state) => { 
     return {
