@@ -20,10 +20,6 @@ const ModalNotice = ({
   const [info, setInfo] = useState(null);
   const userEmail = useSelector(getUserEmail);
 
-  const onBackdropClick = e => {
-    if (e.currentTarget === e.target) setShowModal(false);
-  };
-
   useEffect(() => {
     const handleKeyDown = e => {
       if (e.code === 'Escape') setShowModal(false);
@@ -45,6 +41,14 @@ const ModalNotice = ({
     // eslint-disable-next-line
   }, []);
 
+  const onBackdropClick = e => {
+    if (e.currentTarget === e.target) setShowModal(false);
+  };
+
+  const onBtnCloseClick = () => {
+    setShowModal(false);
+  };
+
   const convertBirthday = birthday => {
     const date = birthday.split('T')[0];
     const dateTransformed = date.split('-').reverse().join('.');
@@ -55,7 +59,21 @@ const ModalNotice = ({
     info && (
       <div className={s.backdrop} onClick={onBackdropClick}>
         <div className={s.modal}>
-          <div className={s.descrBox} style={{ display: 'flex' }}>
+          <button
+            type="button"
+            className={s.btnClose}
+            onClick={onBtnCloseClick}
+          >
+            <svg
+              className={s.iconClose}
+              aria-label="Close modal"
+              width="16"
+              height="16"
+            >
+              <use href={sprite + '#close-icon'} />
+            </svg>
+          </button>
+          <div className={s.descrBox}>
             <div className={s.thumbImage}>
               <img
                 src={`https://pet-support.herokuapp.com/${info.imgURL}`}
@@ -106,22 +124,25 @@ const ModalNotice = ({
                 Delete
               </button>
             )}
-            {userEmail !== info.owner?.email && (
-              <button
-                className={`${s.btn} ${s.btnToggleFavorite}`}
-                type="button"
-                onClick={onClickFavorite}
-              >
-                {isFavorite ? 'Remove from' : 'Add to'}
-                {/* <svg width="16px" height="16px">
+            <button
+              className={`${s.btn} ${s.btnToggleFavorite}`}
+              type="button"
+              onClick={onClickFavorite}
+            >
+              {isFavorite ? 'Remove from' : 'Add to'}
+              {/* <svg width="16px" height="16px">
                   <use href={sprite + '#like0-icon'} />
                 </svg> */}
-                <svg width="16px" height="16px" className={s.icon}>
-                  <use href={sprite + '#like2-icon'} />
-                </svg>
-              </button>
-            )}
-            <a className={s.btn} href="tel:info.owner?.phone">
+              <svg
+                width="16px"
+                height="16px"
+                className={s.icon}
+                aria-label="category favorite"
+              >
+                <use href={sprite + '#like2-icon'} />
+              </svg>
+            </button>
+            <a className={s.btn} href={`tel:{info.owner?.phone}`}>
               Contact
             </a>
           </div>

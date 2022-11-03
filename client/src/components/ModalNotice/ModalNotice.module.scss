@@ -1,3 +1,5 @@
+@import '../../sass/mixin';
+
 .backdrop {
   position: fixed;
   top: 0;
@@ -13,22 +15,72 @@
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  width: 704px;
+
+  width: 280px;
   max-height: 100%;
+  border-radius: 20px;
+  padding: 60px 20px 20px;
   background: var(--white);
-  border-radius: 40px;
-  padding: 32px 20px;
+
+  @include mq(tab) {
+    width: 704px;
+    border-radius: 40px;
+    padding: 32px 20px;
+  }
 }
 
-s.descrBox {
+.btnClose {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+
+  background-color: var(--bg-color);
+
+  @include mq(tab) {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+.btnClose:hover {
+  background-color: var(--accent-color);
+}
+.btnClose:hover .iconClose {
+  fill: var(--white);
+}
+
+.descrBox {
   margin-bottom: 28px;
+
+  @include mq(tab) {
+    display: flex;
+  }
 }
 
 .thumbImage {
   position: relative;
-  width: 288px;
-  height: 328px;
-  margin-right: 20px;
+  width: 240px;
+  height: 240px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 16px;
+
+  @include mq(tab) {
+    width: 288px;
+    height: 328px;
+    margin-right: 20px;
+    margin-left: 0px;
+    margin-bottom: 0px;
+  }
 }
 
 .photo {
@@ -49,21 +101,30 @@ s.descrBox {
   font-size: 12px;
   line-height: 1.25;
   letter-spacing: 0.04em;
+  text-align: center;
   background-color: rgba(255, 255, 255, 0.6);
   color: var(--font-color);
   -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
-  padding: 6px 20px;
   border-radius: 0 40px 40px 0;
+
+  padding-top: 6px;
+  padding-bottom: 6px;
 }
 
 .title {
   font-weight: 700;
-  font-size: 28px;
-  line-height: 1.36;
+  font-size: 24px;
+  line-height: 1.38;
   letter-spacing: -0.01em;
   color: var(--font-color);
-  margin-bottom: 20px;
+  margin-bottom: 16px;
+
+  @include mq(tab) {
+    font-size: 28px;
+    line-height: 1.36;
+    margin-bottom: 20px;
+  }
 }
 
 .containerDescr {
@@ -81,6 +142,9 @@ s.descrBox {
   font-size: 16px;
   line-height: 1.37;
   color: var(--font-color);
+}
+
+.descr:not(:last-child) {
   margin-bottom: 8px;
 }
 

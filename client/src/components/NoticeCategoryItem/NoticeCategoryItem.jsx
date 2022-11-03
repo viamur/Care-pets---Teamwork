@@ -104,23 +104,21 @@ const NoticeCategoryItem = ({ data, id, array, setArray, category: path }) => {
         />
         <p className={s.status}>{categoriesForFront[category]}</p>
 
-        {path !== 'own' && (
-          <button
-            type="button"
-            className={s.btnToggleFavorite}
-            onClick={onClickFavorite}
-          >
-            {!isFavorite ? (
-              <svg className={s.iconFavorite}>
-                <use href={sprite + '#like0-icon'} />
-              </svg>
-            ) : (
-              <svg className={s.iconFavorite}>
-                <use href={sprite + '#like1-icon'} />
-              </svg>
-            )}
-          </button>
-        )}
+        <button
+          type="button"
+          className={s.btnToggleFavorite}
+          onClick={onClickFavorite}
+        >
+          {!isFavorite ? (
+            <svg className={s.iconFavorite} aria-label="Add to favorite">
+              <use href={sprite + '#like0-icon'} />
+            </svg>
+          ) : (
+            <svg className={s.iconFavorite} aria-label="Remove from favorite">
+              <use href={sprite + '#like1-icon'} />
+            </svg>
+          )}
+        </button>
 
         <div className={s.commonContainerDescription}>
           <h3 className={s.titleDescr}>{title}</h3>
