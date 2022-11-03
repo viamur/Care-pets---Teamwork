@@ -139,22 +139,37 @@
 
 .descr {
   font-weight: 500;
-  font-size: 16px;
-  line-height: 1.37;
+  font-size: 14px;
+  line-height: 1.36;
   color: var(--font-color);
+
+  @include mq(tab) {
+    font-size: 16px;
+    line-height: 1.37;
+  }
 }
 
 .descr:not(:last-child) {
   margin-bottom: 8px;
 }
 
+.descrAccent {
+  font-weight: 600;
+}
+
 .comments {
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.5;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.36;
   letter-spacing: 0.04em;
   color: var(--font-color);
-  margin-bottom: 32px;
+  margin-bottom: 40px;
+
+  @include mq(tab) {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 32px;
+  }
 }
 
 .commentsDescr {
@@ -163,13 +178,16 @@
 }
 
 .blockOfBtn {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  @include mq(tab) {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: right;
+  }
 }
 
 .btn {
-  width: 160px;
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -190,10 +208,18 @@
   cursor: pointer;
   padding-top: 9px;
   padding-bottom: 9px;
+
+  @include mq(tab) {
+    width: 160px;
+  }
 }
 
 .btn:not(:last-child) {
-  margin-right: 12px;
+  margin-bottom: 12px;
+  @include mq(tab) {
+    margin-right: 12px;
+    margin-bottom: 0px;
+  }
 }
 
 .btn:hover {

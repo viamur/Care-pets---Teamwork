@@ -86,14 +86,16 @@ const ModalNotice = ({
               <h2 className={s.title}>{info.title}</h2>
               <div className={s.containerDescr}>
                 <div className={s.blockDescrTitle}>
-                  <p className={s.descr}>Name:</p>
-                  <p className={s.descr}>Birthday:</p>
-                  <p className={s.descr}>Breed:</p>
-                  <p className={s.descr}>Place:</p>
-                  <p className={s.descr}>The sex:</p>
-                  <p className={s.descr}>Email:</p>
-                  <p className={s.descr}>Phone:</p>
-                  {info.category === 'sell' && <p className={s.descr}>Sell:</p>}
+                  <p className={`${s.descr} ${s.descrAccent}`}>Name:</p>
+                  <p className={`${s.descr} ${s.descrAccent}`}>Birthday:</p>
+                  <p className={`${s.descr} ${s.descrAccent}`}>Breed:</p>
+                  <p className={`${s.descr} ${s.descrAccent}`}>Place:</p>
+                  <p className={`${s.descr} ${s.descrAccent}`}>The sex:</p>
+                  <p className={`${s.descr} ${s.descrAccent}`}>Email:</p>
+                  <p className={`${s.descr} ${s.descrAccent}`}>Phone:</p>
+                  {info.category === 'sell' && (
+                    <p className={`${s.descr} ${s.descrAccent}`}>Sell:</p>
+                  )}
                 </div>
 
                 <div>
@@ -118,7 +120,7 @@ const ModalNotice = ({
               Comments: <span className={s.comments}>{info.comments}</span>
             </p>
           )}
-          <div style={{ display: 'flex', justifyContent: 'right' }}>
+          <div className={s.blockOfBtn}>
             {userEmail === info.owner?.email && (
               <button className={s.btn} type="button" onClick={onDeleteAdClick}>
                 Delete
