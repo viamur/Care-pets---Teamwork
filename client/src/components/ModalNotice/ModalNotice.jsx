@@ -11,6 +11,7 @@ const portalModal = document.querySelector('#modal-root');
 
 const ModalNotice = ({
   id,
+  categories,
   setShowModal,
   isFavorite,
   onClickFavorite,
@@ -18,10 +19,6 @@ const ModalNotice = ({
 }) => {
   const [info, setInfo] = useState(null);
   const userEmail = useSelector(getUserEmail);
-
-  const onBackdropClick = e => {
-    if (e.currentTarget === e.target) setShowModal(false);
-  };
 
   useEffect(() => {
     const handleKeyDown = e => {
@@ -44,6 +41,14 @@ const ModalNotice = ({
     // eslint-disable-next-line
   }, []);
 
+  const onBackdropClick = e => {
+    if (e.currentTarget === e.target) setShowModal(false);
+  };
+
+  const onBtnCloseClick = () => {
+    setShowModal(false);
+  };
+
   const convertBirthday = birthday => {
     const date = birthday.split('T')[0];
     const dateTransformed = date.split('-').reverse().join('.');
@@ -54,27 +59,43 @@ const ModalNotice = ({
     info && (
       <div className={s.backdrop} onClick={onBackdropClick}>
         <div className={s.modal}>
-          <div className={s.descrBox} style={{ display: 'flex' }}>
+          <button
+            type="button"
+            className={s.btnClose}
+            onClick={onBtnCloseClick}
+          >
+            <svg
+              className={s.iconClose}
+              aria-label="Close modal"
+              width="16"
+              height="16"
+            >
+              <use href={sprite + '#close-icon'} />
+            </svg>
+          </button>
+          <div className={s.descrBox}>
             <div className={s.thumbImage}>
               <img
                 src={`https://pet-support.herokuapp.com/${info.imgURL}`}
                 className={s.photo}
                 alt="animal"
               />
-              <p className={s.category}>{info.category}</p>
+              <p className={s.category}>{categories[info.category]}</p>
             </div>
             <div className={s.thumbDescr}>
               <h2 className={s.title}>{info.title}</h2>
               <div className={s.containerDescr}>
                 <div className={s.blockDescrTitle}>
-                  <p className={s.descr}>Name:</p>
-                  <p className={s.descr}>Birthday:</p>
-                  <p className={s.descr}>Breed:</p>
-                  <p className={s.descr}>Place:</p>
-                  <p className={s.descr}>The sex:</p>
-                  <p className={s.descr}>Email:</p>
-                  <p className={s.descr}>Phone:</p>
-                  <p className={s.descr}>Sell:</p>
+                  <p className={`${s.descr} ${s.descrAccent}`}>Name:</p>
+                  <p className={`${s.descr} ${s.descrAccent}`}>Birthday:</p>
+                  <p className={`${s.descr} ${s.descrAccent}`}>Breed:</p>
+                  <p className={`${s.descr} ${s.descrAccent}`}>Place:</p>
+                  <p className={`${s.descr} ${s.descrAccent}`}>The sex:</p>
+                  <p className={`${s.descr} ${s.descrAccent}`}>Email:</p>
+                  <p className={`${s.descr} ${s.descrAccent}`}>Phone:</p>
+                  {info.category === 'sell' && (
+                    <p className={`${s.descr} ${s.descrAccent}`}>Sell:</p>
+                  )}
                 </div>
 
                 <div>
@@ -87,7 +108,9 @@ const ModalNotice = ({
                   <p className={s.descr}>{info.sex}</p>
                   <p className={s.descr}>{info.owner?.email}</p>
                   <p className={s.descr}>{info.owner?.phone}</p>
-                  <p className={s.descr}>{info.price ? info.price : '-'}$</p>
+                  {info.category === 'sell' && (
+                    <p className={s.descr}>{info.price ? info.price : '-'}$</p>
+                  )}
                 </div>
               </div>
             </div>
@@ -97,7 +120,7 @@ const ModalNotice = ({
               Comments: <span className={s.comments}>{info.comments}</span>
             </p>
           )}
-          <div style={{ display: 'flex', justifyContent: 'right' }}>
+          <div className={s.blockOfBtn}>
             {userEmail === info.owner?.email && (
               <button className={s.btn} type="button" onClick={onDeleteAdClick}>
                 Delete
@@ -109,17 +132,19 @@ const ModalNotice = ({
               onClick={onClickFavorite}
             >
               {isFavorite ? 'Remove from' : 'Add to'}
-              {isFavorite ? (
-                <svg width="16px" height="16px">
+              {/* <svg width="16px" height="16px">
                   <use href={sprite + '#like0-icon'} />
-                </svg>
-              ) : (
-                <svg width="16px" height="16px" className={s.icon}>
-                  <use href={sprite + '#like2-icon'} />
-                </svg>
-              )}
+                </svg> */}
+              <svg
+                width="16px"
+                height="16px"
+                className={s.icon}
+                aria-label="category favorite"
+              >
+                <use href={sprite + '#like2-icon'} />
+              </svg>
             </button>
-            <a className={s.btn} href="tel:info.owner?.phone">
+            <a className={s.btn} href={`tel:{info.owner?.phone}`}>
               Contact
             </a>
           </div>
