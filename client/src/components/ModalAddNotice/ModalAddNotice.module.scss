@@ -16,8 +16,7 @@
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 
-  width: 280px;
-  max-height: 100%;
+  min-width: 280px;
   border-radius: 20px;
   padding: 40px 20px;
   background: var(--white);
@@ -56,4 +55,143 @@
 }
 .btnClose:hover .iconClose {
   fill: var(--white);
+}
+
+.title {
+  font-family: 'Manrope Medium';
+  font-size: 24px;
+  line-height: 1.38;
+  text-align: center;
+  color: var(--font-color);
+  margin-bottom: 20px;
+
+  @include mq(tab) {
+    font-family: 'Manrope SemiBold';
+    font-size: 36px;
+    line-height: 1.36;
+  }
+}
+
+.descr {
+  font-family: 'Manrope Medium';
+  font-size: 16px;
+  line-height: 1.38;
+  letter-spacing: -0.01em;
+  text-align: center;
+  margin-bottom: 20px;
+
+  @include mq(tab) {
+    font-size: 20px;
+    line-height: 1.35;
+    margin-bottom: 28px;
+  }
+}
+
+.error {
+  height: 16px;
+  text-align: left;
+  font-size: 10px;
+  line-height: 12px;
+  color: var(--accent-color);
+  letter-spacing: 0.04em;
+  padding: 5px 15px;
+
+  @include mq(tab) {
+    margin-bottom: 12px;
+  }
+}
+
+.error--last {
+  composes: error;
+  margin-bottom: 24px;
+}
+
+.label {
+  display: block;
+  font-family: 'Manrope Medium';
+  font-size: 18px;
+  line-height: 1.44;
+  margin-bottom: 8px;
+
+  @include mq(tab) {
+    font-size: 24px;
+    line-height: 1.1;
+  }
+}
+
+.accent {
+  color: var(--accent-color);
+}
+
+.input {
+  width: 100%;
+  font-size: 14px;
+  line-height: 1.36;
+  letter-spacing: 0.04em;
+  background: var(--bg-color);
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 40px;
+  outline: none;
+  padding: 11px 14px 12px;
+
+  @include mq(tab) {
+    font-size: 16px;
+    line-height: 1.62;
+    padding: 11px 16px 10px;
+  }
+}
+
+.input::placeholder {
+  font-size: 14px;
+  line-height: 1.36;
+  letter-spacing: 0.04em;
+  color: rgba(27, 27, 27, 0.6);
+
+  @include mq(tab) {
+    font-size: 16px;
+    line-height: 1.62;
+  }
+}
+
+.blockOfButtons {
+  @include mq(tab) {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.button {
+  display: block;
+  width: 100%;
+  font-family: 'Manrope Medium';
+  font-size: 16px;
+  line-height: 1.38;
+  letter-spacing: 0.04em;
+
+  color: var(--font-color);
+  background-color: var(--white);
+  border: 2px solid var(--accent-color);
+  border-radius: 40px;
+  cursor: pointer;
+
+  padding-top: 9px;
+  padding-bottom: 9px;
+
+  @include mq(tab) {
+    width: 180px;
+  }
+}
+
+.button:hover {
+  background-color: var(--accent-color);
+  color: var(--white);
+}
+
+.buttonDistance {
+  @include mq(mob-only) {
+    margin-bottom: 12px;
+  }
+  @include mq(tab) {
+    margin-right: 20px;
+  }
 }

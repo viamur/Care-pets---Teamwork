@@ -3,17 +3,24 @@
 .error {
   height: 20px;
   text-align: left;
-  font-weight: 400;
   font-size: 10px;
   line-height: 12px;
   color: var(--accent-color);
   letter-spacing: 0.04em;
   padding: 5px 15px;
+
+  @include mq(mob-only) {
+    height: 28px;
+    padding: 0px 15px;
+  }
 }
 
 .error--last {
   composes: error;
   margin-bottom: 20px;
+  @include mq(mob-only) {
+    margin-bottom: 12px;
+  }
 }
 
 .input {
@@ -35,7 +42,6 @@
 }
 
 .input::placeholder {
-  font-weight: 400;
   font-size: 14px;
   line-height: 1.36;
   letter-spacing: 0.04em;
@@ -50,7 +56,7 @@
 .button {
   display: block;
   width: 100%;
-  font-weight: 500;
+  font-family: 'Manrope Medium';
   font-size: 20px;
   line-height: 1.35;
   letter-spacing: 0.04em;
