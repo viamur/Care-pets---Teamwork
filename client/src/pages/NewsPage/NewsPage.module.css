@@ -1,0 +1,45 @@
+@font-face {
+  font-family: 'Manrope Bold';
+  src: url("../fonts/Manrope-Bold.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Manrope Medium';
+  src: url("../fonts/Manrope-Medium.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Manrope Regular';
+  src: url("../fonts/Manrope-Regular.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Manrope SemiBold';
+  src: url("../fonts/Manrope-SemiBold.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins Bold';
+  src: url("../fonts/Poppins-Bold.ttf");
+  font-style: normal;
+}
+
+.title {
+  margin-bottom: 28px;
+  text-align: center;
+  font-family: "Manrope Bold";
+  font-size: 24px;
+  line-height: 1.37;
+}
+
+@media (min-width: 768px) {
+  .title {
+    margin-bottom: 40px;
+    font-size: 48px;
+  }
+}
+/*# sourceMappingURL=NewsPage.module.css.map */

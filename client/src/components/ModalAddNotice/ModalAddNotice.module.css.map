@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "ModalAddNotice.module.scss"
+    ],
+    "names": [],
+    "file": "ModalAddNotice.module.css"
+}

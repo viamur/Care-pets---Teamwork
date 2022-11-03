@@ -1,0 +1,98 @@
+@font-face {
+  font-family: 'Manrope Bold';
+  src: url("../fonts/Manrope-Bold.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Manrope Medium';
+  src: url("../fonts/Manrope-Medium.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Manrope Regular';
+  src: url("../fonts/Manrope-Regular.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Manrope SemiBold';
+  src: url("../fonts/Manrope-SemiBold.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins Bold';
+  src: url("../fonts/Poppins-Bold.ttf");
+  font-style: normal;
+}
+
+.container {
+  margin-right: -20px;
+  margin-left: -20px;
+  min-width: 100vw;
+  min-height: 500px;
+  background-image: url("../../images/bgs/woman-1x.png"), url("../../images/bgs/main-bg-mobile-2x.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center bottom;
+}
+
+@media (min-width: 320px) {
+  .container {
+    background-size: 320px 337px, contain;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    margin-right: -32px;
+    margin-left: -32px;
+    min-height: 1030px;
+    background-image: url("../../images/bgs/woman-2x.png"), url("../../images/bgs/main-bg-tablet-2x.png");
+    background-size: 699px 733px, contain;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    margin-right: -16px;
+    margin-left: -16px;
+    min-height: 660px;
+    background-image: url("../../images/bgs/woman-3x.png"), url("../../images/bgs/main-bg-1x.png"), url("../../images/bgs-svg/main-bg-heart.svg");
+    background-position: right bottom, center bottom, top 58px right 476px;
+    background-size: 624px 655px, contain, auto;
+  }
+}
+
+.title {
+  width: 100%;
+  height: 100%;
+  padding-top: 18px;
+  margin: 0;
+  font-family: 'Manrope Bold';
+  font-size: 32px;
+  line-height: 1.38;
+}
+
+@media (min-width: 320px) {
+  .title {
+    width: 280px;
+  }
+}
+
+@media (min-width: 768px) {
+  .title {
+    width: 588px;
+    font-size: 68px;
+    line-height: 1.47;
+  }
+}
+
+@media (min-width: 1280px) {
+  .title {
+    padding-top: 34px;
+  }
+}
+/*# sourceMappingURL=HomePage.module.css.map */

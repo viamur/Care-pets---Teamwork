@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "PetsList.module.scss"
+    ],
+    "names": [],
+    "file": "PetsList.module.css"
+}

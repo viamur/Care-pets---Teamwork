@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "UserDataItem.module.scss"
+    ],
+    "names": [],
+    "file": "UserDataItem.module.css"
+}

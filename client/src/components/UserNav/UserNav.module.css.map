@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "UserNav.module.scss"
+    ],
+    "names": [],
+    "file": "UserNav.module.css"
+}

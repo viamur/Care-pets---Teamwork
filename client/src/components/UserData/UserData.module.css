@@ -1,0 +1,68 @@
+.userInfo {
+  background-color: var(--bg-color);
+  margin-top: 30px;
+  margin-left: 0px !important;
+  width: 411px;
+  height: 580px;
+  -webkit-box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.25);
+          box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.25);
+  border-bottom-right-radius: 25px;
+  border-top-right-radius: 25px;
+}
+
+.imgPhoto {
+  width: 229px;
+  height: 229px;
+  margin: 2% 89px;
+  border-radius: 229px;
+  -webkit-box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.25);
+  -webkit-border-radius: 229px;
+  -moz-border-radius: 229px;
+  -ms-border-radius: 229px;
+  -o-border-radius: 229px;
+}
+
+.userInput {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.inputParams {
+  width: 80px;
+  margin-left: 15px;
+}
+
+.inputForm {
+  margin-left: 20px;
+  width: 212px;
+  height: 15px;
+  background: var(--bg-color);
+  border: 1px solid var(--accent-color);
+  border-radius: 10px;
+  padding-left: 5px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.inputValue {
+  margin-left: 20px;
+  margin-right: 6px;
+  width: 212px;
+  height: 15px;
+}
+
+.inputIcon {
+  margin-left: 24px;
+  margin-top: -4px;
+}
+
+.icoLogOut {
+  margin-left: 10px;
+  vertical-align: middle;
+}
+/*# sourceMappingURL=UserData.module.css.map */

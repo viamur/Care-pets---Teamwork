@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "AuthNav.module.scss"
+    ],
+    "names": [],
+    "file": "AuthNav.module.css"
+}

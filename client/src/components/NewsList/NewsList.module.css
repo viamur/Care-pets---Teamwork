@@ -1,0 +1,159 @@
+@font-face {
+  font-family: 'Manrope Bold';
+  src: url("../fonts/Manrope-Bold.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Manrope Medium';
+  src: url("../fonts/Manrope-Medium.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Manrope Regular';
+  src: url("../fonts/Manrope-Regular.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Manrope SemiBold';
+  src: url("../fonts/Manrope-SemiBold.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins Bold';
+  src: url("../fonts/Poppins-Bold.ttf");
+  font-style: normal;
+}
+
+.list {
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-grid-columns: 280px;
+      grid-template-columns: 280px;
+  -ms-grid-rows: 308px;
+      grid-template-rows: 308px;
+  gap: 40px 0;
+}
+
+@media (min-width: 768px) {
+  .list {
+    -ms-grid-columns: 336px 336px;
+        grid-template-columns: 336px 336px;
+    -ms-grid-rows: 288px;
+        grid-template-rows: 288px;
+    gap: 60px 32px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .list {
+    -ms-grid-columns: 395px 395px 395px;
+        grid-template-columns: 395px 395px 395px;
+    -ms-grid-rows: 266px;
+        grid-template-rows: 266px;
+  }
+}
+
+.item::before {
+  content: "";
+  display: block;
+  width: 200px;
+  height: 4px;
+  margin-bottom: 4px;
+  background: var(--gradient);
+  border-radius: 40px;
+}
+
+@media (min-width: 768px) {
+  .item::before {
+    width: 280px;
+    height: 8px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .item::before {
+    width: 340px;
+  }
+}
+
+.subtitle {
+  width: 100%;
+  min-height: 66px;
+  margin-bottom: 16px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis ellipsis;
+  font-family: 'Manrope Bold';
+  font-size: 24px;
+  line-height: 1.38;
+  letter-spacing: -0.01em;
+}
+
+.text {
+  width: 100%;
+  min-height: 154px;
+  margin-bottom: 20px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 7;
+  overflow: hidden;
+  text-overflow: ellipsis ellipsis;
+  font-size: 16px;
+  line-height: 1.38;
+  color: var(--font-news-color);
+}
+
+@media (min-width: 768px) {
+  .text {
+    min-height: 132px;
+    margin-bottom: 40px;
+    -webkit-line-clamp: 6;
+  }
+}
+
+@media (min-width: 1280px) {
+  .text {
+    min-height: 110px;
+    -webkit-line-clamp: 5;
+  }
+}
+
+.addData {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.date {
+  font-size: 16px;
+  line-height: 1.38;
+  color: var(--date-color);
+}
+
+.link {
+  font-family: 'Manrope Medium';
+  font-size: 16px;
+  line-height: 1.38;
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
+  color: var(--accent-color);
+  -webkit-transition: all var(--transition);
+  transition: all var(--transition);
+}
+
+.link:hover, .link:focus {
+  letter-spacing: 0.7px;
+}
+/*# sourceMappingURL=NewsList.module.css.map */

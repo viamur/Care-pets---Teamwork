@@ -1,0 +1,63 @@
+.container {
+  width: 280px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 608px;
+    background-color: var(--white);
+    -webkit-box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+            box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+    border-radius: 40px;
+    padding: 60px 80px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    width: 618px;
+  }
+}
+
+.title {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.38;
+  letter-spacing: 0.04em;
+  color: var(--font-color);
+  margin-bottom: 40px;
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 1.36;
+  }
+}
+
+.question,
+.link {
+  display: inline-block;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: 0.04em;
+}
+
+.question {
+  color: var(--date-color);
+}
+
+.link {
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
+  color: #3091eb;
+}
+/*# sourceMappingURL=AuthForm.module.css.map */

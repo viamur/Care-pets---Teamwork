@@ -1,0 +1,111 @@
+@font-face {
+  font-family: 'Manrope Bold';
+  src: url("../fonts/Manrope-Bold.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Manrope Medium';
+  src: url("../fonts/Manrope-Medium.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Manrope Regular';
+  src: url("../fonts/Manrope-Regular.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Manrope SemiBold';
+  src: url("../fonts/Manrope-SemiBold.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins Bold';
+  src: url("../fonts/Poppins-Bold.ttf");
+  font-style: normal;
+}
+
+.form {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 280px;
+  height: 40px;
+  margin: auto;
+  margin-bottom: 40px;
+  text-align: center;
+  border-radius: 20px;
+}
+
+@media (min-width: 768px) {
+  .form {
+    width: 608px;
+    height: 44px;
+    margin-bottom: 60px;
+    border-radius: 40px;
+  }
+}
+
+.input {
+  width: 100%;
+  padding: 9px 12px;
+  border: none;
+  border-radius: 20px;
+  font-family: "Manrope SemiBold";
+  font-size: 16px;
+  line-height: 1.36;
+  letter-spacing: 0.04em;
+  color: var(--font-search-color);
+  -webkit-box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
+          box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
+  background-color: var(--white);
+}
+
+@media (min-width: 768px) {
+  .input {
+    padding: 10px 20px;
+    border-radius: 40px;
+    font-size: 20px;
+    line-height: 1.35;
+    text-shadow: none;
+  }
+}
+
+.btn {
+  position: absolute;
+  top: 9px;
+  right: 12px;
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 50%;
+  background-image: url("../../images/icons/search-icon.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: var(--white);
+  -webkit-transition: all var(--transition);
+  transition: all var(--transition);
+}
+
+@media (min-width: 768px) {
+  .btn {
+    top: 10px;
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.btn:hover, .btn:focus {
+  -webkit-animation: none;
+  -webkit-transform: scale(1.4);
+  animation: none;
+  transform: scale(1.4);
+}
+/*# sourceMappingURL=NewsSearch.module.css.map */

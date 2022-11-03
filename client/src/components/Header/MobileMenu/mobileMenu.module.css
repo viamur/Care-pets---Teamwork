@@ -1,0 +1,103 @@
+.menuContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media (min-width: 1280px) {
+  .header {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+  }
+}
+
+.link {
+  text-align: center;
+  width: 100%;
+  padding: 20px 0;
+  font-size: 32px;
+  font-weight: 500;
+}
+
+@media (min-width: 320px) {
+  .link {
+    width: 200px;
+  }
+}
+
+@media (min-width: 768px) {
+  .link {
+    width: 200px;
+  }
+}
+
+.linkActive {
+  font-weight: 700;
+  color: var(--accent-color);
+  -webkit-text-decoration: underline solid var(--accent-color);
+          text-decoration: underline solid var(--accent-color);
+}
+
+.auth {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-bottom: 40px;
+}
+
+.nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.login {
+  text-align: center;
+  width: 95px;
+  padding: 8px 28px;
+  margin-right: 12px;
+  font-size: 14px;
+  background-color: var(--accent-color);
+  color: white;
+  border-radius: 40px;
+}
+
+.register {
+  width: 145px;
+  font-size: 14px;
+  text-align: center;
+  padding: 8px 28px;
+  border: 2px solid var(--accent-color);
+  border-radius: 40px;
+}
+/*# sourceMappingURL=mobileMenu.module.css.map */

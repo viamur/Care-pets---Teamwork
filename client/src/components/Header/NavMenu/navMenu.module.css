@@ -1,0 +1,118 @@
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media (min-width: 768px) {
+  .header {
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+  }
+}
+
+@media (min-width: 1280px) {
+  .header {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+}
+
+.link {
+  text-align: center;
+  padding: 20px 0;
+  margin-left: 80px;
+  font-size: 32px;
+  font-weight: 500;
+}
+
+@media (min-width: 1280px) {
+  .link {
+    font-size: 20px;
+  }
+}
+
+.linkActive {
+  font-weight: 700;
+  color: var(--accent-color);
+  -webkit-text-decoration: underline solid var(--accent-color);
+          text-decoration: underline solid var(--accent-color);
+}
+
+.auth {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-bottom: 40px;
+  display: none;
+}
+
+@media (min-width: 1280px) {
+  .auth {
+    padding: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+@media (min-width: 768px) {
+  .auth {
+    padding: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+.nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: none;
+}
+
+@media (min-width: 1280px) {
+  .nav {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+.login {
+  text-align: center;
+  width: 95px;
+  padding: 8px 28px;
+  margin-right: 12px;
+  font-size: 14px;
+  background-color: var(--accent-color);
+  color: white;
+  border-radius: 40px;
+}
+
+.register {
+  width: 145px;
+  font-size: 14px;
+  text-align: center;
+  padding: 8px 28px;
+  border: 2px solid var(--accent-color);
+  border-radius: 40px;
+}
+/*# sourceMappingURL=navMenu.module.css.map */

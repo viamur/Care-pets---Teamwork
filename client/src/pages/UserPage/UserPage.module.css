@@ -1,0 +1,31 @@
+.headerBlock {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 16px;
+}
+
+.myInfoHeader {
+  width: 411px;
+}
+
+.myPetsHeader {
+  width: 820px;
+  margin-left: 55px;
+  margin-right: 10px;
+}
+
+.addPetsIco {
+  width: 32px;
+  margin-left: 15px;
+}
+
+.mainContent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+}
+/*# sourceMappingURL=UserPage.module.css.map */

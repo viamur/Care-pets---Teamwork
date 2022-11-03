@@ -1,0 +1,57 @@
+@font-face {
+  font-family: 'Manrope Bold';
+  src: url("../fonts/Manrope-Bold.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Manrope Medium';
+  src: url("../fonts/Manrope-Medium.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Manrope Regular';
+  src: url("../fonts/Manrope-Regular.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Manrope SemiBold';
+  src: url("../fonts/Manrope-SemiBold.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins Bold';
+  src: url("../fonts/Poppins-Bold.ttf");
+  font-style: normal;
+}
+
+.mainTitle {
+  margin: 0px 0px 28px 0px;
+  text-align: center;
+  font-family: 'Manrope Bold';
+  line-height: 1.37;
+  /* identical to box height */
+  color: #000000;
+}
+
+@media (min-width: 768px) {
+  .mainTitle {
+    margin: 47px 0px 45px 0px;
+    font-size: 48px;
+    line-height: 66px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .mainTitle {
+    margin: 18px 0px 60px 0px;
+  }
+}
+
+.loader {
+  margin-top: 300px;
+}
+/*# sourceMappingURL=OurFriendsPage.module.css.map */

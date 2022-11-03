@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "SharedLayout.module.scss"
+    ],
+    "names": [],
+    "file": "SharedLayout.module.css"
+}
