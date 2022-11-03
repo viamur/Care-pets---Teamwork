@@ -104,21 +104,23 @@ const NoticeCategoryItem = ({ data, id, array, setArray, category: path }) => {
         />
         <p className={s.status}>{categoriesForFront[category]}</p>
 
-        <button
-          type="button"
-          className={s.btnToggleFavorite}
-          onClick={onClickFavorite}
-        >
-          {!isFavorite ? (
-            <svg className={s.iconFavorite}>
-              <use href={sprite + '#like0-icon'} />
-            </svg>
-          ) : (
-            <svg className={s.iconFavorite}>
-              <use href={sprite + '#like1-icon'} />
-            </svg>
-          )}
-        </button>
+        {path !== 'own' && (
+          <button
+            type="button"
+            className={s.btnToggleFavorite}
+            onClick={onClickFavorite}
+          >
+            {!isFavorite ? (
+              <svg className={s.iconFavorite}>
+                <use href={sprite + '#like0-icon'} />
+              </svg>
+            ) : (
+              <svg className={s.iconFavorite}>
+                <use href={sprite + '#like1-icon'} />
+              </svg>
+            )}
+          </button>
+        )}
 
         <div className={s.commonContainerDescription}>
           <h3 className={s.titleDescr}>{title}</h3>
@@ -129,7 +131,7 @@ const NoticeCategoryItem = ({ data, id, array, setArray, category: path }) => {
                 <p className={s.descr}>Breed:</p>
                 <p className={s.descr}>Place:</p>
                 <p className={s.descr}>Age:</p>
-                <p className={s.descr}>Price:</p>
+                {category === 'sell' && <p className={s.descr}>Price:</p>}
               </div>
 
               <div>
@@ -138,7 +140,9 @@ const NoticeCategoryItem = ({ data, id, array, setArray, category: path }) => {
                 <p className={s.descr}>
                   {birthdate ? convertAge(birthdate) : '-'}
                 </p>
-                <p className={s.descr}>{price ? `${price}$` : '-'}</p>
+                {category === 'sell' && (
+                  <p className={s.descr}>{price ? `${price}$` : '-'}</p>
+                )}
               </div>
             </div>
 
@@ -168,6 +172,7 @@ const NoticeCategoryItem = ({ data, id, array, setArray, category: path }) => {
           isFavorite={isFavorite}
           onClickFavorite={onClickFavorite}
           onDeleteAdClick={onDeleteAdClick}
+          categories={categoriesForFront}
         />
       )}
     </>
