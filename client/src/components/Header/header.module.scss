@@ -2,14 +2,17 @@
 
 .navContainer {
     position: relative;
-    padding: 12px 0 45px 0;
+    padding: 12px 20px 45px;
     display: flex;
     justify-content:space-around;
     align-items: center;
 
-
     @include mq(tab) {
-    padding: 24px 0 45px 0;
+    padding: 24px 32px 45px;
+    }
+
+    @include mq(desk) {
+    padding: 24px 16px 45px;
     }
 }
 
@@ -36,7 +39,8 @@
     margin-left: 20px;
 
     align-items: center;
-    
+
+    background-color: inherit;
 
     @include mq(desk) {
         display: none;
