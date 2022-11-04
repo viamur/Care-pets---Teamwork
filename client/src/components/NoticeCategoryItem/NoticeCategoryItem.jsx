@@ -138,38 +138,40 @@ const NoticeCategoryItem = ({
           <div className={s.descrBox}>
             <h3 className={s.titleDescr}>{title}</h3>
             <table className={s.table}>
-              <tr>
-                <td className={`${s.descrTitle} ${s.descrFirst}`}>
-                  <p>Breed:</p>
-                </td>
-                <td className={`${s.descr} ${s.descrFirst}`}>
-                  <p>{breed ? breed : '-'}</p>
-                </td>
-              </tr>
-              <tr>
-                <td className={s.descrTitle}>
-                  <p>Place:</p>
-                </td>
-                <td className={s.descr}>
-                  <p>{location}</p>
-                </td>
-              </tr>
-              <tr>
-                <td className={s.descrTitle}>
-                  <p>Age:</p>
-                </td>
-                <td className={s.descr}>
-                  <p>{birthdate ? convertAge(birthdate) : '-'}</p>
-                </td>
-              </tr>
-              <tr>
-                <td className={`${s.descrTitle} ${s.descrLast}`}>
-                  {category === 'sell' && <p>Price:</p>}
-                </td>
-                <td className={`${s.descrTitle} ${s.descrLast}`}>
-                  {category === 'sell' && <p>{price ? `${price}$` : '-'}</p>}
-                </td>
-              </tr>
+              <tbody>
+                <tr>
+                  <td className={`${s.descrTitle} ${s.descrFirst}`}>
+                    <p>Breed:</p>
+                  </td>
+                  <td className={`${s.descr} ${s.descrFirst}`}>
+                    <p>{breed ? breed : '-'}</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td className={s.descrTitle}>
+                    <p>Place:</p>
+                  </td>
+                  <td className={s.descr}>
+                    <p>{location}</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td className={s.descrTitle}>
+                    <p>Age:</p>
+                  </td>
+                  <td className={s.descr}>
+                    <p>{birthdate ? convertAge(birthdate) : '-'}</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td className={`${s.descrTitle} ${s.descrLast}`}>
+                    {category === 'sell' && <p>Price:</p>}
+                  </td>
+                  <td className={`${s.descrTitle} ${s.descrLast}`}>
+                    {category === 'sell' && <p>{price ? `${price}$` : '-'}</p>}
+                  </td>
+                </tr>
+              </tbody>
             </table>
           </div>
           <button

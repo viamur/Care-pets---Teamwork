@@ -58,7 +58,11 @@ const NoticesCategoriesList = ({
     <ul className={s.list}>
       {array &&
         array
-          .filter(({ title }) => title.includes(searchQuery))
+          .filter(
+            ({ title, breed }) =>
+              title?.toLowerCase().includes(searchQuery?.toLowerCase()) ||
+              breed?.toLowerCase().includes(searchQuery?.toLowerCase())
+          )
           .map(({ _id, ...rest }) => (
             <NoticeCategoryItem
               key={_id}

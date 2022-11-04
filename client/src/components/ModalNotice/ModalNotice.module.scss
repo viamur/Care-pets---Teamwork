@@ -128,17 +128,7 @@
   }
 }
 
-.containerDescr {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.blockDescrTitle {
-  margin-right: 50px;
-}
-
-.descr {
+.table {
   font-family: 'Manrope Medium';
   font-size: 14px;
   line-height: 1.36;
@@ -146,17 +136,39 @@
 
   @include mq(tab) {
     font-size: 16px;
-    line-height: 1.37;
+    line-height: 1.38;
   }
 }
 
-.descr:not(:last-child) {
-  margin-bottom: 8px;
+.descrTitle {
+  width: 65px;
+  padding-right: 55px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+
+  @include mq(tab) {
+    width: 70px;
+    padding-right: 50px;
+  }
+}
+
+.descr {
+  width: 100%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  word-break: break-all;
 }
 
 .descrAccent {
   font-family: 'Manrope SemiBold';
   font-weight: 600;
+}
+.descrFirst {
+  padding-top: 0px;
+}
+
+.descrLast {
+  padding-bottom: 0px;
 }
 
 .comments {
