@@ -3,13 +3,14 @@
 .container {
   width: 280px;
   position: absolute;
-  top: 50%;
+  top: 100px;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   text-align: center;
 
   @include mq(tab) {
     width: 608px;
+    top: 114px;
     background-color: var(--white);
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
     border-radius: 40px;
@@ -22,7 +23,7 @@
 }
 
 .title {
-  font-weight: 700;
+  font-family: 'Manrope Bold';
   font-size: 24px;
   line-height: 1.38;
 
@@ -31,7 +32,7 @@
   margin-bottom: 40px;
 
   @include mq(tab) {
-    font-weight: 500;
+    font-family: 'Manrope Medium';
     font-size: 36px;
     line-height: 1.36;
   }
@@ -40,7 +41,6 @@
 .question,
 .link {
   display: inline-block;
-  font-weight: 400;
   font-size: 12px;
   line-height: 1.33;
   letter-spacing: 0.04em;
