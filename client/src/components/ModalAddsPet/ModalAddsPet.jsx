@@ -61,19 +61,23 @@ const ModalAddsPet = ({ setShowModal }) => {
         .min(2, 'Field must include more tnan 2 characters')
         .max(24, 'Field must be less tnan 24 characters')
         .required('This is a required field'),
+      comments: Yup.string()
+        .min(8, 'Field must include more tnan 8 characters')
+        .max(120, 'Field must be less tnan 120 characters'),
     }),
   });
 
-  const { name, birthday, breed } = formik.values;
+  const { name, birthday, breed, imgURL, comments } = formik.values;
   const {
     name: nameError,
     birthday: birthdayError,
     breed: breedError,
+    comments: commentsError,
   } = formik.errors;
 
   return createPortal(
     <div className={s.backdrop} onClick={onBackdropClick}>
-      <div className={s.modal}>
+      <div className={`${s.modal} ${page === 2 && s.modalSecondPage}`}>
         <button type="button" className={s.btnClose} onClick={onBtnCloseClick}>
           <svg
             className={s.iconClose}
@@ -160,6 +164,52 @@ const ModalAddsPet = ({ setShowModal }) => {
                   }
                 >
                   Next
+                </button>
+              </div>
+            </>
+          )}
+          {page === 2 && (
+            <>
+              <h2 className={s.titleSecondPage}>Add pet</h2>
+              <p className={s.descr}>Add photo and some comments</p>
+              {/* <input
+                className={s.inputLoad}
+                type="file"
+                name="imgURL"
+                // enctype="multipart/form-data"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={imgURL}
+              /> */}
+              <label forHtml="comments" className={s.label}>
+                Comments
+              </label>
+              <textarea
+                className={s.textarea}
+                name="comments"
+                id="comments"
+                placeholder="Type comments"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={comments}
+              ></textarea>
+              <p className={s['error--last']}>
+                {formik.touched.comments && commentsError && commentsError}
+              </p>
+              <div className={s.blockOfButtons}>
+                <button
+                  className={`${s.button} ${s.buttonDistance}`}
+                  type="button"
+                  onClick={onPageChange}
+                >
+                  Back
+                </button>
+                <button
+                  className={s.button}
+                  type="submit"
+                  disabled={commentsError ? true : false}
+                >
+                  Done
                 </button>
               </div>
             </>
