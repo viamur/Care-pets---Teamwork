@@ -4,7 +4,7 @@ import { useMediaQuery } from 'react-responsive';
 import Notiflix from 'notiflix';
 import sprite from '../../images/icons/sprite.svg';
 import { addFavoriteAd, removeFavoriteAd, deleteOwnAd } from '../../utils/api';
-import { getIsAuth, getUserEmail } from '../../redux/auth/authSelectors';
+import { getUserEmail } from '../../redux/auth/authSelectors';
 import ModalNotice from 'components/ModalNotice/ModalNotice';
 import s from './NoticeCategoryItem.module.scss';
 
@@ -34,13 +34,12 @@ const NoticeCategoryItem = ({
   } = data;
   const [isFavorite, setIsFavorite] = useState(favorite);
   const [showModal, setShowModal] = useState(false);
-  const isAuth = useSelector(getIsAuth);
   const userEmail = useSelector(getUserEmail);
 
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
   const onClickFavorite = e => {
-    if (!isAuth || !userEmail) {
+    if (!userEmail) {
       Notiflix.Notify.info('Please, log in for adding to favorite');
       return;
     }
@@ -111,70 +110,84 @@ const NoticeCategoryItem = ({
   return (
     <>
       <li className={s.item}>
-        <img
-          src={`https://pet-support.herokuapp.com/${imgURL}`}
-          className={s.imgCard}
-          alt="animal"
-        />
-        <p className={s.status}>{categoriesForFront[category]}</p>
+        <div className={s.thumbImage}>
+          <img
+            src={`https://pet-support.herokuapp.com/${imgURL}`}
+            className={s.imgCard}
+            alt="animal"
+          />
+          <p className={s.status}>{categoriesForFront[category]}</p>
 
-        <button
-          type="button"
-          className={s.btnToggleFavorite}
-          onClick={onClickFavorite}
-        >
-          {!isFavorite ? (
-            <svg className={s.iconFavorite} aria-label="Add to favorite">
-              <use href={sprite + '#like0-icon'} />
-            </svg>
-          ) : (
-            <svg className={s.iconFavorite} aria-label="Remove from favorite">
-              <use href={sprite + '#like1-icon'} />
-            </svg>
-          )}
-        </button>
-
-        <div className={s.commonContainerDescription}>
-          <h3 className={s.titleDescr}>{title}</h3>
-
-          <div className={s.descrBox}>
-            <div className={s.containerDescr}>
-              <div>
-                <p className={s.descr}>Breed:</p>
-                <p className={s.descr}>Place:</p>
-                <p className={s.descr}>Age:</p>
-                {category === 'sell' && <p className={s.descr}>Price:</p>}
-              </div>
-
-              <div>
-                <p className={s.descr}>{breed ? breed : '-'}</p>
-                <p className={s.descr}>{location}</p>
-                <p className={s.descr}>
-                  {birthdate ? convertAge(birthdate) : '-'}
-                </p>
-                {category === 'sell' && (
-                  <p className={s.descr}>{price ? `${price}$` : '-'}</p>
-                )}
-              </div>
-            </div>
-
-            <button
-              className={s.btnMore}
-              type="button"
-              onClick={onLearnMoreClick}
-            >
-              Learn more
-            </button>
-            {path === 'own' && (
-              <button
-                className={`${s.btnMore} ${s.btnDelete}`}
-                type="button"
-                onClick={onDeleteAdClick}
-              >
-                Delete
-              </button>
+          <button
+            type="button"
+            className={s.btnToggleFavorite}
+            onClick={onClickFavorite}
+          >
+            {!isFavorite ? (
+              <svg className={s.iconFavorite} aria-label="Add to favorite">
+                <use href={sprite + '#like0-icon'} />
+              </svg>
+            ) : (
+              <svg className={s.iconFavorite} aria-label="Remove from favorite">
+                <use href={sprite + '#like1-icon'} />
+              </svg>
             )}
+          </button>
+        </div>
+        <div className={s.containerDescr}>
+          <div className={s.descrBox}>
+            <h3 className={s.titleDescr}>{title}</h3>
+            <table className={s.table}>
+              <tr>
+                <td className={`${s.descrTitle} ${s.descrFirst}`}>
+                  <p>Breed:</p>
+                </td>
+                <td className={`${s.descr} ${s.descrFirst}`}>
+                  <p>{breed ? breed : '-'}</p>
+                </td>
+              </tr>
+              <tr>
+                <td className={s.descrTitle}>
+                  <p>Place:</p>
+                </td>
+                <td className={s.descr}>
+                  <p>{location}</p>
+                </td>
+              </tr>
+              <tr>
+                <td className={s.descrTitle}>
+                  <p>Age:</p>
+                </td>
+                <td className={s.descr}>
+                  <p>{birthdate ? convertAge(birthdate) : '-'}</p>
+                </td>
+              </tr>
+              <tr>
+                <td className={`${s.descrTitle} ${s.descrLast}`}>
+                  {category === 'sell' && <p>Price:</p>}
+                </td>
+                <td className={`${s.descrTitle} ${s.descrLast}`}>
+                  {category === 'sell' && <p>{price ? `${price}$` : '-'}</p>}
+                </td>
+              </tr>
+            </table>
           </div>
+          <button
+            className={s.btnMore}
+            type="button"
+            onClick={onLearnMoreClick}
+          >
+            Learn more
+          </button>
+          {path === 'own' && (
+            <button
+              className={`${s.btnMore} ${s.btnDelete}`}
+              type="button"
+              onClick={onDeleteAdClick}
+            >
+              Delete
+            </button>
+          )}
         </div>
       </li>
       {showModal && (

@@ -2,20 +2,19 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import Notiflix from 'notiflix';
-import { getIsAuth, getUserEmail } from '../../redux/auth/authSelectors';
+import { getUserEmail } from '../../redux/auth/authSelectors';
 import ModalAddNotice from 'components/ModalAddNotice/ModalAddNotice';
 import sprite from '../../images/icons/sprite.svg';
 import s from './AddNoticeButton.module.scss';
 
 const AddNoticeButton = ({ title }) => {
   const [showModal, setShowModal] = useState(false);
-  const isAuth = useSelector(getIsAuth);
   const userEmail = useSelector(getUserEmail);
 
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
   const onBtnAddNoticeClick = () => {
-    if (!isAuth || !userEmail) {
+    if (!userEmail) {
       Notiflix.Notify.info('Please, log in for adding notice');
       return;
     }
