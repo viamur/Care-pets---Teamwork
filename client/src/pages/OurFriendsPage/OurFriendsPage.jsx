@@ -21,7 +21,7 @@ const OurFriendsPage = () => {
 
   return (
     <Container>
-      <h1 className={s.mainTitle}>Our friend</h1>
+      <h1 className={s.mainTitle}>Our friends</h1>
 
       <OurFriendsList friends={friends} />
     </Container>

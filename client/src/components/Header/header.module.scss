@@ -2,17 +2,13 @@
 
 .navContainer {
     position: relative;
-    padding: 12px 20px 45px;
+    padding: 12px 0 45px 0;
     display: flex;
     justify-content:space-around;
     align-items: center;
 
     @include mq(tab) {
-    padding: 24px 32px 45px;
-    }
-
-    @include mq(desk) {
-    padding: 24px 16px 45px;
+    padding: 24px 0 45px 0;
     }
 }
 
