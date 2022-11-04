@@ -3,14 +3,17 @@ import { NavLink } from 'react-router-dom';
 
 import NavMenu from './NavMenu';
 import Modal from 'components/ModalMobile/MobileModal';
+import MobileMenu from './MobileMenu';
 
 import s from './header.module.scss';
-import MobileMenu from './MobileMenu';
+import useMail from 'hooks/useLogin';
 
 const Header = () => {
   const [menuStatus, setMenuStatus] = useState(false);
   const body = document.querySelector('body');
-  
+
+  const isUserLoggedIn = useMail();
+
   const handleClick = () => {
     setMenuStatus(prev => !prev);
 
@@ -32,8 +35,7 @@ const Header = () => {
       <NavLink className={s.logo} to="/">
         pe<span className={s.logoT}>t</span>ly
       </NavLink>
-
-      <NavMenu />
+      <NavMenu isUserLoggedIn={isUserLoggedIn} />
 
       <button onClick={handleClick} className={s.menuButton}>
         <svg height={35} width={40}>
@@ -41,7 +43,12 @@ const Header = () => {
         </svg>
       </button>
 
-      {menuStatus && <Modal close={onClose} children={<MobileMenu />} />}
+      {menuStatus && (
+        <Modal
+          close={onClose}
+          children={<MobileMenu isUserLoggedIn={isUserLoggedIn} />}
+        />
+      )}
     </div>
   );
 };

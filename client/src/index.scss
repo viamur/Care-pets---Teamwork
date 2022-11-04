@@ -5,7 +5,8 @@
 
 
 // disable horizontal scroll on mobile
-html, body {
+
+ body {
   overflow-x: hidden;
 }
 
@@ -56,11 +57,6 @@ img {
   height: auto;
 }
 
-// .modal{
-//   overflow: hidden;
-// }
-
 .on {
   overflow: hidden;
 }
-
