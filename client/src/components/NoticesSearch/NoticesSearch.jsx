@@ -18,7 +18,7 @@ const NoticesSearch = ({ setSearchQuery, title }) => {
 
   return (
     <>
-      <h2 className={s.titlePage}>{ title}</h2>
+      <h2 className={s.titlePage}>{title}</h2>
 
       <form className={s.searchForm} onSubmit={onHandleSubmit}>
         <input

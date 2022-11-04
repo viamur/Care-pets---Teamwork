@@ -97,7 +97,7 @@ const ModalNotice = ({
             </div>
             <div className={s.thumbDescr}>
               <h2 className={s.title}>{info.title}</h2>
-              <div className={s.containerDescr}>
+              {/* <div className={s.containerDescr}>
                 <div className={s.blockDescrTitle}>
                   <p className={`${s.descr} ${s.descrAccent}`}>Name:</p>
                   <p className={`${s.descr} ${s.descrAccent}`}>Birthday:</p>
@@ -125,7 +125,83 @@ const ModalNotice = ({
                     <p className={s.descr}>{info.price ? info.price : '-'}$</p>
                   )}
                 </div>
-              </div>
+              </div> */}
+              <table className={s.table}>
+                <tbody>
+                  <tr>
+                    <td
+                      className={`${s.descrTitle}  ${s.descrAccent} ${s.descrFirst}`}
+                    >
+                      <p>Name:</p>
+                    </td>
+                    <td className={s.descr}>
+                      <p>{info.name ? info.name : '-'}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className={`${s.descrTitle} ${s.descrAccent}`}>
+                      <p>Birthday:</p>
+                    </td>
+                    <td className={s.descr}>
+                      <p>
+                        {info.birthday ? convertBirthday(info.birthday) : '-'}
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className={`${s.descrTitle} ${s.descrAccent}`}>
+                      <p>Breed:</p>
+                    </td>
+                    <td className={s.descr}>
+                      <p>{info.breed ? info.breed : '-'}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className={`${s.descrTitle} ${s.descrAccent}`}>
+                      <p>Place:</p>
+                    </td>
+                    <td className={s.descr}>
+                      <p>{info.location}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className={`${s.descrTitle} ${s.descrAccent}`}>
+                      <p>The sex:</p>
+                    </td>
+                    <td className={s.descr}>
+                      <p>{info.sex}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className={`${s.descrTitle} ${s.descrAccent}`}>
+                      <p>Email:</p>
+                    </td>
+                    <td className={s.descr}>
+                      <p>{info.owner?.email}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className={`${s.descrTitle} ${s.descrAccent}`}>
+                      <p>Phone:</p>
+                    </td>
+                    <td className={s.descr}>
+                      <p>{info.owner?.phone}</p>
+                    </td>
+                  </tr>
+                  {info.category === 'sell' && (
+                    <tr>
+                      <td
+                        className={`${s.descrTitle} ${s.descrAccent} ${s.descrLast}`}
+                      >
+                        <p>Sell:</p>
+                      </td>
+                      <td className={s.descr}>
+                        <p>{info.price}$</p>
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
             </div>
           </div>
           {info.comments && (

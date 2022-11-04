@@ -1,96 +1,299 @@
-.overlay {
+@import '../../sass/mixin';
+
+// .overlay {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   width: 100vw;
+//   height: 100vh;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   background-color: rgba(0, 0, 0, 0.8);
+//   z-index: 1200;
+
+//   opacity: 1;
+//   transition: opacity 1000ms, visibility 1000ms;
+// }
+
+// .modal {
+//   position: fixed;
+//   width: 608px;
+//   height: 570px;
+
+//   padding: 40px 80px;
+//   background-color: var(--white);
+//   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+//   border-radius: 40px;
+// }
+
+// .modalClose {
+//   transform: rotate(45deg);
+//   position: absolute;
+
+//   top: 24px;
+//   right: 24px;
+
+//   width: 40px;
+//   height: 40px;
+
+//   margin-left: 20px;
+
+//   font-size: 42px;
+//   line-height: 18px;
+//   border: none;
+//   border-radius: 50%;
+//   color: #000000;
+//   background: #fdf7f2;
+//   backdrop-filter: blur(2px);
+
+//   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+//   &:hover,
+//   &:focus {
+//     border: 1px solid var(--accent-color);
+//     color: var(--accent-color);
+//   }
+// }
+
+// .modalTitle {
+//   text-align: center;
+//   font-family: 'Manrope';
+//   font-style: normal;
+//   font-weight: 500;
+//   font-size: 36px;
+//   line-height: 49px;
+
+//   /* Черный */
+
+//   color: #111111;
+// }
+
+// .modalForm {
+//   display: flex;
+//   flex-direction: column;
+
+//   align-items: center;
+// }
+
+// .modalFormLable {
+//   display: flex;
+//   flex-direction: column;
+// }
+
+// .modalFormLableTitle {
+//   font-family: 'Manrope';
+//   font-style: normal;
+//   font-weight: 500;
+//   font-size: 24px;
+//   line-height: 26px;
+//   /* identical to box height, or 110% */
+
+//   display: flex;
+//   align-items: center;
+
+//   /* Черный */
+
+//   color: #111111;
+// }
+
+.backdrop {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.8);
-  z-index: 1200;
-
-  opacity: 1;
-  transition: opacity 1000ms, visibility 1000ms;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(17, 17, 17, 0.6);
 }
 
 .modal {
-  position: fixed;
-  width: 608px;
-  height: 570px;
-
-  padding: 40px 80px;
-  background-color: var(--white);
-  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
-  border-radius: 40px;
-}
-
-.modalClose {
-  transform: rotate(45deg);
   position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 
-  top: 24px;
-  right: 24px;
+  min-width: 280px;
+  border-radius: 20px;
+  padding: 40px 20px;
+  background: var(--white);
 
-  width: 40px;
-  height: 40px;
-
-  margin-left: 20px;
-
-  font-size: 42px;
-  line-height: 18px;
-  border: none;
-  border-radius: 50%;
-  color: #000000;
-  background: #fdf7f2;
-  backdrop-filter: blur(2px);
-
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:hover,
-  &:focus {
-    border: 1px solid var(--accent-color);
-    color: var(--accent-color);
+  @include mq(tab) {
+    width: 608px;
+    border-radius: 40px;
+    padding: 40px 80px;
+    box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   }
 }
 
-.modalTitle {
-  text-align: center;
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 36px;
-  line-height: 49px;
+.btnClose {
+  position: absolute;
+  top: 20px;
+  right: 20px;
 
-  /* Черный */
-
-  color: #111111;
-}
-
-.modalForm {
+  width: 34px;
+  height: 34px;
   display: flex;
-  flex-direction: column;
-
   align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+
+  background-color: var(--bg-color);
+
+  @include mq(tab) {
+    width: 44px;
+    height: 44px;
+    top: 20px;
+    right: 20px;
+  }
+
+  @include mq(desk) {
+    top: 24px;
+    right: 24px;
+  }
 }
 
-.modalFormLable {
-  display: flex;
-  flex-direction: column;
+.btnClose:hover {
+  background-color: var(--accent-color);
+}
+.btnClose:hover .iconClose {
+  fill: var(--white);
 }
 
-.modalFormLableTitle {
-  font-family: 'Manrope';
-  font-style: normal;
+.title {
+  font-family: 'Manrope Medium';
   font-weight: 500;
   font-size: 24px;
-  line-height: 26px;
-  /* identical to box height, or 110% */
+  line-height: 1.38;
+  text-align: center;
+  color: var(--font-color);
+  margin-bottom: 28px;
 
-  display: flex;
-  align-items: center;
+  @include mq(tab) {
+    font-size: 36px;
+    line-height: 1.36;
+  }
+}
 
-  /* Черный */
+.error {
+  height: 16px;
+  text-align: left;
+  font-size: 10px;
+  line-height: 12px;
+  color: var(--accent-color);
+  letter-spacing: 0.04em;
+  padding: 5px 15px;
 
-  color: #111111;
+  @include mq(tab) {
+    margin-bottom: 12px;
+  }
+}
+
+.error--last {
+  composes: error;
+  margin-bottom: 24px;
+}
+
+.label {
+  display: block;
+  font-family: 'Manrope Medium';
+  font-size: 18px;
+  line-height: 1.44;
+  margin-bottom: 8px;
+
+  @include mq(tab) {
+    font-size: 24px;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+}
+
+.accent {
+  color: var(--accent-color);
+}
+
+.input {
+  width: 100%;
+  font-size: 14px;
+  line-height: 1.36;
+  letter-spacing: 0.04em;
+  background: var(--bg-color);
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 40px;
+  outline: none;
+  padding: 11px 14px 12px;
+
+  @include mq(tab) {
+    font-size: 16px;
+    line-height: 1.63;
+    padding: 11px 16px 10px;
+  }
+}
+
+.input::placeholder {
+  font-size: 14px;
+  line-height: 1.36;
+  letter-spacing: 0.04em;
+  color: rgba(27, 27, 27, 0.6);
+
+  @include mq(tab) {
+    font-size: 16px;
+    line-height: 1.62;
+  }
+}
+
+.blockOfButtons {
+  @include mq(tab) {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.button {
+  display: block;
+  width: 100%;
+  font-family: 'Manrope Medium';
+  font-size: 16px;
+  line-height: 1.38;
+  letter-spacing: 0.04em;
+
+  color: var(--font-color);
+  background-color: var(--white);
+  border: 2px solid var(--accent-color);
+  border-radius: 40px;
+  cursor: pointer;
+
+  padding-top: 9px;
+  padding-bottom: 9px;
+
+  @include mq(tab) {
+    width: 180px;
+    font-size: 20px;
+    line-height: 1.35;
+  }
+}
+
+.button:hover {
+  background-color: var(--accent-color);
+  color: var(--white);
+}
+
+.buttonDistance {
+  @include mq(mob-only) {
+    margin-bottom: 12px;
+  }
+  @include mq(tab) {
+    margin-right: 20px;
+  }
+}
+
+.button:disabled {
+  cursor: auto;
+}
+
+.button:disabled:hover {
+  color: var(--font-color);
+  background-color: var(--white);
 }
