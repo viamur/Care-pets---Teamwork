@@ -5,15 +5,27 @@ import s from './navMenu.module.scss';
 const NavMenu = ({ isUserLoggedIn }) => {
   const getActiveLink = ({ isActive }) =>
     isActive ? s.linkActive + ' ' + s.link : s.link;
+  const getActiveButton = ({ isActive }) =>
+    isActive ? s.buttonActive + ' ' + s.button : s.button;
+
   return (
     <header className={s.header}>
       <div className={s.auth}>
-        <NavLink className={s.login} to="/login">
-          Login
-        </NavLink>
-        <NavLink className={s.register} to="/register">
-          Registration
-        </NavLink>
+        {!isUserLoggedIn && (
+          <NavLink className={getActiveButton} to="/login">
+            Login
+          </NavLink>
+        )}
+        {!isUserLoggedIn && (
+          <NavLink className={getActiveButton} to="/register">
+            Registration
+          </NavLink>
+        )}
+        {isUserLoggedIn && (
+          <NavLink className={s.account} to="/user">
+            Account
+          </NavLink>
+        )}
       </div>
       <div className={s.nav}>
         <NavLink className={getActiveLink} to="/news">

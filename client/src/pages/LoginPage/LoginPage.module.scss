@@ -1,0 +1,19 @@
+@import "../../sass/mixin";
+
+.container {
+    min-width: 100vw;
+    min-height: 100vh;
+
+    background-image: url('../../images/bgs/login-bg-mobile-1x.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center bottom;
+    
+    @include mq(tab) {
+        background-image: url('../../images/bgs/login-bg-tablet-1x.png');
+    }
+
+    @include mq(desk) {
+        background-image: url('../../images/bgs/login-bg-1x.png');
+    }
+}

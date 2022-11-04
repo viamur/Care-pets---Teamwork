@@ -66,22 +66,33 @@
 }
 
 
-.login {
+.button {
     text-align: center;
-    width: 95px;
-    padding: 8px 28px;
-    margin-right: 12px;
+    padding: 2px 28px;
     font-size: 14px;
-    background-color: var(--accent-color);
-    color: white;
+    border: 2px solid var(--accent-color);
     border-radius: 40px;
 }
 
-.register {
-    width: 145px;
-    font-size: 14px;
+.button:first-child {
+    margin-right: 12px;
+}
+
+
+
+.buttonActive {
+    color: white;
+    background-color: var(--accent-color);
+}
+
+.account {
     text-align: center;
-    padding: 8px 28px;
+    padding: 8px 37px;
+    font-size: 14px;
     border: 2px solid var(--accent-color);
     border-radius: 40px;
+
+    color: white;
+    background-color: var(--accent-color);
+    
 }
