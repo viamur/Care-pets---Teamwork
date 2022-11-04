@@ -16,6 +16,12 @@ export const fetchNews = async () => {
   return response.data.data;
 };
 
+export const getCurUserApi = async (token) => {
+  savedToken.set(token);
+  const response = await axios.get('/user');
+  return response.data.data;
+};
+
 export const fetchFriends = () => {
   return axios
     .get('/friends')

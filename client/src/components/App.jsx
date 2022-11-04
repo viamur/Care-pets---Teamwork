@@ -1,6 +1,13 @@
-import { lazy } from 'react';
+import { lazy, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import SharedLayout from './SharedLayout/SharedLayout';
+
+import PrivateRoute from './Routes/PrivateRoute';
+import PublicRoute from './Routes/PublicRoute';
+
+import { getMustCurUser } from 'redux/auth/authSelectors';
+import { getCurUser } from 'redux/auth/authOperations';
 
 import UserPageContainer from '../pages/UserPage/UserPageContainer';
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
@@ -14,16 +21,41 @@ const NoticesPage = lazy(() => import('../pages/NoticesPage/NoticesPage'));
 const UserPage = lazy(() => import('../pages/UserPage/UserPage'));
 
 export const App = () => {
+  const dispatch = useDispatch();
+  const mustCurUser = useSelector(getMustCurUser);
+
+  useEffect(() => {
+    mustCurUser && dispatch(getCurUser());
+  }, [dispatch, mustCurUser]);
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        <Route index element={<HomePage />} />
-        <Route path="register" element={<RegisterPage />} />
-        <Route path="login" element={<LoginPage />} />
-        <Route path="friends" element={<OurFriendsPage />} />
-        <Route path="news" element={<NewsPage />} />
-        <Route path="notices/:categoryName" element={<NoticesPage />} />
-        <Route path="user" element={<UserPageContainer />} />
+        <Route
+          index
+          element={<PublicRoute restricted component={HomePage} />}
+        />
+        <Route
+          path="register"
+          element={<PublicRoute restricted component={RegisterPage} />}
+        />
+        <Route
+          path="login"
+          element={<PublicRoute restricted component={LoginPage} />}
+        />
+        <Route
+          path="friends"
+          element={<PublicRoute component={OurFriendsPage} />}
+        />
+        <Route path="news" element={<PublicRoute component={NewsPage} />} />
+        <Route
+          path="notices/:categoryName"
+          element={<PublicRoute component={NoticesPage} />}
+        />
+        <Route
+          path="user"
+          element={<PrivateRoute component={UserPageContainer} />}
+        />
+
         <Route path="*" element={<Navigate to="/" />} />
       </Route>
     </Routes>
