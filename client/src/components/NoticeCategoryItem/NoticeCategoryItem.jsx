@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useMediaQuery } from 'react-responsive';
 import Notiflix from 'notiflix';
 import sprite from '../../images/icons/sprite.svg';
 import { addFavoriteAd, removeFavoriteAd, deleteOwnAd } from '../../utils/api';
-import { getIsAuth } from '../../redux/auth/authSelectors';
+import { getIsAuth, getUserEmail } from '../../redux/auth/authSelectors';
 import ModalNotice from 'components/ModalNotice/ModalNotice';
 import s from './NoticeCategoryItem.module.scss';
 
@@ -13,7 +14,14 @@ const categoriesForFront = {
   inGoodHands: 'In good hands',
 };
 
-const NoticeCategoryItem = ({ data, id, array, setArray, category: path }) => {
+const NoticeCategoryItem = ({
+  data,
+  id,
+  array,
+  setArray,
+  category: path,
+  setShowButton,
+}) => {
   const {
     birthdate,
     category,
@@ -25,11 +33,14 @@ const NoticeCategoryItem = ({ data, id, array, setArray, category: path }) => {
     breed,
   } = data;
   const [isFavorite, setIsFavorite] = useState(favorite);
-  const isAuth = useSelector(getIsAuth);
   const [showModal, setShowModal] = useState(false);
+  const isAuth = useSelector(getIsAuth);
+  const userEmail = useSelector(getUserEmail);
+
+  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
   const onClickFavorite = e => {
-    if (!isAuth) {
+    if (!isAuth || !userEmail) {
       Notiflix.Notify.info('Please, log in for adding to favorite');
       return;
     }
@@ -64,6 +75,9 @@ const NoticeCategoryItem = ({ data, id, array, setArray, category: path }) => {
 
   const onLearnMoreClick = () => {
     setShowModal(true);
+    if (isMobile) {
+      setShowButton(false);
+    }
   };
 
   function convertAge(date) {
@@ -171,6 +185,7 @@ const NoticeCategoryItem = ({ data, id, array, setArray, category: path }) => {
           onClickFavorite={onClickFavorite}
           onDeleteAdClick={onDeleteAdClick}
           categories={categoriesForFront}
+          setShowButton={setShowButton}
         />
       )}
     </>

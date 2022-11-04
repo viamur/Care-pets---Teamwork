@@ -6,16 +6,18 @@ import NoticesCategoriesList from 'components/NoticesCategoriesList/NoticesCateg
 
 const NoticesPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
+  const [showButton, setShowButton] = useState(true);
   const { categoryName } = useParams();
 
   return (
     <>
       <NoticesSearch setSearchQuery={setSearchQuery} />
-      <NoticesCategoriesNav />
+      <NoticesCategoriesNav showButton={showButton} />
       <NoticesCategoriesList
         category={categoryName}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
+        setShowButton={setShowButton}
       />
     </>
   );

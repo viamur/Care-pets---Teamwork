@@ -15,7 +15,12 @@ const categoriesForBack = {
   'for-free': 'inGoodHands',
 };
 
-const NoticesCategoriesList = ({ category, searchQuery, setSearchQuery }) => {
+const NoticesCategoriesList = ({
+  category,
+  searchQuery,
+  setSearchQuery,
+  setShowButton,
+}) => {
   const [array, setArray] = useState([]);
 
   useEffect(() => {
@@ -62,6 +67,7 @@ const NoticesCategoriesList = ({ category, searchQuery, setSearchQuery }) => {
               array={array}
               setArray={setArray}
               category={category}
+              setShowButton={setShowButton}
             />
           ))}
     </ul>

@@ -1,17 +1,20 @@
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
-import { getIsAuth } from '../../redux/auth/authSelectors';
-import sprite from '../../images/icons/sprite.svg';
+import { getIsAuth, getUserEmail } from '../../redux/auth/authSelectors';
+import AddNoticeButton from 'components/AddNoticeButton/AddNoticeButton';
 import s from './NoticesCategoriesNav.module.scss';
 
 const setActiveLinkClass = ({ isActive }) =>
   isActive ? `${s.siteNav} ${s.activeSiteNav}` : s.siteNav;
 
-const NoticesCategoriesNav = () => {
+const NoticesCategoriesNav = showButton => {
   const isAuth = useSelector(getIsAuth);
+  const userEmail = useSelector(getUserEmail);
 
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
+
+  console.log(showButton);
 
   return (
     <div className={s.navigationWrapper}>
@@ -27,7 +30,7 @@ const NoticesCategoriesNav = () => {
         <NavLink to="/notices/sell" className={setActiveLinkClass}>
           sell
         </NavLink>
-        {isAuth && (
+        {isAuth && userEmail && (
           <>
             <NavLink to="/notices/favorite" className={setActiveLinkClass}>
               Favorite ads
@@ -38,21 +41,11 @@ const NoticesCategoriesNav = () => {
           </>
         )}
       </nav>
-      {isMobile ? (
-        <button type="button" className={s.btnAddPet}>
-          <svg className={s.iconAddPet}>
-            <use href={sprite + '#addPet-icon'} />
-          </svg>
-          Add pet
-        </button>
-      ) : (
+      {showButton.showButton && isMobile && <AddNoticeButton title="Add pet" />}
+      {showButton.showButton && !isMobile && (
         <div className={s.boxAddPet}>
           <p className={s.textAddPet}>Add pet</p>
-          <button type="button" className={s.btnAddPet}>
-            <svg className={s.iconAddPet}>
-              <use href={sprite + '#addPet-icon'} />
-            </svg>
-          </button>
+          <AddNoticeButton />
         </div>
       )}
     </div>
