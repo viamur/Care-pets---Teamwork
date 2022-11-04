@@ -3,7 +3,7 @@
 
 .container {
     min-width: 100vw;
-    min-height: 100vh;
+    min-height: calc(100vh - 97px);
 
     background-repeat: no-repeat;
 
@@ -12,12 +12,16 @@
     background-position: center bottom, center bottom;
     
     @include mq(tab) {
+        min-height: calc(100vh - 109px);
+
         background-image: url('../../images/bgs/woman-2x.png'), url('../../images/bgs/main-bg-tablet-1x.png');
         background-size: contain, 100% auto;
         background-position: center bottom, center bottom;
     }
 
     @include mq(desk) {
+        min-height: calc(100vh - 132px);
+
         background-image: url('../../images/bgs/woman-3x.png'), url('../../images/bgs-svg/main-bg-heart.svg'), url('../../images/bgs/main-bg-1x.png');
         background-size: 624px 655px, auto, 100% auto;
         background-position: right bottom, top 5% right 40%, center bottom;
