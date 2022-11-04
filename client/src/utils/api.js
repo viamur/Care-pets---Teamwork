@@ -11,11 +11,9 @@ const savedToken = {
   },
 };
 
-export const fetchNews = () => {
-  return axios
-    .get('/news')
-    .then(response => response.data.data)
-    .catch(error => console.log(error));
+export const fetchNews = async () => {
+  const response = await axios.get('/news');
+  return response.data.data;
 };
 
 export const fetchFriends = () => {

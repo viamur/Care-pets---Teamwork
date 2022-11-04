@@ -1,61 +1,45 @@
-@import "../../sass/fonts";
 @import "../../sass/mixin";
 
-.container {
-    margin-right: -20px;
-    margin-left: -20px;
 
+.container {
     min-width: 100vw;
-    min-height: 500px;
+    min-height: 100vh;
+
+    background-repeat: no-repeat;
 
     background-image: url('../../images/bgs/woman-1x.png'), url('../../images/bgs/main-bg-mobile-2x.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center bottom;
-
-    @include mq(mob) {
-        background-size: 320px 337px, contain;
-    }
+    background-size: contain, 100% auto;
+    background-position: center bottom, center bottom;
     
     @include mq(tab) {
-        margin-right: -32px;
-        margin-left: -32px;
-
-        min-height: 1030px;
-
-        background-image: url('../../images/bgs/woman-2x.png'), url('../../images/bgs/main-bg-tablet-2x.png');
-        background-size: 699px 733px, contain;
+        background-image: url('../../images/bgs/woman-2x.png'), url('../../images/bgs/main-bg-tablet-1x.png');
+        background-size: contain, 100% auto;
+        background-position: center bottom, center bottom;
     }
- 
+
     @include mq(desk) {
-        margin-right: -16px;
-        margin-left: -16px;
-
-        min-height: 660px;
-
-        background-image: url('../../images/bgs/woman-3x.png'), url('../../images/bgs/main-bg-1x.png'), url('../../images/bgs-svg/main-bg-heart.svg');
-
-        background-position: right bottom, center bottom, top 58px right 476px;
-        background-size: 624px 655px, contain, auto;
+        background-image: url('../../images/bgs/woman-3x.png'), url('../../images/bgs-svg/main-bg-heart.svg'), url('../../images/bgs/main-bg-1x.png');
+        background-size: 624px 655px, auto, 100% auto;
+        background-position: right bottom, top 5% right 40%, center bottom;
     }
 }
 
 .title {
-    width: 100%;
-    height: 100%;
-    padding-top: 18px;
-    margin: 0;
+    padding-top: 16px;
+    margin-left: 20px;
 
     font-family: 'Manrope Bold';
     font-size: 32px;
     line-height: 1.38;
 
     @include mq(mob) {
-        width: 280px;;
+        max-width: 280px;;
     }
 
     @include mq(tab) {
-        width: 588px;
+        max-width: 588px;
+        padding-top: 46px;
+        margin-left: 32px;
 
         font-size: 68px;
         line-height: 1.47;
@@ -63,5 +47,6 @@
 
     @include mq(desk) {
         padding-top: 34px;
+        margin-left: 16px;
     }
 }
