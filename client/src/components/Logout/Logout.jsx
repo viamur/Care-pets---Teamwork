@@ -1,10 +1,17 @@
-import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logOutUser } from '../../redux/auth/authOperations';
 import s from './Logout.module.scss';
 
-const Logout = props => {
+const Logout = () => {
+  const dispatch = useDispatch();
   return (
-    <button>
-      <NavLink to="/user">Go to profile</NavLink>
+    <button
+      onClick={() => {
+        dispatch(logOutUser());
+      }}
+      type="button"
+    >
+      Logout
     </button>
   );
 };

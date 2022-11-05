@@ -16,6 +16,7 @@ export const fetchNews = async () => {
   return response.data.data;
 };
 
+/* ===========Делаем запрос о данных USER=========== */
 export const getCurUserApi = async token => {
   savedToken.set(token);
   const response = await axios.get('/user');
@@ -40,15 +41,38 @@ export const getLoginApi = async userData => {
   return response.data;
 };
 
+/* ==============LOGOUT===================== */
+export const getLogOutApi = async () => {
+  const response = await axios.get('/auth/logout');
+  savedToken.unset();
+  return response.data;
+};
+
+/* ==============Обновление данных пользователя ======== */
+export const pathUpdateUserInfoApi = async data => {
+  const response = await axios.patch('/user', data);
+  return response.data.data;
+};
+
+/* ==============Добовление животного в данные пользователя ======== */
+export const postPetUserCardApi = async data => {
+  const response = await axios.post('/user/pet', data);
+  return response.data.data;
+};
+
+/* ==============Удаление животного из данных пользователя ======== */
+export const deltPetUserCardApi = async id => {
+  const response = await axios.delete(`/user/pet${id}`);
+  return response.data;
+};
+
 export const getCheckEmail = async email => {
   const response = await axios.post('/auth/checkemail', email);
   return response.data.check;
 };
 
 export const fetchAdsByCategory = category => {
-  return axios
-    .get('/notices', { params: { category } })
-    .then(response => response.data.data);
+  return axios.get('/notices', { params: { category } }).then(response => response.data.data);
 };
 
 export const fetchFavoriteAds = () => {
