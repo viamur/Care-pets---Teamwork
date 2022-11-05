@@ -43,7 +43,7 @@ const ModalAddsPet = ({ setShowModal }) => {
   const formik = useFormik({
     initialValues: {
       name: '',
-      date: '',
+      birthday: '',
       breed: '',
       comments: '',
     },
