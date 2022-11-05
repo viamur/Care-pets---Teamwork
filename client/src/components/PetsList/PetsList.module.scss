@@ -2,6 +2,61 @@
   margin-top: 24px;
 }
 
+.card {
+  position: relative;
+  display: flex;
+  background-color: var(--white);
+  padding: 20px;
+  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+  border-radius: 40px;
+  margin-bottom: 22px;
+}
+
+.petFoto {
+  width: 161px;
+  height: 161px;
+  border-radius: 40px;
+  // background-color: var(--accent-color);
+}
+
+.cardDiscription {
+  margin-left: 32px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.btnDelete {
+  position: absolute;
+
+  top: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #fdf7f2;
+  border: 0;
+
+  &:hover,
+  &:focus {
+    background: var(--accent-color);
+  }
+}
+
+.iconDelete {
+  fill: #111;
+  opacity: 0.6;
+  margin-top: 2px;
+}
+
+.categoryDiscription {
+  margin-bottom: 12px;
+}
+
+.categoryDiscription:last-child {
+  margin-bottom: 0px;
+}
+
 .petBlock {
   display: flex;
   width: 850px;

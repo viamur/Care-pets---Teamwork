@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import ModalAddsPet from '..//ModalAddsPet/ModalAddsPet';
 import s from './PetsData.module.scss';
-// import PetElement from './PetElement';
 import PetsList from 'components/PetsList/PetsList';
 
 const PetsData = props => {

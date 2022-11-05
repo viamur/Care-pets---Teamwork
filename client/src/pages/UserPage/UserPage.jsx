@@ -5,8 +5,6 @@ import style from './UserPage.module.scss';
 
 
 const UserPage = props => {
-
-
   return (
       <div className={style.wrapper}>
         <UserData {...props} />
