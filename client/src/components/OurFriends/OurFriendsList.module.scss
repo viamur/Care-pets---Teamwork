@@ -4,13 +4,16 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  padding-bottom: 85px;
 
   @include mq(tab) {
     margin: -16px -15px;
+    justify-content: flex-start;
   }
 
   @include mq(desk) {
     margin: -10px -16px;
+    justify-content: flex-start;
   }
 }
 
@@ -19,6 +22,7 @@
   margin-top: 12px;
   display: flex;
   flex-direction: column;
+  z-index: 0;
 
   padding: 12px 4px;
   background: var(--white);
@@ -34,6 +38,7 @@
 
   &:hover,
   &:focus {
+    z-index: 1;
     scale: 1.01;
     box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.2);
   }

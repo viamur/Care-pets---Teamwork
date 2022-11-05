@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import Notiflix from 'notiflix';
+import { showAlertMessage } from '../../utils/showMessages';
 import { registerUser } from '../../redux/auth/authOperations';
 import { getCheckEmail } from '../../utils/api';
 import { getAuthError } from '../../redux/auth/authSelectors';
@@ -66,7 +66,7 @@ const RegisterForm = () => {
 
   useEffect(() => {
     if (!error) return;
-    Notiflix.Notify.failure(error);
+    showAlertMessage(error);
   }, [error]);
 
   let { email, password, confirm_password, name, city, phone } = formik.values;
@@ -85,7 +85,7 @@ const RegisterForm = () => {
         await getCheckEmail({ email });
         setPage(2);
       } catch (error) {
-        Notiflix.Notify.failure('You have already registered, just login');
+        showAlertMessage('You have already registered, just login');
       }
       return;
     }

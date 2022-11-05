@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
-import Notiflix from 'notiflix';
+import { showAlertMessage, showInfoMessage } from '../../utils/showMessages';
 import sprite from '../../images/icons/sprite.svg';
 import { addFavoriteAd, removeFavoriteAd, deleteOwnAd } from '../../utils/api';
 import { getUserEmail } from '../../redux/auth/authSelectors';
@@ -40,7 +40,7 @@ const NoticeCategoryItem = ({
 
   const onClickFavorite = e => {
     if (!userEmail) {
-      Notiflix.Notify.info('Please, log in for adding to favorite');
+      showInfoMessage('Please, log in for adding to favorite');
       return;
     }
 
@@ -52,14 +52,14 @@ const NoticeCategoryItem = ({
             setArray(arrayNew);
           }
         })
-        .catch(error => Notiflix.Notify.failure(error.response.data.message));
+        .catch(error => showAlertMessage(error.response.data.message));
       setIsFavorite(!isFavorite);
       return;
     }
 
     addFavoriteAd(id)
       .then(data => console.log(data))
-      .catch(error => Notiflix.Notify.failure(error.response.data.message));
+      .catch(error => showAlertMessage(error.response.data.message));
     setIsFavorite(!isFavorite);
   };
 
@@ -69,7 +69,7 @@ const NoticeCategoryItem = ({
         const arrayNew = array.filter(({ _id }) => _id !== id);
         setArray(arrayNew);
       })
-      .catch(error => Notiflix.Notify.failure(error.response.data.message));
+      .catch(error => showAlertMessage(error.response.data.message));
   };
 
   const onLearnMoreClick = () => {

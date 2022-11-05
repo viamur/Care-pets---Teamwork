@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useFormik } from 'formik';
+import { showAlertMessage } from '../../utils/showMessages';
 import * as Yup from 'yup';
+import { addPet } from '../../utils/api';
 import sprite from '../../images/icons/sprite.svg';
 import s from './ModalAddsPet.module.scss';
 
@@ -41,8 +43,9 @@ const ModalAddsPet = ({ setShowModal }) => {
   const formik = useFormik({
     initialValues: {
       name: '',
-      date: '',
+      birthday: '',
       breed: '',
+      comments: '',
     },
 
     onSubmit: values => {
@@ -67,13 +70,29 @@ const ModalAddsPet = ({ setShowModal }) => {
     }),
   });
 
-  const { name, birthday, breed, imgURL, comments } = formik.values;
+  const { name, birthday, breed, comments } = formik.values;
   const {
     name: nameError,
     birthday: birthdayError,
     breed: breedError,
     comments: commentsError,
   } = formik.errors;
+
+  const onFormSubmit = e => {
+    e.preventDefault();
+
+    const arrayOfData = Object.entries({ name, birthday, breed, comments });
+    const filteredArray = arrayOfData.filter(item => item[1]);
+    const info = filteredArray.reduce((previousValue, feature) => {
+      return { ...previousValue, [feature[0]]: feature[1] };
+    }, {});
+
+    addPet(info)
+      .then(data => {
+        setShowModal(false);
+      })
+      .catch(error => showAlertMessage(error.response.data.message));
+  };
 
   return createPortal(
     <div className={s.backdrop} onClick={onBackdropClick}>
@@ -88,11 +107,11 @@ const ModalAddsPet = ({ setShowModal }) => {
             <use href={sprite + '#close-icon'} />
           </svg>
         </button>
-        <form>
+        <form onSubmit={onFormSubmit}>
           {page === 1 && (
             <>
               <h2 className={s.title}>Add pet</h2>
-              <label forHtml="name" className={s.label}>
+              <label forhtml="name" className={s.label}>
                 Name pet
               </label>
               <input
@@ -108,15 +127,15 @@ const ModalAddsPet = ({ setShowModal }) => {
               <p className={s.error}>
                 {formik.touched.name && nameError && nameError}
               </p>
-              <label forHtml="birthday" className={s.label}>
+              <label forhtml="birthday" className={s.label}>
                 Date of birth
               </label>
               <input
+                lang="en"
                 className={s.input}
                 type="date"
                 name="birthday"
                 id="birthday"
-                placeholder="Type date of birth"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={birthday}
@@ -124,7 +143,7 @@ const ModalAddsPet = ({ setShowModal }) => {
               <p className={s.error}>
                 {formik.touched.birthday && birthdayError && birthdayError}
               </p>
-              <label forHtml="breed" className={s.label}>
+              <label forhtml="breed" className={s.label}>
                 Breed
               </label>
               <input
@@ -181,7 +200,7 @@ const ModalAddsPet = ({ setShowModal }) => {
                 onBlur={formik.handleBlur}
                 value={imgURL}
               /> */}
-              <label forHtml="comments" className={s.label}>
+              <label forhtml="comments" className={s.label}>
                 Comments
               </label>
               <textarea

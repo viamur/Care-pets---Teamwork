@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import Notiflix from 'notiflix';
+import { showAlertMessage } from '../../utils/showMessages';
 import { loginUser } from '../../redux/auth/authOperations';
 import { getAuthError } from '../../redux/auth/authSelectors';
 import s from './LoginForm.module.scss';
@@ -38,7 +38,7 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (!error) return;
-    Notiflix.Notify.failure(error);
+    showAlertMessage(error);
   }, [error]);
 
   const { email, password } = formik.values;
