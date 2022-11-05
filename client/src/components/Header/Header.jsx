@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 
 import NavMenu from './NavMenu';
 import Modal from 'components/ModalMobile/MobileModal';
@@ -44,10 +44,7 @@ const Header = () => {
       </button>
 
       {menuStatus && (
-        <Modal
-          close={onClose}
-          children={<MobileMenu isUserLoggedIn={isUserLoggedIn} />}
-        />
+        <Modal close={onClose} children={<MobileMenu isUserLoggedIn={isUserLoggedIn} />} />
       )}
     </div>
   );

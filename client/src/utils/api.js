@@ -50,7 +50,9 @@ export const getLogOutApi = async () => {
 
 /* ==============Обновление данных пользователя ======== */
 export const pathUpdateUserInfoApi = async data => {
-  const response = await axios.patch('/user', data);
+  const response = await axios.patch('/user', data, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
   return response.data.data;
 };
 

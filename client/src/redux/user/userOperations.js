@@ -14,20 +14,20 @@ export const getCurUser = createAsyncThunk(
       const curUserData = await getCurUserApi(accessToken);
       return curUserData;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );
 
 /* Обновление данных пользователя */
 export const pathInfoUser = createAsyncThunk(
-  'user/getCurUser',
+  'user/pathInfoUser',
   async (userData, { rejectWithValue, getState, dispatch }) => {
     try {
       const response = await pathUpdateUserInfoApi(userData);
       return response;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -40,7 +40,7 @@ export const addPetInUserCard = createAsyncThunk(
       const response = await postPetUserCardApi(userData);
       return response;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -53,7 +53,7 @@ export const delPetInUserCard = createAsyncThunk(
       const response = await deltPetUserCardApi(userData);
       return userData;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );
