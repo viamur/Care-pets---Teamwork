@@ -4,6 +4,7 @@ import { NavLink, useParams } from 'react-router-dom';
 import NavMenu from './NavMenu';
 import Modal from 'components/ModalMobile/MobileModal';
 import MobileMenu from './MobileMenu';
+import Container from 'components/Container/Container';
 
 import s from './header.module.scss';
 import useMail from 'hooks/useLogin';
@@ -31,22 +32,21 @@ const Header = () => {
   };
 
   return (
-    <div className={s.navContainer}>
-      <NavLink className={s.logo} to="/">
-        pe<span className={s.logoT}>t</span>ly
-      </NavLink>
-      <NavMenu isUserLoggedIn={isUserLoggedIn} />
+    <Container>
+      <div className={s.navContainer}>
+        <NavMenu isUserLoggedIn={isUserLoggedIn} />
 
-      <button onClick={handleClick} className={s.menuButton}>
-        <svg height={35} width={40}>
-          <path d="M4 24h24v-2.666h-24v2.666zM4 17.334h24v-2.667h-24v2.667zM4 8v2.666h24v-2.666h-24z"></path>
-        </svg>
-      </button>
+        <button onClick={handleClick} className={s.menuButton}>
+          <svg viewBox=" 1 1 28 28" height={35} width={40}>
+            <path d="M4 24h24v-2.666h-24v2.666zM4 17.334h24v-2.667h-24v2.667zM4 8v2.666h24v-2.666h-24z"></path>
+          </svg>
+        </button>
 
-      {menuStatus && (
-        <Modal close={onClose} children={<MobileMenu isUserLoggedIn={isUserLoggedIn} />} />
-      )}
-    </div>
+        {menuStatus && (
+          <Modal close={onClose} children={<MobileMenu isUserLoggedIn={isUserLoggedIn} />} />
+        )}
+      </div>
+    </Container>
   );
 };
 
