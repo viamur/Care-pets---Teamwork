@@ -1,6 +1,26 @@
-.petsBlock {
-  margin-top: 30px;
+.mainWrapper {
+  margin: 28px 32px 0px 32px;
+  display: block;
+  width: 100%;
 }
+
+.headerPetsData {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-family: 'Manrope Medium';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 38px;
+
+  /* Черный */
+
+  color: #111111;
+}
+
 .petBlock {
   display: flex;
   width: 850px;
@@ -36,4 +56,37 @@
   // margin-top: -100px;
   width: 24px;
   height: 24px;
+}
+
+.addPetWrapper {
+  // margin-left: 567px;
+  display: flex;
+  align-items: center;
+}
+
+.addPettTitle {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 27px;
+
+  /* Черный */
+
+  color: #111111;
+}
+
+.buttonToModal {
+  width: 40px;
+  height: 40px;
+
+  margin-left: 20px;
+
+  font-size: 42px;
+  line-height: 18px;
+  //   padding: 8px;
+  border: none;
+  border-radius: 50%;
+  color: var(--white);
+  background-color: var(--accent-color);
 }
