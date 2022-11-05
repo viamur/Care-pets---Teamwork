@@ -1,9 +1,9 @@
 import { useSelector, shallowEqual } from 'react-redux';
 
-import { getUserEmail } from 'redux/auth/authSelectors';
+import { getUserToken } from 'redux/auth/authSelectors';
 
 const useMail = () => {
-  const isMail = useSelector(getUserEmail, shallowEqual);
+  const isMail = useSelector(getUserToken, shallowEqual);
   return isMail;
 };
 
