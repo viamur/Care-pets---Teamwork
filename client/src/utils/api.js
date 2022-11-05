@@ -54,6 +54,18 @@ export const pathUpdateUserInfoApi = async data => {
   return response.data.data;
 };
 
+/* ==============Добовление животного в данные пользователя ======== */
+export const postPetUserCardApi = async data => {
+  const response = await axios.post('/user/pet', data);
+  return response.data.data;
+};
+
+/* ==============Удаление животного из данных пользователя ======== */
+export const deltPetUserCardApi = async id => {
+  const response = await axios.delete(`/user/pet${id}`);
+  return response.data;
+};
+
 export const getCheckEmail = async email => {
   const response = await axios.post('/auth/checkemail', email);
   return response.data.check;

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import authSlice from 'redux/auth/authSlice';
-import { getCurUser, pathInfoUser } from './userOperations';
+import { getCurUser, pathInfoUser, addPetInUserCard, delPetInUserCard } from './userOperations';
 
 const initialState = {
   _id: null,
@@ -46,6 +46,32 @@ const userSlice = createSlice({
     error: null,
   }),
   [pathInfoUser.rejected]: (state, { payload }) => {
+    state.isLoading = false;
+    state.error = payload;
+  },
+  [addPetInUserCard.pending]: state => {
+    state.isLoading = true;
+    state.error = null;
+  },
+  [addPetInUserCard.fulfilled]: (state, { payload }) => {
+    state.pets = [...state.pets, payload];
+    state.isLoading = false;
+    state.error = null;
+  },
+  [addPetInUserCard.rejected]: (state, { payload }) => {
+    state.isLoading = false;
+    state.error = payload;
+  },
+  [delPetInUserCard.pending]: state => {
+    state.isLoading = true;
+    state.error = null;
+  },
+  [delPetInUserCard.fulfilled]: (state, { payload }) => {
+    state.pets = state.pets.filter(el => el._id !== payload);
+    state.isLoading = false;
+    state.error = null;
+  },
+  [delPetInUserCard.rejected]: (state, { payload }) => {
     state.isLoading = false;
     state.error = payload;
   },
