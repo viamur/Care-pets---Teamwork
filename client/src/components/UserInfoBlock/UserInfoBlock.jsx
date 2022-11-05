@@ -11,6 +11,8 @@ import {
 } from '../../redux/user/userSelectrors';
 
 import s from './UserInfoBlock.module.scss';
+import photoUser from '../../images/userPhoto.jpg';
+import sprite from '../../images/icons/sprite.svg';
 
 const UserInfoBlock = () => {
   /* Селекторы */
@@ -64,72 +66,86 @@ const UserInfoBlock = () => {
   };
   return (
     <>
-      <h2 className={s.infoTitle}>My information</h2>
-      <img src={`https://pet-support.herokuapp.com/${photo}`} alt="avatar" />
-      <input type="file" name="avatar" onChange={onSelectFile} />
-      {selectedFile && <img src={preview} />}
-      <ul>
-        <li>
-          <p>Name:</p>
+      <h2 className={s.infoTitle}>My information:</h2>
+      <div className={s.userInfoBlock}>
+        {/* <img src={`https://pet-support.herokuapp.com/${photo}`} alt="avatar" /> */}
+        <img className={s.userAvatar} src={photoUser} alt="avatar" />
+        <label className={s.editPhotoLable}>
+          <svg className={s.editPhotoIcon}>
+            <use href={sprite + '#camera-icon'} />
+          </svg>
+          <span className={s.editPhotoSpan}>Edit photo</span>
           <input
-            type="text"
-            name="name"
-            onChange={e => setName(e.target.value)}
-            value={name}
+            className={s.editPhotoInput}
+            type="file"
+            name="avatar"
+            onChange={onSelectFile}
           />
-          <button type="button" name="name" onClick={handleClick}>
-            change
-          </button>
-        </li>
-        <li>
-          <p>Email:</p>
-          <input
-            type="text"
-            name="email"
-            onChange={e => setEmail(e.target.value)}
-            value={email}
-          />
-          <button type="button" name="email" onClick={handleClick}>
-            change
-          </button>
-        </li>
-        <li>
-          <p>Birthday:</p>
-          <input
-            type="text"
-            name="birthday"
-            onChange={e => setName(e.target.value)}
-            value={birthday}
-          />
-          <button type="button" name="birthday" onClick={handleClick}>
-            change
-          </button>
-        </li>
-        <li>
-          <p>Phone:</p>
-          <input
-            type="text"
-            name="phone"
-            onChange={e => setName(e.target.value)}
-            value={phone}
-          />
-          <button type="button" name="phone" onClick={handleClick}>
-            change
-          </button>
-        </li>
-        <li>
-          <p>City:</p>
-          <input
-            type="text"
-            name="city"
-            onChange={e => setName(e.target.value)}
-            value={city}
-          />
-          <button type="button" name="city" onClick={handleClick}>
-            change
-          </button>
-        </li>
-      </ul>
+          {/* {selectedFile && <img src={preview} />} */}
+        </label>
+        <ul>
+          <li>
+            <p>Name:</p>
+            <input
+              type="text"
+              name="name"
+              onChange={e => setName(e.target.value)}
+              value={name}
+            />
+            <button type="button" name="name" onClick={handleClick}>
+              change
+            </button>
+          </li>
+          <li>
+            <p>Email:</p>
+            <input
+              type="text"
+              name="email"
+              onChange={e => setEmail(e.target.value)}
+              value={email}
+            />
+            <button type="button" name="email" onClick={handleClick}>
+              change
+            </button>
+          </li>
+          <li>
+            <p>Birthday:</p>
+            <input
+              type="text"
+              name="birthday"
+              onChange={e => setName(e.target.value)}
+              value={birthday}
+            />
+            <button type="button" name="birthday" onClick={handleClick}>
+              change
+            </button>
+          </li>
+          <li>
+            <p>Phone:</p>
+            <input
+              type="text"
+              name="phone"
+              onChange={e => setName(e.target.value)}
+              value={phone}
+            />
+            <button type="button" name="phone" onClick={handleClick}>
+              change
+            </button>
+          </li>
+          <li>
+            <p>City:</p>
+            <input
+              type="text"
+              name="city"
+              onChange={e => setName(e.target.value)}
+              value={city}
+            />
+            <button type="button" name="city" onClick={handleClick}>
+              change
+            </button>
+          </li>
+        </ul>
+      </div>
     </>
   );
 };

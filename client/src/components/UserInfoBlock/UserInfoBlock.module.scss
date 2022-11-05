@@ -1,2 +1,53 @@
+.userInfoBlock {
+  width: 280px;
+  //   height: 537px;
+  background-color: var(--white);
+  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+  border-radius: 20px;
+  padding: 20px 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .infoTitle {
+  font-family: 'Manrope Medium';
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 27px;
+  letter-spacing: 0.04em;
+  margin-bottom: 18px;
+}
+
+.userAvatar {
+  width: 233px;
+  height: 233px;
+  border-radius: 50%;
+  box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.25);
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 13px;
+}
+
+.editPhotoInput {
+  display: none;
+}
+
+.editPhotoLable {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.editPhotoIcon {
+  width: 18px;
+  height: 18px;
+  margin-right: 5px;
+}
+
+.editPhotoSpan {
+  font-family: 'Manrope Regular';
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 22px;
+  letter-spacing: 0.04em;
 }
