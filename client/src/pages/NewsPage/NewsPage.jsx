@@ -12,7 +12,7 @@ const NewsPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    showLoadingHourglass('News is loading ...');
+    showLoadingHourglass('Loading ...');
 
     fetchNews()
       .then(news => {

@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
-import { getIsAuth, getUserEmail } from '../../redux/auth/authSelectors';
+import { getUserEmail } from '../../redux/auth/authSelectors';
 import AddNoticeButton from 'components/AddNoticeButton/AddNoticeButton';
 import s from './NoticesCategoriesNav.module.scss';
 
@@ -9,12 +9,9 @@ const setActiveLinkClass = ({ isActive }) =>
   isActive ? `${s.siteNav} ${s.activeSiteNav}` : s.siteNav;
 
 const NoticesCategoriesNav = showButton => {
-  const isAuth = useSelector(getIsAuth);
   const userEmail = useSelector(getUserEmail);
 
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
-
-  console.log(showButton);
 
   return (
     <div className={s.navigationWrapper}>
@@ -30,7 +27,7 @@ const NoticesCategoriesNav = showButton => {
         <NavLink to="/notices/sell" className={setActiveLinkClass}>
           sell
         </NavLink>
-        {isAuth && userEmail && (
+        {userEmail && (
           <>
             <NavLink to="/notices/favorite" className={setActiveLinkClass}>
               Favorite ads

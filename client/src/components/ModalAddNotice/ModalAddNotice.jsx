@@ -44,16 +44,16 @@ const ModalAddNotice = ({ setShowModal }) => {
 
     validationSchema: Yup.object({
       title: Yup.string()
-        .min(2, 'Field must include more tnan 7 characters')
+        .min(2, 'Field must include more tnan 2 characters')
         .max(48, 'Field must include less tnan 48 characters')
         .required('This is a required field'),
       name: Yup.string()
-        .min(2, 'Field must include more tnan 7 characters')
-        .max(16, 'Field must be less tnan 32 characters'),
+        .min(2, 'Field must include more tnan 2 characters')
+        .max(16, 'Field must be less tnan 16 characters'),
       date: Yup.date(),
       breed: Yup.string()
-        .min(2, 'Field must include more tnan 7 characters')
-        .max(24, 'Field must be less tnan 32 characters'),
+        .min(2, 'Field must include more tnan 2 characters')
+        .max(24, 'Field must be less tnan 24 characters'),
     }),
   });
 
@@ -66,7 +66,7 @@ const ModalAddNotice = ({ setShowModal }) => {
     breed: breedError,
   } = formik.errors;
 
-  const onPageChange = async () => {
+  const onPageChange = () => {
     if (page === 1) {
       setPage(2);
       return;

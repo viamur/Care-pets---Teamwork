@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import NoticesCategoriesNav from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
 import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
+import Container from 'components/Container/Container';
 import NoticesCategoriesList from 'components/NoticesCategoriesList/NoticesCategoriesList';
 
 const NoticesPage = () => {
@@ -10,8 +11,11 @@ const NoticesPage = () => {
   const { categoryName } = useParams();
 
   return (
-    <>
-      <NoticesSearch setSearchQuery={setSearchQuery} />
+    <Container>
+      <NoticesSearch
+        setSearchQuery={setSearchQuery}
+        title="Find your favorite pet"
+      />
       <NoticesCategoriesNav showButton={showButton} />
       <NoticesCategoriesList
         category={categoryName}
@@ -19,7 +23,7 @@ const NoticesPage = () => {
         setSearchQuery={setSearchQuery}
         setShowButton={setShowButton}
       />
-    </>
+    </Container>
   );
 };
 

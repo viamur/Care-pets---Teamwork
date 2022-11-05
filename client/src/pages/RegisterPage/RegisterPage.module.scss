@@ -2,7 +2,7 @@
 
 .container {
     min-width: 100vw;
-    min-height: 100vh;
+    min-height: calc(100vh - 97px);
 
     background-image: url('../../images/bgs/login-bg-mobile-1x.png');
     background-repeat: no-repeat;
@@ -10,10 +10,14 @@
     background-position: center bottom;
     
     @include mq(tab) {
+        min-height: calc(100vh - 109px);
+
         background-image: url('../../images/bgs/login-bg-tablet-1x.png');
     }
 
     @include mq(desk) {
+        min-height: calc(100vh - 132px);
+        
         background-image: url('../../images/bgs/login-bg-1x.png');
     }
 }

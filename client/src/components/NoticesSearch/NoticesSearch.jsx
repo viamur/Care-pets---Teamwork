@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import Notiflix from 'notiflix';
 import sprite from '../../images/icons/sprite.svg';
 
 import s from './NoticesSearch.module.scss';
 
-const NoticesSearch = ({ setSearchQuery }) => {
+const NoticesSearch = ({ setSearchQuery, title }) => {
   const [query, setQuery] = useState('');
 
   const onHadleChange = e => {
@@ -13,18 +12,13 @@ const NoticesSearch = ({ setSearchQuery }) => {
 
   const onHandleSubmit = e => {
     e.preventDefault();
-
-    if (query === '') {
-      Notiflix.Notify.failure('Please input your query');
-      return;
-    }
     setSearchQuery(query);
     setQuery('');
   };
 
   return (
     <>
-      <h2 className={s.titlePage}>Find your favorite pet</h2>
+      <h2 className={s.titlePage}>{title}</h2>
 
       <form className={s.searchForm} onSubmit={onHandleSubmit}>
         <input
