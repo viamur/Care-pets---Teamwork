@@ -13,7 +13,7 @@ const AddNoticeButton = ({ title }) => {
 
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
-  const onBtnAddNoticeClick = () => {
+  const onBtnAddNoticeClick = title => {
     if (!userEmail) {
       showInfoMessage('Please, log in for adding notice');
       return;
@@ -30,8 +30,8 @@ const AddNoticeButton = ({ title }) => {
       >
         <svg className={s.iconAddPet}>
           <use href={sprite + '#addPet-icon'} />
-          {title && title}
         </svg>
+        {title && <p className={s.title}>{title}</p>}
       </button>
       {showModal && <ModalAddNotice setShowModal={setShowModal} />}
     </>
