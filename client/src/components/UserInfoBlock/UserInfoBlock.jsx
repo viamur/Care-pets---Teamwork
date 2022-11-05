@@ -64,20 +64,31 @@ const UserInfoBlock = () => {
   };
   return (
     <>
+      <h2 className={s.infoTitle}>My information</h2>
+      <img src={`https://pet-support.herokuapp.com/${photo}`} alt="avatar" />
       <input type="file" name="avatar" onChange={onSelectFile} />
       {selectedFile && <img src={preview} />}
-      <img src={`https://pet-support.herokuapp.com/${photo}`} alt="avatar" />
       <ul>
         <li>
           <p>Name:</p>
-          <input type="text" name="name" onChange={e => setName(e.target.value)} value={name} />
+          <input
+            type="text"
+            name="name"
+            onChange={e => setName(e.target.value)}
+            value={name}
+          />
           <button type="button" name="name" onClick={handleClick}>
             change
           </button>
         </li>
         <li>
           <p>Email:</p>
-          <input type="text" name="email" onChange={e => setEmail(e.target.value)} value={email} />
+          <input
+            type="text"
+            name="email"
+            onChange={e => setEmail(e.target.value)}
+            value={email}
+          />
           <button type="button" name="email" onClick={handleClick}>
             change
           </button>
@@ -96,14 +107,24 @@ const UserInfoBlock = () => {
         </li>
         <li>
           <p>Phone:</p>
-          <input type="text" name="phone" onChange={e => setName(e.target.value)} value={phone} />
+          <input
+            type="text"
+            name="phone"
+            onChange={e => setName(e.target.value)}
+            value={phone}
+          />
           <button type="button" name="phone" onClick={handleClick}>
             change
           </button>
         </li>
         <li>
           <p>City:</p>
-          <input type="text" name="city" onChange={e => setName(e.target.value)} value={city} />
+          <input
+            type="text"
+            name="city"
+            onChange={e => setName(e.target.value)}
+            value={city}
+          />
           <button type="button" name="city" onClick={handleClick}>
             change
           </button>
