@@ -11,20 +11,22 @@
 
 .modal {
   position: absolute;
+  overflow: auto;
+  height: 90%;
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 
-  min-width: 280px;
+  min-width: 295px;
   border-radius: 20px;
-  padding: 40px 20px;
+  padding: 40px 15px 40px 20px;
   background: var(--white);
 
   @include mq(tab) {
     width: 608px;
     border-radius: 40px;
-    padding: 40px 80px;
+    padding: 40px 75px 40px 80px;
   }
 }
 
@@ -187,11 +189,184 @@
   color: var(--white);
 }
 
+.button:disabled {
+  cursor: auto;
+}
+
+.button:disabled:hover {
+  color: var(--font-color);
+  background-color: var(--white);
+}
+
 .buttonDistance {
   @include mq(mob-only) {
     margin-bottom: 12px;
   }
   @include mq(tab) {
     margin-right: 20px;
+  }
+}
+
+.radioToolbar {
+  margin-bottom: 32px;
+
+  @include mq(tab) {
+    margin-bottom: 28px;
+  }
+}
+
+.radioToolbar input[type='radio'] {
+  display: none;
+}
+
+.radioToolbar label {
+  display: inline-block;
+
+  font-family: 'Manrope Medium';
+  font-size: 14px;
+  line-height: 1.36;
+  text-align: center;
+  letter-spacing: 0.04em;
+
+  border: 2px solid var(--accent-color);
+  background-color: var(--white);
+  color: var(--font-color);
+  border-radius: 40px;
+  cursor: pointer;
+
+  padding: 8px 28px;
+
+  @include mq(tab) {
+    padding: 10px 28px;
+    font-size: 20px;
+    line-height: 1.35;
+  }
+}
+
+.radioToolbar label:not(:last-child) {
+  margin-right: 8px;
+}
+
+.radioToolbar label:first-child {
+  margin-bottom: 12px;
+
+  @include mq(tab) {
+    margin-bottom: 16px;
+  }
+}
+
+.radioToolbar label:hover {
+  background-color: var(--accent-color);
+  color: var(--white);
+}
+
+.radioToolbarPage2 {
+  margin-bottom: 71px;
+
+  @include mq(tab) {
+    margin-bottom: 87px;
+  }
+}
+
+.radioToolbarPage2 input[type='radio'] {
+  display: none;
+}
+
+.blockOfRadio {
+  display: flex;
+  margin-bottom: 32px;
+}
+
+.labelSexDistance {
+  margin-bottom: 16px;
+
+  @include mq(tab) {
+    margin-bottom: 28px;
+  }
+}
+
+.labelMale {
+  position: relative;
+  display: block;
+  width: 40px;
+  height: 40px;
+  background-image: url('../../images/sex/male.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+
+  margin-right: 40px;
+
+  @include mq(tab) {
+    width: 60px;
+    height: 60px;
+    margin-right: 83px;
+  }
+}
+
+.labelFemale {
+  position: relative;
+  display: block;
+  width: 40px;
+  height: 40px;
+  background-image: url('../../images/sex/female.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+
+  @include mq(tab) {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+.sexDescr {
+  position: absolute;
+  bottom: -39px;
+  font-family: 'Manrope Medium';
+  font-size: 18px;
+  line-height: 1.44px;
+
+  @include mq(tab) {
+    bottom: -47px;
+  }
+}
+
+.sexDescr {
+  color: var(--accent-color);
+
+  @include mq(tab) {
+    text-align: center;
+  }
+}
+
+.textarea {
+  width: 100%;
+  height: 100px;
+
+  background: var(--bg-color);
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 20px;
+  padding: 11px 14px;
+  outline: none;
+  resize: none;
+
+  @include mq(tab) {
+    height: 113px;
+    padding: 16px 18px;
+  }
+}
+
+.textarea::placeholder {
+  font-size: 14px;
+  line-height: 1.85;
+  letter-spacing: 0.04em;
+  color: rgba(27, 27, 27, 0.6);
+
+  @include mq(tab) {
+    font-size: 16px;
+    line-height: 1.62;
   }
 }

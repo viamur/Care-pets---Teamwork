@@ -16,7 +16,7 @@ export const fetchNews = async () => {
   return response.data.data;
 };
 
-export const getCurUserApi = async (token) => {
+export const getCurUserApi = async token => {
   savedToken.set(token);
   const response = await axios.get('/user');
   return response.data.data;
@@ -83,6 +83,18 @@ export const deleteOwnAd = id => {
 
 export const getAdInfo = id => {
   return axios.get(`/notices/${id}`).then(response => {
+    return response.data.data;
+  });
+};
+
+export const addPet = info => {
+  return axios.post('user/pet', info).then(response => {
+    return response.data.data;
+  });
+};
+
+export const addNotice = info => {
+  return axios.post('notices/user', info).then(response => {
     return response.data.data;
   });
 };

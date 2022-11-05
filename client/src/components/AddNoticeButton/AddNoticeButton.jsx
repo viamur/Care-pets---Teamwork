@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
-import Notiflix from 'notiflix';
+import { showInfoMessage } from '../../utils/showMessages';
 import { getUserEmail } from '../../redux/auth/authSelectors';
 import ModalAddNotice from 'components/ModalAddNotice/ModalAddNotice';
 import sprite from '../../images/icons/sprite.svg';
@@ -15,7 +15,7 @@ const AddNoticeButton = ({ title }) => {
 
   const onBtnAddNoticeClick = () => {
     if (!userEmail) {
-      Notiflix.Notify.info('Please, log in for adding notice');
+      showInfoMessage('Please, log in for adding notice');
       return;
     }
     setShowModal(true);

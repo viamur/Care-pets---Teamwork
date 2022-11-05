@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import Notiflix from 'notiflix';
+import { showAlertMessage } from '../../utils/showMessages';
+import { showLoadingHourglass, removeLoading } from '../../utils/showLoading';
 import {
   fetchAdsByCategory,
   fetchFavoriteAds,
@@ -24,23 +25,27 @@ const NoticesCategoriesList = ({
   const [array, setArray] = useState([]);
 
   useEffect(() => {
+    showLoadingHourglass('Loading ...');
     if (category === 'favorite') {
       fetchFavoriteAds()
         .then(data => {
           setSearchQuery('');
           setArray(data);
         })
-        .catch(error => Notiflix.Notify.failure(error.response.data.message));
+        .catch(error => showAlertMessage(error.response.data.message))
+        .finally(() => removeLoading());
       return;
     }
 
     if (category === 'own') {
+      showLoadingHourglass('Loading ...');
       fetchOwnAds()
         .then(data => {
           setSearchQuery('');
           setArray(data);
         })
-        .catch(error => Notiflix.Notify.failure(error.response.data.message));
+        .catch(error => showAlertMessage(error.response.data.message))
+        .finally(() => removeLoading());
       return;
     }
 
@@ -49,7 +54,8 @@ const NoticesCategoriesList = ({
         setSearchQuery('');
         setArray(data);
       })
-      .catch(error => Notiflix.Notify.failure(error.response.data.message));
+      .catch(error => showAlertMessage(error.response.data.message))
+      .finally(() => removeLoading());
 
     // eslint-disable-next-line
   }, [category]);

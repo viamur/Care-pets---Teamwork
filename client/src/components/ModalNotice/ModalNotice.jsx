@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
-import Notiflix from 'notiflix';
+import { showAlertMessage } from '../../utils/showMessages';
 import { getAdInfo } from '../../utils/api';
 import { getUserEmail } from '../../redux/auth/authSelectors';
 import sprite from '../../images/icons/sprite.svg';
@@ -44,7 +44,7 @@ const ModalNotice = ({
       .then(data => {
         setInfo(data);
       })
-      .catch(error => Notiflix.Notify.failure(error.response.data.message));
+      .catch(error => showAlertMessage(error.response.data.message));
     // eslint-disable-next-line
   }, []);
 
@@ -97,35 +97,6 @@ const ModalNotice = ({
             </div>
             <div className={s.thumbDescr}>
               <h2 className={s.title}>{info.title}</h2>
-              {/* <div className={s.containerDescr}>
-                <div className={s.blockDescrTitle}>
-                  <p className={`${s.descr} ${s.descrAccent}`}>Name:</p>
-                  <p className={`${s.descr} ${s.descrAccent}`}>Birthday:</p>
-                  <p className={`${s.descr} ${s.descrAccent}`}>Breed:</p>
-                  <p className={`${s.descr} ${s.descrAccent}`}>Place:</p>
-                  <p className={`${s.descr} ${s.descrAccent}`}>The sex:</p>
-                  <p className={`${s.descr} ${s.descrAccent}`}>Email:</p>
-                  <p className={`${s.descr} ${s.descrAccent}`}>Phone:</p>
-                  {info.category === 'sell' && (
-                    <p className={`${s.descr} ${s.descrAccent}`}>Sell:</p>
-                  )}
-                </div>
-
-                <div>
-                  <p className={s.descr}>{info.name ? info.name : '-'}</p>
-                  <p className={s.descr}>
-                    {info.birthday ? convertBirthday(info.birthday) : '-'}
-                  </p>
-                  <p className={s.descr}>{info.breed ? info.breed : '-'}</p>
-                  <p className={s.descr}>{info.location}</p>
-                  <p className={s.descr}>{info.sex}</p>
-                  <p className={s.descr}>{info.owner?.email}</p>
-                  <p className={s.descr}>{info.owner?.phone}</p>
-                  {info.category === 'sell' && (
-                    <p className={s.descr}>{info.price ? info.price : '-'}$</p>
-                  )}
-                </div>
-              </div> */}
               <table className={s.table}>
                 <tbody>
                   <tr>
@@ -221,9 +192,6 @@ const ModalNotice = ({
               onClick={onClickFavorite}
             >
               {isFavorite ? 'Remove from' : 'Add to'}
-              {/* <svg width="16px" height="16px">
-                  <use href={sprite + '#like0-icon'} />
-                </svg> */}
               <svg
                 width="16px"
                 height="16px"
