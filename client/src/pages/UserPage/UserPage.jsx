@@ -10,14 +10,14 @@ const UserPage = props => {
     <>
       <div>
         <UserInfoBlock />
-        <button onClick={onBtnAddPetClick}>Add pet</button>
+        {/* <button onClick={onBtnAddPetClick}>Add pet</button> */}
         <Logout />
-        {showModal && <ModalAddsPet setShowModal={setShowModal} />}
+        {/* {showModal && <ModalAddsPet setShowModal={setShowModal} />} */}
       </div>
-      <div className={style.pageWrapper}>
+      {/* <div className={style.pageWrapper}>
         <UserData {...props} />
         <PetsData deletePet={props.deletePet} petsStore={props.petsStore} />
-      </div>
+      </div> */}
     </>
   );
 };
