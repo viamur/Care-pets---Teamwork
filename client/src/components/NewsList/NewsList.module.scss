@@ -4,19 +4,25 @@
 .list{
     display: grid;
     justify-content: center;
-    grid-template-columns: 280px; 
-    grid-template-rows: 308px; 
-    gap: 40px 0; 
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 40px 0;
+
+    padding-bottom: 80px;
 
     @include mq(tab) {
-        grid-template-columns: 336px 336px; 
-        grid-template-rows: 288px; 
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
         gap: 60px 32px;
+
+        padding-bottom: 68px;
     }
 
     @include mq(desk) {
-        grid-template-columns: 395px 395px 395px;
-        grid-template-rows: 266px;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr;
+
+        padding-bottom: 184px;
     }
 }
 
@@ -24,7 +30,7 @@
 .item::before {
     content: "";
     display: block;
-    width: 200px; 
+    width: 71%;
     height: 4px;
     margin-bottom: 4px;
 
@@ -32,12 +38,12 @@
     border-radius: 40px;
 
     @include mq(tab) {
-        width: 280px; 
+        width: 83%;
         height: 8px;
     }
 
     @include mq(desk) {
-        width: 340px; 
+        width: 86%;
     }
 }
 
