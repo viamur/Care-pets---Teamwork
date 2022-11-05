@@ -1,12 +1,13 @@
 .btnAddPet {
   position: fixed;
   top: 466px;
-  right: calc(50% - 140px);
+  right: calc(50% - 220px);
   z-index: 1;
   width: 80px;
   height: 80px;
 
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 
@@ -28,6 +29,8 @@
     z-index: 0;
     width: 44px;
     height: 44px;
+
+    flex-direction: row;
   }
 }
 
@@ -36,11 +39,12 @@
 }
 
 .iconAddPet {
-  width: 21px;
-  height: 21px;
+  width: 24px;
+  height: 24px;
+}
 
-  @media screen and (min-width: 768px) {
-    width: 24px;
-    height: 24px;
-  }
+.title {
+  font-family: 'Manrope Medium';
+  font-size: 12px;
+  line-height: 16px;
 }
