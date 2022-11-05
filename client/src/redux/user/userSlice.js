@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import authSlice from 'redux/auth/authSlice';
-import { getCurUser } from './userOperations';
+import { getCurUser, pathInfoUser } from './userOperations';
 
 const initialState = {
   _id: null,
@@ -34,6 +34,20 @@ const userSlice = createSlice({
       state.isLoading = false;
       state.error = payload;
     },
+  },
+  [pathInfoUser.pending]: state => {
+    state.isLoading = true;
+    state.error = null;
+  },
+  [pathInfoUser.fulfilled]: (state, { payload }) => ({
+    ...state,
+    ...payload,
+    isLoading: false,
+    error: null,
+  }),
+  [pathInfoUser.rejected]: (state, { payload }) => {
+    state.isLoading = false;
+    state.error = payload;
   },
 });
 

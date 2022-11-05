@@ -16,6 +16,7 @@ export const fetchNews = async () => {
   return response.data.data;
 };
 
+/* ===========Делаем запрос о данных USER=========== */
 export const getCurUserApi = async token => {
   savedToken.set(token);
   const response = await axios.get('/user');
@@ -45,6 +46,12 @@ export const getLogOutApi = async () => {
   const response = await axios.get('/auth/logout');
   savedToken.unset();
   return response.data;
+};
+
+/* ==============Обновление данных пользователя ======== */
+export const pathUpdateUserInfoApi = async data => {
+  const response = await axios.patch('/user', data);
+  return response.data.data;
 };
 
 export const getCheckEmail = async email => {
