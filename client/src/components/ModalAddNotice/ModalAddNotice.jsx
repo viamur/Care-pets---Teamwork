@@ -32,10 +32,15 @@ const ModalAddNotice = ({ setShowModal }) => {
 
   const formik = useFormik({
     initialValues: {
+      category: 'sell',
       title: '',
       name: '',
       date: '',
       breed: '',
+      sex: 'male',
+      location: '',
+      price: '',
+      comments: '',
     },
 
     onSubmit: values => {
@@ -43,6 +48,7 @@ const ModalAddNotice = ({ setShowModal }) => {
     },
 
     validationSchema: Yup.object({
+      category: Yup.string().required('This is a required field'),
       title: Yup.string()
         .min(2, 'Field must include more tnan 2 characters')
         .max(48, 'Field must include less tnan 48 characters')
@@ -50,24 +56,41 @@ const ModalAddNotice = ({ setShowModal }) => {
       name: Yup.string()
         .min(2, 'Field must include more tnan 2 characters')
         .max(16, 'Field must be less tnan 16 characters'),
-      date: Yup.date(),
+      date: Yup.date().max(new Date(), 'Choose date in the past'),
       breed: Yup.string()
         .min(2, 'Field must include more tnan 2 characters')
         .max(24, 'Field must be less tnan 24 characters'),
+      sex: Yup.string().required('This is a required field'),
+      location: Yup.string()
+        .min(2, 'Field must include more tnan 2 characters')
+        .max(24, 'Field must be less tnan 24 characters')
+        .required('This is a required field'),
+      price: Yup.number()
+        .typeError('Enter the number')
+        .integer('Only integer numbers')
+        .required('This is a required field'),
+      comments: Yup.string()
+        .min(8, 'Field must include more tnan 8 characters')
+        .max(120, 'Field must be less tnan 120 characters'),
     }),
   });
 
-  const { title, name, date, breed } = formik.values;
+  const { category, title, name, date, breed, sex, location, price, comments } =
+    formik.values;
 
   const {
     title: titleError,
     name: nameError,
     date: dateError,
     breed: breedError,
+    location: locationError,
+    price: priceError,
+    comments: commentsError,
   } = formik.errors;
 
   const onPageChange = () => {
     if (page === 1) {
+      console.log(category);
       setPage(2);
       return;
     }
@@ -97,7 +120,92 @@ const ModalAddNotice = ({ setShowModal }) => {
         <form>
           {page === 1 && (
             <>
-              <label forHtml="title" className={s.label}>
+              <div className={s.radioToolbar}>
+                {category === 'lostFound' ? (
+                  <label
+                    style={{ backgroundColor: '#F59256', color: '#ffffff' }}
+                    className={s.radioLabel}
+                  >
+                    lost/found
+                    <input
+                      type="radio"
+                      id="radio1"
+                      name="category"
+                      value="lostFound"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                    />
+                  </label>
+                ) : (
+                  <label className={s.radioLabel}>
+                    lost/found
+                    <input
+                      type="radio"
+                      id="radio1"
+                      name="category"
+                      value="lostFound"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                    />
+                  </label>
+                )}
+                {category === 'inGoodHands' ? (
+                  <label
+                    style={{ backgroundColor: '#F59256', color: '#ffffff' }}
+                  >
+                    {' '}
+                    In good hands
+                    <input
+                      type="radio"
+                      id="radio2"
+                      name="category"
+                      value="inGoodHands"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                    />
+                  </label>
+                ) : (
+                  <label>
+                    In good hands
+                    <input
+                      type="radio"
+                      id="radio2"
+                      name="category"
+                      value="inGoodHands"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                    />
+                  </label>
+                )}
+                {category === 'sell' ? (
+                  <label
+                    style={{ backgroundColor: '#F59256', color: '#ffffff' }}
+                  >
+                    Sell
+                    <input
+                      type="radio"
+                      id="radio3"
+                      name="category"
+                      value="sell"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                    />
+                  </label>
+                ) : (
+                  <label>
+                    Sell
+                    <input
+                      type="radio"
+                      id="radio3"
+                      name="category"
+                      value="sell"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                    />
+                  </label>
+                )}
+              </div>
+              <label forhtml="title" className={s.label}>
                 Tittle of ad<span className={s.accent}>*</span>
               </label>
               <input
@@ -113,7 +221,7 @@ const ModalAddNotice = ({ setShowModal }) => {
               <p className={s.error}>
                 {formik.touched.title && titleError && titleError}
               </p>
-              <label forHtml="name" className={s.label}>
+              <label forhtml="name" className={s.label}>
                 Name pet
               </label>
               <input
@@ -129,7 +237,7 @@ const ModalAddNotice = ({ setShowModal }) => {
               <p className={s.error}>
                 {formik.touched.name && nameError && nameError}
               </p>
-              <label forHtml="date" className={s.label}>
+              <label forhtml="date" className={s.label}>
                 Date of birth
               </label>
               <input
@@ -145,7 +253,7 @@ const ModalAddNotice = ({ setShowModal }) => {
               <p className={s.error}>
                 {formik.touched.date && dateError && dateError}
               </p>
-              <label forHtml="breed" className={s.label}>
+              <label forhtml="breed" className={s.label}>
                 Breed
               </label>
               <input
@@ -173,8 +281,140 @@ const ModalAddNotice = ({ setShowModal }) => {
                   className={s.button}
                   type="button"
                   onClick={onPageChange}
+                  disabled={
+                    title === '' ||
+                    titleError ||
+                    nameError ||
+                    dateError ||
+                    breedError
+                      ? true
+                      : false
+                  }
                 >
                   Next
+                </button>
+              </div>
+            </>
+          )}
+          {page === 2 && (
+            <>
+              <div className={s.radioToolbarPage2}>
+                <p className={`${s.label} ${s.labelSexDistance}`}>
+                  The sex<span className={s.accent}>*</span>:
+                </p>
+                <div className={s.blockOfRadio}>
+                  <label className={s.labelMale}>
+                    <input
+                      type="radio"
+                      name="sex"
+                      value="male"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                    />
+                    {sex === 'male' ? (
+                      <span style={{ color: '#F59256' }} className={s.sexDescr}>
+                        Male
+                      </span>
+                    ) : (
+                      <span style={{ color: '#111111' }} className={s.sexDescr}>
+                        Male
+                      </span>
+                    )}
+                  </label>
+                  <label className={s.labelFemale}>
+                    <input
+                      type="radio"
+                      name="sex"
+                      value="female"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                    />
+                    {sex === 'female' ? (
+                      <span style={{ color: '#F59256' }} className={s.sexDescr}>
+                        Female
+                      </span>
+                    ) : (
+                      <span style={{ color: '#111111' }} className={s.sexDescr}>
+                        Female
+                      </span>
+                    )}
+                  </label>
+                </div>
+              </div>
+              <label forhtml="location" className={s.label}>
+                Location<span className={s.accent}>*</span>:
+              </label>
+              <input
+                className={s.input}
+                type="text"
+                name="location"
+                id="location"
+                placeholder="Type location"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={location}
+              />
+              <p className={s.error}>
+                {formik.touched.location && locationError && locationError}
+              </p>
+              {category === 'sell' && (
+                <>
+                  <label forhtml="price" className={s.label}>
+                    Price<span className={s.accent}>*</span>:
+                  </label>
+                  <input
+                    className={s.input}
+                    type="text"
+                    name="price"
+                    id="price"
+                    placeholder="Type price"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={price}
+                  />
+                  <p className={s.error}>
+                    {formik.touched.price && priceError && priceError}
+                  </p>
+                </>
+              )}
+              <label forhtml="comments" className={s.label}>
+                Comments
+              </label>
+              <textarea
+                className={s.textarea}
+                name="comments"
+                id="comments"
+                placeholder="Type comments"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={comments}
+              ></textarea>
+              <p className={s['error--last']}>
+                {formik.touched.comments && commentsError && commentsError}
+              </p>
+              <div className={s.blockOfButtons}>
+                <button
+                  className={`${s.button} ${s.buttonDistance}`}
+                  type="button"
+                  onClick={onPageChange}
+                >
+                  Back
+                </button>
+                <button
+                  className={s.button}
+                  type="submit"
+                  onClick={onBtnCloseClick}
+                  disabled={
+                    location === '' ||
+                    price === '' ||
+                    locationError ||
+                    priceError ||
+                    commentsError
+                      ? true
+                      : false
+                  }
+                >
+                  Done
                 </button>
               </div>
             </>
