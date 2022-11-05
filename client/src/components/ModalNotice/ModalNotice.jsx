@@ -191,7 +191,9 @@ const ModalNotice = ({
               type="button"
               onClick={onClickFavorite}
             >
-              {isFavorite ? 'Remove from' : 'Add to'}
+              <span className={s.iconTitle}>
+                {isFavorite ? 'Remove from' : 'Add to'}
+              </span>
               <svg
                 width="16px"
                 height="16px"

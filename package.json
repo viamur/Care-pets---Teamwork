@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "react-datepicker": "^4.8.0",
+    "react-images-uploading": "^3.1.7"
+  }
+}
