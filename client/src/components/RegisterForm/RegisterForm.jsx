@@ -82,6 +82,15 @@ const RegisterForm = () => {
 
   const onPageChange = async () => {
     if (page === 1) {
+      if (email === '' || password === '' || confirm_password === '') {
+        showAlertMessage('Input all required fields');
+        return;
+      }
+      if (passwordError || confirmError || emailError) {
+        showAlertMessage('Input all fields in the necessary format');
+        return;
+      }
+
       try {
         await getCheckEmail({ email });
         setPage(2);
@@ -95,6 +104,15 @@ const RegisterForm = () => {
 
   const onFormSubmit = e => {
     e.preventDefault();
+    if (name === '' || city === '' || phone === '') {
+      showAlertMessage('Input all required fields');
+      return;
+    }
+    if (nameError || cityError || phoneError) {
+      showAlertMessage('Input all fields in the necessary format');
+      return;
+    }
+
     dispatch(
       registerUser({
         email,
@@ -188,20 +206,7 @@ const RegisterForm = () => {
             <p className={s['error--last']}>
               {formik.touched.phone && phoneError && phoneError}
             </p>
-            <button
-              className={s.button}
-              type="submit"
-              disabled={
-                name === '' ||
-                city === '' ||
-                phone === '' ||
-                nameError ||
-                cityError ||
-                phoneError
-                  ? true
-                  : false
-              }
-            >
+            <button className={s.button} type="submit">
               Register
             </button>
           </>
@@ -210,17 +215,6 @@ const RegisterForm = () => {
           className={s['button--last']}
           type="button"
           onClick={onPageChange}
-          disabled={
-            page === 1 &&
-            (email === '' ||
-              password === '' ||
-              confirm_password === '' ||
-              passwordError ||
-              confirmError ||
-              emailError)
-              ? true
-              : false
-          }
         >
           {page === 1 ? 'Next' : 'Back'}
         </button>
