@@ -3,7 +3,7 @@ import ModalAddsPet from '..//ModalAddsPet/ModalAddsPet';
 import s from './PetsData.module.scss';
 import PetsList from 'components/PetsList/PetsList';
 
-const PetsData = props => {
+const PetsData = (props) => {
   const [showModal, setShowModal] = useState(false);
 
   const onBtnAddPetClick = () => {

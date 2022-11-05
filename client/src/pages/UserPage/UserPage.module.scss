@@ -1,5 +1,12 @@
-.wrapper {
-  display: flex;
+@import '../../sass/mixin';
+
+.pageWrapper {
+  @include mq(tab) {
+  }
+
+  @include mq(desk) {
+    display: flex;
+  }
 }
 
 .headerBlock {

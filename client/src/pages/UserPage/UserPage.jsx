@@ -6,7 +6,7 @@ import style from './UserPage.module.scss';
 
 const UserPage = props => {
   return (
-      <div className={style.wrapper}>
+      <div className={style.pageWrapper}>
         <UserData {...props} />
         <PetsData deletePet={props.deletePet} petsStore={props.petsStore} />
       </div>
