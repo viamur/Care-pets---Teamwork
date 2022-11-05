@@ -24,6 +24,7 @@ const LoginForm = () => {
     validationSchema: Yup.object({
       email: Yup.string()
         .email('Invalid email address')
+        .max(25, 'Email must be less tnan 25 characters')
         .required('This is a required field'),
       password: Yup.string()
         .min(7, 'Password must include more tnan 7 characters')
