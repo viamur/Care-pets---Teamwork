@@ -44,7 +44,6 @@
 }
 
 .addPetWrapper {
-  // margin-left: 567px;
   display: flex;
   align-items: center;
 }
@@ -65,7 +64,7 @@
   width: 40px;
   height: 40px;
 
-  margin-left: 20px;
+  margin-left: 15px;
 
   font-size: 42px;
   line-height: 18px;
@@ -74,4 +73,11 @@
   border-radius: 50%;
   color: var(--white);
   background-color: var(--accent-color);
+
+  @include mq(tab) {
+    margin-left: 20px;
+  }
+
+  @include mq(desk) {
+  }
 }

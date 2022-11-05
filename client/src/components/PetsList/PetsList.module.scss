@@ -11,8 +11,6 @@
 }
 
 .card {
-  position: relative;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -48,6 +46,7 @@
 }
 
 .cardDiscription {
+  position: relative;
   margin: 20px 0px 40px 0px;
   display: flex;
   flex-direction: column;
@@ -64,8 +63,8 @@
 .btnDelete {
   position: absolute;
 
-  top: 260px;
-  right: 20px;
+  top: -15px;
+  right: 0px;
 
   width: 44px;
   height: 44px;
@@ -79,7 +78,7 @@
   }
 
   @include mq(tab) {
-    top: 20px;
+    top: 0px;
   }
 
   @include mq(desk) {
@@ -121,41 +120,4 @@
 
 .categoryDiscription:last-child {
   margin-bottom: 0px;
-}
-
-.petBlock {
-  display: flex;
-  width: 850px;
-  height: 212px;
-  background: var(--bg-color);
-  border-radius: 25px;
-  margin-left: 55px;
-  margin-bottom: 20px;
-  padding-left: 15px;
-  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.25);
-  -webkit-border-radius: 25px;
-  -moz-border-radius: 25px;
-  -ms-border-radius: 25px;
-  -o-border-radius: 25px;
-}
-.photoPet {
-  width: 157px;
-  height: 157px;
-  margin-top: 27.5px;
-  margin-bottom: 27.5px;
-  border-radius: 25px;
-  -webkit-border-radius: 25px;
-  -moz-border-radius: 25px;
-  -ms-border-radius: 25px;
-  -o-border-radius: 25px;
-}
-.infoAboutPets {
-  width: 600px;
-  margin-left: 32px;
-  margin-top: 20px;
-}
-.deletePetIco {
-  // margin-top: -100px;
-  width: 24px;
-  height: 24px;
 }
