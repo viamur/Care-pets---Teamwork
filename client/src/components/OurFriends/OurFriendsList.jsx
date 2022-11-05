@@ -31,11 +31,11 @@ const OurFriendsList = ({ friends }) => {
                 </li>
                 <li className={s.discriptionEl}>
                   <p className={s.discription}>Email:</p>
-                  <p className={s.discription}>{friend.email}</p>
+                  <a href={`mailto:${friend.email}`} className={s.discription}>{friend.email}</a>
                 </li>
                 <li className={s.discriptionEl}>
                   <p className={s.discription}>Phone:</p>
-                  <p className={s.discription}>{friend.phone}</p>
+                  <a href={`tel:${friend.phone}`} className={s.discription}>{friend.phone}</a>
                 </li>
               </ul>
             </div>
