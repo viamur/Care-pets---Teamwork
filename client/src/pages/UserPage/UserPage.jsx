@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Logout from 'components/Logout/Logout';
 import UserData from '../../components/UserData/UserData';
 import PetsData from '../../components/PetsData/PetsData';
@@ -6,13 +7,19 @@ import UserInfoBlock from '../../components/UserInfoBlock/UserInfoBlock';
 import style from './UserPage.module.scss';
 
 const UserPage = props => {
+  const [showModal, setShowModal] = useState(false);
+
+  const onBtnAddPetClick = () => {
+    setShowModal(true);
+  };
+
   return (
     <>
       <div>
         <UserInfoBlock />
-        {/* <button onClick={onBtnAddPetClick}>Add pet</button> */}
+        <button onClick={onBtnAddPetClick}>Add pet</button>
         <Logout />
-        {/* {showModal && <ModalAddsPet setShowModal={setShowModal} />} */}
+        {showModal && <ModalAddsPet setShowModal={setShowModal} />}
       </div>
       {/* <div className={style.pageWrapper}>
         <UserData {...props} />
