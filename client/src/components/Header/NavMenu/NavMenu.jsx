@@ -1,10 +1,30 @@
 import { NavLink } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import s from './navMenu.module.scss';
 
 const NavMenu = ({ isUserLoggedIn }) => {
-  const getActiveLink = ({ isActive }) =>
-    isActive ? s.linkActive + ' ' + s.link : s.link;
+  const { categoryName } = useParams();
+  const getActiveLink = ({ isActive }) => {
+    // isActive ? s.linkActive + ' ' + s.link : s.link;
+
+    if (isActive) {
+      return s.linkActive + ' ' + s.link;
+    } else {
+      return s.link;
+    }
+  };
+
+  const getActiveNotice = () => {
+    if (categoryName === 'sell') {
+      return s.linkActive + ' ' + s.link;
+    } else if (categoryName === 'for-free') {
+      return s.linkActive + ' ' + s.link;
+    } else if (categoryName === 'lost-found') {
+      return s.linkActive + ' ' + s.link;
+    } else return s.link;
+  };
+
   const getActiveButton = ({ isActive }) =>
     isActive ? s.buttonActive + ' ' + s.button : s.button;
 
@@ -22,7 +42,7 @@ const NavMenu = ({ isUserLoggedIn }) => {
           </NavLink>
         </li>
         <li className={s.navLi}>
-          <NavLink className={getActiveLink} to="/notices/sell">
+          <NavLink className={getActiveNotice} to={`notices/lost-found`}>
             Find pet
           </NavLink>
         </li>
@@ -33,7 +53,7 @@ const NavMenu = ({ isUserLoggedIn }) => {
         </div>
       </ul>
       <ul className={s.auth}>
-        <li>
+        <li className={s.buttonL}>
           {!isUserLoggedIn && (
             <NavLink className={getActiveButton} to="/login">
               Login

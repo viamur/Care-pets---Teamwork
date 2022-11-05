@@ -114,15 +114,13 @@ align-items: center;
                  }
 }
 
-.button:first-child{
-    margin-right: 12px;
-}
-
-
-
 .buttonActive {
     color:white;
     background-color: var(--accent-color);
+}
+
+.buttonL{
+    margin-right: 20px;
 }
 
 .account{
