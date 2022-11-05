@@ -1,7 +1,7 @@
 @import '../../sass/mixin';
 
 .item {
-  width: 280px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   background-color: var(--white);
@@ -24,7 +24,7 @@
 
 .thumbImage {
   position: relative;
-  width: 280px;
+  width: 100%;
   height: 288px;
   margin-left: auto;
   margin-right: auto;
