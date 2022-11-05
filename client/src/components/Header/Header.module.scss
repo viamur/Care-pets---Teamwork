@@ -1,5 +1,22 @@
 @import '../../sass/_mixin.scss';
 
+.header {
+    display: flex;
+
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+
+    @include mq(tab) {
+        justify-content: flex-end;
+    }
+
+    @include mq(desk) {
+        flex-direction: row-reverse;
+        justify-content: space-between;
+    }
+}
+
 .navContainer {
     position: relative;
     padding: 12px 20px 45px ;
@@ -39,6 +56,7 @@
     margin-left: 20px;
 
     align-items: center;
+    justify-content: center;
 
     background-color: var(--bg-color);
     

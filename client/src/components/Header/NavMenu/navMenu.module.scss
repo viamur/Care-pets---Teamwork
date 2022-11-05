@@ -7,17 +7,36 @@ width: 100%;
 justify-content: space-between;
 align-items: center;
 
-
     @include mq(tab) {
-        justify-content: flex-end;
+        // justify-content: flex-end;
     }
 
     @include mq(desk) {
-        flex-direction: row-reverse;
+        // flex-direction: row-reverse;
         justify-content: space-between;
-    }
+    }    
+}
 
+.navLi {
+    display: none;
+    @include mq(desk) {
         
+        display: flex;
+    }
+}
+
+.logo {
+    font-size: 28px;
+    font-family: 'Poppins Bold';
+
+    @include mq(tab) {
+        font-size: 32px;
+    }
+}
+
+.logoT {
+    color: var(--accent-color);
+
 }
 
 .link {
@@ -58,37 +77,55 @@ align-items: center;
          }
 }
 
-.nav {
+.navAll {
     display: flex;
     align-items: center;
-
-    display: none;
     
-     @include mq(desk) {
+    @include mq(desk) {
         display: flex;
     }
 }
 
+.nav{
+    display: none;
+
+    @include mq(tab) {
+        display: none;
+    }
+
+    @include mq(desk) {
+        display: flex;
+    }
+}
+
+
+
 .button{
+    letter-spacing: 0.04em;
+    color: black;
+    font-size: 20px;
     text-align: center;
-    padding: 2px 28px;
-    font-size: 14px;
+    padding: 8px 28px;
     border: 2px solid var(--accent-color);
     border-radius: 40px;
+
+                 @include mq(desk) {
+                     padding: 10px 28px;
+                 }
 }
-
-.button:first-child{
-    margin-right: 12px;
-}
-
-
 
 .buttonActive {
     color:white;
     background-color: var(--accent-color);
 }
 
+.buttonL{
+    margin-right: 20px;
+}
+
 .account{
+    display: flex;
+    align-items: center;
     text-align: center;
     padding: 8px 28px;
     font-size: 14px;
