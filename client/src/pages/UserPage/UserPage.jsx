@@ -14,15 +14,9 @@ const UserPage = props => {
 
   return (
     <div>
-      <div className={style.headerBlock}>
-        <p className={style.myInfoHeader}>My information:</p>
-        <p className={style.myPetsHeader}>My pets:</p>
-      </div>
+      <h1>PageUser</h1>
       <button onClick={onBtnAddPetClick}>Add pet</button>
-      <div className={style.mainContent}>
-        <UserData {...props} />
-        <PetsData deletePet={props.deletePet} petsStore={props.petsStore} />
-      </div>
+      <Logout />
       {showModal && <ModalAddsPet setShowModal={setShowModal} />}
     </div>
   );

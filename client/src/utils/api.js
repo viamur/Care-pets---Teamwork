@@ -40,15 +40,20 @@ export const getLoginApi = async userData => {
   return response.data;
 };
 
+/* ==============LOGOUT===================== */
+export const getLogOutApi = async () => {
+  const response = await axios.get('/auth/logout');
+  savedToken.unset();
+  return response.data;
+};
+
 export const getCheckEmail = async email => {
   const response = await axios.post('/auth/checkemail', email);
   return response.data.check;
 };
 
 export const fetchAdsByCategory = category => {
-  return axios
-    .get('/notices', { params: { category } })
-    .then(response => response.data.data);
+  return axios.get('/notices', { params: { category } }).then(response => response.data.data);
 };
 
 export const fetchFavoriteAds = () => {
