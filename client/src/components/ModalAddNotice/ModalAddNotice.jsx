@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useFormik } from 'formik';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { showAlertMessage } from '../../utils/showMessages';
 import * as Yup from 'yup';
 import { addNotice } from '../../utils/api';
@@ -13,7 +13,6 @@ const portalModal = document.querySelector('#modal-root');
 const ModalAddNotice = ({ setShowModal }) => {
   const [page, setPage] = useState(1);
   const navigate = useNavigate();
-  // const { categoryName } = useParams();
 
   useEffect(() => {
     const handleKeyDown = e => {
