@@ -93,3 +93,10 @@ export const addPet = info => {
     return response.data.data;
   });
 };
+
+export const addNotice = info => {
+  return axios.post('notices/user', info).then(response => {
+    console.log(response.data.data);
+    return response.data.data;
+  });
+};

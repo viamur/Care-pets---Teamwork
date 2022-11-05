@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useFormik } from 'formik';
+import { showAlertMessage } from '../../utils/showMessages';
 import * as Yup from 'yup';
+import { addNotice } from '../../utils/api';
 import sprite from '../../images/icons/sprite.svg';
 import s from './ModalAddNotice.module.scss';
 
@@ -35,7 +37,7 @@ const ModalAddNotice = ({ setShowModal }) => {
       category: 'sell',
       title: '',
       name: '',
-      date: '',
+      birthdate: '',
       breed: '',
       sex: 'male',
       location: '',
@@ -56,7 +58,7 @@ const ModalAddNotice = ({ setShowModal }) => {
       name: Yup.string()
         .min(2, 'Field must include more tnan 2 characters')
         .max(16, 'Field must be less tnan 16 characters'),
-      date: Yup.date().max(new Date(), 'Choose date in the past'),
+      birthdate: Yup.date().max(new Date(), 'Choose date in the past'),
       breed: Yup.string()
         .min(2, 'Field must include more tnan 2 characters')
         .max(24, 'Field must be less tnan 24 characters'),
@@ -75,18 +77,55 @@ const ModalAddNotice = ({ setShowModal }) => {
     }),
   });
 
-  const { category, title, name, date, breed, sex, location, price, comments } =
-    formik.values;
+  const {
+    category,
+    title,
+    name,
+    birthdate,
+    breed,
+    sex,
+    location,
+    price,
+    comments,
+  } = formik.values;
 
   const {
     title: titleError,
     name: nameError,
-    date: dateError,
+    birthdate: birthdateError,
     breed: breedError,
     location: locationError,
     price: priceError,
     comments: commentsError,
   } = formik.errors;
+
+  const onFormSubmit = e => {
+    e.preventDefault();
+
+    const transformedPrice = Number(price);
+    const arrayOfData = Object.entries({
+      category,
+      title,
+      name,
+      birthdate,
+      breed,
+      sex,
+      location,
+      price: transformedPrice,
+      comments,
+    });
+    const filteredArray = arrayOfData.filter(item => item[1]);
+    const info = filteredArray.reduce((previousValue, feature) => {
+      return { ...previousValue, [feature[0]]: feature[1] };
+    }, {});
+
+    addNotice(info)
+      .then(data => {
+        console.log('Успех');
+        setShowModal(false);
+      })
+      .catch(error => showAlertMessage(error.response.data.message));
+  };
 
   const onPageChange = () => {
     if (page === 1) {
@@ -117,14 +156,13 @@ const ModalAddNotice = ({ setShowModal }) => {
             consectetur
           </p>
         )}
-        <form>
+        <form onSubmit={onFormSubmit}>
           {page === 1 && (
             <>
               <div className={s.radioToolbar}>
                 {category === 'lostFound' ? (
                   <label
                     style={{ backgroundColor: '#F59256', color: '#ffffff' }}
-                    className={s.radioLabel}
                   >
                     lost/found
                     <input
@@ -137,7 +175,7 @@ const ModalAddNotice = ({ setShowModal }) => {
                     />
                   </label>
                 ) : (
-                  <label className={s.radioLabel}>
+                  <label>
                     lost/found
                     <input
                       type="radio"
@@ -237,21 +275,21 @@ const ModalAddNotice = ({ setShowModal }) => {
               <p className={s.error}>
                 {formik.touched.name && nameError && nameError}
               </p>
-              <label forhtml="date" className={s.label}>
+              <label forhtml="birthdate" className={s.label}>
                 Date of birth
               </label>
               <input
                 className={s.input}
                 type="date"
-                name="date"
-                id="date"
+                name="birthdate"
+                id="birthdate"
                 placeholder="Type date of birth"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                value={date}
+                value={birthdate}
               />
               <p className={s.error}>
-                {formik.touched.date && dateError && dateError}
+                {formik.touched.birthdate && birthdateError && birthdateError}
               </p>
               <label forhtml="breed" className={s.label}>
                 Breed
@@ -285,7 +323,7 @@ const ModalAddNotice = ({ setShowModal }) => {
                     title === '' ||
                     titleError ||
                     nameError ||
-                    dateError ||
+                    birthdateError ||
                     breedError
                       ? true
                       : false
@@ -403,13 +441,16 @@ const ModalAddNotice = ({ setShowModal }) => {
                 <button
                   className={s.button}
                   type="submit"
-                  onClick={onBtnCloseClick}
                   disabled={
-                    location === '' ||
-                    price === '' ||
-                    locationError ||
-                    priceError ||
-                    commentsError
+                    category === 'sell' &&
+                    (location === '' ||
+                      price === '' ||
+                      locationError ||
+                      priceError ||
+                      commentsError)
+                      ? true
+                      : category !== 'sell' &&
+                        (location === '' || locationError || commentsError)
                       ? true
                       : false
                   }

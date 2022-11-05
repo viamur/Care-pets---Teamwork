@@ -247,25 +247,24 @@
   margin-right: 8px;
 }
 
-.radioToolbar label:hover {
-  background-color: var(--accent-color);
-  color: var(--white);
-}
+.radioToolbar label:first-child {
+  margin-bottom: 12px;
 
-.radioLabel {
-  @include mq(mob) {
-    margin-bottom: 12px;
-  }
   @include mq(tab) {
     margin-bottom: 16px;
   }
+}
+
+.radioToolbar label:hover {
+  background-color: var(--accent-color);
+  color: var(--white);
 }
 
 .radioToolbarPage2 {
   margin-bottom: 71px;
 
   @include mq(tab) {
-    margin-bottom: 40px;
+    margin-bottom: 87px;
   }
 }
 
@@ -298,6 +297,12 @@
   cursor: pointer;
 
   margin-right: 40px;
+
+  @include mq(tab) {
+    width: 60px;
+    height: 60px;
+    margin-right: 83px;
+  }
 }
 
 .labelFemale {
@@ -310,6 +315,11 @@
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
+
+  @include mq(tab) {
+    width: 60px;
+    height: 60px;
+  }
 }
 
 .sexDescr {
@@ -318,10 +328,18 @@
   font-family: 'Manrope Medium';
   font-size: 18px;
   line-height: 1.44px;
+
+  @include mq(tab) {
+    bottom: -47px;
+  }
 }
 
 .sexDescr {
   color: var(--accent-color);
+
+  @include mq(tab) {
+    text-align: center;
+  }
 }
 
 .textarea {
@@ -331,14 +349,13 @@
   background: var(--bg-color);
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 20px;
-  padding: 12px 14px;
+  padding: 11px 14px;
   outline: none;
   resize: none;
 
   @include mq(tab) {
-    width: 394px;
-    height: 116px;
-    padding: 16px;
+    height: 113px;
+    padding: 16px 18px;
   }
 }
 
