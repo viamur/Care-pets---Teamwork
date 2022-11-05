@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import ImageUploading from 'react-images-uploading';
 import {
   getUserName,
   getUserEmail,
@@ -28,27 +29,44 @@ const UserInfoBlock = () => {
   const [phone, setPhone] = useState(phoneSelector);
   const [birthday, setBirthday] = useState(birthdaySelector);
 
-  const dispatch = useDispatch();
+  /* Это для загрузки файла */
+  const [selectedFile, setSelectedFile] = useState();
+  const [preview, setPreview] = useState();
 
-  /* Записуем в стейт данные с селекторов */
-  //   useEffect(() => {
-  //     setPhoto()
-  //     setEmail()
-  //     setName(nameSelector);
-  //       setCity()
-  //       setPhone()
-  //       setBirthday()
-  //   }, []);
+  const dispatch = useDispatch();
 
   const handleClick = e => {
     console.log('name', name);
   };
+
+  // create a preview as a side effect, whenever selected file is changed
+  useEffect(() => {
+    if (!selectedFile) {
+      setPreview(undefined);
+      return;
+    }
+
+    const objectUrl = URL.createObjectURL(selectedFile);
+    setPreview(objectUrl);
+
+    // free memory when ever this component is unmounted
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [selectedFile]);
+
+  const onSelectFile = e => {
+    if (!e.target.files || e.target.files.length === 0) {
+      setSelectedFile(undefined);
+      return;
+    }
+
+    // I've kept this example simple by using the first image instead of multiple
+    setSelectedFile(e.target.files[0]);
+  };
   return (
     <>
+      <input type="file" name="avatar" onChange={onSelectFile} />
+      {selectedFile && <img src={preview} />}
       <img src={`https://pet-support.herokuapp.com/${photo}`} alt="avatar" />
-      <button type="file" name="avatar">
-        Edit photo
-      </button>
       <ul>
         <li>
           <p>Name:</p>
