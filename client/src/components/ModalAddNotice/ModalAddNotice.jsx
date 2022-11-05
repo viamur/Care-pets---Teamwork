@@ -131,6 +131,15 @@ const ModalAddNotice = ({ setShowModal }) => {
 
   const onPageChange = () => {
     if (page === 1) {
+      if (title === '') {
+        showAlertMessage('Input all required fields');
+        return;
+      }
+
+      if (titleError || nameError || birthdateError || breedError) {
+        showAlertMessage('Input all fields in the necessary format');
+        return;
+      }
       setPage(2);
       return;
     }
@@ -310,7 +319,7 @@ const ModalAddNotice = ({ setShowModal }) => {
               </p>
               <div className={s.blockOfButtons}>
                 <button
-                  className={`${s.button} ${s.buttonDistance}`}
+                  className={s.button}
                   type="button"
                   onClick={onBtnCloseClick}
                 >
@@ -320,15 +329,6 @@ const ModalAddNotice = ({ setShowModal }) => {
                   className={s.button}
                   type="button"
                   onClick={onPageChange}
-                  disabled={
-                    title === '' ||
-                    titleError ||
-                    nameError ||
-                    birthdateError ||
-                    breedError
-                      ? true
-                      : false
-                  }
                 >
                   Next
                 </button>

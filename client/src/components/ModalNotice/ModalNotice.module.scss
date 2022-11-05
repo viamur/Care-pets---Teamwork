@@ -18,7 +18,7 @@
   transform: translate(-50%, -50%);
 
   min-width: 295px;
-  height: 90%;
+  max-height: 90%;
   border-radius: 20px;
   padding: 60px 20px 20px;
   background: var(--white);
@@ -197,10 +197,13 @@
 }
 
 .blockOfBtn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-direction: column-reverse;
+
   @include mq(tab) {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
+    flex-direction: row;
     justify-content: right;
   }
 }
@@ -234,16 +237,25 @@
 }
 
 .btn:not(:last-child) {
-  margin-bottom: 12px;
   @include mq(tab) {
     margin-right: 12px;
     margin-bottom: 0px;
   }
 }
 
+.btn:not(:first-child) {
+  @include mq(mob-only) {
+    margin-bottom: 12px;
+  }
+}
+
 .btn:hover {
   background-color: var(--accent-color);
   color: var(--white);
+}
+
+.iconTitle {
+  margin-right: 8px;
 }
 
 .icon {

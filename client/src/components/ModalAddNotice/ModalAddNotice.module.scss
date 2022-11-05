@@ -157,8 +157,10 @@
 }
 
 .blockOfButtons {
+  display: flex;
+  flex-direction: column-reverse;
   @include mq(tab) {
-    display: flex;
+    flex-direction: row;
     justify-content: center;
   }
 }
@@ -199,12 +201,15 @@
   background-color: var(--white);
 }
 
-.buttonDistance {
-  @include mq(mob-only) {
-    margin-bottom: 12px;
-  }
+.button:first-child {
   @include mq(tab) {
     margin-right: 20px;
+  }
+}
+
+.button:last-child {
+  @include mq(mob-only) {
+    margin-bottom: 12px;
   }
 }
 

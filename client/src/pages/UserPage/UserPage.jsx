@@ -2,29 +2,23 @@ import Logout from 'components/Logout/Logout';
 import UserData from '../../components/UserData/UserData';
 import PetsData from '../../components/PetsData/PetsData';
 import ModalAddsPet from '../../components/ModalAddsPet/ModalAddsPet';
+import UserInfoBlock from '../../components/UserInfoBlock/UserInfoBlock';
 import style from './UserPage.module.scss';
-import { useState } from 'react';
 
 const UserPage = props => {
-  const [showModal, setShowModal] = useState(false);
-
-  const onBtnAddPetClick = () => {
-    setShowModal(true);
-  };
-
   return (
-    <div>
-      <div className={style.headerBlock}>
-        <p className={style.myInfoHeader}>My information:</p>
-        <p className={style.myPetsHeader}>My pets:</p>
+    <>
+      <div>
+        <UserInfoBlock />
+        {/* <button onClick={onBtnAddPetClick}>Add pet</button> */}
+        <Logout />
+        {/* {showModal && <ModalAddsPet setShowModal={setShowModal} />} */}
       </div>
-      <button onClick={onBtnAddPetClick}>Add pet</button>
-      <div className={style.mainContent}>
+      {/* <div className={style.pageWrapper}>
         <UserData {...props} />
         <PetsData deletePet={props.deletePet} petsStore={props.petsStore} />
-      </div>
-      {showModal && <ModalAddsPet setShowModal={setShowModal} />}
-    </div>
+      </div> */}
+    </>
   );
 };
 
