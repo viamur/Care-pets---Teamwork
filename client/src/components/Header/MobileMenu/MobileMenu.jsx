@@ -1,4 +1,6 @@
 import { NavLink } from 'react-router-dom';
+
+// import { useState } from 'react';
 // import { slide as Menu } from 'react-burger-menu';
 
 import s from './mobileMenu.module.scss';
@@ -10,34 +12,69 @@ const MobileMenu = ({ isUserLoggedIn }) => {
   const getActiveButton = ({ isActive }) =>
     isActive ? s.buttonActive + ' ' + s.button : s.button;
 
+  // const setMenuStatus = useState(false);
+  // setMenuStatus(prev => !prev);
+
+  // const onClose = () => {
+  //   setMenuStatus(false);
+  // };
+
+  const handleClick = e => {
+    // e.preventDefault();
+    const id = document.getElementById('modal-root');
+    if (id.contains('modal-root')) {
+      id.remove('modal-root');
+    }
+    // if (e.code === 'Escape') {
+    //   close();
+    //   changeClass('on', 'off');
+    //   return;
+    // }
+    // if (e.target === e.currentTarget) {
+    //   close();
+    //   changeClass('on', 'off');
+  };
+
   return (
     <div className={s.menuContainer}>
       <div className={s.auth}>
         {!isUserLoggedIn && (
-          <NavLink className={getActiveButton} to="/login">
+          <NavLink
+            onClick={handleClick}
+            className={getActiveButton}
+            to="/login"
+          >
             Login
           </NavLink>
         )}
         {!isUserLoggedIn && (
-          <NavLink className={getActiveButton} to="/register">
+          <NavLink
+            onClick={handleClick}
+            className={getActiveButton}
+            to="/register"
+          >
             Registration
           </NavLink>
         )}
         {isUserLoggedIn && (
-          <NavLink className={s.account} to="/user">
+          <NavLink onClick={handleClick} className={s.account} to="/user">
             Account
           </NavLink>
         )}
       </div>
       <div className={s.nav}>
-        <NavLink className={getActiveLink} to="/news">
+        <NavLink className={getActiveLink} onClick={handleClick} to="/news">
           News
         </NavLink>
-        <NavLink className={getActiveLink} to="/notices/sell">
+        <NavLink
+          className={getActiveLink}
+          onClick={handleClick}
+          to="/notices/lost-found"
+        >
           Find pet
         </NavLink>
-        <NavLink className={getActiveLink} to="/friends">
-          Friends
+        <NavLink onClick={handleClick} className={getActiveLink} to="/friends">
+          Our Friend
         </NavLink>
       </div>
     </div>

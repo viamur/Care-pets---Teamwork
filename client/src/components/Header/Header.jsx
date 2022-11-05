@@ -10,7 +10,7 @@ import useMail from 'hooks/useLogin';
 
 const Header = () => {
   const [menuStatus, setMenuStatus] = useState(false);
-  const body = document.querySelector('body');
+  const body = document.querySelector('html');
 
   const isUserLoggedIn = useMail();
 
