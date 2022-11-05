@@ -85,7 +85,7 @@ const UserInfoBlock = () => {
         </label>
         <ul>
           <li>
-            <p>Name:</p>
+            <p className={s.userDataParams}>Name:</p>
             <input
               type="text"
               name="name"
@@ -97,7 +97,7 @@ const UserInfoBlock = () => {
             </button>
           </li>
           <li>
-            <p>Email:</p>
+            <p className={s.userDataParams}>Email:</p>
             <input
               type="text"
               name="email"
@@ -109,7 +109,7 @@ const UserInfoBlock = () => {
             </button>
           </li>
           <li>
-            <p>Birthday:</p>
+            <p className={s.userDataParams}>Birthday:</p>
             <input
               type="text"
               name="birthday"
@@ -121,7 +121,7 @@ const UserInfoBlock = () => {
             </button>
           </li>
           <li>
-            <p>Phone:</p>
+            <p className={s.userDataParams}>Phone:</p>
             <input
               type="text"
               name="phone"
@@ -133,7 +133,7 @@ const UserInfoBlock = () => {
             </button>
           </li>
           <li>
-            <p>City:</p>
+            <p className={s.userDataParams}>City:</p>
             <input
               type="text"
               name="city"

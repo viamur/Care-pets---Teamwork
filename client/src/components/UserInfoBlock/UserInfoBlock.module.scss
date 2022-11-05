@@ -15,6 +15,7 @@
   font-size: 20px;
   line-height: 27px;
   letter-spacing: 0.04em;
+  color: var(--font-color);
   margin-bottom: 18px;
 }
 
@@ -50,4 +51,14 @@
   font-size: 12px;
   line-height: 22px;
   letter-spacing: 0.04em;
+  color: var(--font-color);
+}
+
+.userDataParams {
+  font-family: 'Manrope Medium';
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.04em;
+  color: var(--font-color);
 }
