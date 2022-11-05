@@ -1,7 +1,7 @@
 .btnAddPet {
   position: fixed;
   top: 466px;
-  right: calc(50% - 220px);
+  right: 20px;
   z-index: 1;
   width: 80px;
   height: 80px;
@@ -23,6 +23,10 @@
 
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+  @media screen and (min-width: 480px) {
+    right: calc(50% - 220px);
+  }
 
   @media screen and (min-width: 768px) {
     position: static;

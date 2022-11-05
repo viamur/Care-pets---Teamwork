@@ -47,6 +47,15 @@ const LoginForm = () => {
 
   const onFormSubmit = e => {
     e.preventDefault();
+
+    if (email === '' || password === '') {
+      showAlertMessage('Input all required fields');
+      return;
+    }
+    if (passwordError || emailError) {
+      showAlertMessage('Input all fields in the necessary format');
+      return;
+    }
     dispatch(
       loginUser({
         email,
@@ -81,15 +90,7 @@ const LoginForm = () => {
       <p className={s['error--last']}>
         {formik.touched.password && passwordError && passwordError}
       </p>
-      <button
-        className={s.button}
-        type="submit"
-        disabled={
-          email === '' || password === '' || passwordError || emailError
-            ? true
-            : false
-        }
-      >
+      <button className={s.button} type="submit">
         Login
       </button>
     </form>
