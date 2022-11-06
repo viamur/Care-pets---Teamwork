@@ -4,17 +4,19 @@ import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import DatePicker from 'react-date-picker';
+import { useParams } from 'react-router-dom';
 import { showAlertMessage } from '../../utils/showMessages';
-import { addNotice } from '../../utils/api';
+import { addNotice, fetchOwnAds } from '../../utils/api';
 import imgLoad from '../../images/modals/loadMobile.png';
 import sprite from '../../images/icons/sprite.svg';
 import s from './ModalAddNotice.module.scss';
 
 const portalModal = document.querySelector('#modal-root');
 
-const ModalAddNotice = ({ setShowModal }) => {
+const ModalAddNotice = ({ setShowModal, array, setArray }) => {
   const [page, setPage] = useState(1);
   const [photo, setPhoto] = useState('');
+  const { categoryName } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -117,7 +119,7 @@ const ModalAddNotice = ({ setShowModal }) => {
     return () => URL.revokeObjectURL(objectUrl);
   }, [notices]);
 
-  const onFormSubmit = e => {
+  const onFormSubmit = async e => {
     e.preventDefault();
 
     if (location === '' || (category === 'sell' && price === '')) {
@@ -149,12 +151,19 @@ const ModalAddNotice = ({ setShowModal }) => {
       return { ...previousValue, [feature[0]]: feature[1] };
     }, {});
 
-    addNotice(info)
-      .then(data => {
+    try {
+      await addNotice(info);
+      if (categoryName !== 'own') {
         setShowModal(false);
         navigate('/notices/own');
-      })
-      .catch(error => showAlertMessage(error.response.data.message));
+        return;
+      }
+      const response = await fetchOwnAds();
+      setShowModal(false);
+      setArray(response);
+    } catch (error) {
+      showAlertMessage(error.response.data.message);
+    }
   };
 
   const onPageChange = () => {

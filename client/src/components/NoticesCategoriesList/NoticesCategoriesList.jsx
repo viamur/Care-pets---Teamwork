@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import { showAlertMessage } from '../../utils/showMessages';
 import { showLoadingHourglass, removeLoading } from '../../utils/showLoading';
 import {
@@ -7,6 +8,7 @@ import {
   fetchOwnAds,
 } from '../../utils/api';
 import NoticeCategoryItem from 'components/NoticeCategoryItem/NoticeCategoryItem';
+import AddNoticeButton from 'components/AddNoticeButton/AddNoticeButton';
 
 import s from './NoticesCategoriesList.module.scss';
 
@@ -16,14 +18,11 @@ const categoriesForBack = {
   'for-free': 'inGoodHands',
 };
 
-const NoticesCategoriesList = ({
-  category,
-  searchQuery,
-  setSearchQuery,
-  setShowButton,
-}) => {
+const NoticesCategoriesList = ({ category, searchQuery, setSearchQuery }) => {
   const [array, setArray] = useState([]);
+  const [showButton, setShowButton] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
   useEffect(() => {
     showLoadingHourglass('Loading ...');
@@ -107,7 +106,16 @@ const NoticesCategoriesList = ({
                 setShowButton={setShowButton}
               />
             ))}
+        {showButton && isMobile && (
+          <AddNoticeButton title="Add pet" array={array} setArray={setArray} />
+        )}
       </ul>
+      {showButton && !isMobile && (
+        <div className={s.boxAddPet}>
+          <p className={s.textAddPet}>Add pet</p>
+          <AddNoticeButton array={array} setArray={setArray} />
+        </div>
+      )}
     </>
   );
 };

@@ -7,7 +7,7 @@ import ModalAddNotice from 'components/ModalAddNotice/ModalAddNotice';
 import sprite from '../../images/icons/sprite.svg';
 import s from './AddNoticeButton.module.scss';
 
-const AddNoticeButton = ({ title }) => {
+const AddNoticeButton = ({ title, array, setArray }) => {
   const [showModal, setShowModal] = useState(false);
   const userEmail = useSelector(getUserEmail);
 
@@ -33,7 +33,13 @@ const AddNoticeButton = ({ title }) => {
         </svg>
         {title && <p className={s.title}>{title}</p>}
       </button>
-      {showModal && <ModalAddNotice setShowModal={setShowModal} />}
+      {showModal && (
+        <ModalAddNotice
+          setShowModal={setShowModal}
+          array={array}
+          setArray={setArray}
+        />
+      )}
     </>
   );
 };

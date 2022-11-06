@@ -7,7 +7,6 @@ import NoticesCategoriesList from 'components/NoticesCategoriesList/NoticesCateg
 
 const NoticesPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [showButton, setShowButton] = useState(true);
   const { categoryName } = useParams();
 
   return (
@@ -16,12 +15,11 @@ const NoticesPage = () => {
         setSearchQuery={setSearchQuery}
         title="Find your favorite pet"
       />
-      <NoticesCategoriesNav showButton={showButton} />
+      <NoticesCategoriesNav />
       <NoticesCategoriesList
         category={categoryName}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
-        setShowButton={setShowButton}
       />
     </Container>
   );

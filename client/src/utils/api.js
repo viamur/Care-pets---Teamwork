@@ -126,6 +126,7 @@ export const addNotice = info => {
       headers: { 'Content-Type': 'multipart/form-data' },
     })
     .then(response => {
+      console.log(response.data.data);
       return response.data.data;
     });
 };
