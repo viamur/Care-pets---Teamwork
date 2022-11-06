@@ -79,6 +79,11 @@
     margin-top: 16px;
     margin-right: 52px;
   }
+
+  @include mq(desk) {
+    margin-top: 0px;
+    margin-right: 0px;
+  }
 }
 
 .item {
@@ -87,6 +92,10 @@
 
   &:not(:last-child) {
     margin-bottom: 4px;
+  }
+
+  @include mq(desk) {
+    width: 100%;
   }
 }
 
@@ -132,5 +141,31 @@
   @include mq(tab) {
     font-size: 18px;
     line-height: 1.39;
+  }
+
+  @include mq(desk) {
+    width: 100%;
+  }
+}
+
+.title {
+  font-family: 'Manrope Medium';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 27px;
+
+  /* Черный */
+
+  color: #111111;
+
+  @include mq(tab) {
+    font-size: 28px;
+    line-height: 38px;
+  }
+
+  @include mq(desk) {
+    font-size: 28px;
+    line-height: 38px;
   }
 }
