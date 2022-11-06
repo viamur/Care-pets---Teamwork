@@ -8,6 +8,7 @@ export const getUserAvatar = state => state.user.avatarURL;
 export const getUserPets = state => state.user.pets;
 export const getUserIsLoading = state => state.user.isLoading;
 export const getUserError = state => state.user.error;
+export const getAllUserInfo = state => state.user;
 
 /*   _id: null,
   name: '',

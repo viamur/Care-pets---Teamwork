@@ -1,58 +1,96 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ImageUploading from 'react-images-uploading';
-import {
-  getUserName,
-  getUserEmail,
-  getUserBirthday,
-  getUserPhone,
-  getUserCity,
-  getUserAvatar,
-} from '../../redux/user/userSelectrors';
+import { getAllUserInfo } from '../../redux/user/userSelectrors';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 import s from './UserInfoBlock.module.scss';
+import { pathInfoUser } from 'redux/user/userOperations';
 
 const UserInfoBlock = () => {
   /* Селекторы */
-  const avatarSelector = useSelector(getUserAvatar);
-  const emailSelector = useSelector(getUserEmail);
-  const nameSelector = useSelector(getUserName);
-  const citySelector = useSelector(getUserCity);
-  const phoneSelector = useSelector(getUserPhone);
-  const birthdaySelector = useSelector(getUserBirthday);
+  const userInfo = useSelector(getAllUserInfo);
 
   /* UseState */
-  const [photo, setPhoto] = useState(avatarSelector);
-  const [email, setEmail] = useState(emailSelector);
-  const [name, setName] = useState(nameSelector);
-  const [city, setCity] = useState(citySelector);
-  const [phone, setPhone] = useState(phoneSelector);
-  const [birthday, setBirthday] = useState(birthdaySelector);
-
+  const [photo, setPhoto] = useState('');
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [city, setCity] = useState('');
+  const [phone, setPhone] = useState('');
+  const [birthday, setBirthday] = useState('');
   /* Это для загрузки файла */
   const [selectedFile, setSelectedFile] = useState();
-  const [preview, setPreview] = useState();
 
   const dispatch = useDispatch();
+  const listRef = useRef();
 
-  const handleClick = e => {
-    console.log('name', name);
-  };
+  /* Возможно тут можно обрабатывать ошибки типо нотификашку высвечивать */
+  useEffect(() => {
+    if (userInfo.error) {
+      Notify.failure(userInfo.error);
+    }
+  }, [userInfo.error]);
+
+  /* Записуем в стейт данные при загрузки страницы из селектора */
+  useEffect(() => {
+    setPhoto(`https://pet-support.herokuapp.com/${userInfo.avatarURL}`);
+    setEmail(userInfo.email);
+    setName(userInfo.name);
+    setCity(userInfo.city);
+    setPhone(userInfo.phone);
+    setBirthday(userInfo.birthday);
+  }, [userInfo]);
 
   // create a preview as a side effect, whenever selected file is changed
   useEffect(() => {
     if (!selectedFile) {
-      setPreview(undefined);
+      //   setPreview(undefined);
       return;
     }
 
+    /* Создаем FormData и добовляем туда наш файл и отпарвляем */
+    const bodyFormData = new FormData();
+    bodyFormData.append('avatar', selectedFile);
+    dispatch(pathInfoUser(bodyFormData));
+
+    /* Создаем виртуальную ссылку на загруженный файл */
     const objectUrl = URL.createObjectURL(selectedFile);
-    setPreview(objectUrl);
+    setPhoto(objectUrl);
 
     // free memory when ever this component is unmounted
     return () => URL.revokeObjectURL(objectUrl);
   }, [selectedFile]);
 
+  /* При клике на кнопку меняем disabled class отправлем на бек форму */
+  const handleClick = e => {
+    const btn = e.target;
+    const listChildren = Object.values(listRef.current.children);
+
+    listChildren.forEach(li => {
+      const input = li.children['1'];
+      if (input.name === btn.name) {
+        if (input.disabled) {
+          /* Меняем инпут дизейблид */
+          input.disabled = false;
+          /* Меняем класс кнопки */
+          btn.className = 'galochka';
+          return;
+        }
+        if (!input.disabled) {
+          /* Отправка формы */
+          dispatch(pathInfoUser({ email, name, city, phone, birthday }));
+
+          /* Меняем класс кнопки */
+          btn.className = 'pencil';
+          /* Меняем инпут дизейблид */
+          input.disabled = true;
+          return;
+        }
+      }
+    });
+  };
+
+  /* Для выбора файла  */
   const onSelectFile = e => {
     if (!e.target.files || e.target.files.length === 0) {
       setSelectedFile(undefined);
@@ -62,22 +100,34 @@ const UserInfoBlock = () => {
     // I've kept this example simple by using the first image instead of multiple
     setSelectedFile(e.target.files[0]);
   };
+
   return (
     <>
-      <input type="file" name="avatar" onChange={onSelectFile} />
-      {selectedFile && <img src={preview} />}
-      <img src={`https://pet-support.herokuapp.com/${photo}`} alt="avatar" />
-      <ul>
+      <img src={photo} alt="avatar" width={200} height={200} />
+      <input type="file" name="avatar" accept=".png, .jpg, .jpeg" onChange={onSelectFile} />
+      <ul ref={listRef}>
         <li>
           <p>Name:</p>
-          <input type="text" name="name" onChange={e => setName(e.target.value)} value={name} />
-          <button type="button" name="name" onClick={handleClick}>
+          <input
+            type="text"
+            name="name"
+            disabled={true}
+            onChange={e => setName(e.target.value)}
+            value={name}
+          />
+          <button type="button" name="name" className={'pencil'} onClick={handleClick}>
             change
           </button>
         </li>
         <li>
           <p>Email:</p>
-          <input type="text" name="email" onChange={e => setEmail(e.target.value)} value={email} />
+          <input
+            type="text"
+            name="email"
+            disabled={true}
+            onChange={e => setEmail(e.target.value)}
+            value={email}
+          />
           <button type="button" name="email" onClick={handleClick}>
             change
           </button>
@@ -87,7 +137,8 @@ const UserInfoBlock = () => {
           <input
             type="text"
             name="birthday"
-            onChange={e => setName(e.target.value)}
+            disabled={true}
+            onChange={e => setBirthday(e.target.value)}
             value={birthday}
           />
           <button type="button" name="birthday" onClick={handleClick}>
@@ -96,14 +147,26 @@ const UserInfoBlock = () => {
         </li>
         <li>
           <p>Phone:</p>
-          <input type="text" name="phone" onChange={e => setName(e.target.value)} value={phone} />
+          <input
+            type="text"
+            name="phone"
+            disabled={true}
+            onChange={e => setPhone(e.target.value)}
+            value={phone}
+          />
           <button type="button" name="phone" onClick={handleClick}>
             change
           </button>
         </li>
         <li>
           <p>City:</p>
-          <input type="text" name="city" onChange={e => setName(e.target.value)} value={city} />
+          <input
+            type="text"
+            name="city"
+            disabled={true}
+            onChange={e => setCity(e.target.value)}
+            value={city}
+          />
           <button type="button" name="city" onClick={handleClick}>
             change
           </button>

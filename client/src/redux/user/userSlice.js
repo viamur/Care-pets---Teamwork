@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { logOutUser } from '../auth/authOperations';
 import {
   getCurUser,
   pathInfoUser,
   addPetInUserCard,
   delPetInUserCard,
 } from './userOperations';
+
 
 const initialState = {
   _id: null,
