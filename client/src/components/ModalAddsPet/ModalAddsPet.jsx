@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useFormik } from 'formik';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import DatePicker from 'react-date-picker';
 import Thumb from '../Thumb/Thumb';
 import { showAlertMessage } from '../../utils/showMessages';
 import * as Yup from 'yup';
@@ -158,20 +157,24 @@ const ModalAddsPet = ({ setShowModal }) => {
                 Date of birth<span className={s.accent}>*</span>
               </label>
               <DatePicker
+                clearIcon={null}
+                calendarIcon={
+                  <svg width={20} height={20}>
+                    <use href={sprite + '#icon-calendar'} />
+                  </svg>
+                }
+                format="dd.MM.yyyy"
                 className={s.input}
-                dateFormat="dd.MM.yyyy"
                 selected={birthday}
-                defaultValue={new Date()}
+                maxDate={new Date()}
+                yearPlaceholder="yyyy"
+                monthPlaceholder="mm"
+                dayPlaceholder="dd"
                 id="birthday"
                 name="birthday"
                 value={birthday}
                 onChange={value => {
                   if (!value) {
-                    formik.setFieldValue('birthday', new Date());
-                    return;
-                  }
-                  const chosenDate = new Date(Date.parse(value));
-                  if (chosenDate - Date.now() > 0) {
                     return;
                   }
                   formik.setFieldValue('birthday', new Date(Date.parse(value)));

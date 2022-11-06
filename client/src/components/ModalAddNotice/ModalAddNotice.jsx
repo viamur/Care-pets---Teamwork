@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import DatePicker from 'react-date-picker';
 import Thumb from '../Thumb/Thumb';
 import { showAlertMessage } from '../../utils/showMessages';
 import * as Yup from 'yup';
@@ -42,7 +41,7 @@ const ModalAddNotice = ({ setShowModal }) => {
       category: 'sell',
       title: '',
       name: '',
-      birthdate: new Date(),
+      birthdate: '',
       breed: '',
       sex: 'male',
       location: '',
@@ -303,20 +302,25 @@ const ModalAddNotice = ({ setShowModal }) => {
                 Date of birth
               </label>
               <DatePicker
+                clearIcon={null}
+                calendarIcon={
+                  <svg width={20} height={20}>
+                    <use href={sprite + '#icon-calendar'} />
+                  </svg>
+                }
+                format="dd.MM.yyyy"
                 className={s.input}
                 dateFormat="dd.MM.yyyy"
                 selected={birthdate}
-                defaultValue={new Date()}
+                maxDate={new Date()}
+                yearPlaceholder="yyyy"
+                monthPlaceholder="mm"
+                dayPlaceholder="dd"
                 id="birthdate"
                 name="birthdate"
                 value={birthdate}
                 onChange={value => {
                   if (!value) {
-                    formik.setFieldValue('birthdate', null);
-                    return;
-                  }
-                  const chosenDate = new Date(Date.parse(value));
-                  if (chosenDate - Date.now() > 0) {
                     return;
                   }
                   formik.setFieldValue(
