@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
+import DatePicker from 'react-date-picker';
+import Thumb from '../Thumb/Thumb';
 import { showAlertMessage } from '../../utils/showMessages';
 import * as Yup from 'yup';
 import { addNotice } from '../../utils/api';
@@ -45,6 +47,7 @@ const ModalAddNotice = ({ setShowModal }) => {
       location: '',
       price: '',
       comments: '',
+      notices: '',
     },
 
     onSubmit: values => {
@@ -60,7 +63,6 @@ const ModalAddNotice = ({ setShowModal }) => {
       name: Yup.string()
         .min(2, 'Field must include more tnan 2 characters')
         .max(16, 'Field must be less tnan 16 characters'),
-      birthdate: Yup.date().max(new Date(), 'Choose date in the past'),
       breed: Yup.string()
         .min(2, 'Field must include more tnan 2 characters')
         .max(24, 'Field must be less tnan 24 characters'),
@@ -89,12 +91,12 @@ const ModalAddNotice = ({ setShowModal }) => {
     location,
     price,
     comments,
+    imgURL,
   } = formik.values;
 
   const {
     title: titleError,
     name: nameError,
-    birthdate: birthdateError,
     breed: breedError,
     location: locationError,
     price: priceError,
@@ -104,6 +106,16 @@ const ModalAddNotice = ({ setShowModal }) => {
   const onFormSubmit = e => {
     e.preventDefault();
 
+    if (location === '' || (category === 'sell' && price === '')) {
+      showAlertMessage('Input all required fields');
+      return;
+    }
+    if (locationError || priceError || commentsError) {
+      showAlertMessage('Input all fields in the necessary format');
+      return;
+    }
+
+    console.log(imgURL);
     const transformedPrice = Number(price);
     const arrayOfData = Object.entries({
       category,
@@ -115,6 +127,7 @@ const ModalAddNotice = ({ setShowModal }) => {
       location,
       price: transformedPrice,
       comments,
+      // imgURL,
     });
     const filteredArray = arrayOfData.filter(item => item[1]);
     const info = filteredArray.reduce((previousValue, feature) => {
@@ -136,7 +149,7 @@ const ModalAddNotice = ({ setShowModal }) => {
         return;
       }
 
-      if (titleError || nameError || birthdateError || breedError) {
+      if (titleError || nameError || breedError) {
         showAlertMessage('Input all fields in the necessary format');
         return;
       }
@@ -288,19 +301,35 @@ const ModalAddNotice = ({ setShowModal }) => {
               <label forhtml="birthdate" className={s.label}>
                 Date of birth
               </label>
-              <input
+              <DatePicker
+                clearIcon={null}
+                calendarIcon={
+                  <svg width={20} height={20}>
+                    <use href={sprite + '#icon-calendar'} />
+                  </svg>
+                }
+                format="dd.MM.yyyy"
                 className={s.input}
-                type="date"
-                name="birthdate"
+                dateFormat="dd.MM.yyyy"
+                selected={birthdate}
+                maxDate={new Date()}
+                yearPlaceholder="yyyy"
+                monthPlaceholder="mm"
+                dayPlaceholder="dd"
                 id="birthdate"
-                placeholder="Type date of birth"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
+                name="birthdate"
                 value={birthdate}
+                onChange={value => {
+                  if (!value) {
+                    return;
+                  }
+                  formik.setFieldValue(
+                    'birthdate',
+                    new Date(Date.parse(value))
+                  );
+                }}
               />
-              <p className={s.error}>
-                {formik.touched.birthdate && birthdateError && birthdateError}
-              </p>
+              <p className={s.error}></p>
               <label forhtml="breed" className={s.label}>
                 Breed
               </label>
@@ -396,6 +425,27 @@ const ModalAddNotice = ({ setShowModal }) => {
               <p className={s.error}>
                 {formik.touched.location && locationError && locationError}
               </p>
+              <div className={s.loadImgGroup}>
+                <p className={s.titleLoad}> Load the pet’s image</p>
+                <label forhtml="file" className={s.labelLoad}>
+                  <input
+                    id="file"
+                    name="notices"
+                    type="file"
+                    onChange={event => {
+                      formik.setFieldValue(
+                        'notices',
+                        event.currentTarget.files[0]
+                      );
+                    }}
+                    className={s.inputLoad}
+                  />
+                  <svg className={s.iconAddPet}>
+                    <use href={sprite + '#search-icon'} />
+                  </svg>
+                </label>
+                {/* <Thumb file={formik.values.notices} /> */}
+              </div>
               {category === 'sell' && (
                 <>
                   <label forhtml="price" className={s.label}>
@@ -439,23 +489,7 @@ const ModalAddNotice = ({ setShowModal }) => {
                 >
                   Back
                 </button>
-                <button
-                  className={s.button}
-                  type="submit"
-                  disabled={
-                    category === 'sell' &&
-                    (location === '' ||
-                      price === '' ||
-                      locationError ||
-                      priceError ||
-                      commentsError)
-                      ? true
-                      : category !== 'sell' &&
-                        (location === '' || locationError || commentsError)
-                      ? true
-                      : false
-                  }
-                >
+                <button className={s.button} type="submit">
                   Done
                 </button>
               </div>

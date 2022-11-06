@@ -104,7 +104,12 @@ const NoticeCategoryItem = ({
       return `${transformedYear} ${transformedYear === 1 ? 'year' : 'years'}`;
     }
 
-    return `${transformedMonth} ${transformedMonth === 1 ? 'month' : 'months'}`;
+    if (transformedMonth) {
+      return `${transformedMonth} ${
+        transformedMonth === 1 ? 'month' : 'months'
+      }`;
+    }
+    return '< 1 month';
   }
 
   return (
