@@ -123,11 +123,10 @@ export const getAdInfo = id => {
 export const addNotice = info => {
   return axios
     .post('notices/user', info, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
+      headers: { 'Content-Type': 'multipart/form-data' },
     })
     .then(response => {
+      console.log(response.data.data);
       return response.data.data;
     });
 };

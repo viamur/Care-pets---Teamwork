@@ -1,17 +1,13 @@
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { useMediaQuery } from 'react-responsive';
 import { getUserEmail } from '../../redux/auth/authSelectors';
-import AddNoticeButton from 'components/AddNoticeButton/AddNoticeButton';
 import s from './NoticesCategoriesNav.module.scss';
 
 const setActiveLinkClass = ({ isActive }) =>
   isActive ? `${s.siteNav} ${s.activeSiteNav}` : s.siteNav;
 
-const NoticesCategoriesNav = showButton => {
+const NoticesCategoriesNav = () => {
   const userEmail = useSelector(getUserEmail);
-
-  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
   return (
     <div className={s.navigationWrapper}>
@@ -38,13 +34,6 @@ const NoticesCategoriesNav = showButton => {
           </>
         )}
       </nav>
-      {showButton.showButton && isMobile && <AddNoticeButton title="Add pet" />}
-      {showButton.showButton && !isMobile && (
-        <div className={s.boxAddPet}>
-          <p className={s.textAddPet}>Add pet</p>
-          <AddNoticeButton />
-        </div>
-      )}
     </div>
   );
 };

@@ -2,12 +2,11 @@ import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import DatePicker from 'react-date-picker';
-// import Thumb from '../Thumb/Thumb';
 import { showAlertMessage } from '../../utils/showMessages';
 import { addPetInUserCard } from '../../redux/user/userOperations';
-import * as Yup from 'yup';
-import { addPet } from '../../utils/api';
+import imgLoad from '../../images/modals/loadMobile.png';
 import sprite from '../../images/icons/sprite.svg';
 import s from './ModalAddsPet.module.scss';
 
@@ -15,9 +14,8 @@ const modalContainer = document.getElementById('modal-root');
 
 const ModalAddsPet = ({ setShowModal }) => {
   const [page, setPage] = useState(1);
+  const [photo, setPhoto] = useState('');
   const dispatch = useDispatch();
-
-  const [images, setImages] = useState([]);
 
   useEffect(() => {
     const handleKeyDown = e => {
@@ -93,10 +91,21 @@ const ModalAddsPet = ({ setShowModal }) => {
     comments: commentsError,
   } = formik.errors;
 
+  useEffect(() => {
+    if (!pet) {
+      return;
+    }
+
+    /* Создаем виртуальную ссылку на загруженный файл */
+    const objectUrl = URL.createObjectURL(pet);
+    setPhoto(objectUrl);
+
+    // free memory when ever this component is unmounted
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [pet]);
+
   const onFormSubmit = async e => {
     e.preventDefault();
-
-    console.log(pet);
 
     if (commentsError) {
       showAlertMessage(
@@ -223,21 +232,27 @@ const ModalAddsPet = ({ setShowModal }) => {
               <p className={s.descr}>Add photo and some comments</p>
               <div className={s.loadImgGroup}>
                 <label forhtml="file" className={s.labelLoad}>
+                  {!photo && <img src={imgLoad} width="71" height="71" />}
+                  {photo && (
+                    <div className={s.thumbLoadImg}>
+                      <img
+                        src={photo}
+                        alt="pet_photo"
+                        className={s.loadImage}
+                      />
+                    </div>
+                  )}
                   <input
                     id="file"
                     name="pet"
                     type="file"
+                    accept=".png, .jpg, .jpeg"
                     onChange={event => {
-                      console.log(event.currentTarget.files[0]);
                       formik.setFieldValue('pet', event.currentTarget.files[0]);
                     }}
                     className={s.inputLoad}
                   />
-                  <svg className={s.iconAddPet}>
-                    <use href={sprite + '#search-icon'} />
-                  </svg>
                 </label>
-                {/* <Thumb file={formik.values.imgURL} /> */}
               </div>
               <label forhtml="comments" className={s.label}>
                 Comments
