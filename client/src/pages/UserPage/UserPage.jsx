@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Logout from 'components/Logout/Logout';
 import PetsData from '../../components/PetsData/PetsData';
 import UserInfoBlock from '../../components/UserInfoBlock/UserInfoBlock';

@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
+import DatePicker from 'react-date-picker';
+// import Thumb from '../Thumb/Thumb';
 import { showAlertMessage } from '../../utils/showMessages';
+import { addPetInUserCard } from '../../redux/user/userOperations';
 import * as Yup from 'yup';
 import { addPet } from '../../utils/api';
 import sprite from '../../images/icons/sprite.svg';
@@ -11,6 +15,9 @@ const modalContainer = document.getElementById('modal-root');
 
 const ModalAddsPet = ({ setShowModal }) => {
   const [page, setPage] = useState(1);
+  const dispatch = useDispatch();
+
+  const [images, setImages] = useState([]);
 
   useEffect(() => {
     const handleKeyDown = e => {
@@ -34,6 +41,16 @@ const ModalAddsPet = ({ setShowModal }) => {
 
   const onPageChange = () => {
     if (page === 1) {
+      if (name === '' || breed === '') {
+        showAlertMessage('Input all required fields');
+        return;
+      }
+
+      if (nameError || breedError) {
+        showAlertMessage('Input all fields in the necessary format');
+        return;
+      }
+
       setPage(2);
       return;
     }
@@ -43,9 +60,10 @@ const ModalAddsPet = ({ setShowModal }) => {
   const formik = useFormik({
     initialValues: {
       name: '',
-      birthday: '',
+      birthday: new Date(),
       breed: '',
       comments: '',
+      pet: '',
     },
 
     onSubmit: values => {
@@ -57,9 +75,6 @@ const ModalAddsPet = ({ setShowModal }) => {
         .min(2, 'Field must include more tnan 2 characters')
         .max(16, 'Field must be less tnan 16 characters')
         .required('This is a required field'),
-      birthday: Yup.date()
-        .max(new Date(), 'Choose date in the past')
-        .required('This is a required field'),
       breed: Yup.string()
         .min(2, 'Field must include more tnan 2 characters')
         .max(24, 'Field must be less tnan 24 characters')
@@ -70,28 +85,41 @@ const ModalAddsPet = ({ setShowModal }) => {
     }),
   });
 
-  const { name, birthday, breed, comments } = formik.values;
+  const { pet, name, birthday, breed, comments } = formik.values;
+
   const {
     name: nameError,
-    birthday: birthdayError,
     breed: breedError,
     comments: commentsError,
   } = formik.errors;
 
-  const onFormSubmit = e => {
+  const onFormSubmit = async e => {
     e.preventDefault();
 
-    const arrayOfData = Object.entries({ name, birthday, breed, comments });
+    console.log(pet);
+
+    if (commentsError) {
+      showAlertMessage(
+        'Input field comments in the necessary format or just miss it'
+      );
+      return;
+    }
+
+    const arrayOfData = Object.entries({
+      name,
+      birthday,
+      breed,
+      comments,
+      pet,
+    });
+
     const filteredArray = arrayOfData.filter(item => item[1]);
     const info = filteredArray.reduce((previousValue, feature) => {
       return { ...previousValue, [feature[0]]: feature[1] };
     }, {});
 
-    addPet(info)
-      .then(data => {
-        setShowModal(false);
-      })
-      .catch(error => showAlertMessage(error.response.data.message));
+    dispatch(addPetInUserCard(info));
+    setShowModal(false);
   };
 
   return createPortal(
@@ -112,7 +140,7 @@ const ModalAddsPet = ({ setShowModal }) => {
             <>
               <h2 className={s.title}>Add pet</h2>
               <label forhtml="name" className={s.label}>
-                Name pet
+                Name pet<span className={s.accent}>*</span>
               </label>
               <input
                 className={s.input}
@@ -128,23 +156,35 @@ const ModalAddsPet = ({ setShowModal }) => {
                 {formik.touched.name && nameError && nameError}
               </p>
               <label forhtml="birthday" className={s.label}>
-                Date of birth
+                Date of birth<span className={s.accent}>*</span>
               </label>
-              <input
-                lang="en"
+              <DatePicker
+                clearIcon={null}
+                calendarIcon={
+                  <svg width={20} height={20}>
+                    <use href={sprite + '#icon-calendar'} />
+                  </svg>
+                }
+                format="dd.MM.yyyy"
                 className={s.input}
-                type="date"
-                name="birthday"
+                selected={birthday}
+                maxDate={new Date()}
+                yearPlaceholder="yyyy"
+                monthPlaceholder="mm"
+                dayPlaceholder="dd"
                 id="birthday"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
+                name="birthday"
                 value={birthday}
+                onChange={value => {
+                  if (!value) {
+                    return;
+                  }
+                  formik.setFieldValue('birthday', new Date(Date.parse(value)));
+                }}
               />
-              <p className={s.error}>
-                {formik.touched.birthday && birthdayError && birthdayError}
-              </p>
+              <p className={s.error}></p>
               <label forhtml="breed" className={s.label}>
-                Breed
+                Breed<span className={s.accent}>*</span>
               </label>
               <input
                 className={s.input}
@@ -161,7 +201,7 @@ const ModalAddsPet = ({ setShowModal }) => {
               </p>
               <div className={s.blockOfButtons}>
                 <button
-                  className={`${s.button} ${s.buttonDistance}`}
+                  className={s.button}
                   type="button"
                   onClick={onBtnCloseClick}
                 >
@@ -171,16 +211,6 @@ const ModalAddsPet = ({ setShowModal }) => {
                   className={s.button}
                   type="button"
                   onClick={onPageChange}
-                  disabled={
-                    name === '' ||
-                    birthday === '' ||
-                    breed === '' ||
-                    nameError ||
-                    birthdayError ||
-                    breedError
-                      ? true
-                      : false
-                  }
                 >
                   Next
                 </button>
@@ -191,15 +221,24 @@ const ModalAddsPet = ({ setShowModal }) => {
             <>
               <h2 className={s.titleSecondPage}>Add pet</h2>
               <p className={s.descr}>Add photo and some comments</p>
-              {/* <input
-                className={s.inputLoad}
-                type="file"
-                name="imgURL"
-                // enctype="multipart/form-data"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={imgURL}
-              /> */}
+              <div className={s.loadImgGroup}>
+                <label forhtml="file" className={s.labelLoad}>
+                  <input
+                    id="file"
+                    name="pet"
+                    type="file"
+                    onChange={event => {
+                      console.log(event.currentTarget.files[0]);
+                      formik.setFieldValue('pet', event.currentTarget.files[0]);
+                    }}
+                    className={s.inputLoad}
+                  />
+                  <svg className={s.iconAddPet}>
+                    <use href={sprite + '#search-icon'} />
+                  </svg>
+                </label>
+                {/* <Thumb file={formik.values.imgURL} /> */}
+              </div>
               <label forhtml="comments" className={s.label}>
                 Comments
               </label>
@@ -217,17 +256,13 @@ const ModalAddsPet = ({ setShowModal }) => {
               </p>
               <div className={s.blockOfButtons}>
                 <button
-                  className={`${s.button} ${s.buttonDistance}`}
+                  className={s.button}
                   type="button"
                   onClick={onPageChange}
                 >
                   Back
                 </button>
-                <button
-                  className={s.button}
-                  type="submit"
-                  disabled={commentsError ? true : false}
-                >
+                <button className={s.button} type="submit">
                   Done
                 </button>
               </div>

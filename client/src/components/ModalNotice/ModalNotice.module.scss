@@ -17,7 +17,7 @@
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 
-  min-width: 295px;
+  width: 90%;
   max-height: 90%;
   border-radius: 20px;
   padding: 60px 20px 20px;
@@ -25,6 +25,10 @@
 
   @include mq(mob-only) {
     overflow: auto;
+  }
+
+  @media screen and (min-width: 480px) {
+    width: 480px;
   }
 
   @include mq(tab) {
@@ -78,6 +82,10 @@
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 16px;
+
+  @media screen and (min-width: 480px) {
+    width: 480px;
+  }
 
   @include mq(tab) {
     width: 288px;
