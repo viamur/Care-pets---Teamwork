@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import DatePicker from 'react-date-picker';
-import Thumb from '../Thumb/Thumb';
+// import Thumb from '../Thumb/Thumb';
 import { showAlertMessage } from '../../utils/showMessages';
+import { addPetInUserCard } from '../../redux/user/userOperations';
 import * as Yup from 'yup';
 import { addPet } from '../../utils/api';
 import sprite from '../../images/icons/sprite.svg';
@@ -13,6 +15,7 @@ const modalContainer = document.getElementById('modal-root');
 
 const ModalAddsPet = ({ setShowModal }) => {
   const [page, setPage] = useState(1);
+  const dispatch = useDispatch();
 
   const [images, setImages] = useState([]);
 
@@ -60,7 +63,7 @@ const ModalAddsPet = ({ setShowModal }) => {
       birthday: new Date(),
       breed: '',
       comments: '',
-      imgURL: '',
+      pet: '',
     },
 
     onSubmit: values => {
@@ -82,7 +85,7 @@ const ModalAddsPet = ({ setShowModal }) => {
     }),
   });
 
-  let { imgURL, name, birthday, breed, comments } = formik.values;
+  const { pet, name, birthday, breed, comments } = formik.values;
 
   const {
     name: nameError,
@@ -90,8 +93,10 @@ const ModalAddsPet = ({ setShowModal }) => {
     comments: commentsError,
   } = formik.errors;
 
-  const onFormSubmit = e => {
+  const onFormSubmit = async e => {
     e.preventDefault();
+
+    console.log(pet);
 
     if (commentsError) {
       showAlertMessage(
@@ -105,19 +110,16 @@ const ModalAddsPet = ({ setShowModal }) => {
       birthday,
       breed,
       comments,
-      imgURL,
+      pet,
     });
-    console.log(imgURL);
+
     const filteredArray = arrayOfData.filter(item => item[1]);
     const info = filteredArray.reduce((previousValue, feature) => {
       return { ...previousValue, [feature[0]]: feature[1] };
     }, {});
 
-    addPet(info)
-      .then(data => {
-        setShowModal(false);
-      })
-      .catch(error => showAlertMessage(error.response.data.message));
+    dispatch(addPetInUserCard(info));
+    setShowModal(false);
   };
 
   return createPortal(
@@ -223,13 +225,11 @@ const ModalAddsPet = ({ setShowModal }) => {
                 <label forhtml="file" className={s.labelLoad}>
                   <input
                     id="file"
-                    name="imgURL"
+                    name="pet"
                     type="file"
                     onChange={event => {
-                      formik.setFieldValue(
-                        'imgURL',
-                        event.currentTarget.files[0].name
-                      );
+                      console.log(event.currentTarget.files[0]);
+                      formik.setFieldValue('pet', event.currentTarget.files[0]);
                     }}
                     className={s.inputLoad}
                   />
