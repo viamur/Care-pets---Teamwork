@@ -114,14 +114,26 @@ export const getAdInfo = id => {
 };
 
 export const addPet = info => {
-  return axios.post('user/pet', info).then(response => {
-    console.log(response.data.data);
-    return response.data.data;
-  });
+  return axios
+    .post('user/pet', info, {
+      headers: {
+        'Content-Type': ' form-data',
+      },
+    })
+    .then(response => {
+      console.log(response.data.data);
+      return response.data.data;
+    });
 };
 
 export const addNotice = info => {
-  return axios.post('notices/user', info).then(response => {
-    return response.data.data;
-  });
+  return axios
+    .post('notices/user', info, {
+      headers: {
+        'Content-Type': ' form-data',
+      },
+    })
+    .then(response => {
+      return response.data.data;
+    });
 };

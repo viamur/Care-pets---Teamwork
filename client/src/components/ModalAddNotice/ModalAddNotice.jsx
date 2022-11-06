@@ -47,7 +47,7 @@ const ModalAddNotice = ({ setShowModal }) => {
       location: '',
       price: '',
       comments: '',
-      imgURL: '',
+      notices: '',
     },
 
     onSubmit: values => {
@@ -430,12 +430,12 @@ const ModalAddNotice = ({ setShowModal }) => {
                 <label forhtml="file" className={s.labelLoad}>
                   <input
                     id="file"
-                    name="imgURL"
+                    name="notices"
                     type="file"
                     onChange={event => {
                       formik.setFieldValue(
-                        'imgURL',
-                        event.currentTarget.files[0].name
+                        'notices',
+                        event.currentTarget.files[0]
                       );
                     }}
                     className={s.inputLoad}
@@ -444,7 +444,7 @@ const ModalAddNotice = ({ setShowModal }) => {
                     <use href={sprite + '#search-icon'} />
                   </svg>
                 </label>
-                {/* <Thumb file={formik.values.imgURL} /> */}
+                {/* <Thumb file={formik.values.notices} /> */}
               </div>
               {category === 'sell' && (
                 <>
