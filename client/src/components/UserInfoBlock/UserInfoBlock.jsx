@@ -8,6 +8,12 @@ import s from './UserInfoBlock.module.scss';
 import { pathInfoUser } from 'redux/user/userOperations';
 import sprite from '../../images/icons/sprite.svg';
 
+/* ----------REGEX--------------- */
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const phoneRegex = /^\+380\d{9}/;
+const cityRegex =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z0-9]).{3,32},(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z0-9]).{3,32}$/;
+
 const UserInfoBlock = () => {
   /* Селекторы */
   const userInfo = useSelector(getAllUserInfo);
@@ -49,14 +55,14 @@ const UserInfoBlock = () => {
       return;
     }
 
+    /* Создаем виртуальную ссылку на загруженный файл */
+    const objectUrl = URL.createObjectURL(selectedFile);
+    setPhoto(objectUrl);
+
     /* Создаем FormData и добовляем туда наш файл и отпарвляем */
     const bodyFormData = new FormData();
     bodyFormData.append('avatar', selectedFile);
     dispatch(pathInfoUser(bodyFormData));
-
-    /* Создаем виртуальную ссылку на загруженный файл */
-    const objectUrl = URL.createObjectURL(selectedFile);
-    setPhoto(objectUrl);
 
     // free memory when ever this component is unmounted
     return () => URL.revokeObjectURL(objectUrl);
@@ -94,7 +100,10 @@ const UserInfoBlock = () => {
             if (email.length > 25) {
               return Notify.failure('max length "email" 25');
             }
-            /* REGEX надо провалидировать */
+            if (!emailRegex.exec(email)) {
+              /* REGEX надо провалидировать */
+              return Notify.failure('Wrong format!');
+            }
             dispatch(pathInfoUser({ email }));
           }
           if (btn.name === 'birthday') {
@@ -105,11 +114,17 @@ const UserInfoBlock = () => {
             if (phone.length !== 13) {
               return Notify.failure('length "phone" 13');
             }
-            /* REGEX надо провалидировать */
+            if (!phoneRegex.exec(phone)) {
+              /* REGEX надо провалидировать */
+              return Notify.failure('Wrong format! +380...');
+            }
             dispatch(pathInfoUser({ phone }));
           }
           if (btn.name === 'city') {
-            /* REGEX надо провалидировать */
+            if (!cityRegex.exec(city)) {
+              /* REGEX надо провалидировать */
+              return Notify.failure('Wrong format!');
+            }
             dispatch(pathInfoUser({ city }));
           }
 
@@ -126,7 +141,7 @@ const UserInfoBlock = () => {
   /* Для выбора файла  */
   const onSelectFile = e => {
     if (!e.target.files || e.target.files.length === 0) {
-      setSelectedFile(undefined);
+      // setSelectedFile(undefined);
       return;
     }
 
