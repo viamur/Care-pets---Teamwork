@@ -1,11 +1,19 @@
 .list {
-    padding-top: 30px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 32px;
+  padding-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
 
-    @media screen and (min-width: 768px) {
-        padding-top: 60px;
-    }
+  @media screen and (min-width: 768px) {
+    padding-top: 60px;
+  }
 }
 
+.noResults {
+  font-family: 'Manrope Medium';
+  font-size: 22px;
+  line-height: 1.36;
+  letter-spacing: 0.04em;
+  text-align: center;
+  padding-top: 40px;
+}

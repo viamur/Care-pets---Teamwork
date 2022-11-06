@@ -23,9 +23,12 @@ const NoticesCategoriesList = ({
   setShowButton,
 }) => {
   const [array, setArray] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     showLoadingHourglass('Loading ...');
+    setIsLoading(true);
+
     if (category === 'favorite') {
       fetchFavoriteAds()
         .then(data => {
@@ -33,7 +36,10 @@ const NoticesCategoriesList = ({
           setArray(data);
         })
         .catch(error => showAlertMessage(error.response.data.message))
-        .finally(() => removeLoading());
+        .finally(() => {
+          removeLoading();
+          setIsLoading(false);
+        });
       return;
     }
 
@@ -45,7 +51,10 @@ const NoticesCategoriesList = ({
           setArray(data);
         })
         .catch(error => showAlertMessage(error.response.data.message))
-        .finally(() => removeLoading());
+        .finally(() => {
+          removeLoading();
+          setIsLoading(false);
+        });
       return;
     }
 
@@ -55,32 +64,52 @@ const NoticesCategoriesList = ({
         setArray(data);
       })
       .catch(error => showAlertMessage(error.response.data.message))
-      .finally(() => removeLoading());
+      .finally(() => {
+        removeLoading();
+        setIsLoading(false);
+      });
 
     // eslint-disable-next-line
   }, [category]);
 
   return (
-    <ul className={s.list}>
-      {array &&
-        array
-          .filter(
-            ({ title, breed }) =>
-              title?.toLowerCase().includes(searchQuery?.toLowerCase()) ||
-              breed?.toLowerCase().includes(searchQuery?.toLowerCase())
-          )
-          .map(({ _id, ...rest }) => (
-            <NoticeCategoryItem
-              key={_id}
-              data={rest}
-              id={_id}
-              array={array}
-              setArray={setArray}
-              category={category}
-              setShowButton={setShowButton}
-            />
-          ))}
-    </ul>
+    <>
+      {!isLoading &&
+        array.length === 0 &&
+        category !== 'favorite' &&
+        category !==
+          'own'(
+            <p className={s.noResults}>There are no results in this category</p>
+          )}
+      {!isLoading && array.length === 0 && category === 'favorite' && (
+        <p className={s.noResults}>
+          You haven't added anything to your favorite yet
+        </p>
+      )}
+      {!isLoading && array.length === 0 && category === 'own' && (
+        <p className={s.noResults}>You haven't added your own ads yet</p>
+      )}
+      <ul className={s.list}>
+        {array &&
+          array
+            .filter(
+              ({ title, breed }) =>
+                title?.toLowerCase().includes(searchQuery?.toLowerCase()) ||
+                breed?.toLowerCase().includes(searchQuery?.toLowerCase())
+            )
+            .map(({ _id, ...rest }) => (
+              <NoticeCategoryItem
+                key={_id}
+                data={rest}
+                id={_id}
+                array={array}
+                setArray={setArray}
+                category={category}
+                setShowButton={setShowButton}
+              />
+            ))}
+      </ul>
+    </>
   );
 };
 
