@@ -1,23 +1,21 @@
+import { useState } from 'react';
 import Logout from 'components/Logout/Logout';
-import UserData from '../../components/UserData/UserData';
 import PetsData from '../../components/PetsData/PetsData';
-import ModalAddsPet from '../../components/ModalAddsPet/ModalAddsPet';
 import UserInfoBlock from '../../components/UserInfoBlock/UserInfoBlock';
+import ModalAddsPet from '../../components/ModalAddsPet/ModalAddsPet';
 import style from './UserPage.module.scss';
 
-const UserPage = props => {
+const UserPage = () => {
+
   return (
     <>
-      <div>
-        <UserInfoBlock />
-        {/* <button onClick={onBtnAddPetClick}>Add pet</button> */}
-        <Logout />
-        {/* {showModal && <ModalAddsPet setShowModal={setShowModal} />} */}
+      <div className={style.pageWrapper}>
+        <div className={style.userWrapper}>
+          <UserInfoBlock />
+          <Logout />
+        </div>
+        <PetsData />
       </div>
-      {/* <div className={style.pageWrapper}>
-        <UserData {...props} />
-        <PetsData deletePet={props.deletePet} petsStore={props.petsStore} />
-      </div> */}
     </>
   );
 };

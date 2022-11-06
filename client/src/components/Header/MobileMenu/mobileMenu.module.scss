@@ -21,6 +21,20 @@
     }
 }
 
+.logo {
+    font-size: 28px;
+    font-family: 'Poppins Bold';
+
+    @include mq(tab) {
+        font-size: 32px;
+    }
+}
+
+.logoT {
+    color: var(--accent-color);
+
+}
+
 .link {
     text-align: center;
 
@@ -67,8 +81,10 @@
 
 
 .button {
+    color: black;
+    letter-spacing: 0.04em;
     text-align: center;
-    padding: 2px 28px;
+    padding: 8px 28px;
     font-size: 14px;
     border: 2px solid var(--accent-color);
     border-radius: 40px;
@@ -86,8 +102,10 @@
 }
 
 .account {
+    display: flex;
+    align-items: center;
     text-align: center;
-    padding: 8px 37px;
+    padding: 8px 28px;
     font-size: 14px;
     border: 2px solid var(--accent-color);
     border-radius: 40px;
