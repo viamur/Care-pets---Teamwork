@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useFormik } from 'formik';
 import DatePicker from 'react-datepicker';
-import ImageUploading from 'react-images-uploading';
 import 'react-datepicker/dist/react-datepicker.css';
+import Thumb from '../Thumb/Thumb';
 import { showAlertMessage } from '../../utils/showMessages';
 import * as Yup from 'yup';
 import { addPet } from '../../utils/api';
@@ -209,18 +209,25 @@ const ModalAddsPet = ({ setShowModal }) => {
             <>
               <h2 className={s.titleSecondPage}>Add pet</h2>
               <p className={s.descr}>Add photo and some comments</p>
-              <div className="form-group">
-                <label for="file">File upload</label>
-                <input
-                  id="file"
-                  name="file"
-                  type="file"
-                  onChange={event => {
-                    setFieldValue('file', event.currentTarget.files[0]);
-                  }}
-                  className="form-control"
-                />
-                <Thumb file={values.file} />
+              <div className={s.loadImgGroup}>
+                <label forhtml="file" className={s.labelLoad}>
+                  <input
+                    id="file"
+                    name="imgURL"
+                    type="file"
+                    onChange={event => {
+                      formik.setFieldValue(
+                        'imgURL',
+                        event.currentTarget.files[0]
+                      );
+                    }}
+                    className={s.inputLoad}
+                  />
+                  <svg className={s.iconAddPet}>
+                    <use href={sprite + '#search-icon'} />
+                  </svg>
+                </label>
+                <Thumb file={formik.values.imgURL} />
               </div>
               <label forhtml="comments" className={s.label}>
                 Comments

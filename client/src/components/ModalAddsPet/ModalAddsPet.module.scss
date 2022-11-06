@@ -17,10 +17,16 @@
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 
-  min-width: 280px;
+  width: 90%;
+  max-height: 90%;
+  overflow: auto;
   border-radius: 20px;
   padding: 40px 20px;
   background: var(--white);
+
+  @media screen and (min-width: 480px) {
+    width: 480px;
+  }
 
   @include mq(tab) {
     width: 608px;
@@ -252,5 +258,30 @@
 .button:last-child {
   @include mq(mob-only) {
     margin-bottom: 12px;
+  }
+}
+
+.inputLoad {
+  display: none;
+}
+
+.labelLoad {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 208px;
+  height: 208px;
+  background: var(--bg-color);
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+  margin-bottom: 20px;
+
+  @include mq(tab) {
+    margin-bottom: 40px;
+    width: 182px;
+    height: 182px;
+    border-radius: 40px;
   }
 }

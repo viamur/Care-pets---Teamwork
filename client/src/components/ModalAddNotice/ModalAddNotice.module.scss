@@ -19,10 +19,15 @@
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 
-  min-width: 295px;
+  width: 90%;
+  max-height: 90%;
   border-radius: 20px;
   padding: 40px 15px 40px 20px;
   background: var(--white);
+
+  @media screen and (min-width: 480px) {
+    width: 480px;
+  }
 
   @include mq(tab) {
     width: 608px;
@@ -244,8 +249,18 @@
   margin-right: 8px;
 }
 
+.radioToolbar label:last-child {
+  @media screen and (max-width: 325px) {
+    margin-top: 12px;
+  }
+}
+
 .radioToolbar label:first-child {
   margin-bottom: 12px;
+
+  @media screen and (min-width: 480px) {
+    margin-bottom: 0px;
+  }
 
   @include mq(tab) {
     margin-bottom: 16px;
@@ -365,5 +380,30 @@
   @include mq(tab) {
     font-size: 16px;
     line-height: 1.62;
+  }
+}
+
+.inputLoad {
+  display: none;
+}
+
+.titleLoad {
+  composes: label;
+}
+
+.labelLoad {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 116px;
+  height: 116px;
+  background: var(--bg-color);
+  border-radius: 20px;
+  cursor: pointer;
+  margin-bottom: 28px;
+
+  @include mq(tab) {
+    width: 140px;
+    height: 140px;
   }
 }

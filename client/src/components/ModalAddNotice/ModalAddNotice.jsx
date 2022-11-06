@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import Thumb from '../Thumb/Thumb';
 import { showAlertMessage } from '../../utils/showMessages';
 import * as Yup from 'yup';
 import { addNotice } from '../../utils/api';
@@ -39,7 +42,7 @@ const ModalAddNotice = ({ setShowModal }) => {
       category: 'sell',
       title: '',
       name: '',
-      birthdate: '',
+      birthdate: new Date(),
       breed: '',
       sex: 'male',
       location: '',
@@ -60,7 +63,6 @@ const ModalAddNotice = ({ setShowModal }) => {
       name: Yup.string()
         .min(2, 'Field must include more tnan 2 characters')
         .max(16, 'Field must be less tnan 16 characters'),
-      birthdate: Yup.date().max(new Date(), 'Choose date in the past'),
       breed: Yup.string()
         .min(2, 'Field must include more tnan 2 characters')
         .max(24, 'Field must be less tnan 24 characters'),
@@ -94,7 +96,6 @@ const ModalAddNotice = ({ setShowModal }) => {
   const {
     title: titleError,
     name: nameError,
-    birthdate: birthdateError,
     breed: breedError,
     location: locationError,
     price: priceError,
@@ -103,6 +104,15 @@ const ModalAddNotice = ({ setShowModal }) => {
 
   const onFormSubmit = e => {
     e.preventDefault();
+
+    if (location === '' || (category === 'sell' && price === '')) {
+      showAlertMessage('Input all required fields');
+      return;
+    }
+    if (locationError || priceError || commentsError) {
+      showAlertMessage('Input all fields in the necessary format');
+      return;
+    }
 
     const transformedPrice = Number(price);
     const arrayOfData = Object.entries({
@@ -136,7 +146,7 @@ const ModalAddNotice = ({ setShowModal }) => {
         return;
       }
 
-      if (titleError || nameError || birthdateError || breedError) {
+      if (titleError || nameError || breedError) {
         showAlertMessage('Input all fields in the necessary format');
         return;
       }
@@ -288,19 +298,30 @@ const ModalAddNotice = ({ setShowModal }) => {
               <label forhtml="birthdate" className={s.label}>
                 Date of birth
               </label>
-              <input
+              <DatePicker
                 className={s.input}
-                type="date"
-                name="birthdate"
+                dateFormat="dd.MM.yyyy"
+                selected={birthdate}
+                defaultValue={new Date()}
                 id="birthdate"
-                placeholder="Type date of birth"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
+                name="birthdate"
                 value={birthdate}
+                onChange={value => {
+                  if (!value) {
+                    formik.setFieldValue('birthdate', null);
+                    return;
+                  }
+                  const chosenDate = new Date(Date.parse(value));
+                  if (chosenDate - Date.now() > 0) {
+                    return;
+                  }
+                  formik.setFieldValue(
+                    'birthdate',
+                    new Date(Date.parse(value))
+                  );
+                }}
               />
-              <p className={s.error}>
-                {formik.touched.birthdate && birthdateError && birthdateError}
-              </p>
+              <p className={s.error}></p>
               <label forhtml="breed" className={s.label}>
                 Breed
               </label>
@@ -396,6 +417,27 @@ const ModalAddNotice = ({ setShowModal }) => {
               <p className={s.error}>
                 {formik.touched.location && locationError && locationError}
               </p>
+              <div className={s.loadImgGroup}>
+                <p className={s.titleLoad}> Load the pet’s image</p>
+                <label forhtml="file" className={s.labelLoad}>
+                  <input
+                    id="file"
+                    name="imgURL"
+                    type="file"
+                    onChange={event => {
+                      formik.setFieldValue(
+                        'imgURL',
+                        event.currentTarget.files[0]
+                      );
+                    }}
+                    className={s.inputLoad}
+                  />
+                  <svg className={s.iconAddPet}>
+                    <use href={sprite + '#search-icon'} />
+                  </svg>
+                </label>
+                <Thumb file={formik.values.imgURL} />
+              </div>
               {category === 'sell' && (
                 <>
                   <label forhtml="price" className={s.label}>
@@ -439,23 +481,7 @@ const ModalAddNotice = ({ setShowModal }) => {
                 >
                   Back
                 </button>
-                <button
-                  className={s.button}
-                  type="submit"
-                  disabled={
-                    category === 'sell' &&
-                    (location === '' ||
-                      price === '' ||
-                      locationError ||
-                      priceError ||
-                      commentsError)
-                      ? true
-                      : category !== 'sell' &&
-                        (location === '' || locationError || commentsError)
-                      ? true
-                      : false
-                  }
-                >
+                <button className={s.button} type="submit">
                   Done
                 </button>
               </div>
