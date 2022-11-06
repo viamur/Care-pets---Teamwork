@@ -1,3 +1,82 @@
-.btn {
-  background-color: white;
+@import "../../sass/fonts";
+@import "../../sass/mixin";
+
+.avatar {
+  width: 233px;
+  height: 233px;
+  margin: auto;
+  margin-bottom: 12px;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+  filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
+}
+
+.avatarInputFile {
+  display: flex;
+  align-items: center;
+  justify-content:end;
+  margin-bottom: 36px;
+  margin-left: auto;
+  padding-right: 10px;
+
+  font-size: 12px;
+  line-height: 1.83;
+
+  &:hover {
+    color: var( --accent-color);
+  }
+}
+
+.iconInputFile {
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+}
+
+.avatarInput {
+  display: none;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  
+  &:not(:last-child) {
+    margin-bottom: 4px;
+  }
+
+    &:last-child {
+    margin-bottom: 42px;
+  }
+}
+
+.item__title {
+  min-width: 56px;
+
+  font-family: "Manrope Medium";
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: 0.04em;
+}
+
+.item__input {
+  width:70%;
+  margin-right: 9px;
+  padding: 4px 10px;
+
+  font-family: "Manrope Regular";
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: 0.04em;
+
+  background-color: var(--bg-color);
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 40px;
+
+  &:disabled {
+    background-color: var(--white);
+    border: 1px solid var(--white);
+  }
 }

@@ -10,16 +10,29 @@
 }
 
 .userWrapper {
-  background: #ffffff;
-  /* Тень для карточек */
+  padding: 20px 14px 22px;
 
-  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
-  border-radius: 0px 40px 40px 0px;
+  background-color: var(--white);
+
+    /* Тень для карточек */
+    // box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
+  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+  border-radius: 20px;
+
   @include mq(tab) {
+    padding: 24px 36px;
+
+    border-radius: 0px 40px 40px 0px;
+
   }
 
   @include mq(desk) {
     display: flex;
     flex-direction: column;
+    padding: 20px 16px 40px;
   }
+}
+
+.logout {
+  margin-left: auto;
 }

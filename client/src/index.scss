@@ -77,3 +77,31 @@ img {
   border: none;
   cursor: pointer;
 }
+
+.pencil,
+.galochka {
+  width: 20px;
+  height: 20px;
+
+  border: none;
+  border-radius: 50%;
+
+  background-color: var(--bg-color);
+
+  background-repeat: no-repeat;
+  background-size: 12px 12px;
+  background-position: center;
+}
+
+.pencil {
+  background-image: url('./images/icons/pencil-icon.svg');
+}
+
+.galochka {
+  background-image: url('./images/icons/check-icon.svg');
+}
+
+.pencil:hover {
+  background-image: url('./images/icons/pencil-accent-icon.svg');
+}
+

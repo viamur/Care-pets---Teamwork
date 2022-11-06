@@ -5,7 +5,9 @@
   display: flex;
   border: none;
   width: 90px;
-  background: #ffffff;
+  background: var(--white);
+  border: 1px solid var(--white);
+  margin-left: auto;
 
   font-family: 'Manrope Medium';
   font-style: normal;
