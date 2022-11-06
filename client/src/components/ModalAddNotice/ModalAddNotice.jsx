@@ -48,6 +48,7 @@ const ModalAddNotice = ({ setShowModal }) => {
       location: '',
       price: '',
       comments: '',
+      imgURL: '',
     },
 
     onSubmit: values => {
@@ -91,6 +92,7 @@ const ModalAddNotice = ({ setShowModal }) => {
     location,
     price,
     comments,
+    imgURL,
   } = formik.values;
 
   const {
@@ -114,6 +116,7 @@ const ModalAddNotice = ({ setShowModal }) => {
       return;
     }
 
+    console.log(imgURL);
     const transformedPrice = Number(price);
     const arrayOfData = Object.entries({
       category,
@@ -125,6 +128,7 @@ const ModalAddNotice = ({ setShowModal }) => {
       location,
       price: transformedPrice,
       comments,
+      // imgURL,
     });
     const filteredArray = arrayOfData.filter(item => item[1]);
     const info = filteredArray.reduce((previousValue, feature) => {
@@ -427,7 +431,7 @@ const ModalAddNotice = ({ setShowModal }) => {
                     onChange={event => {
                       formik.setFieldValue(
                         'imgURL',
-                        event.currentTarget.files[0]
+                        event.currentTarget.files[0].name
                       );
                     }}
                     className={s.inputLoad}
@@ -436,7 +440,7 @@ const ModalAddNotice = ({ setShowModal }) => {
                     <use href={sprite + '#search-icon'} />
                   </svg>
                 </label>
-                <Thumb file={formik.values.imgURL} />
+                {/* <Thumb file={formik.values.imgURL} /> */}
               </div>
               {category === 'sell' && (
                 <>
