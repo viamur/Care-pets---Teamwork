@@ -33,7 +33,7 @@ const UserInfoBlock = () => {
 
   /* Записуем в стейт данные при загрузки страницы из селектора */
   useEffect(() => {
-    setPhoto(`https://pet-support.herokuapp.com/${userInfo.avatarURL}`);
+    setPhoto(userInfo.avatarURL);
     setEmail(userInfo.email);
     setName(userInfo.name);
     setCity(userInfo.city);
@@ -77,6 +77,35 @@ const UserInfoBlock = () => {
           return;
         }
         if (!input.disabled) {
+          if (btn.name === 'name') {
+            if (name.length < 2) {
+              return Notify.failure('min length "name" 2');
+            }
+            if (name.length > 10) {
+              return Notify.failure('max length "name" 10');
+            }
+          }
+          if (btn.name === 'email') {
+            if (email.length < 6) {
+              return Notify.failure('min length "email" 6');
+            }
+            if (email.length > 25) {
+              return Notify.failure('max length "email" 25');
+            }
+            /* REGEX надо провалидировать */
+          }
+          if (btn.name === 'birthday') {
+            /* Надо придумать валидацию */
+          }
+          if (btn.name === 'phone') {
+            if (phone.length !== 13) {
+              return Notify.failure('length "phone" 13');
+            }
+            /* REGEX надо провалидировать */
+          }
+          if (btn.name === 'city') {
+            /* REGEX надо провалидировать */
+          }
           /* Отправка формы */
           dispatch(pathInfoUser({ email, name, city, phone, birthday }));
 
