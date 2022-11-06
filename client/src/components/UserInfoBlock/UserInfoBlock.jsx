@@ -85,6 +85,7 @@ const UserInfoBlock = () => {
             if (name.length > 10) {
               return Notify.failure('max length "name" 10');
             }
+            dispatch(pathInfoUser({ name }));
           }
           if (btn.name === 'email') {
             if (email.length < 6) {
@@ -94,21 +95,23 @@ const UserInfoBlock = () => {
               return Notify.failure('max length "email" 25');
             }
             /* REGEX надо провалидировать */
+            dispatch(pathInfoUser({ email }));
           }
           if (btn.name === 'birthday') {
             /* Надо придумать валидацию */
+            dispatch(pathInfoUser({ birthday }));
           }
           if (btn.name === 'phone') {
             if (phone.length !== 13) {
               return Notify.failure('length "phone" 13');
             }
             /* REGEX надо провалидировать */
+            dispatch(pathInfoUser({ phone }));
           }
           if (btn.name === 'city') {
             /* REGEX надо провалидировать */
+            dispatch(pathInfoUser({ city }));
           }
-          /* Отправка формы */
-          dispatch(pathInfoUser({ email, name, city, phone, birthday }));
 
           /* Меняем класс кнопки */
           btn.className = 'pencil';
@@ -134,13 +137,7 @@ const UserInfoBlock = () => {
   return (
     <div className={s.infoWrapper}>
       <div className={s.avatarWrapper}>
-        <img
-          src={photo}
-          alt="avatar"
-          width={200}
-          height={200}
-          className={s.avatar}
-        />
+        <img src={photo} alt="avatar" width={200} height={200} className={s.avatar} />
         <label className={s.avatarInputFile}>
           <svg className={s.iconInputFile}>
             <use href={sprite + '#camera-icon'} />
@@ -167,12 +164,7 @@ const UserInfoBlock = () => {
             value={name}
             className={s.item__input}
           />
-          <button
-            type="button"
-            name="name"
-            className={'pencil'}
-            onClick={handleClick}
-          ></button>
+          <button type="button" name="name" className={'pencil'} onClick={handleClick}></button>
         </li>
         <li className={s.item}>
           <p className={s.item__title}>Email:</p>
@@ -184,12 +176,7 @@ const UserInfoBlock = () => {
             value={email}
             className={s.item__input}
           />
-          <button
-            type="button"
-            name="email"
-            className={'pencil'}
-            onClick={handleClick}
-          ></button>
+          <button type="button" name="email" className={'pencil'} onClick={handleClick}></button>
         </li>
         <li className={s.item}>
           <p className={s.item__title}>Birthday:</p>
@@ -201,12 +188,7 @@ const UserInfoBlock = () => {
             value={birthday}
             className={s.item__input}
           />
-          <button
-            type="button"
-            name="birthday"
-            className={'pencil'}
-            onClick={handleClick}
-          ></button>
+          <button type="button" name="birthday" className={'pencil'} onClick={handleClick}></button>
         </li>
         <li className={s.item}>
           <p className={s.item__title}>Phone:</p>
@@ -218,12 +200,7 @@ const UserInfoBlock = () => {
             value={phone}
             className={s.item__input}
           />
-          <button
-            type="button"
-            name="phone"
-            className={'pencil'}
-            onClick={handleClick}
-          ></button>
+          <button type="button" name="phone" className={'pencil'} onClick={handleClick}></button>
         </li>
         <li className={s.item}>
           <p className={s.item__title}>City:</p>
@@ -235,12 +212,7 @@ const UserInfoBlock = () => {
             value={city}
             className={s.item__input}
           />
-          <button
-            type="button"
-            name="city"
-            className={'pencil'}
-            onClick={handleClick}
-          ></button>
+          <button type="button" name="city" className={'pencil'} onClick={handleClick}></button>
         </li>
       </ul>
     </div>
