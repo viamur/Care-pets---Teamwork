@@ -5,6 +5,7 @@ import UserInfoBlock from '../../components/UserInfoBlock/UserInfoBlock';
 import style from './UserPage.module.scss';
 
 const UserPage = () => {
+
   return (
     <>
       <div className={style.pageWrapper}>
