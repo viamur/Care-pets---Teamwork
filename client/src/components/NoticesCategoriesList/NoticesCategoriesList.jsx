@@ -77,10 +77,9 @@ const NoticesCategoriesList = ({
       {!isLoading &&
         array.length === 0 &&
         category !== 'favorite' &&
-        category !==
-          'own'(
-            <p className={s.noResults}>There are no results in this category</p>
-          )}
+        category !== 'own' && (
+          <p className={s.noResults}>There are no results in this category</p>
+        )}
       {!isLoading && array.length === 0 && category === 'favorite' && (
         <p className={s.noResults}>
           You haven't added anything to your favorite yet
