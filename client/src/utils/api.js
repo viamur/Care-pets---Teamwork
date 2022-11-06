@@ -72,7 +72,9 @@ export const getCheckEmail = async email => {
 };
 
 export const fetchAdsByCategory = category => {
-  return axios.get('/notices', { params: { category } }).then(response => response.data.data);
+  return axios
+    .get('/notices', { params: { category } })
+    .then(response => response.data.data);
 };
 
 export const fetchFavoriteAds = () => {
@@ -113,6 +115,7 @@ export const getAdInfo = id => {
 
 export const addPet = info => {
   return axios.post('user/pet', info).then(response => {
+    console.log(response.data.data);
     return response.data.data;
   });
 };

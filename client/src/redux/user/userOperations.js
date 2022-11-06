@@ -38,6 +38,7 @@ export const addPetInUserCard = createAsyncThunk(
   async (userData, { rejectWithValue, getState, dispatch }) => {
     try {
       const response = await postPetUserCardApi(userData);
+      console.log(response);
       return response;
     } catch (error) {
       return rejectWithValue(error.message);

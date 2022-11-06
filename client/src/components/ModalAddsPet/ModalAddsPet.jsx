@@ -101,7 +101,14 @@ const ModalAddsPet = ({ setShowModal }) => {
       return;
     }
 
-    const arrayOfData = Object.entries({ name, birthday, breed, comments });
+    const arrayOfData = Object.entries({
+      name,
+      birthday,
+      breed,
+      comments,
+      imgURL,
+    });
+    console.log(imgURL);
     const filteredArray = arrayOfData.filter(item => item[1]);
     const info = filteredArray.reduce((previousValue, feature) => {
       return { ...previousValue, [feature[0]]: feature[1] };
@@ -218,7 +225,7 @@ const ModalAddsPet = ({ setShowModal }) => {
                     onChange={event => {
                       formik.setFieldValue(
                         'imgURL',
-                        event.currentTarget.files[0]
+                        event.currentTarget.files[0].name
                       );
                     }}
                     className={s.inputLoad}
@@ -227,7 +234,7 @@ const ModalAddsPet = ({ setShowModal }) => {
                     <use href={sprite + '#search-icon'} />
                   </svg>
                 </label>
-                <Thumb file={formik.values.imgURL} />
+                {/* <Thumb file={formik.values.imgURL} /> */}
               </div>
               <label forhtml="comments" className={s.label}>
                 Comments
