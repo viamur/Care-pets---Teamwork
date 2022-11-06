@@ -1,9 +1,8 @@
 const service = require('../../service');
 const fs = require('fs').promises;
-const path = require('path');
-const { v4: uuidv4 } = require('uuid');
-const convertingImgNotices = require('../../service/convertingImgNotices');
 const { joiSchemaPostUser } = require('../../models');
+const { clodinaryUpload, clodinaryRemove } = require('../../service/cloudinary');
+
 /* ======================GET================================== */
 const get = async (req, res) => {
   const user = req.user;
@@ -37,11 +36,9 @@ const add = async (req, res) => {
   const { error } = joiSchemaPostUser.validate(req.body);
   if (error) {
     return res.status(400).json({ message: error.message, success: false });
-    return;
   }
-
   /* Делаем валидацию поля price */
-  if (body.category === 'sell' && typeof body?.price !== 'number') {
+  if (body.category === 'sell' && typeof +body?.price !== 'number') {
     return res.status(400).json({
       message: 'The price field type must be a number and a number greater than 0',
       success: false,
@@ -49,28 +46,12 @@ const add = async (req, res) => {
   }
 
   /* defaults img яку буде перезаписане якщо зображення прикріпленне к формі */
-  let imgURL = 'notices/default.jpg';
+  let imgURL = 'https://pet-support.herokuapp.com/notices/default.jpg';
 
   try {
-    /* -------------якщо є зоображення то функція виконуєтся-------------- */
+    /* =======Загрузка файла======= */
     if (file) {
-      /* Генеруємо нове імя файлу та новий шлях*/
-      const uuid = uuidv4();
-      const extension = file.originalname.split('.').reverse()[0];
-      const newName = `${uuid}.${extension}`;
-      const newPathNotices = path.join(__dirname, '../../public/notices/', newName);
-
-      /* Якщо тип файлу не  image/webp' то воно обрізає його, бібліотека не працює з циф форматом((*/
-      if (file.mimetype !== 'image/webp') {
-        /* Функція яка обрізає зображення та зберігає його у тій же папці  */
-        await convertingImgNotices({ tmpDir: file.path });
-      }
-
-      /* Переміщуємо файл в іншу директорію */
-      await fs.rename(file.path, newPathNotices);
-
-      /* Перезаписуємо шлях до зображення */
-      imgURL = `notices/${newName}`;
+      imgURL = await clodinaryUpload(file.path, 'notices');
     }
 
     const response = await service.notices.addUserPets({ id: user.id, body: { ...body, imgURL } });
@@ -78,7 +59,7 @@ const add = async (req, res) => {
     res.status(201).json({ data: { ...response?._doc, favorite: false }, success: true });
   } catch (error) {
     /* Видаляємо файл якщо помилка */
-    fs.unlink(file.path);
+    file && fs.unlink(file.path);
     /* Відповідь сервера при помилки */
     res.status(500).json({ message: error.message, success: false });
   }
@@ -106,6 +87,11 @@ const remove = async (req, res) => {
         success: false,
       });
       return;
+    }
+
+    /* Удалить изображение с cloudinary если изображение не равно default */
+    if (response.imgURL !== 'https://pet-support.herokuapp.com/notices/default.jpg') {
+      await clodinaryRemove(response.imgURL, 'notices');
     }
 
     /* Якщо видалило з БД запис */
