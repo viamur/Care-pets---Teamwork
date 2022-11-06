@@ -59,7 +59,7 @@ const userSlice = createSlice({
       state.error = null;
     },
     [addPetInUserCard.fulfilled]: (state, { payload }) => {
-      state.pets = [...state.pets, payload];
+      state.pets = payload;
       state.isLoading = false;
       state.error = null;
     },

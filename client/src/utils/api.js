@@ -74,7 +74,7 @@ export const postPetUserCardApi = async data => {
 
 /* ==============Удаление животного из данных пользователя ======== */
 export const deltPetUserCardApi = async id => {
-  const response = await axios.delete(`/user/pet${id}`);
+  const response = await axios.delete(`/user/pet/${id}`);
   return response.data;
 };
 
