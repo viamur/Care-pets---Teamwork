@@ -41,6 +41,11 @@ export const getLoginApi = async userData => {
   return response.data;
 };
 
+export const getCheckEmail = async email => {
+  const response = await axios.post('/auth/checkemail', email);
+  return response.data.check;
+};
+
 /* ==============LOGOUT===================== */
 export const getLogOutApi = async () => {
   const response = await axios.get('/auth/logout');
@@ -58,7 +63,12 @@ export const pathUpdateUserInfoApi = async data => {
 
 /* ==============Добовление животного в данные пользователя ======== */
 export const postPetUserCardApi = async data => {
-  const response = await axios.post('/user/pet', data);
+  const response = await axios.post('/user/pet', data, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+  console.log(response.data.data);
   return response.data.data;
 };
 
@@ -68,13 +78,10 @@ export const deltPetUserCardApi = async id => {
   return response.data;
 };
 
-export const getCheckEmail = async email => {
-  const response = await axios.post('/auth/checkemail', email);
-  return response.data.check;
-};
-
 export const fetchAdsByCategory = category => {
-  return axios.get('/notices', { params: { category } }).then(response => response.data.data);
+  return axios
+    .get('/notices', { params: { category } })
+    .then(response => response.data.data);
 };
 
 export const fetchFavoriteAds = () => {
@@ -113,14 +120,14 @@ export const getAdInfo = id => {
   });
 };
 
-export const addPet = info => {
-  return axios.post('user/pet', info).then(response => {
-    return response.data.data;
-  });
-};
-
 export const addNotice = info => {
-  return axios.post('notices/user', info).then(response => {
-    return response.data.data;
-  });
+  return axios
+    .post('notices/user', info, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+    .then(response => {
+      return response.data.data;
+    });
 };

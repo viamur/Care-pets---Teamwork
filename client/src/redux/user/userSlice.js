@@ -1,5 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getCurUser, pathInfoUser, addPetInUserCard, delPetInUserCard } from './userOperations';
+import { logOutUser } from '../auth/authOperations';
+import {
+  getCurUser,
+  pathInfoUser,
+  addPetInUserCard,
+  delPetInUserCard,
+} from './userOperations';
+
 
 const initialState = {
   _id: null,
@@ -17,18 +24,18 @@ const initialState = {
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {
-    logOutReducer(state) {
-      return { ...initialState };
-    },
-  },
+  reducers: {},
 
   extraReducers: {
     [getCurUser.pending]: state => {
       state.isLoading = true;
       state.error = null;
     },
-    [getCurUser.fulfilled]: (state, { payload }) => ({ ...payload, isLoading: false, error: null }),
+    [getCurUser.fulfilled]: (state, { payload }) => ({
+      ...payload,
+      isLoading: false,
+      error: null,
+    }),
     [getCurUser.rejected]: (state, { payload }) => {
       state.isLoading = false;
       state.error = payload;
@@ -38,6 +45,7 @@ const userSlice = createSlice({
       state.error = null;
     },
     [pathInfoUser.fulfilled]: (state, { payload }) => ({
+      ...state,
       ...payload,
       isLoading: false,
       error: null,
@@ -72,8 +80,18 @@ const userSlice = createSlice({
       state.isLoading = false;
       state.error = payload;
     },
+    [logOutUser.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      state._id = null;
+      state.email = null;
+      state.name = null;
+      state.birthday = null;
+      state.phone = null;
+      state.city = null;
+      state.avatarURL = null;
+      state.pets = null;
+    },
   },
 });
 
-export const { logOutReducer } = userSlice.actions;
 export default userSlice.reducer;
