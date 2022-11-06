@@ -81,11 +81,11 @@ const NoticesCategoriesList = ({ category, searchQuery, setSearchQuery }) => {
         )}
       {!isLoading && array.length === 0 && category === 'favorite' && (
         <p className={s.noResults}>
-          You haven't added anything to your favorite yet
+          You haven't added anything to your favorite
         </p>
       )}
       {!isLoading && array.length === 0 && category === 'own' && (
-        <p className={s.noResults}>You haven't added your own ads yet</p>
+        <p className={s.noResults}>You haven't added your own ads</p>
       )}
       <ul className={s.list}>
         {array &&

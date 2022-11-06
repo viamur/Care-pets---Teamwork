@@ -1,10 +1,12 @@
+@import '../../sass/mixin';
+
 .list {
   padding-top: 30px;
   display: flex;
   flex-wrap: wrap;
   gap: 32px;
 
-  @media screen and (min-width: 768px) {
+  @include mq(tab) {
     padding-top: 60px;
   }
 }
@@ -19,9 +21,16 @@
 }
 
 .boxAddPet {
+  position: absolute;
+  top: 190px;
+  right: 32px;
   display: flex;
   align-items: center;
-  gap: 12px;
+
+  @include mq(desk) {
+    top: 193px;
+    right: 16px;
+  }
 }
 
 .textAddPet {
@@ -29,4 +38,5 @@
   font-size: 20px;
   line-height: 1.35;
   color: var(--font-color);
+  margin-right: 12px;
 }

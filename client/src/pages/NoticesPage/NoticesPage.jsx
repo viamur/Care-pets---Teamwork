@@ -2,15 +2,15 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import NoticesCategoriesNav from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
 import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
-import Container from 'components/Container/Container';
 import NoticesCategoriesList from 'components/NoticesCategoriesList/NoticesCategoriesList';
+import s from './NoticesPage.module.scss';
 
 const NoticesPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const { categoryName } = useParams();
 
   return (
-    <Container>
+    <div className={s.container}>
       <NoticesSearch
         setSearchQuery={setSearchQuery}
         title="Find your favorite pet"
@@ -21,7 +21,7 @@ const NoticesPage = () => {
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
       />
-    </Container>
+    </div>
   );
 };
 
