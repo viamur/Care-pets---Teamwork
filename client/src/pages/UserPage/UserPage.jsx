@@ -1,30 +1,28 @@
 import { useState } from 'react';
 import Logout from 'components/Logout/Logout';
-import UserData from '../../components/UserData/UserData';
 import PetsData from '../../components/PetsData/PetsData';
-import ModalAddsPet from '../../components/ModalAddsPet/ModalAddsPet';
 import UserInfoBlock from '../../components/UserInfoBlock/UserInfoBlock';
+import ModalAddsPet from '../../components/ModalAddsPet/ModalAddsPet';
 import style from './UserPage.module.scss';
 
-const UserPage = props => {
+
+const UserPage = () => {
   const [showModal, setShowModal] = useState(false);
 
   const onBtnAddPetClick = () => {
     setShowModal(true);
   };
-
   return (
     <>
-      <div>
-        <UserInfoBlock />
+      <div className={style.pageWrapper}>
+        <div className={style.userWrapper}>
+          <UserInfoBlock />
+          <Logout />
+         {showModal && <ModalAddsPet setShowModal={setShowModal} />}
+        </div>
         <button onClick={onBtnAddPetClick}>Add pet</button>
-        <Logout />
-        {showModal && <ModalAddsPet setShowModal={setShowModal} />}
+        <PetsData />
       </div>
-      {/* <div className={style.pageWrapper}>
-        <UserData {...props} />
-        <PetsData deletePet={props.deletePet} petsStore={props.petsStore} />
-      </div> */}
     </>
   );
 };

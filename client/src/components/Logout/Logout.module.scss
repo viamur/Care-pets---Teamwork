@@ -1,0 +1,43 @@
+@import '../../sass/mixin';
+
+.btn {
+  //   margin: 42px 12px 20px auto;
+  display: flex;
+  border: none;
+  width: 90px;
+  background: #ffffff;
+
+  font-family: 'Manrope Medium';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.04em;
+
+  /* Cерый */
+
+  color: rgba(17, 17, 17, 0.6);
+
+  &:hover,
+  &:focus {
+    border: 1px solid rgba(17, 17, 17, 0.1);
+    border-radius: 5px;
+  }
+
+  @include mq(tab) {
+    margin: 33px auto 24px 32px;
+  }
+
+  @include mq(desk) {
+    margin: 43px auto 42px 17px;
+  }
+}
+
+.icon {
+  margin-right: 8px;
+  padding-left: 2px;
+}
