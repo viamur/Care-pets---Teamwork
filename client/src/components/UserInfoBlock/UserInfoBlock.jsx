@@ -6,6 +6,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 import s from './UserInfoBlock.module.scss';
 import { pathInfoUser } from 'redux/user/userOperations';
+import sprite from '../../images/icons/sprite.svg';
 
 const UserInfoBlock = () => {
   /* Селекторы */
@@ -102,77 +103,118 @@ const UserInfoBlock = () => {
   };
 
   return (
-    <>
-      <img src={photo} alt="avatar" width={200} height={200} />
-      <input type="file" name="avatar" accept=".png, .jpg, .jpeg" onChange={onSelectFile} />
-      <ul ref={listRef}>
-        <li>
-          <p>Name:</p>
+    <div className={s.infoWrapper}>
+      <div className={s.avatarWrapper}>
+        <img
+          src={photo}
+          alt="avatar"
+          width={200}
+          height={200}
+          className={s.avatar}
+        />
+        <label className={s.avatarInputFile}>
+          <svg className={s.iconInputFile}>
+            <use href={sprite + '#camera-icon'} />
+          </svg>
+          Edit photo
+          <input
+            type="file"
+            name="avatar"
+            accept=".png, .jpg, .jpeg"
+            onChange={onSelectFile}
+            className={s.avatarInput}
+            placeholder="Edit photo"
+          />
+        </label>
+      </div>
+      <ul ref={listRef} className={s.list}>
+        <li className={s.item}>
+          <p className={s.item__title}>Name:</p>
           <input
             type="text"
             name="name"
             disabled={true}
             onChange={e => setName(e.target.value)}
             value={name}
+            className={s.item__input}
           />
-          <button type="button" name="name" className={'pencil'} onClick={handleClick}>
-            change
-          </button>
+          <button
+            type="button"
+            name="name"
+            className={'pencil'}
+            onClick={handleClick}
+          ></button>
         </li>
-        <li>
-          <p>Email:</p>
+        <li className={s.item}>
+          <p className={s.item__title}>Email:</p>
           <input
             type="text"
             name="email"
             disabled={true}
             onChange={e => setEmail(e.target.value)}
             value={email}
+            className={s.item__input}
           />
-          <button type="button" name="email" onClick={handleClick}>
-            change
-          </button>
+          <button
+            type="button"
+            name="email"
+            className={'pencil'}
+            onClick={handleClick}
+          ></button>
         </li>
-        <li>
-          <p>Birthday:</p>
+        <li className={s.item}>
+          <p className={s.item__title}>Birthday:</p>
           <input
-            type="text"
+            type="date"
             name="birthday"
             disabled={true}
             onChange={e => setBirthday(e.target.value)}
             value={birthday}
+            className={s.item__input}
           />
-          <button type="button" name="birthday" onClick={handleClick}>
-            change
-          </button>
+          <button
+            type="button"
+            name="birthday"
+            className={'pencil'}
+            onClick={handleClick}
+          ></button>
         </li>
-        <li>
-          <p>Phone:</p>
+        <li className={s.item}>
+          <p className={s.item__title}>Phone:</p>
           <input
             type="text"
             name="phone"
             disabled={true}
             onChange={e => setPhone(e.target.value)}
             value={phone}
+            className={s.item__input}
           />
-          <button type="button" name="phone" onClick={handleClick}>
-            change
-          </button>
+          <button
+            type="button"
+            name="phone"
+            className={'pencil'}
+            onClick={handleClick}
+          ></button>
         </li>
-        <li>
-          <p>City:</p>
+        <li className={s.item}>
+          <p className={s.item__title}>City:</p>
           <input
             type="text"
             name="city"
             disabled={true}
             onChange={e => setCity(e.target.value)}
             value={city}
+            className={s.item__input}
           />
-          <button type="button" name="city" onClick={handleClick}>
-            change
-          </button>
+          <button
+            type="button"
+            name="city"
+            className={'pencil'}
+            onClick={handleClick}
+          ></button>
         </li>
       </ul>
-    </>
+    </div>
   );
 };
 
