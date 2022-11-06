@@ -78,7 +78,7 @@
   }
 
   @include mq(tab) {
-    top: 0px;
+    // top: 0px;
   }
 
   @include mq(desk) {
@@ -121,4 +121,8 @@
 
 .categoryDiscription:last-child {
   margin-bottom: 0px;
+}
+
+.discriptionTitle {
+  font-family: 'Manrope SemiBold';
 }
