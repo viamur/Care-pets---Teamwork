@@ -11,10 +11,17 @@ const PetsList = () => {
   const dispatch = useDispatch();
   const petsList = useSelector(getUserPets);
 
+  const convertDate = date => {
+    const transformedDate = date.split('T')[0];
+    const result = transformedDate.split('-').reverse().join('.');
+    return result;
+  };
+
   return (
     <>
       <ul className={s.list}>
-        {petsList.length > 0 &&
+        {petsList &&
+          petsList.length > 0 &&
           petsList.map(pet => (
             <li key={pet._id} className={s.card}>
               <img src={pet.imgURL} alt="Pet Foto" className={s.petFoto} />
@@ -40,7 +47,8 @@ const PetsList = () => {
                   <span className={s.discriptionTitle}>Name:</span> {pet.name}
                 </p>
                 <p className={s.categoryDiscription}>
-                  <span className={s.discriptionTitle}>Date of birth:</span> {pet.dateBidthday}
+                  <span className={s.discriptionTitle}>Date of birth:</span>
+                  {convertDate(pet.birthday)}
                 </p>
                 <p className={s.categoryDiscription}>
                   <span className={s.discriptionTitle}>Breed:</span> {pet.breed}

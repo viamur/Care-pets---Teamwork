@@ -152,7 +152,13 @@ const UserInfoBlock = () => {
   return (
     <div className={s.infoWrapper}>
       <div className={s.avatarWrapper}>
-        <img src={photo} alt="avatar" width={200} height={200} className={s.avatar} />
+        <img
+          src={photo}
+          alt="avatar"
+          width={200}
+          height={200}
+          className={s.avatar}
+        />
         <label className={s.avatarInputFile}>
           <svg className={s.iconInputFile}>
             <use href={sprite + '#camera-icon'} />
@@ -179,7 +185,12 @@ const UserInfoBlock = () => {
             value={name}
             className={s.item__input}
           />
-          <button type="button" name="name" className={'pencil'} onClick={handleClick}></button>
+          <button
+            type="button"
+            name="name"
+            className={'pencil'}
+            onClick={handleClick}
+          ></button>
         </li>
         <li className={s.item}>
           <p className={s.item__title}>Email:</p>
@@ -191,7 +202,12 @@ const UserInfoBlock = () => {
             value={email}
             className={s.item__input}
           />
-          <button type="button" name="email" className={'pencil'} onClick={handleClick}></button>
+          <button
+            type="button"
+            name="email"
+            className={'pencil'}
+            onClick={handleClick}
+          ></button>
         </li>
         <li className={s.item}>
           <p className={s.item__title}>Birthday:</p>
@@ -199,11 +215,18 @@ const UserInfoBlock = () => {
             type="date"
             name="birthday"
             disabled={true}
-            onChange={e => setBirthday(e.target.value)}
-            value={birthday}
+            onChange={e => {
+              setBirthday(e.target.value);
+            }}
+            value={birthday.split('T')[0]}
             className={s.item__input}
           />
-          <button type="button" name="birthday" className={'pencil'} onClick={handleClick}></button>
+          <button
+            type="button"
+            name="birthday"
+            className={'pencil'}
+            onClick={handleClick}
+          ></button>
         </li>
         <li className={s.item}>
           <p className={s.item__title}>Phone:</p>
@@ -215,7 +238,12 @@ const UserInfoBlock = () => {
             value={phone}
             className={s.item__input}
           />
-          <button type="button" name="phone" className={'pencil'} onClick={handleClick}></button>
+          <button
+            type="button"
+            name="phone"
+            className={'pencil'}
+            onClick={handleClick}
+          ></button>
         </li>
         <li className={s.item}>
           <p className={s.item__title}>City:</p>
@@ -227,7 +255,12 @@ const UserInfoBlock = () => {
             value={city}
             className={s.item__input}
           />
-          <button type="button" name="city" className={'pencil'} onClick={handleClick}></button>
+          <button
+            type="button"
+            name="city"
+            className={'pencil'}
+            onClick={handleClick}
+          ></button>
         </li>
       </ul>
     </div>

@@ -1,9 +1,7 @@
-@import "../../sass/fonts";
-@import "../../sass/mixin";
+@import '../../sass/fonts';
+@import '../../sass/mixin';
 
 .infoWrapper {
-
-
   @include mq(tab) {
     display: flex;
     flex-direction: row-reverse;
@@ -38,7 +36,7 @@
   border-radius: 50%;
   filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
 
-   @include mq(tab) {
+  @include mq(tab) {
     margin-bottom: 8px;
   }
 }
@@ -46,16 +44,17 @@
 .avatarInputFile {
   display: flex;
   align-items: center;
-  justify-content:end;
+  justify-content: end;
 
   margin-left: auto;
   padding-right: 10px;
 
   font-size: 12px;
   line-height: 1.83;
+  cursor: pointer;
 
   &:hover {
-    color: var( --accent-color);
+    color: var(--accent-color);
   }
 
   @include mq(desk) {
@@ -85,7 +84,7 @@
 .item {
   display: flex;
   align-items: center;
-  
+
   &:not(:last-child) {
     margin-bottom: 4px;
   }
@@ -94,7 +93,7 @@
 .item__title {
   min-width: 56px;
 
-  font-family: "Manrope Medium";
+  font-family: 'Manrope Medium';
   font-size: 12px;
   line-height: 1.33;
   letter-spacing: 0.04em;
@@ -112,11 +111,11 @@
 }
 
 .item__input {
-  width:70%;
+  width: 70%;
   margin-right: 9px;
   padding: 4px 10px;
 
-  font-family: "Manrope Regular";
+  font-family: 'Manrope Regular';
   font-size: 12px;
   line-height: 1.33;
   letter-spacing: 0.04em;
