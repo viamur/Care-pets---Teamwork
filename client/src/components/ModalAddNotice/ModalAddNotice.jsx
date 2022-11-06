@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
-import DatePicker from 'react-date-picker';
-import Thumb from '../Thumb/Thumb';
-import { showAlertMessage } from '../../utils/showMessages';
+import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import DatePicker from 'react-date-picker';
+import { showAlertMessage } from '../../utils/showMessages';
 import { addNotice } from '../../utils/api';
+import imgLoad from '../../images/modals/loadMobile.png';
 import sprite from '../../images/icons/sprite.svg';
 import s from './ModalAddNotice.module.scss';
 
@@ -14,6 +14,7 @@ const portalModal = document.querySelector('#modal-root');
 
 const ModalAddNotice = ({ setShowModal }) => {
   const [page, setPage] = useState(1);
+  const [photo, setPhoto] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -91,7 +92,7 @@ const ModalAddNotice = ({ setShowModal }) => {
     location,
     price,
     comments,
-    imgURL,
+    notices,
   } = formik.values;
 
   const {
@@ -103,6 +104,19 @@ const ModalAddNotice = ({ setShowModal }) => {
     comments: commentsError,
   } = formik.errors;
 
+  useEffect(() => {
+    if (!notices) {
+      return;
+    }
+
+    /* Создаем виртуальную ссылку на загруженный файл */
+    const objectUrl = URL.createObjectURL(notices);
+    setPhoto(objectUrl);
+
+    // free memory when ever this component is unmounted
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [notices]);
+
   const onFormSubmit = e => {
     e.preventDefault();
 
@@ -110,13 +124,14 @@ const ModalAddNotice = ({ setShowModal }) => {
       showAlertMessage('Input all required fields');
       return;
     }
-    if (locationError || priceError || commentsError) {
+    if (locationError || commentsError || (category === 'sell' && priceError)) {
       showAlertMessage('Input all fields in the necessary format');
       return;
     }
 
-    console.log(imgURL);
-    const transformedPrice = Number(price);
+    const transformedPrice = category === 'sell' ? Number(price) : '';
+    console.log(typeof price);
+    console.log(typeof transformedPrice);
     const arrayOfData = Object.entries({
       category,
       title,
@@ -127,7 +142,7 @@ const ModalAddNotice = ({ setShowModal }) => {
       location,
       price: transformedPrice,
       comments,
-      // imgURL,
+      notices,
     });
     const filteredArray = arrayOfData.filter(item => item[1]);
     const info = filteredArray.reduce((previousValue, feature) => {
@@ -428,6 +443,16 @@ const ModalAddNotice = ({ setShowModal }) => {
               <div className={s.loadImgGroup}>
                 <p className={s.titleLoad}> Load the pet’s image</p>
                 <label forhtml="file" className={s.labelLoad}>
+                  {!photo && <img src={imgLoad} width="71" height="71" />}
+                  {photo && (
+                    <div className={s.thumbLoadImg}>
+                      <img
+                        src={photo}
+                        alt="pet_photo"
+                        className={s.loadImage}
+                      />
+                    </div>
+                  )}
                   <input
                     id="file"
                     name="notices"
@@ -440,11 +465,7 @@ const ModalAddNotice = ({ setShowModal }) => {
                     }}
                     className={s.inputLoad}
                   />
-                  <svg className={s.iconAddPet}>
-                    <use href={sprite + '#search-icon'} />
-                  </svg>
                 </label>
-                {/* <Thumb file={formik.values.notices} /> */}
               </div>
               {category === 'sell' && (
                 <>

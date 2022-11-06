@@ -302,7 +302,7 @@
   display: block;
   width: 40px;
   height: 40px;
-  background-image: url('../../images/sex/male.png');
+  background-image: url('../../images/modals/male.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -322,7 +322,7 @@
   display: block;
   width: 40px;
   height: 40px;
-  background-image: url('../../images/sex/female.png');
+  background-image: url('../../images/modals/female.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -406,4 +406,22 @@
     width: 140px;
     height: 140px;
   }
+}
+
+.thumbLoadImg {
+  width: 116px;
+  height: 116px;
+  border-radius: 20px;
+
+  @include mq(tab) {
+    width: 140px;
+    height: 140px;
+  }
+}
+
+.loadImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
 }
