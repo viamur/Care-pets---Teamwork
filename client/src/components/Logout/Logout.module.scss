@@ -2,12 +2,15 @@
 
 .btn {
   //   margin: 42px 12px 20px auto;
+  position: absolute;
+  right: 12px;
+  bottom: 20px;
+
   display: flex;
   border: none;
   width: 90px;
   background: var(--white);
   border: 1px solid var(--white);
-  margin-left: auto;
 
   font-family: 'Manrope Medium';
   font-style: normal;
@@ -16,7 +19,6 @@
   line-height: 22px;
   /* identical to box height */
 
-  display: flex;
   align-items: center;
   letter-spacing: 0.04em;
 
@@ -31,11 +33,16 @@
   }
 
   @include mq(tab) {
-    margin: 33px auto 24px 32px;
+    // margin: 33px auto 24px 32px;
+    position: absolute;
+    bottom: 24px;
+    left: 32px;
   }
 
   @include mq(desk) {
-    margin: 43px auto 42px 17px;
+    bottom: 40px;
+    left: 16px;
+    // margin: 43px auto 42px 17px;
   }
 }
 

@@ -10,7 +10,8 @@
 }
 
 .userWrapper {
-  padding: 20px 14px 22px;
+  position: relative;
+  padding: 20px 12px 86px;
 
   background-color: var(--white);
 
@@ -20,19 +21,14 @@
   border-radius: 20px;
 
   @include mq(tab) {
-    padding: 24px 36px;
+    padding: 24px 40px 24px 32px;
 
     border-radius: 0px 40px 40px 0px;
-
   }
 
   @include mq(desk) {
     display: flex;
     flex-direction: column;
-    padding: 20px 16px 40px;
+    padding: 20px 16px 106px;
   }
-}
-
-.logout {
-  margin-left: auto;
 }

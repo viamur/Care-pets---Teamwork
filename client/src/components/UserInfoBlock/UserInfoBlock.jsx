@@ -103,29 +103,31 @@ const UserInfoBlock = () => {
   };
 
   return (
-    <>
-      <img
-        src={photo}
-        alt="avatar"
-        width={200}
-        height={200}
-        className={s.avatar}
-      />
-      <label className={s.avatarInputFile}>
-        <svg className={s.iconInputFile}>
-          <use href={sprite + '#camera-icon'} />
-        </svg>
-        Edit photo
-        <input
-          type="file"
-          name="avatar"
-          accept=".png, .jpg, .jpeg"
-          onChange={onSelectFile}
-          className={s.avatarInput}
-          placeholder="Edit photo"
+    <div className={s.infoWrapper}>
+      <div className={s.avatarWrapper}>
+        <img
+          src={photo}
+          alt="avatar"
+          width={200}
+          height={200}
+          className={s.avatar}
         />
-      </label>
-      <ul ref={listRef}>
+        <label className={s.avatarInputFile}>
+          <svg className={s.iconInputFile}>
+            <use href={sprite + '#camera-icon'} />
+          </svg>
+          Edit photo
+          <input
+            type="file"
+            name="avatar"
+            accept=".png, .jpg, .jpeg"
+            onChange={onSelectFile}
+            className={s.avatarInput}
+            placeholder="Edit photo"
+          />
+        </label>
+      </div>
+      <ul ref={listRef} className={s.list}>
         <li className={s.item}>
           <p className={s.item__title}>Name:</p>
           <input
@@ -212,7 +214,7 @@ const UserInfoBlock = () => {
           ></button>
         </li>
       </ul>
-    </>
+    </div>
   );
 };
 
