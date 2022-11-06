@@ -54,9 +54,11 @@ const authSlice = createSlice({
       state.isLoading = true;
       state.error = null;
     },
-    [logOutUser.fulfilled]: (state, { payload }, dispatch) => ({
-      ...initialState,
-    }),
+    [logOutUser.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      state.email = null;
+      state.accessToken = null;
+    },
     [logOutUser.rejected]: (state, { payload }) => {
       state.isLoading = false;
       state.error = payload;

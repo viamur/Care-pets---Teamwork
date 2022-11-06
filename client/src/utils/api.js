@@ -122,7 +122,7 @@ export const addNotice = info => {
   return axios
     .post('notices/user', info, {
       headers: {
-        'Content-Type': ' form-data',
+        'Content-Type': 'multipart/form-data',
       },
     })
     .then(response => {
