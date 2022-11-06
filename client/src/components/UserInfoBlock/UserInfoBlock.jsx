@@ -8,6 +8,12 @@ import s from './UserInfoBlock.module.scss';
 import { pathInfoUser } from 'redux/user/userOperations';
 import sprite from '../../images/icons/sprite.svg';
 
+/* ----------REGEX--------------- */
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const phoneRegex = /^\+380\d{9}/;
+const cityRegex =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z0-9]).{3,32},(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z0-9]).{3,32}$/;
+
 const UserInfoBlock = () => {
   /* Селекторы */
   const userInfo = useSelector(getAllUserInfo);
@@ -34,7 +40,7 @@ const UserInfoBlock = () => {
 
   /* Записуем в стейт данные при загрузки страницы из селектора */
   useEffect(() => {
-    setPhoto(`https://pet-support.herokuapp.com/${userInfo.avatarURL}`);
+    setPhoto(userInfo.avatarURL);
     setEmail(userInfo.email);
     setName(userInfo.name);
     setCity(userInfo.city);
@@ -49,14 +55,14 @@ const UserInfoBlock = () => {
       return;
     }
 
+    /* Создаем виртуальную ссылку на загруженный файл */
+    const objectUrl = URL.createObjectURL(selectedFile);
+    setPhoto(objectUrl);
+
     /* Создаем FormData и добовляем туда наш файл и отпарвляем */
     const bodyFormData = new FormData();
     bodyFormData.append('avatar', selectedFile);
     dispatch(pathInfoUser(bodyFormData));
-
-    /* Создаем виртуальную ссылку на загруженный файл */
-    const objectUrl = URL.createObjectURL(selectedFile);
-    setPhoto(objectUrl);
 
     // free memory when ever this component is unmounted
     return () => URL.revokeObjectURL(objectUrl);
@@ -78,8 +84,49 @@ const UserInfoBlock = () => {
           return;
         }
         if (!input.disabled) {
-          /* Отправка формы */
-          dispatch(pathInfoUser({ email, name, city, phone, birthday }));
+          if (btn.name === 'name') {
+            if (name.length < 2) {
+              return Notify.failure('min length "name" 2');
+            }
+            if (name.length > 10) {
+              return Notify.failure('max length "name" 10');
+            }
+            dispatch(pathInfoUser({ name }));
+          }
+          if (btn.name === 'email') {
+            if (email.length < 6) {
+              return Notify.failure('min length "email" 6');
+            }
+            if (email.length > 25) {
+              return Notify.failure('max length "email" 25');
+            }
+            if (!emailRegex.exec(email)) {
+              /* REGEX надо провалидировать */
+              return Notify.failure('Wrong format!');
+            }
+            dispatch(pathInfoUser({ email }));
+          }
+          if (btn.name === 'birthday') {
+            /* Надо придумать валидацию */
+            dispatch(pathInfoUser({ birthday }));
+          }
+          if (btn.name === 'phone') {
+            if (phone.length !== 13) {
+              return Notify.failure('length "phone" 13');
+            }
+            if (!phoneRegex.exec(phone)) {
+              /* REGEX надо провалидировать */
+              return Notify.failure('Wrong format! +380...');
+            }
+            dispatch(pathInfoUser({ phone }));
+          }
+          if (btn.name === 'city') {
+            if (!cityRegex.exec(city)) {
+              /* REGEX надо провалидировать */
+              return Notify.failure('Wrong format!');
+            }
+            dispatch(pathInfoUser({ city }));
+          }
 
           /* Меняем класс кнопки */
           btn.className = 'pencil';
@@ -94,7 +141,7 @@ const UserInfoBlock = () => {
   /* Для выбора файла  */
   const onSelectFile = e => {
     if (!e.target.files || e.target.files.length === 0) {
-      setSelectedFile(undefined);
+      // setSelectedFile(undefined);
       return;
     }
 
@@ -105,13 +152,7 @@ const UserInfoBlock = () => {
   return (
     <div className={s.infoWrapper}>
       <div className={s.avatarWrapper}>
-        <img
-          src={photo}
-          alt="avatar"
-          width={200}
-          height={200}
-          className={s.avatar}
-        />
+        <img src={photo} alt="avatar" width={200} height={200} className={s.avatar} />
         <label className={s.avatarInputFile}>
           <svg className={s.iconInputFile}>
             <use href={sprite + '#camera-icon'} />
@@ -138,12 +179,7 @@ const UserInfoBlock = () => {
             value={name}
             className={s.item__input}
           />
-          <button
-            type="button"
-            name="name"
-            className={'pencil'}
-            onClick={handleClick}
-          ></button>
+          <button type="button" name="name" className={'pencil'} onClick={handleClick}></button>
         </li>
         <li className={s.item}>
           <p className={s.item__title}>Email:</p>
@@ -155,12 +191,7 @@ const UserInfoBlock = () => {
             value={email}
             className={s.item__input}
           />
-          <button
-            type="button"
-            name="email"
-            className={'pencil'}
-            onClick={handleClick}
-          ></button>
+          <button type="button" name="email" className={'pencil'} onClick={handleClick}></button>
         </li>
         <li className={s.item}>
           <p className={s.item__title}>Birthday:</p>
@@ -172,12 +203,7 @@ const UserInfoBlock = () => {
             value={birthday}
             className={s.item__input}
           />
-          <button
-            type="button"
-            name="birthday"
-            className={'pencil'}
-            onClick={handleClick}
-          ></button>
+          <button type="button" name="birthday" className={'pencil'} onClick={handleClick}></button>
         </li>
         <li className={s.item}>
           <p className={s.item__title}>Phone:</p>
@@ -189,12 +215,7 @@ const UserInfoBlock = () => {
             value={phone}
             className={s.item__input}
           />
-          <button
-            type="button"
-            name="phone"
-            className={'pencil'}
-            onClick={handleClick}
-          ></button>
+          <button type="button" name="phone" className={'pencil'} onClick={handleClick}></button>
         </li>
         <li className={s.item}>
           <p className={s.item__title}>City:</p>
@@ -206,12 +227,7 @@ const UserInfoBlock = () => {
             value={city}
             className={s.item__input}
           />
-          <button
-            type="button"
-            name="city"
-            className={'pencil'}
-            onClick={handleClick}
-          ></button>
+          <button type="button" name="city" className={'pencil'} onClick={handleClick}></button>
         </li>
       </ul>
     </div>

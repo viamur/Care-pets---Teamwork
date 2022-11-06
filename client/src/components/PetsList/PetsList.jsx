@@ -17,11 +17,7 @@ const PetsList = () => {
         {petsList.length > 0 &&
           petsList.map(pet => (
             <li key={pet._id} className={s.card}>
-              <img
-                src={`https://pet-support.herokuapp.com/${pet.imgURL}`}
-                alt="Pet Foto"
-                className={s.petFoto}
-              />
+              <img src={pet.imgURL} alt="Pet Foto" className={s.petFoto} />
               <div className={s.cardDiscription}>
                 <button
                   type="button"
@@ -44,8 +40,7 @@ const PetsList = () => {
                   <span className={s.discriptionTitle}>Name:</span> {pet.name}
                 </p>
                 <p className={s.categoryDiscription}>
-                  <span className={s.discriptionTitle}>Date of birth:</span>{' '}
-                  {pet.dateBidthday}
+                  <span className={s.discriptionTitle}>Date of birth:</span> {pet.dateBidthday}
                 </p>
                 <p className={s.categoryDiscription}>
                   <span className={s.discriptionTitle}>Breed:</span> {pet.breed}
