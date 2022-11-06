@@ -1,11 +1,42 @@
-.list {
-    padding-top: 30px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 32px;
+@import '../../sass/mixin';
 
-    @media screen and (min-width: 768px) {
-        padding-top: 60px;
-    }
+.list {
+  padding-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+
+  @include mq(tab) {
+    padding-top: 60px;
+  }
 }
 
+.noResults {
+  font-family: 'Manrope Medium';
+  font-size: 22px;
+  line-height: 1.36;
+  letter-spacing: 0.04em;
+  text-align: center;
+  padding-top: 40px;
+}
+
+.boxAddPet {
+  position: absolute;
+  top: 190px;
+  right: 32px;
+  display: flex;
+  align-items: center;
+
+  @include mq(desk) {
+    top: 193px;
+    right: 16px;
+  }
+}
+
+.textAddPet {
+  font-family: 'Manrope Medium';
+  font-size: 20px;
+  line-height: 1.35;
+  color: var(--font-color);
+  margin-right: 12px;
+}

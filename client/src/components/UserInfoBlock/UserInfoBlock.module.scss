@@ -1,3 +1,137 @@
-.btn {
-  background-color: white;
+@import "../../sass/fonts";
+@import "../../sass/mixin";
+
+.infoWrapper {
+
+
+  @include mq(tab) {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  @include mq(desk) {
+    display: block;
+  }
+}
+
+.avatarWrapper {
+  margin-bottom: 36px;
+
+  @include mq(tab) {
+    margin-bottom: 0;
+  }
+
+  @include mq(desk) {
+    position: relative;
+    margin-bottom: 32px;
+  }
+}
+
+.avatar {
+  width: 233px;
+  height: 233px;
+  margin: auto;
+  margin-bottom: 12px;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+  filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
+
+   @include mq(tab) {
+    margin-bottom: 8px;
+  }
+}
+
+.avatarInputFile {
+  display: flex;
+  align-items: center;
+  justify-content:end;
+
+  margin-left: auto;
+  padding-right: 10px;
+
+  font-size: 12px;
+  line-height: 1.83;
+
+  &:hover {
+    color: var( --accent-color);
+  }
+
+  @include mq(desk) {
+    position: absolute;
+    right: -20px;
+    bottom: 0;
+  }
+}
+
+.iconInputFile {
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+}
+
+.avatarInput {
+  display: none;
+}
+
+.list {
+  @include mq(tab) {
+    margin-top: 16px;
+    margin-right: 52px;
+  }
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  
+  &:not(:last-child) {
+    margin-bottom: 4px;
+  }
+}
+
+.item__title {
+  min-width: 56px;
+
+  font-family: "Manrope Medium";
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: 0.04em;
+
+  @include mq(tab) {
+    min-width: 83px;
+
+    font-size: 18px;
+    line-height: 1.39;
+  }
+
+  @include mq(desk) {
+    margin-right: 24px;
+  }
+}
+
+.item__input {
+  width:70%;
+  margin-right: 9px;
+  padding: 4px 10px;
+
+  font-family: "Manrope Regular";
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: 0.04em;
+
+  background-color: var(--bg-color);
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 40px;
+
+  &:disabled {
+    background-color: var(--white);
+    border: 1px solid var(--white);
+  }
+
+  @include mq(tab) {
+    font-size: 18px;
+    line-height: 1.39;
+  }
 }
