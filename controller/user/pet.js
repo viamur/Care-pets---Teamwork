@@ -52,10 +52,11 @@ const removePet = async (req, res) => {
 
   try {
     const response = await service.user.deletePet({ id, userId: user.id });
-    const pet = response.pets.filter(el => el._id === id);
-    if (pet) {
+    const pet = response.pets.filter(el => el._id.toString() === id);
+    if (pet[0].imgURL !== 'https://pet-support.herokuapp.com/pet/default.jpg') {
+      console.log('🚀 -- pet[0].imgURL', pet[0].imgURL);
       /* Удаляем файл с животного на cloudinary */
-      await clodinaryRemove(pet?.imgURL, 'pet');
+      await clodinaryRemove(pet[0].imgURL, 'pet');
     }
     res.status(200).json({ success: true });
   } catch (error) {
