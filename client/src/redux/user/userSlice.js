@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { logOutUser } from '../auth/authOperations';
 import {
   getCurUser,
   pathInfoUser,
