@@ -48,29 +48,46 @@
 }
 
 .btn {
+  display: block;
   position: absolute;
-  top: 38px;
-  right: 12px;
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
-  padding: 0;
+
   border: none;
   background-color: transparent;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+}
+
+.btnSearch {
+  composes: btn;
+  top: 38px;
+  right: 12px;
 
   @media screen and (min-width: 768px) {
-    width: 24px;
-    height: 24px;
     top: 50px;
     right: 60px;
   }
 
   @media screen and (min-width: 1280px) {
     right: 335px;
+    top: 50px;
+  }
+}
+
+.btnDelete {
+  composes: btn;
+  top: 42px;
+  right: 42px;
+
+  @media screen and (min-width: 768px) {
+    top: 55px;
+    right: 95px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    right: 370px;
   }
 }
 
@@ -89,5 +106,16 @@
     -webkit-transform: scale(1.4);
     animation: none;
     transform: scale(1.4);
+  }
+}
+
+.iconDelete {
+  width: 12px;
+  height: 12px;
+  fill: var(--font-color);
+
+  @media screen and (min-width: 768px) {
+    width: 14px;
+    height: 14px;
   }
 }

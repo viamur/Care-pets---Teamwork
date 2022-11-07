@@ -18,7 +18,7 @@ const categoriesForBack = {
   'for-free': 'inGoodHands',
 };
 
-const NoticesCategoriesList = ({ category, searchQuery, setSearchQuery }) => {
+const NoticesCategoriesList = ({ category, searchQuery }) => {
   const [array, setArray] = useState([]);
   const [showButton, setShowButton] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
@@ -31,7 +31,6 @@ const NoticesCategoriesList = ({ category, searchQuery, setSearchQuery }) => {
     if (category === 'favorite') {
       fetchFavoriteAds()
         .then(data => {
-          setSearchQuery('');
           setArray(data);
         })
         .catch(error => showAlertMessage(error.response.data.message))
@@ -46,7 +45,6 @@ const NoticesCategoriesList = ({ category, searchQuery, setSearchQuery }) => {
       showLoadingHourglass('Loading ...');
       fetchOwnAds()
         .then(data => {
-          setSearchQuery('');
           setArray(data);
         })
         .catch(error => showAlertMessage(error.response.data.message))
@@ -59,7 +57,6 @@ const NoticesCategoriesList = ({ category, searchQuery, setSearchQuery }) => {
 
     fetchAdsByCategory(categoriesForBack[category])
       .then(data => {
-        setSearchQuery('');
         setArray(data);
       })
       .catch(error => showAlertMessage(error.response.data.message))
