@@ -1,5 +1,4 @@
 import { useSelector } from 'react-redux';
-import Logout from 'components/Logout/Logout';
 import PetsData from '../../components/PetsData/PetsData';
 import UserInfoBlock from '../../components/UserInfoBlock/UserInfoBlock';
 import Container from '../../components/Container/Container';
@@ -25,17 +24,16 @@ const UserPage = () => {
   }, [isLoading]);
 
   return (
-    <Container>
+    <div>
       {email && (
         <div className={style.pageWrapper}>
           <div className={style.userWrapper}>
             <UserInfoBlock />
-            <Logout />
           </div>
           <PetsData />
         </div>
       )}
-    </Container>
+    </div>
   );
 };
 

@@ -2,13 +2,25 @@
 @import '../../sass/mixin';
 
 .infoWrapper {
+  background: #ffffff;
+  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+  border-radius: 20px;
+  padding: 14px;
+  margin: 0 20px 20px;
+
   @include mq(tab) {
+    margin: 0px 32px 0px 0px;
+    position: relative;
     display: flex;
+    justify-content: space-between;
     flex-direction: row-reverse;
+    padding: 24px 40px 24px 32px;
+    border-radius: 0px 40px 40px 0px;
   }
 
   @include mq(desk) {
     display: block;
+    margin: 0px;
   }
 }
 
@@ -83,6 +95,7 @@
   @include mq(desk) {
     margin-top: 0px;
     margin-right: 0px;
+    margin-bottom: 103px;
   }
 }
 
@@ -149,6 +162,8 @@
 }
 
 .title {
+  margin-left: 20px;
+  margin-bottom: 18px;
   font-family: 'Manrope Medium';
   font-style: normal;
   font-weight: 500;
@@ -160,6 +175,7 @@
   color: #111111;
 
   @include mq(tab) {
+    margin-left: 32px;
     font-size: 28px;
     line-height: 38px;
   }
@@ -167,5 +183,6 @@
   @include mq(desk) {
     font-size: 28px;
     line-height: 38px;
+    margin: 38px 0px 24px 16px;
   }
 }
