@@ -7,6 +7,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import s from './UserInfoBlock.module.scss';
 import { pathInfoUser } from 'redux/user/userOperations';
 import sprite from '../../images/icons/sprite.svg';
+import Logout from '../Logout/Logout';
 
 /* ----------REGEX--------------- */
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -151,7 +152,7 @@ const UserInfoBlock = () => {
 
   return (
     <>
-      {/* <h2 className={s.title}>My information:</h2> */}
+      <h2 className={s.title}>My information:</h2>
       <div className={s.infoWrapper}>
         <div className={s.avatarWrapper}>
           <img
@@ -265,6 +266,7 @@ const UserInfoBlock = () => {
             ></button>
           </li>
         </ul>
+        <Logout />
       </div>
     </>
   );

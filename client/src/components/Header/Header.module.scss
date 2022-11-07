@@ -1,69 +1,67 @@
 @import '../../sass/_mixin.scss';
 
 .header {
-    display: flex;
+  display: flex;
 
-    width: 100%;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+
+  @include mq(tab) {
+    justify-content: flex-end;
+  }
+
+  @include mq(desk) {
+    flex-direction: row-reverse;
     justify-content: space-between;
-    align-items: center;
-
-    @include mq(tab) {
-        justify-content: flex-end;
-    }
-
-    @include mq(desk) {
-        flex-direction: row-reverse;
-        justify-content: space-between;
-    }
+  }
 }
 
 .navContainer {
-    position: relative;
-    padding: 12px 20px 45px ;
-    display: flex;
-    justify-content:space-around;
-    align-items: center;
+  position: relative;
+  padding: 12px 0px 45px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 
-    @include mq(tab) {
-    padding: 24px 32px 45px;
-    }
+  @include mq(tab) {
+    padding: 24px 0px 45px;
+  }
 
-     @include mq(desk) {
-    padding: 24px 16px 45px;
-    }
+  @include mq(desk) {
+    padding: 10px 0px;
+  }
 }
 
 .logo {
-    font-size: 28px;
-    font-family: 'Poppins Bold';
+  font-size: 28px;
+  font-family: 'Poppins Bold';
 
-    @include mq(tab) {
-        font-size: 32px;
-    }
+  @include mq(tab) {
+    font-size: 32px;
+  }
 }
 
 .logoT {
-    color: var(--accent-color);
-
+  color: var(--accent-color);
 }
 
 .menuButton {
-    display: flex;
+  display: flex;
 
-    width: 40px;
-    height: 40px;
-    border: none;
-    margin-left: 20px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  margin-left: 20px;
 
-    align-items: center;
-    justify-content: center;
+  align-items: center;
+  justify-content: center;
 
-    background-color: var(--bg-color);
-    
+  background-color: var(--bg-color);
 
-    @include mq(desk) {
-        display: none;
-    }
+  @include mq(desk) {
+    display: none;
+  }
 
-        cursor: pointer;
+  cursor: pointer;
 }
