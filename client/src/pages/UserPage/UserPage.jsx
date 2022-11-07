@@ -1,21 +1,25 @@
-import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Logout from 'components/Logout/Logout';
 import PetsData from '../../components/PetsData/PetsData';
 import UserInfoBlock from '../../components/UserInfoBlock/UserInfoBlock';
-import ModalAddsPet from '../../components/ModalAddsPet/ModalAddsPet';
-import style from './UserPage.module.scss';
 import Container from '../../components/Container/Container';
+import { getUserEmail } from '../../redux/user/userSelectrors';
+import style from './UserPage.module.scss';
 
 const UserPage = () => {
+  const email = useSelector(getUserEmail);
+
   return (
     <Container>
-      <div className={style.pageWrapper}>
-        <div className={style.userWrapper}>
-          <UserInfoBlock />
-          <Logout />
+      {email && (
+        <div className={style.pageWrapper}>
+          <div className={style.userWrapper}>
+            <UserInfoBlock />
+            <Logout />
+          </div>
+          <PetsData />
         </div>
-        <PetsData />
-      </div>
+      )}
     </Container>
   );
 };

@@ -20,8 +20,7 @@ const PetsList = () => {
   return (
     <>
       <ul className={s.list}>
-        {petsList &&
-          petsList.length > 0 &&
+        {petsList.length > 0 &&
           petsList.map(pet => (
             <li key={pet._id} className={s.card}>
               <img src={pet.imgURL} alt="Pet Foto" className={s.petFoto} />
