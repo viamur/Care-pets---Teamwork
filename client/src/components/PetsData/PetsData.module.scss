@@ -3,14 +3,14 @@
 .mainWrapper {
   display: flex;
   flex-direction: column;
-  margin: 47px 20px 0px 20px;
+  margin: 47px 0 0px 0;
 
   @include mq(tab) {
-    margin: 20px 32px 0px 32px;
+    margin: 20px 0 0px 0;
   }
 
   @include mq(desk) {
-    margin: 38px 16px 0px 0px;
+    margin: 0;
     width: 100%;
   }
 }
@@ -19,6 +19,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @include mq(desk) {
+    padding-right: 16px;
+  }
 }
 
 .title {
@@ -46,6 +49,16 @@
 .addPetWrapper {
   display: flex;
   align-items: center;
+  @include mq(tab) {
+    display: flex;
+    position: absolute;
+    align-items: center;
+    top: 0;
+    right: 0;
+  }
+  @include mq(desk) {
+    position: relative;
+  }
 }
 
 .addPettTitle {

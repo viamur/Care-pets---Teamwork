@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import ImageUploading from 'react-images-uploading';
 import { getAllUserInfo } from '../../redux/user/userSelectrors';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import moment from 'moment';
+import { pathInfoUser } from 'redux/user/userOperations';
+import Logout from '../Logout/Logout';
+import { getCheckEmail } from '../../utils/api';
 
 import s from './UserInfoBlock.module.scss';
-import { pathInfoUser } from 'redux/user/userOperations';
 import sprite from '../../images/icons/sprite.svg';
-import Logout from '../Logout/Logout';
 
 /* ----------REGEX--------------- */
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -154,14 +156,9 @@ const UserInfoBlock = () => {
     <>
       <h2 className={s.title}>My information:</h2>
       <div className={s.infoWrapper}>
+        <div className={s.bg}></div>
         <div className={s.avatarWrapper}>
-          <img
-            src={photo}
-            alt="avatar"
-            width={200}
-            height={200}
-            className={s.avatar}
-          />
+          <img src={photo} alt="avatar" width={200} height={200} className={s.avatar} />
           <label className={s.avatarInputFile}>
             <svg className={s.iconInputFile}>
               <use href={sprite + '#camera-icon'} />
@@ -188,12 +185,7 @@ const UserInfoBlock = () => {
               value={name}
               className={s.item__input}
             />
-            <button
-              type="button"
-              name="name"
-              className={'pencil'}
-              onClick={handleClick}
-            ></button>
+            <button type="button" name="name" className={'pencil'} onClick={handleClick}></button>
           </li>
           <li className={s.item}>
             <p className={s.item__title}>Email:</p>
@@ -205,12 +197,7 @@ const UserInfoBlock = () => {
               value={email}
               className={s.item__input}
             />
-            <button
-              type="button"
-              name="email"
-              className={'pencil'}
-              onClick={handleClick}
-            ></button>
+            <button type="button" name="email" className={'pencil'} onClick={handleClick}></button>
           </li>
           <li className={s.item}>
             <p className={s.item__title}>Birthday:</p>
@@ -218,6 +205,7 @@ const UserInfoBlock = () => {
               type="date"
               name="birthday"
               disabled={true}
+              max={moment().format('YYYY-MM-DD')}
               onChange={e => {
                 setBirthday(e.target.value);
               }}
@@ -241,12 +229,7 @@ const UserInfoBlock = () => {
               value={phone}
               className={s.item__input}
             />
-            <button
-              type="button"
-              name="phone"
-              className={'pencil'}
-              onClick={handleClick}
-            ></button>
+            <button type="button" name="phone" className={'pencil'} onClick={handleClick}></button>
           </li>
           <li className={s.item}>
             <p className={s.item__title}>City:</p>
@@ -258,12 +241,7 @@ const UserInfoBlock = () => {
               value={city}
               className={s.item__input}
             />
-            <button
-              type="button"
-              name="city"
-              className={'pencil'}
-              onClick={handleClick}
-            ></button>
+            <button type="button" name="city" className={'pencil'} onClick={handleClick}></button>
           </li>
         </ul>
         <Logout />

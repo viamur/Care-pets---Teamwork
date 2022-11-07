@@ -34,17 +34,17 @@
     margin: 0px;
     position: absolute;
     bottom: 24px;
-    left: 32px;
+    left: 0;
   }
 
   @include mq(desk) {
     bottom: 40px;
-    left: 30px;
+    // left: 30px;
     // margin: 43px auto 42px 17px;
   }
 }
 
 .icon {
   margin-right: 8px;
-  padding-left: 2px;
+  // padding-left: 2px;
 }

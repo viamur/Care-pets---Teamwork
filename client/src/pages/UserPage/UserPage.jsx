@@ -2,10 +2,7 @@ import { useSelector } from 'react-redux';
 import PetsData from '../../components/PetsData/PetsData';
 import UserInfoBlock from '../../components/UserInfoBlock/UserInfoBlock';
 import Container from '../../components/Container/Container';
-import {
-  getUserEmail,
-  getUserIsLoading,
-} from '../../redux/user/userSelectrors';
+import { getUserEmail, getUserIsLoading } from '../../redux/user/userSelectrors';
 import { showLoadingHourglass, removeLoading } from '../../utils/showLoading';
 import style from './UserPage.module.scss';
 import { useEffect } from 'react';
@@ -24,16 +21,18 @@ const UserPage = () => {
   }, [isLoading]);
 
   return (
-    <div>
-      {email && (
-        <div className={style.pageWrapper}>
-          <div className={style.userWrapper}>
-            <UserInfoBlock />
+    <section>
+      <Container>
+        {email && (
+          <div className={style.pageWrapper}>
+            <div className={style.userWrapper}>
+              <UserInfoBlock />
+            </div>
+            <PetsData />
           </div>
-          <PetsData />
-        </div>
-      )}
-    </div>
+        )}
+      </Container>
+    </section>
   );
 };
 
