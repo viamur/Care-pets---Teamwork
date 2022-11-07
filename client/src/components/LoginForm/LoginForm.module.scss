@@ -69,13 +69,3 @@
   background-color: var(--accent-color);
   color: var(--white);
 }
-
-.button:disabled {
-  cursor: auto;
-}
-
-.button:disabled:hover,
-.button:disabled:focus {
-  color: var(--font-color);
-  background-color: var(--white);
-}
