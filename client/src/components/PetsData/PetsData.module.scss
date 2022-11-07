@@ -73,6 +73,7 @@
   border-radius: 50%;
   color: var(--white);
   background-color: var(--accent-color);
+  cursor: pointer;
 
   @include mq(tab) {
     margin-left: 20px;

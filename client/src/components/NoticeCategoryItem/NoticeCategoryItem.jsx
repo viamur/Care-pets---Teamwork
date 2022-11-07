@@ -116,11 +116,7 @@ const NoticeCategoryItem = ({
     <>
       <li className={s.item}>
         <div className={s.thumbImage}>
-          <img
-            src={`https://pet-support.herokuapp.com/${imgURL}`}
-            className={s.imgCard}
-            alt="animal"
-          />
+          <img src={imgURL} className={s.imgCard} alt="animal" />
           <p className={s.status}>{categoriesForFront[category]}</p>
 
           <button

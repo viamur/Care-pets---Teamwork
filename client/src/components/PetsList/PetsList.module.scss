@@ -71,6 +71,7 @@
   border-radius: 50%;
   background: #fdf7f2;
   border: 0;
+  cursor: pointer;
 
   &:hover,
   &:focus {
@@ -125,4 +126,5 @@
 
 .discriptionTitle {
   font-family: 'Manrope SemiBold';
+  margin-right: 5px;
 }

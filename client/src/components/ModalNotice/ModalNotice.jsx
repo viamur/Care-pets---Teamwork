@@ -88,11 +88,7 @@ const ModalNotice = ({
           </button>
           <div className={s.descrBox}>
             <div className={s.thumbImage}>
-              <img
-                src={`https://pet-support.herokuapp.com/${info.imgURL}`}
-                className={s.photo}
-                alt="animal"
-              />
+              <img src={info.imgURL} className={s.photo} alt="animal" />
               <p className={s.category}>{categories[info.category]}</p>
             </div>
             <div className={s.thumbDescr}>

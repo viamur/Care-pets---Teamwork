@@ -11,6 +11,12 @@ const PetsList = () => {
   const dispatch = useDispatch();
   const petsList = useSelector(getUserPets);
 
+  const convertDate = date => {
+    const transformedDate = date.split('T')[0];
+    const result = transformedDate.split('-').reverse().join('.');
+    return result;
+  };
+
   return (
     <>
       <ul className={s.list}>
@@ -40,7 +46,8 @@ const PetsList = () => {
                   <span className={s.discriptionTitle}>Name:</span> {pet.name}
                 </p>
                 <p className={s.categoryDiscription}>
-                  <span className={s.discriptionTitle}>Date of birth:</span> {pet.dateBidthday}
+                  <span className={s.discriptionTitle}>Date of birth:</span>
+                  {convertDate(pet.birthday)}
                 </p>
                 <p className={s.categoryDiscription}>
                   <span className={s.discriptionTitle}>Breed:</span> {pet.breed}
