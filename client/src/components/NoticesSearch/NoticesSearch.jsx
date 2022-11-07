@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { showAlertMessage } from '../../utils/showMessages';
 import sprite from '../../images/icons/sprite.svg';
 
 import s from './NoticesSearch.module.scss';
@@ -7,13 +8,21 @@ const NoticesSearch = ({ setSearchQuery, title }) => {
   const [query, setQuery] = useState('');
 
   const onHadleChange = e => {
-    setQuery(e.target.value.trim());
+    setQuery(e.target.value);
   };
 
   const onHandleSubmit = e => {
     e.preventDefault();
+    if (!query) {
+      showAlertMessage('Sorry, your query is empty');
+      return;
+    }
     setSearchQuery(query);
+  };
+
+  const searchClear = () => {
     setQuery('');
+    setSearchQuery('');
   };
 
   return (
@@ -30,8 +39,18 @@ const NoticesSearch = ({ setSearchQuery, title }) => {
           value={query}
           onChange={onHadleChange}
         />
-
-        <button className={s.btn} type="submit">
+        {query && (
+          <button
+            className={`${s.btn} ${s.btnDelete}`}
+            type="button"
+            onClick={searchClear}
+          >
+            <svg className={s.iconDelete}>
+              <use href={sprite + '#close-icon'} />
+            </svg>
+          </button>
+        )}
+        <button className={`${s.btn} ${s.btnSearch} `} type="submit">
           <svg className={s.iconSearch}>
             <use href={sprite + '#search-icon'} />
           </svg>
