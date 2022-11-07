@@ -2,13 +2,11 @@
 
 .pageWrapper {
   @include mq(tab) {
+    position: relative;
   }
 
   @include mq(desk) {
     display: flex;
-    max-width: 1280px;
-    margin-left: auto;
-    margin-right: auto;
   }
 }
 

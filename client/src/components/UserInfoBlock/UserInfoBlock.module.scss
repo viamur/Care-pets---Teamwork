@@ -3,24 +3,29 @@
 
 .infoWrapper {
   background: #ffffff;
-  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+  box-shadow: 7px 4px 14px -5px rgba(0, 0, 0, 0.11);
   border-radius: 20px;
-  padding: 14px;
-  margin: 0 20px 20px;
+  padding: 20px 23px;
+  // margin: 0 20px 20px;
 
   @include mq(tab) {
-    margin: 0px 32px 0px 0px;
+    position: relative;
+    // margin: 0px 32px 0px 0px;
     position: relative;
     display: flex;
     justify-content: space-between;
     flex-direction: row-reverse;
-    padding: 24px 40px 24px 32px;
+    padding: 24px 40px 24px 0;
     border-radius: 0px 40px 40px 0px;
   }
 
   @include mq(desk) {
+    width: 395px;
     display: block;
     margin: 0px;
+    padding: 20px 16px 0px 0px;
+
+    box-shadow: none;
   }
 }
 
@@ -68,10 +73,13 @@
   &:hover {
     color: var(--accent-color);
   }
+  @include mq(tab) {
+    padding-right: 0;
+  }
 
   @include mq(desk) {
     position: absolute;
-    right: -20px;
+    right: 0;
     bottom: 0;
   }
 }
@@ -88,6 +96,7 @@
 
 .list {
   @include mq(tab) {
+    flex-grow: 2;
     margin-top: 16px;
     margin-right: 52px;
   }
@@ -133,9 +142,11 @@
 }
 
 .item__input {
-  width: 70%;
+  width: 100%;
   margin-right: 9px;
   padding: 4px 10px;
+
+  flex-shrink: 20;
 
   font-family: 'Manrope Regular';
   font-size: 12px;
@@ -162,7 +173,7 @@
 }
 
 .title {
-  margin-left: 20px;
+  // margin-left: 20px;
   margin-bottom: 18px;
   font-family: 'Manrope Medium';
   font-style: normal;
@@ -175,7 +186,7 @@
   color: #111111;
 
   @include mq(tab) {
-    margin-left: 32px;
+    // margin-left: 32px;
     font-size: 28px;
     line-height: 38px;
   }
@@ -183,6 +194,23 @@
   @include mq(desk) {
     font-size: 28px;
     line-height: 38px;
-    margin: 38px 0px 24px 16px;
+    margin: 0 0px 24px 0;
+  }
+}
+.bg {
+  position: absolute;
+  background-color: #ffffff;
+  z-index: -10;
+  height: 100%;
+  width: 100%;
+  left: -100%;
+  box-shadow: 7px 4px 14px -5px rgb(0 0 0 / 11%);
+  top: 0;
+  @include mq(desk) {
+    border-radius: 0px 40px 40px 0px;
+    height: 80vh;
+    width: 200%;
+    left: -100%;
+    bottom: 0;
   }
 }

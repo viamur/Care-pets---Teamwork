@@ -1,56 +1,58 @@
-@import "../../sass/mixin";
-
+@import '../../sass/mixin';
 
 .container {
-    min-width: 100vw;
-    min-height: calc(100vh - 97px);
+  // min-width: 100vw;
+  min-height: calc(100vh - 97px);
 
-    background-repeat: no-repeat;
+  background-repeat: no-repeat;
 
-    background-image: url('../../images/bgs/woman-1x.png'), url('../../images/bgs/main-bg-mobile-2x.png');
+  background-image: url('../../images/bgs/woman-1x.png'),
+    url('../../images/bgs/main-bg-mobile-2x.png');
+  background-size: contain, 100% auto;
+  background-position: center bottom, center bottom;
+
+  @include mq(tab) {
+    min-height: calc(100vh - 109px);
+
+    background-image: url('../../images/bgs/woman-2x.png'),
+      url('../../images/bgs/main-bg-tablet-1x.png');
     background-size: contain, 100% auto;
     background-position: center bottom, center bottom;
-    
-    @include mq(tab) {
-        min-height: calc(100vh - 109px);
+  }
 
-        background-image: url('../../images/bgs/woman-2x.png'), url('../../images/bgs/main-bg-tablet-1x.png');
-        background-size: contain, 100% auto;
-        background-position: center bottom, center bottom;
-    }
+  @include mq(desk) {
+    min-height: calc(100vh - 132px);
 
-    @include mq(desk) {
-        min-height: calc(100vh - 132px);
-
-        background-image: url('../../images/bgs/woman-3x.png'), url('../../images/bgs-svg/main-bg-heart.svg'), url('../../images/bgs/main-bg-1x.png');
-        background-size: 624px 655px, auto, 100% auto;
-        background-position: right bottom, top 5% right 40%, center bottom;
-    }
+    background-image: url('../../images/bgs/woman-3x.png'),
+      url('../../images/bgs-svg/main-bg-heart.svg'), url('../../images/bgs/main-bg-1x.png');
+    background-size: 624px 655px, auto, 100% auto;
+    background-position: right bottom, top 5% right 40%, center bottom;
+  }
 }
 
 .title {
-    padding-top: 16px;
-    margin-left: 20px;
+  padding-top: 16px;
+  margin-left: 20px;
 
-    font-family: 'Manrope Bold';
-    font-size: 32px;
-    line-height: 1.38;
+  font-family: 'Manrope Bold';
+  font-size: 32px;
+  line-height: 1.38;
 
-    @include mq(mob) {
-        max-width: 280px;;
-    }
+  @include mq(mob) {
+    max-width: 280px;
+  }
 
-    @include mq(tab) {
-        max-width: 588px;
-        padding-top: 46px;
-        margin-left: 32px;
+  @include mq(tab) {
+    max-width: 588px;
+    padding-top: 46px;
+    margin-left: 32px;
 
-        font-size: 68px;
-        line-height: 1.47;
-    }
+    font-size: 68px;
+    line-height: 1.47;
+  }
 
-    @include mq(desk) {
-        padding-top: 34px;
-        margin-left: 16px;
-    }
+  @include mq(desk) {
+    padding-top: 34px;
+    margin-left: 16px;
+  }
 }
