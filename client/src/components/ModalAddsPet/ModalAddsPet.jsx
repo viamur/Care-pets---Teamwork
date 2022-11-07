@@ -232,7 +232,9 @@ const ModalAddsPet = ({ setShowModal }) => {
               <p className={s.descr}>Add photo and some comments</p>
               <div className={s.loadImgGroup}>
                 <label forhtml="file" className={s.labelLoad}>
-                  {!photo && <img src={imgLoad} width="71" height="71" />}
+                  {!photo && (
+                    <img src={imgLoad} alt="add_photo" width="71" height="71" />
+                  )}
                   {photo && (
                     <div className={s.thumbLoadImg}>
                       <img

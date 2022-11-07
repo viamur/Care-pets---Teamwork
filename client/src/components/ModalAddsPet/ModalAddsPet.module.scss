@@ -182,6 +182,54 @@
   }
 }
 
+.inputLoad {
+  display: none;
+}
+
+.labelLoad {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 208px;
+  height: 208px;
+  background: var(--bg-color);
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+  margin-bottom: 20px;
+
+  @include mq(tab) {
+    margin-bottom: 40px;
+    width: 182px;
+    height: 182px;
+    border-radius: 40px;
+  }
+}
+
+.thumbLoadImg {
+  width: 208px;
+  height: 208px;
+  border-radius: 20px;
+
+  @include mq(tab) {
+    width: 182px;
+    height: 182px;
+    border-radius: 40px;
+  }
+}
+
+.loadImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+
+  @include mq(tab) {
+    border-radius: 40px;
+  }
+}
+
 .textarea {
   width: 100%;
   height: 100px;
@@ -258,53 +306,5 @@
 .button:last-child {
   @include mq(mob-only) {
     margin-bottom: 12px;
-  }
-}
-
-.inputLoad {
-  display: none;
-}
-
-.labelLoad {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 208px;
-  height: 208px;
-  background: var(--bg-color);
-  border-radius: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  cursor: pointer;
-  margin-bottom: 20px;
-
-  @include mq(tab) {
-    margin-bottom: 40px;
-    width: 182px;
-    height: 182px;
-    border-radius: 40px;
-  }
-}
-
-.thumbLoadImg {
-  width: 208px;
-  height: 208px;
-  border-radius: 20px;
-
-  @include mq(tab) {
-    width: 182px;
-    height: 182px;
-    border-radius: 40px;
-  }
-}
-
-.loadImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 20px;
-
-  @include mq(tab) {
-    border-radius: 40px;
   }
 }

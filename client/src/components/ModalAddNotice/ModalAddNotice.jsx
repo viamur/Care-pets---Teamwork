@@ -207,88 +207,55 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
           {page === 1 && (
             <>
               <div className={s.radioToolbar}>
-                {category === 'lostFound' ? (
-                  <label
-                    style={{ backgroundColor: '#F59256', color: '#ffffff' }}
-                  >
-                    lost/found
-                    <input
-                      type="radio"
-                      id="radio1"
-                      name="category"
-                      value="lostFound"
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                    />
-                  </label>
-                ) : (
-                  <label>
-                    lost/found
-                    <input
-                      type="radio"
-                      id="radio1"
-                      name="category"
-                      value="lostFound"
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                    />
-                  </label>
-                )}
-                {category === 'inGoodHands' ? (
-                  <label
-                    style={{ backgroundColor: '#F59256', color: '#ffffff' }}
-                  >
-                    {' '}
-                    In good hands
-                    <input
-                      type="radio"
-                      id="radio2"
-                      name="category"
-                      value="inGoodHands"
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                    />
-                  </label>
-                ) : (
-                  <label>
-                    In good hands
-                    <input
-                      type="radio"
-                      id="radio2"
-                      name="category"
-                      value="inGoodHands"
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                    />
-                  </label>
-                )}
-                {category === 'sell' ? (
-                  <label
-                    style={{ backgroundColor: '#F59256', color: '#ffffff' }}
-                  >
-                    Sell
-                    <input
-                      type="radio"
-                      id="radio3"
-                      name="category"
-                      value="sell"
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                    />
-                  </label>
-                ) : (
-                  <label>
-                    Sell
-                    <input
-                      type="radio"
-                      id="radio3"
-                      name="category"
-                      value="sell"
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                    />
-                  </label>
-                )}
+                <label
+                  className={
+                    category === 'lostFound'
+                      ? s.activeCategory
+                      : s.notActiveCategory
+                  }
+                >
+                  lost/found
+                  <input
+                    type="radio"
+                    id="radio1"
+                    name="category"
+                    value="lostFound"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                  />
+                </label>
+                <label
+                  className={
+                    category === 'inGoodHands'
+                      ? s.activeCategory
+                      : s.notActiveCategory
+                  }
+                >
+                  In good hands
+                  <input
+                    type="radio"
+                    id="radio2"
+                    name="category"
+                    value="inGoodHands"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                  />
+                </label>
+                <label
+                  className={
+                    category === 'sell' ? s.activeCategory : s.notActiveCategory
+                  }
+                >
+                  sell
+                  <input
+                    type="radio"
+                    id="radio3"
+                    name="category"
+                    value="sell"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                  />
+                </label>
               </div>
               <label forhtml="title" className={s.label}>
                 Tittle of ad<span className={s.accent}>*</span>
@@ -391,11 +358,11 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
           {page === 2 && (
             <>
               <div className={s.radioToolbarPage2}>
-                <p className={`${s.label} ${s.labelSexDistance}`}>
+                <p className={`${s.label} ${s.labelDistance}`}>
                   The sex<span className={s.accent}>*</span>:
                 </p>
                 <div className={s.blockOfRadio}>
-                  <label className={s.labelMale}>
+                  <label className={`${s.sexLabel} ${s.labelMale}`}>
                     <input
                       type="radio"
                       name="sex"
@@ -403,17 +370,15 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                     />
-                    {sex === 'male' ? (
-                      <span style={{ color: '#F59256' }} className={s.sexDescr}>
-                        Male
-                      </span>
-                    ) : (
-                      <span style={{ color: '#111111' }} className={s.sexDescr}>
-                        Male
-                      </span>
-                    )}
+                    <span
+                      className={`${s.sexDescr} ${
+                        sex === 'male' ? s.active : s.notActive
+                      }`}
+                    >
+                      Male
+                    </span>
                   </label>
-                  <label className={s.labelFemale}>
+                  <label className={`${s.sexLabel} ${s.labelFemale}`}>
                     <input
                       type="radio"
                       name="sex"
@@ -421,15 +386,13 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                     />
-                    {sex === 'female' ? (
-                      <span style={{ color: '#F59256' }} className={s.sexDescr}>
-                        Female
-                      </span>
-                    ) : (
-                      <span style={{ color: '#111111' }} className={s.sexDescr}>
-                        Female
-                      </span>
-                    )}
+                    <span
+                      className={`${s.sexDescr} ${
+                        sex === 'female' ? s.active : s.notActive
+                      }`}
+                    >
+                      Female
+                    </span>
                   </label>
                 </div>
               </div>
@@ -452,7 +415,9 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
               <div className={s.loadImgGroup}>
                 <p className={s.titleLoad}> Load the pet’s image</p>
                 <label forhtml="file" className={s.labelLoad}>
-                  {!photo && <img src={imgLoad} width="71" height="71" />}
+                  {!photo && (
+                    <img src={imgLoad} alt="add_photo" width="71" height="71" />
+                  )}
                   {photo && (
                     <div className={s.thumbLoadImg}>
                       <img
