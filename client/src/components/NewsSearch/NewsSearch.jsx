@@ -63,7 +63,7 @@ const NewsSearch = ({ onSubmit, news, onChange }) => {
               })
           : null}
       </ul>
-      <button type="submit" className={s.btn}></button>
+      <button type="submit" className={s.btn} title="Submit"></button>
     </form>
   );
 };
