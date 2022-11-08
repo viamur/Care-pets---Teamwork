@@ -29,6 +29,10 @@ const NewsPage = () => {
     setSearchQuery(searchQuery);
   };
 
+  const onInputChange = searchQuery => {
+    setSearchQuery(searchQuery);
+  };
+
   const filterNews = () => {
     if (searchQuery === '') return;
 
@@ -51,7 +55,11 @@ const NewsPage = () => {
     <Container>
       <h1 className={s.title}>News</h1>
 
-      <NewsSearch onSubmit={onSubmitSearch} />
+      <NewsSearch
+        onSubmit={onSubmitSearch}
+        news={news}
+        onChange={onInputChange}
+      />
 
       <NewsList news={searchQuery !== '' ? filterNews() : news} />
     </Container>
