@@ -5,7 +5,7 @@ const NewsList = ({ news }) => {
     <ul className={s.list}>
       {news &&
         news.map(el => {
-          const { title, text, date, _id } = el;
+          const { title, text, date, _id, link } = el;
 
           return (
             <li className={s.item} key={_id}>
@@ -15,7 +15,7 @@ const NewsList = ({ news }) => {
                 <p className={s.date}>{date}</p>
                 <a
                   //   need to point the link to the news site instead of plug
-                  href="https://www.bbc.com/news/topics/c51grdzv08yt"
+                  href={link}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={s.link}
