@@ -18,6 +18,8 @@ const cityRegex =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z0-9]).{3,32},(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z0-9]).{3,32}$/;
 
 const UserInfoBlock = () => {
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [btnClass, setBtnClass] = useState('pencil');
   /* Селекторы */
   const userInfo = useSelector(getAllUserInfo);
 
@@ -48,7 +50,7 @@ const UserInfoBlock = () => {
     setName(userInfo.name);
     setCity(userInfo.city);
     setPhone(userInfo.phone);
-    setBirthday(userInfo.birthday && userInfo.birthday);
+    setBirthday(new Date(userInfo.birthday));
   }, [userInfo]);
 
   // create a preview as a side effect, whenever selected file is changed
@@ -70,6 +72,17 @@ const UserInfoBlock = () => {
     // free memory when ever this component is unmounted
     return () => URL.revokeObjectURL(objectUrl);
   }, [selectedFile]);
+
+  const datepickerClick = () => {
+    if (isDisabled) {
+      setIsDisabled(false);
+      setBtnClass('galochka');
+      return;
+    }
+    setBtnClass('pencil');
+    setIsDisabled(true);
+    dispatch(pathInfoUser({ birthday }));
+  };
 
   /* При клике на кнопку меняем disabled class отправлем на бек форму */
   const handleClick = e => {
@@ -110,14 +123,16 @@ const UserInfoBlock = () => {
             }
             dispatch(pathInfoUser({ email }));
           }
-          if (btn.name === 'birthday') {
-            const check = moment(birthday).isBefore(moment().add(1, 'day').format('YYYY-MM-DD'));
-            if (!check) {
-              return Notify.failure('Wrong format!');
-            }
-            /* Надо придумать валидацию */
-            dispatch(pathInfoUser({ birthday }));
-          }
+          // if (btn.name === 'birthday') {
+          //   const check = moment(birthday).isBefore(
+          //     moment().add(1, 'day').format('YYYY-MM-DD')
+          //   );
+          //   if (!check) {
+          //     return Notify.failure('Wrong format!');
+          //   }
+          //   /* Надо придумать валидацию */
+          //   dispatch(pathInfoUser({ birthday }));
+          // }
           if (btn.name === 'phone') {
             if (phone.length !== 13) {
               return Notify.failure('length "phone" 13');
@@ -163,7 +178,13 @@ const UserInfoBlock = () => {
       <div className={s.infoWrapper}>
         <div className={s.bg}></div>
         <div className={s.avatarWrapper}>
-          <img src={photo} alt="avatar" width={200} height={200} className={s.avatar} />
+          <img
+            src={photo}
+            alt="avatar"
+            width={200}
+            height={200}
+            className={s.avatar}
+          />
           <label className={s.avatarInputFile}>
             <svg className={s.iconInputFile}>
               <use href={sprite + '#camera-icon'} />
@@ -191,7 +212,12 @@ const UserInfoBlock = () => {
               value={name}
               className={s.item__input}
             />
-            <button type="button" name="name" className={'pencil'} onClick={handleClick}></button>
+            <button
+              type="button"
+              name="name"
+              className={'pencil'}
+              onClick={handleClick}
+            ></button>
           </li>
           <li className={s.item}>
             <p className={s.item__title}>Email:</p>
@@ -203,7 +229,12 @@ const UserInfoBlock = () => {
               value={email}
               className={s.item__input}
             />
-            <button type="button" name="email" className={'pencil'} onClick={handleClick}></button>
+            <button
+              type="button"
+              name="email"
+              className={'pencil'}
+              onClick={handleClick}
+            ></button>
           </li>
           <li className={s.item}>
             <p className={s.item__title}>Birthday:</p>
@@ -223,27 +254,26 @@ const UserInfoBlock = () => {
               calendarIcon={null}
               format="dd.MM.yyyy"
               className={s.item__input}
+              disabled={isDisabled}
               selected={birthday}
               maxDate={new Date()}
               yearPlaceholder="yyyy"
               monthPlaceholder="mm"
               dayPlaceholder="dd"
               name="birthday"
-              // disabled={true}
-              value={new Date()}
+              value={birthday}
               onChange={value => {
                 if (!value) {
                   return;
                 }
-                console.log('value', value);
-                setBirthday(value);
+                setBirthday(new Date(Date.parse(value)));
               }}
             />
             <button
               type="button"
               name="birthday"
-              className={'pencil'}
-              onClick={handleClick}
+              className={btnClass}
+              onClick={datepickerClick}
             ></button>
           </li>
           <li className={s.item}>
@@ -256,7 +286,12 @@ const UserInfoBlock = () => {
               value={phone}
               className={s.item__input}
             />
-            <button type="button" name="phone" className={'pencil'} onClick={handleClick}></button>
+            <button
+              type="button"
+              name="phone"
+              className={'pencil'}
+              onClick={handleClick}
+            ></button>
           </li>
           <li className={s.item}>
             <p className={s.item__title}>City:</p>
@@ -268,7 +303,12 @@ const UserInfoBlock = () => {
               value={city}
               className={s.item__input}
             />
-            <button type="button" name="city" className={'pencil'} onClick={handleClick}></button>
+            <button
+              type="button"
+              name="city"
+              className={'pencil'}
+              onClick={handleClick}
+            ></button>
           </li>
         </ul>
         <Logout />
