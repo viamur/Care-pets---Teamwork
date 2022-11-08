@@ -6,10 +6,10 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import moment from 'moment';
 import { pathInfoUser } from 'redux/user/userOperations';
 import Logout from '../Logout/Logout';
-import { getCheckEmail } from '../../utils/api';
 
 import s from './UserInfoBlock.module.scss';
 import sprite from '../../images/icons/sprite.svg';
+import DatePicker from 'react-date-picker';
 
 /* ----------REGEX--------------- */
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -94,6 +94,7 @@ const UserInfoBlock = () => {
             if (name.length > 10) {
               return Notify.failure('max length "name" 10');
             }
+            // console.log(nameRegex.exec(name));
             dispatch(pathInfoUser({ name }));
           }
           if (btn.name === 'email') {
@@ -110,6 +111,10 @@ const UserInfoBlock = () => {
             dispatch(pathInfoUser({ email }));
           }
           if (btn.name === 'birthday') {
+            const check = moment(birthday).isBefore(moment().add(1, 'day').format('YYYY-MM-DD'));
+            if (!check) {
+              return Notify.failure('Wrong format!');
+            }
             /* Надо придумать валидацию */
             dispatch(pathInfoUser({ birthday }));
           }
@@ -179,6 +184,7 @@ const UserInfoBlock = () => {
             <p className={s.item__title}>Name:</p>
             <input
               type="text"
+              // pattern="[a-zA-Z]{2,12}"
               name="name"
               disabled={true}
               onChange={e => setName(e.target.value)}
@@ -201,7 +207,7 @@ const UserInfoBlock = () => {
           </li>
           <li className={s.item}>
             <p className={s.item__title}>Birthday:</p>
-            <input
+            {/* <input
               type="date"
               name="birthday"
               disabled={true}
@@ -211,6 +217,27 @@ const UserInfoBlock = () => {
               }}
               value={birthday && birthday.split('T')[0]}
               className={s.item__input}
+            /> */}
+            <DatePicker
+              clearIcon={null}
+              calendarIcon={null}
+              format="dd.MM.yyyy"
+              className={s.item__input}
+              selected={birthday}
+              maxDate={new Date()}
+              yearPlaceholder="yyyy"
+              monthPlaceholder="mm"
+              dayPlaceholder="dd"
+              name="birthday"
+              // disabled={true}
+              value={new Date()}
+              onChange={value => {
+                if (!value) {
+                  return;
+                }
+                console.log('value', value);
+                setBirthday(value);
+              }}
             />
             <button
               type="button"

@@ -85,11 +85,7 @@ const ModalAddsPet = ({ setShowModal }) => {
 
   const { pet, name, birthday, breed, comments } = formik.values;
 
-  const {
-    name: nameError,
-    breed: breedError,
-    comments: commentsError,
-  } = formik.errors;
+  const { name: nameError, breed: breedError, comments: commentsError } = formik.errors;
 
   useEffect(() => {
     if (!pet) {
@@ -108,9 +104,7 @@ const ModalAddsPet = ({ setShowModal }) => {
     e.preventDefault();
 
     if (commentsError) {
-      showAlertMessage(
-        'Input field comments in the necessary format or just miss it'
-      );
+      showAlertMessage('Input field comments in the necessary format or just miss it');
       return;
     }
 
@@ -121,7 +115,7 @@ const ModalAddsPet = ({ setShowModal }) => {
       comments,
       pet,
     });
-
+    console.log('modal', birthday);
     const filteredArray = arrayOfData.filter(item => item[1]);
     const info = filteredArray.reduce((previousValue, feature) => {
       return { ...previousValue, [feature[0]]: feature[1] };
@@ -135,12 +129,7 @@ const ModalAddsPet = ({ setShowModal }) => {
     <div className={s.backdrop} onClick={onBackdropClick}>
       <div className={`${s.modal} ${page === 2 && s.modalSecondPage}`}>
         <button type="button" className={s.btnClose} onClick={onBtnCloseClick}>
-          <svg
-            className={s.iconClose}
-            aria-label="Close modal"
-            width="16"
-            height="16"
-          >
+          <svg className={s.iconClose} aria-label="Close modal" width="16" height="16">
             <use href={sprite + '#close-icon'} />
           </svg>
         </button>
@@ -161,9 +150,7 @@ const ModalAddsPet = ({ setShowModal }) => {
                 onBlur={formik.handleBlur}
                 value={name}
               />
-              <p className={s.error}>
-                {formik.touched.name && nameError && nameError}
-              </p>
+              <p className={s.error}>{formik.touched.name && nameError && nameError}</p>
               <label forhtml="birthday" className={s.label}>
                 Date of birth<span className={s.accent}>*</span>
               </label>
@@ -205,22 +192,12 @@ const ModalAddsPet = ({ setShowModal }) => {
                 onBlur={formik.handleBlur}
                 value={breed}
               />
-              <p className={s['error--last']}>
-                {formik.touched.breed && breedError && breedError}
-              </p>
+              <p className={s['error--last']}>{formik.touched.breed && breedError && breedError}</p>
               <div className={s.blockOfButtons}>
-                <button
-                  className={s.button}
-                  type="button"
-                  onClick={onBtnCloseClick}
-                >
+                <button className={s.button} type="button" onClick={onBtnCloseClick}>
                   Cancel
                 </button>
-                <button
-                  className={s.button}
-                  type="button"
-                  onClick={onPageChange}
-                >
+                <button className={s.button} type="button" onClick={onPageChange}>
                   Next
                 </button>
               </div>
@@ -232,16 +209,10 @@ const ModalAddsPet = ({ setShowModal }) => {
               <p className={s.descr}>Add photo and some comments</p>
               <div className={s.loadImgGroup}>
                 <label forhtml="file" className={s.labelLoad}>
-                  {!photo && (
-                    <img src={imgLoad} alt="add_photo" width="71" height="71" />
-                  )}
+                  {!photo && <img src={imgLoad} alt="add_photo" width="71" height="71" />}
                   {photo && (
                     <div className={s.thumbLoadImg}>
-                      <img
-                        src={photo}
-                        alt="pet_photo"
-                        className={s.loadImage}
-                      />
+                      <img src={photo} alt="pet_photo" className={s.loadImage} />
                     </div>
                   )}
                   <input
@@ -272,11 +243,7 @@ const ModalAddsPet = ({ setShowModal }) => {
                 {formik.touched.comments && commentsError && commentsError}
               </p>
               <div className={s.blockOfButtons}>
-                <button
-                  className={s.button}
-                  type="button"
-                  onClick={onPageChange}
-                >
+                <button className={s.button} type="button" onClick={onPageChange}>
                   Back
                 </button>
                 <button className={s.button} type="submit">
