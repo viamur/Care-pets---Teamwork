@@ -169,7 +169,9 @@ const NoticeCategoryItem = ({
                     {category === 'sell' && <p>Price:</p>}
                   </td>
                   <td className={`${s.descrTitle} ${s.descrLast}`}>
-                    {category === 'sell' && <p>{price ? `${price}$` : '-'}</p>}
+                    {category === 'sell' && (
+                      <p>{price ? `${price} UAH` : '-'}</p>
+                    )}
                   </td>
                 </tr>
               </tbody>

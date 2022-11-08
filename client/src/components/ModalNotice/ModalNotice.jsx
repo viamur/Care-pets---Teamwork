@@ -163,7 +163,7 @@ const ModalNotice = ({
                         <p>Sell:</p>
                       </td>
                       <td className={s.descr}>
-                        <p>{info.price}$</p>
+                        <p>{info.price} UAH</p>
                       </td>
                     </tr>
                   )}
