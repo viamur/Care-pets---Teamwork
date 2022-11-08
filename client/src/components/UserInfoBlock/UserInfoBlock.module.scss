@@ -171,6 +171,21 @@
   }
 }
 
+.itemDatepicker__disabled {
+  composes: item__input;
+  background-color: var(--white);
+  border: 1px solid var(--white);
+
+  @include mq(tab) {
+    font-size: 18px;
+    line-height: 1.39;
+  }
+
+  @include mq(desk) {
+    width: 100%;
+  }
+}
+
 .title {
   // margin-left: 20px;
   margin-bottom: 18px;

@@ -253,7 +253,9 @@ const UserInfoBlock = () => {
               clearIcon={null}
               calendarIcon={null}
               format="dd.MM.yyyy"
-              className={s.item__input}
+              className={
+                isDisabled ? s.itemDatepicker__disabled : s.item__input
+              }
               disabled={isDisabled}
               selected={birthday}
               maxDate={new Date()}
