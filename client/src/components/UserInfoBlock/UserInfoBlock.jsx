@@ -48,7 +48,7 @@ const UserInfoBlock = () => {
     setName(userInfo.name);
     setCity(userInfo.city);
     setPhone(userInfo.phone);
-    setBirthday(userInfo.birthday);
+    setBirthday(userInfo.birthday && userInfo.birthday);
   }, [userInfo]);
 
   // create a preview as a side effect, whenever selected file is changed
@@ -193,7 +193,7 @@ const UserInfoBlock = () => {
               type="text"
               name="email"
               disabled={true}
-              onChange={e => setEmail(e.target.value)}
+              onChange={e => setEmail(e.target.value.trim())}
               value={email}
               className={s.item__input}
             />
@@ -209,7 +209,7 @@ const UserInfoBlock = () => {
               onChange={e => {
                 setBirthday(e.target.value);
               }}
-              value={birthday.split('T')[0]}
+              value={birthday && birthday.split('T')[0]}
               className={s.item__input}
             />
             <button
@@ -225,7 +225,7 @@ const UserInfoBlock = () => {
               type="text"
               name="phone"
               disabled={true}
-              onChange={e => setPhone(e.target.value)}
+              onChange={e => setPhone(e.target.value.trim())}
               value={phone}
               className={s.item__input}
             />
