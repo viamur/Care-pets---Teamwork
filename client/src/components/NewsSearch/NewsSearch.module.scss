@@ -10,7 +10,6 @@
     height: 40px;
     margin: auto;
     margin-bottom: 40px;
-    text-align: center;
 
     border-radius: 20px;
 
@@ -25,7 +24,7 @@
 
 .input {
     width: 100%;
-    padding: 9px 12px;
+    padding: 9px 58px 9px 12px;;
 
     border: none;
     border-radius: 20px;
@@ -37,9 +36,6 @@
 
     color: var(--font-search-color);
     outline: none;
-    
-    // ask about this text-shadow in mob-media
-    // text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
     box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
     background-color: var(--white);
@@ -55,9 +51,38 @@
     }
 }
 
-.btn {
+.autocomplete__List {
     position: absolute;
-    top: 9px;
+    top: 50px;
+    left: 0;
+    z-index: 10;
+
+    width: 100%;
+    max-height: 200px;
+    height: auto;
+    margin: 0;
+    padding: 0;
+
+    overflow: auto;
+
+    box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
+    background-color: var(--white);
+}
+
+.autocomplete__Item {
+    padding: 6px 10px;
+
+    transition: all var(--transition);
+
+    &:hover {
+        background-color: var(--accent-color);
+        cursor: pointer;
+    }
+}
+
+.btn__submit {
+    position: absolute;
+    top: 10px;
     right: 12px;
 
     width: 20px;
@@ -75,16 +100,29 @@
     transition: all var(--transition);
 
     @include mq(tab) {
-        top: 10px;
-
         width: 24px;
         height: 24px;
     }
 
     &:hover {
+        cursor: pointer;
         -webkit-animation: none;
         -webkit-transform: scale(1.4);
         animation: none;
         transform: scale(1.4);
+    }
+}
+
+.btn__delete {
+    @extend .btn__submit;
+    right: 36px;
+
+    background-image: url('../../images/icons/close-icon.svg');
+
+    @include mq(tab) {
+        right: 40px;
+
+        width: 22px;
+        height: 22px;
     }
 }
