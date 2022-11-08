@@ -50,7 +50,7 @@ const UserInfoBlock = () => {
     setName(userInfo.name);
     setCity(userInfo.city);
     setPhone(userInfo.phone);
-    setBirthday(new Date(userInfo.birthday));
+    setBirthday(userInfo.birthday && new Date(userInfo.birthday));
   }, [userInfo]);
 
   // create a preview as a side effect, whenever selected file is changed
