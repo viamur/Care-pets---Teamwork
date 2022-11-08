@@ -1,33 +1,36 @@
 import { useState } from 'react';
+import { showAlertMessage } from '../../utils/showMessages';
 import s from './NewsSearch.module.scss';
 
 const NewsSearch = ({ onSubmit, news, onChange }) => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [isOpen, setIsOpen] = useState(true);
-
-  const handleInputClick = e => {
-    setIsOpen(true);
-  };
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleChange = e => {
+    setIsOpen(true);
     const query = e.target.value.replace(/\s\s+/g, ' ');
-
     setSearchQuery(query);
-
     onChange(query);
   };
 
   const handleItemClick = e => {
     setSearchQuery(e.target.textContent);
-    setIsOpen(!isOpen);
+    setIsOpen(false);
   };
 
   const handleSubmitClick = e => {
     e.preventDefault();
-
+    if (!searchQuery) {
+      showAlertMessage('Sorry, your query is empty');
+      return;
+    }
     onSubmit(searchQuery);
+    setIsOpen(false);
+  };
 
+  const searchClear = () => {
     setSearchQuery('');
+    onSubmit('');
   };
 
   return (
@@ -39,7 +42,6 @@ const NewsSearch = ({ onSubmit, news, onChange }) => {
         autoComplete="off"
         autoFocus
         value={searchQuery}
-        onClick={handleInputClick}
         onChange={handleChange}
       />
       <ul className={s.autocomplete__List}>
@@ -63,7 +65,15 @@ const NewsSearch = ({ onSubmit, news, onChange }) => {
               })
           : null}
       </ul>
-      <button type="submit" className={s.btn} title="Submit"></button>
+      {searchQuery && (
+        <button
+          className={`${s.btn} ${s.btn__delete}`}
+          type="button"
+          onClick={searchClear}
+          title="Return to all news"
+        ></button>
+      )}
+      <button type="submit" className={s.btn__submit} title="Submit"></button>
     </form>
   );
 };
