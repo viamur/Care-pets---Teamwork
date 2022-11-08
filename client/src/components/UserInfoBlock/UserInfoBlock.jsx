@@ -9,13 +9,13 @@ import Logout from '../Logout/Logout';
 
 import s from './UserInfoBlock.module.scss';
 import sprite from '../../images/icons/sprite.svg';
+import DatePicker from 'react-date-picker';
 
 /* ----------REGEX--------------- */
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const phoneRegex = /^\+380\d{9}/;
 const cityRegex =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z0-9]).{3,32},(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z0-9]).{3,32}$/;
-// const nameRegex = [a - zA - Z]{2,12}$/;
 
 const UserInfoBlock = () => {
   /* Селекторы */
@@ -207,7 +207,7 @@ const UserInfoBlock = () => {
           </li>
           <li className={s.item}>
             <p className={s.item__title}>Birthday:</p>
-            <input
+            {/* <input
               type="date"
               name="birthday"
               disabled={true}
@@ -217,6 +217,27 @@ const UserInfoBlock = () => {
               }}
               value={birthday && birthday.split('T')[0]}
               className={s.item__input}
+            /> */}
+            <DatePicker
+              clearIcon={null}
+              calendarIcon={null}
+              format="dd.MM.yyyy"
+              className={s.item__input}
+              selected={birthday}
+              maxDate={new Date()}
+              yearPlaceholder="yyyy"
+              monthPlaceholder="mm"
+              dayPlaceholder="dd"
+              name="birthday"
+              // disabled={true}
+              value={new Date()}
+              onChange={value => {
+                if (!value) {
+                  return;
+                }
+                console.log('value', value);
+                setBirthday(value);
+              }}
             />
             <button
               type="button"
