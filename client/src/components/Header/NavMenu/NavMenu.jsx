@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import s from './navMenu.module.scss';
 
 const NavMenu = ({ isUserLoggedIn }) => {
+  const { t } = useTranslation();
   const { categoryName } = useParams();
   const userName = useSelector(getUserName);
   const userAvatar = useSelector(getUserAvatar);
@@ -40,7 +41,7 @@ const NavMenu = ({ isUserLoggedIn }) => {
         </li>
         <li className={s.navLi}>
           <NavLink className={getActiveLink} to="/news">
-            News
+            {t('navigation.newsPage')}
           </NavLink>
         </li>
         <li className={s.navLi}>
