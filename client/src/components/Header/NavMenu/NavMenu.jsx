@@ -48,11 +48,11 @@ const NavMenu = ({ isUserLoggedIn }) => {
             Find pet
           </NavLink>
         </li>
-        <div className={s.nav}>
+        <li className={s.nav}>
           <NavLink className={getActiveLink} to="/friends">
             Our Friends
           </NavLink>
-        </div>
+        </li>
       </ul>
       <ul className={s.auth}>
         <li className={s.buttonL}>
