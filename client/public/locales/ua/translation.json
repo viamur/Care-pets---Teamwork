@@ -68,7 +68,7 @@
       "addFavorite": "Додати до",
       "removeFavorite": "Видалити з",
       "contact": "Зв'язатись",
-      "cancel": "Відмінити",
+      "cancel": "Скасувати",
       "next": "Далі",
       "back": "Назад",
       "done": "Додати"
@@ -80,7 +80,7 @@
     },
     "categories": {
       "sell": "продаж",
-      "lostFound": "загублені",
+      "lostFound": "загублені/знайдені",
       "inGoodHands": "у добрі руки"
     },
     "age": {
