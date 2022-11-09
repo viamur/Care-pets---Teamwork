@@ -31,39 +31,33 @@ const RegisterForm = () => {
 
     validationSchema: Yup.object({
       email: Yup.string()
-        .email('Invalid email address')
-        .max(25, 'Email must be less tnan 25 characters')
-        .required('This is a required field'),
+        .email(t('validation.email'))
+        .max(25, t('validation.emailMax'))
+        .required(t('validation.required')),
       password: Yup.string()
-        .min(7, 'Password must include more tnan 7 characters')
-        .max(32, 'Password must be less tnan 32 characters')
+        .min(7, t('validation.passwordMin'))
+        .max(32, t('validation.passwordMax'))
         .matches(
           /^(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z0-9])/,
-          'Password must contain at least 1 lowercase letter, 1 uppercase letter and 1 number'
+          t('validation.password')
         )
-        .required('This is a required field'),
+        .required(t('validation.required')),
       confirm_password: Yup.string()
-        .oneOf(
-          [Yup.ref('password'), null],
-          "Password and confirm password don't match"
-        )
+        .oneOf([Yup.ref('password'), null], t('validation.notMatchPasswords'))
         .required('This is a required field'),
       name: Yup.string()
-        .min(2, 'Name must include more tnan 2 characters')
-        .max(10, 'Name must be less tnan 10 characters')
-        .required('This is a required field'),
+        .min(2, t('validation.nameMin'))
+        .max(10, t('validation.nameMax'))
+        .required(t('validation.required')),
       city: Yup.string()
         .matches(
           /^(?=.*[a-z])(?=.*[A-Z]).{3,32},(?=.*[a-z])(?=.*[A-Z]).{3,32}$/,
-          'Please, enter the city and region separated by virgule'
+          t('validation.cityRegion')
         )
-        .required('This is a required field'),
+        .required(t('validation.required')),
       phone: Yup.string()
-        .matches(
-          /[+380]+[0-9].{11}/,
-          'Please, enter the phone number in the following way: +380XXXXXXXXX'
-        )
-        .required('This is a required field'),
+        .matches(/[+380]+[0-9].{11}/, t('validation.phone'))
+        .required(t('validation.required')),
     }),
   });
 
@@ -85,11 +79,11 @@ const RegisterForm = () => {
   const onPageChange = async () => {
     if (page === 1) {
       if (email === '' || password === '' || confirm_password === '') {
-        showAlertMessage('Input all required fields');
+        showAlertMessage(t('errors.allFields'));
         return;
       }
       if (passwordError || confirmError || emailError) {
-        showAlertMessage('Input all fields in the necessary format');
+        showAlertMessage(t('errors.allFieldsFormat'));
         return;
       }
 
@@ -97,7 +91,7 @@ const RegisterForm = () => {
         await getCheckEmail({ email });
         setPage(2);
       } catch (error) {
-        showAlertMessage('You have already registered, just login');
+        showAlertMessage(t('errors.isRegistration'));
       }
       return;
     }
@@ -107,11 +101,11 @@ const RegisterForm = () => {
   const onFormSubmit = e => {
     e.preventDefault();
     if (name === '' || city === '' || phone === '') {
-      showAlertMessage('Input all required fields');
+      showAlertMessage(t('errors.allFields'));
       return;
     }
     if (nameError || cityError || phoneError) {
-      showAlertMessage('Input all fields in the necessary format');
+      showAlertMessage(t('errors.isRegistration'));
       return;
     }
 

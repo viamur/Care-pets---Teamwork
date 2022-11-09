@@ -42,12 +42,12 @@ const ModalAddsPet = ({ setShowModal }) => {
   const onPageChange = () => {
     if (page === 1) {
       if (name === '' || breed === '') {
-        showAlertMessage('Input all required fields');
+        showAlertMessage(t('errors.allFields'));
         return;
       }
 
       if (nameError || breedError) {
-        showAlertMessage('Input all fields in the necessary format');
+        showAlertMessage(t('errors.allFieldsFormat'));
         return;
       }
 
@@ -72,16 +72,16 @@ const ModalAddsPet = ({ setShowModal }) => {
 
     validationSchema: Yup.object({
       name: Yup.string()
-        .min(2, 'Field must include more tnan 2 characters')
-        .max(16, 'Field must be less tnan 16 characters')
-        .required('This is a required field'),
+        .min(2, t('validation.min'))
+        .max(16, t('validation.namePetMax'))
+        .required(t('validation.required')),
       breed: Yup.string()
-        .min(2, 'Field must include more tnan 2 characters')
-        .max(24, 'Field must be less tnan 24 characters')
-        .required('This is a required field'),
+        .min(2, t('validation.min'))
+        .max(24, t('validation.max'))
+        .required(t('validation.required')),
       comments: Yup.string()
-        .min(8, 'Field must include more tnan 8 characters')
-        .max(120, 'Field must be less tnan 120 characters'),
+        .min(8, t('validation.commentsMin'))
+        .max(120, t('validation.commentsMax')),
     }),
   });
 
@@ -110,9 +110,7 @@ const ModalAddsPet = ({ setShowModal }) => {
     e.preventDefault();
 
     if (commentsError) {
-      showAlertMessage(
-        'Input field comments in the necessary format or just miss it'
-      );
+      showAlertMessage(t('errors.notRightComments'));
       return;
     }
 

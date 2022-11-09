@@ -23,7 +23,7 @@ const NewsSearch = ({ onSubmit, news, onChange }) => {
   const handleSubmitClick = e => {
     e.preventDefault();
     if (!searchQuery) {
-      showAlertMessage('Sorry, your query is empty');
+      showAlertMessage(t('errors.emptyQuery'));
       return;
     }
     onSubmit(searchQuery);

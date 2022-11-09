@@ -20,7 +20,7 @@ const NewsPage = () => {
       .then(news => {
         setNews(news);
         if (news === []) {
-          showInfoMessage('Sorry, there are no news.');
+          showInfoMessage(t('errors.noNews'));
         }
       })
       .catch(err => console.log(err))
@@ -45,9 +45,7 @@ const NewsPage = () => {
     );
 
     if (queriedNews.length === 0) {
-      showAlertMessage(
-        'Sorry, there are no news matching your search query. Please try again.'
-      );
+      showAlertMessage(t('errors.news'));
     }
 
     return queriedNews;

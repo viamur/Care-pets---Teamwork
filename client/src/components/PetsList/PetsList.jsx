@@ -72,7 +72,7 @@ const PetsList = () => {
             </li>
           ))
         ) : (
-          <p className={s.nonPet}>You didn't add anything</p>
+          <p className={s.nonPet}>{t('errors.noPets')}</p>
         )}
       </ul>
     </>
