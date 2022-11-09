@@ -11,7 +11,7 @@ import s from './NoticeCategoryItem.module.scss';
 const categoriesForFront = {
   sell: 'sell',
   lostFound: 'lost/found',
-  inGoodHands: 'In good hands',
+  inGoodHands: 'in good hands',
 };
 
 const NoticeCategoryItem = ({

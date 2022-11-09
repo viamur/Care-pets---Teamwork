@@ -231,7 +231,7 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
                       : s.notActiveCategory
                   }
                 >
-                  In good hands
+                  in good hands
                   <input
                     type="radio"
                     id="radio2"
