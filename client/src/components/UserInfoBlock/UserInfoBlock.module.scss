@@ -118,6 +118,17 @@
   @include mq(desk) {
     width: 100%;
   }
+  &:nth-child(3) p {
+    flex-shrink: 20;
+  }
+  &:nth-child(3) {
+    align-items: flex-end;
+  }
+  &:nth-child(3) .itemDatepicker__disabled,
+  &:nth-child(3) .item__input {
+    position: relative;
+    bottom: -4px;
+  }
 }
 
 .item__title {
@@ -129,7 +140,8 @@
   letter-spacing: 0.04em;
 
   @include mq(tab) {
-    min-width: 83px;
+    // min-width: 83px;
+    min-width: 110px;
 
     font-size: 18px;
     line-height: 1.39;
