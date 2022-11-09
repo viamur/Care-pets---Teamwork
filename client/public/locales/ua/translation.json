@@ -11,7 +11,8 @@
     "friendsPage": "Наші друзі",
     "noticesPage": "Знайти улюбленця",
     "login": "Логін",
-    "account": "Кабінет"
+    "registration": "Реєстрація",
+    "account": "Аккаунт"
   },
 
   "login": {
@@ -86,9 +87,11 @@
     "age": {
       "title": "Вік",
       "month": "місяць",
-      "months": "місяці(-ів)",
+      "months": "місяці",
+      "monthMoreFour": "місяців",
       "year": "рік",
-      "years": "роки(-ів)",
+      "years": "роки",
+      "yearsMoreFour": "років",
       "lessOne": "місяця"
     },
     "item": { "breed": "Порода", "place": "Місто", "price": "Ціна" },
