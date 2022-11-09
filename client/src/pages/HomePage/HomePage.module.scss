@@ -1,32 +1,49 @@
 @import '../../sass/mixin';
 
 .container {
-  // min-width: 100vw;
-  min-height: calc(100vh - 97px);
+  max-width: 100vw;
+  min-height: calc(100vh - 117px);
 
   background-repeat: no-repeat;
 
-  background-image: url('../../images/bgs/woman-1x.png'),
-    url('../../images/bgs/main-bg-mobile-2x.png');
+  background-image: url('../../images/bgs/home-woman-mob-1x.png'),
+      url('../../images/bgs/home-waves-mob-1x.png');
   background-size: contain, 100% auto;
   background-position: center bottom, center bottom;
 
-  @include mq(tab) {
-    min-height: calc(100vh - 109px);
+  @include mq(mob) {
+      @include mq(retina) {
+        background-image: url('../../images/bgs/home-woman-mob-2x.png'),
+         url('../../images/bgs/home-waves-mob-2x.png');
+      }
+  }
 
-    background-image: url('../../images/bgs/woman-2x.png'),
-      url('../../images/bgs/main-bg-tablet-1x.png');
+  @include mq(tab) {
+    min-height: calc(100vh - 144px);
+
+    background-image: url('../../images/bgs/home-woman-tab-1x.png'),
+      url('../../images/bgs/home-waves-tab-1x.png');
     background-size: contain, 100% auto;
     background-position: center bottom, center bottom;
+
+      @include mq(retina) {
+        background-image: url('../../images/bgs/home-woman-tab-2x.png'),
+         url('../../images/bgs/home-waves-tab-2x.png');
+      }
   }
 
   @include mq(desk) {
-    min-height: calc(100vh - 132px);
+    min-height: calc(100vh - 133px);
 
-    background-image: url('../../images/bgs/woman-3x.png'),
-      url('../../images/bgs-svg/main-bg-heart.svg'), url('../../images/bgs/main-bg-1x.png');
+    background-image: url('../../images/bgs/home-woman-desk-1x.png'),
+      url('../../images/bgs-svg/main-bg-heart.svg'), url('../../images/bgs/home-waves-desk-1x.png');
     background-size: 624px 655px, auto, 100% auto;
     background-position: right bottom, top 5% right 40%, center bottom;
+
+      @include mq(retina) {
+        background-image: url('../../images/bgs/home-woman-desk-2x.png'),
+      url('../../images/bgs-svg/main-bg-heart.svg'), url('../../images/bgs/home-waves-desk-2x.png');
+      }
   }
 }
 
