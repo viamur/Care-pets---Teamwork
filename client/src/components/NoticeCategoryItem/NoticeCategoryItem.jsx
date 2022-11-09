@@ -9,13 +9,7 @@ import ModalNotice from 'components/ModalNotice/ModalNotice';
 import { useTranslation } from 'react-i18next';
 import s from './NoticeCategoryItem.module.scss';
 
-const NoticeCategoryItem = ({
-  data,
-  id,
-  array,
-  setArray,
-  category: path,
-}) => {
+const NoticeCategoryItem = ({ data, id, array, setArray, category: path }) => {
   const {
     birthdate,
     category,
@@ -98,17 +92,23 @@ const NoticeCategoryItem = ({
         return `${transformedYear} ${
           transformedYear === 1
             ? t('noticesPage.age.year')
-            : t('noticesPage.age.years')
+            : transformedYear <= 4
+            ? t('noticesPage.age.years')
+            : t('noticesPage.age.yearsMoreFour')
         } ${transformedMonth} ${
           transformedMonth === 1
             ? t('noticesPage.age.month')
-            : t('noticesPage.age.months')
+            : transformedMonth <= 4
+            ? t('noticesPage.age.months')
+            : t('noticesPage.age.monthMoreFour')
         } `;
       }
       return `${transformedYear} ${
         transformedYear === 1
           ? t('noticesPage.age.year')
-          : t('noticesPage.age.years')
+          : transformedYear <= 4
+          ? t('noticesPage.age.years')
+          : t('noticesPage.age.yearsMoreFour')
       }`;
     }
 
@@ -116,7 +116,9 @@ const NoticeCategoryItem = ({
       return `${transformedMonth} ${
         transformedMonth === 1
           ? t('noticesPage.age.month')
-          : t('noticesPage.age.months')
+          : transformedMonth <= 4
+          ? t('noticesPage.age.months')
+          : t('noticesPage.age.monthMoreFour')
       }`;
     }
     return `< 1 ${t('noticesPage.age.lessOne')}`;

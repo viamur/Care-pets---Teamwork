@@ -9,6 +9,7 @@ const SharedLayout = () => {
     <>
       {/* need to move <Container> to each Page component  to wrap the rendering code */}
       {/* <Container> */}
+
       <Suspense fallback={<></>}>
         <Header />
         <main>
