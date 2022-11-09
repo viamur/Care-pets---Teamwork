@@ -5,7 +5,6 @@
   box-shadow: 7px 4px 14px -5px rgba(0, 0, 0, 0.11);
   border-radius: 20px;
   padding: 20px 23px;
-  // margin: 0 20px 20px;
 
   @include mq(tab) {
     position: relative;
@@ -14,15 +13,15 @@
     display: flex;
     justify-content: space-between;
     flex-direction: row-reverse;
-    padding: 24px 40px 24px 0;
-    border-radius: 0px 40px 40px 0px;
+    padding: 24px 40px;
+    border-radius: 40px;
   }
 
   @include mq(desk) {
     width: 395px;
     display: block;
     margin: 0px;
-    padding: 20px 16px 0px 0px;
+    padding: 20px 16px 0 20px;
 
     box-shadow: none;
   }
@@ -95,9 +94,9 @@
 
 .list {
   @include mq(tab) {
-    flex-grow: 2;
     margin-top: 16px;
     margin-right: 52px;
+    flex-shrink: 5;
   }
 
   @include mq(desk) {
@@ -107,7 +106,7 @@
   }
 }
 
-.item {
+.itemUS {
   display: flex;
   align-items: center;
 
@@ -117,6 +116,25 @@
 
   @include mq(desk) {
     width: 100%;
+  }
+  &:nth-child(3) p {
+    flex-shrink: 20;
+  }
+}
+.itemUA {
+  display: flex;
+  align-items: center;
+  &:not(:last-child) {
+    margin-bottom: 4px;
+  }
+  @include mq(desk) {
+    width: 100%;
+  }
+  & .item__title {
+    min-width: 85px;
+    @include mq(tab) {
+      min-width: 125px;
+    }
   }
   &:nth-child(3) p {
     flex-shrink: 20;
@@ -221,24 +239,5 @@
     font-size: 28px;
     line-height: 38px;
     margin: 0 0px 24px 0;
-  }
-}
-.bg {
-  @include mq(tab) {
-    position: absolute;
-    background-color: #ffffff;
-    z-index: -10;
-    height: 100%;
-    width: 100%;
-    left: -32px;
-    box-shadow: 7px 4px 14px -5px rgb(0 0 0 / 11%);
-    top: 0;
-  }
-  @include mq(desk) {
-    border-radius: 0px 40px 40px 0px;
-    height: 100%;
-    width: 100%;
-    left: -16px;
-    bottom: 0;
   }
 }

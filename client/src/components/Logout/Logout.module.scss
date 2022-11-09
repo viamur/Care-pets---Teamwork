@@ -34,12 +34,12 @@
     margin: 0px;
     position: absolute;
     bottom: 24px;
-    left: 0;
+    left: 40px;
   }
 
   @include mq(desk) {
     bottom: 40px;
-    // left: 30px;
+    left: 20px;
     // margin: 43px auto 42px 17px;
   }
 }
