@@ -19,7 +19,6 @@ const cityRegex =
 
 const UserInfoBlock = () => {
   const [isDisabled, setIsDisabled] = useState(true);
-  const [btnClass, setBtnClass] = useState('pencil');
   /* Селекторы */
   const userInfo = useSelector(getAllUserInfo);
 
@@ -73,13 +72,13 @@ const UserInfoBlock = () => {
     return () => URL.revokeObjectURL(objectUrl);
   }, [selectedFile]);
 
-  const datepickerClick = () => {
+  const datepickerClick = event => {
     if (isDisabled) {
       setIsDisabled(false);
-      setBtnClass('galochka');
+      event.target.className = 'galochka';
       return;
     }
-    setBtnClass('pencil');
+    event.target.className = 'pencil';
     setIsDisabled(true);
     dispatch(pathInfoUser({ birthday }));
   };
@@ -274,7 +273,7 @@ const UserInfoBlock = () => {
             <button
               type="button"
               name="birthday"
-              className={btnClass}
+              className="pencil"
               onClick={datepickerClick}
             ></button>
           </li>
