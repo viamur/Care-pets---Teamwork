@@ -2,30 +2,30 @@ import s from './OurFriendsPage.module.scss';
 import { fetchFriends } from '../../utils/api';
 import { useEffect, useState } from 'react';
 import OurFriendsList from '../../components/OurFriends/OurFriendsList';
-import { showLoadingHourglass, removeLoading } from '../../utils/showLoading';
 import { useTranslation } from 'react-i18next';
+import Loader from '../../components/Loader/Loader';
 import Container from '../../components/Container/Container';
 
 const OurFriendsPage = () => {
   const [friends, setFriends] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const { t } = useTranslation();
 
   useEffect(() => {
-    showLoadingHourglass('Loading ...');
-
+    setIsLoading(true);
     fetchFriends()
       .then(data => {
         setFriends(data);
       })
       .catch(err => console.log(err))
-      .finally(() => removeLoading());
+      .finally(() => setIsLoading(false));
   }, []);
 
   return (
     <Container>
-      <h1 className={s.mainTitle}>{t('titles.friendsPage')}</h1>
+      <h2 className={s.mainTitle}>{t('titles.friendsPage')}</h2>
 
-      <OurFriendsList friends={friends} />
+      {isLoading ? <Loader /> : <OurFriendsList friends={friends} />}
     </Container>
   );
 };

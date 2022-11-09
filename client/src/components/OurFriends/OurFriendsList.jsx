@@ -9,7 +9,7 @@ const OurFriendsList = ({ friends }) => {
       {friends &&
         friends.map(friend => (
           <li key={friend._id} className={s.card}>
-            <h2 className={s.cardTitle}>{friend.title}</h2>
+            <h3 className={s.cardTitle}>{friend.title}</h3>
             <div className={s.iconDescriptionWrapper}>
               <img
                 src={`https://pet-support.herokuapp.com/${friend.icon}`}
