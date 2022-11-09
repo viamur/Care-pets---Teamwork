@@ -12,6 +12,7 @@ import s from './mobileMenu.module.scss';
 const MobileMenu = ({ isUserLoggedIn, onClose }) => {
   const userName = useSelector(getUserName);
   const userAvatar = useSelector(getUserAvatar);
+
   const { t } = useTranslation();
 
   const getActiveLink = ({ isActive }) => (isActive ? s.linkActive + ' ' + s.link : s.link);
