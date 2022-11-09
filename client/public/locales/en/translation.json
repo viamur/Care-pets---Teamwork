@@ -11,8 +11,33 @@
     "friendsPage": "Our friends",
     "noticesPage": "Find pet",
     "login": "Login",
-    "registartion": "Registration",
     "account": "Account"
+  },
+
+  "login": {
+    "title": "Login",
+    "linkDescr": "Don't have an account?",
+    "link": "Register",
+    "button": "Login",
+    "placeholders": {
+      "password": "Password",
+      "email": "Email"
+    }
+  },
+
+  "registration": {
+    "title": "Registration",
+    "linkDescr": "Already have an account?",
+    "link": "Login",
+    "buttons": { "next": "Next", "register": "Register", "back": "Back" },
+    "placeholders": {
+      "password": "Password",
+      "email": "Email",
+      "confirmPassword": "Confirm Password",
+      "name": "Name",
+      "city": "City, region",
+      "phone": "Mobile phone"
+    }
   },
 
   "newsPage": {
@@ -77,6 +102,7 @@
     },
     "addNotice": {
       "title": "Add pet",
+      "descr": "Enter data about the pet. Fill in all required fields",
       "titleAd": "Tittle of ad",
       "name": "Name pet",
       "date": "Date of birth",
@@ -131,5 +157,39 @@
         "comments": "Type comments"
       }
     }
+  },
+
+  "errors": {
+    "allFields": "Input all required fields",
+    "allFieldsFormat": "Input all fields in the necessary format",
+    "emptyQuery": "Sorry, your query is empty",
+    "isRegistration": "You have already registered, just login",
+    "news": "Sorry, there are no news matching your search query. Please try again.",
+    "noNews": "Sorry, there are no news.",
+    "notRightComments": "Input field comments in the necessary format or just miss it",
+    "noPets": "You haven't added your pets",
+    "noAddNotice": "Please, log in for adding notice",
+    "noAddFavorite": "Please, log in for adding to favorite"
+  },
+  "validation": {
+    "email": "Invalid email address",
+    "emailMax": "Email must be less tnan 25 characters",
+    "passwordMin": "Password must include more tnan 7 characters",
+    "passwordMax": "Password must be less tnan 32 characters",
+    "password": "Password must contain at least 1 lowercase letter, 1 uppercase letter and 1 number",
+    "required": "This is a required field",
+    "notMatchPasswords": "Password and confirm password don't match",
+    "nameMin": "Name must include more tnan 2 characters",
+    "nameMax": "Name must be less tnan 10 characters",
+    "cityRegion": "Please, enter the city and region separated by virgule",
+    "phone": "Please, enter the phone number in the following way: +380XXXXXXXXX",
+    "priceNum": "Enter the number",
+    "priceInt": "Only integer numbers",
+    "min": "Field must include more tnan 2 characters",
+    "max": "Field must be less tnan 24 characters",
+    "titleMax": "Field must be less tnan 48 characters",
+    "namePetMax": "Field must be less tnan 16 characters",
+    "commentsMin": "Field must include more tnan 8 characters",
+    "commentsMax": "Field must be less tnan 120 characters"
   }
 }

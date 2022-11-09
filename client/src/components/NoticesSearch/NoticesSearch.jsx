@@ -14,7 +14,7 @@ const NoticesSearch = ({ setSearchQuery, title }) => {
   const onHandleSubmit = e => {
     e.preventDefault();
     if (!query) {
-      showAlertMessage('Sorry, your query is empty');
+      showAlertMessage(t('errors.emptyQuery'));
       return;
     }
     setSearchQuery(query);

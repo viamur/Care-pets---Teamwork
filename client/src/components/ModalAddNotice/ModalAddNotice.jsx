@@ -60,29 +60,29 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
     },
 
     validationSchema: Yup.object({
-      category: Yup.string().required('This is a required field'),
+      category: Yup.string().required(t('validation.required')),
       title: Yup.string()
-        .min(2, 'Field must include more tnan 2 characters')
-        .max(48, 'Field must include less tnan 48 characters')
-        .required('This is a required field'),
+        .min(2, t('validation.min'))
+        .max(48, t('validation.titleMax'))
+        .required(t('validation.required')),
       name: Yup.string()
-        .min(2, 'Field must include more tnan 2 characters')
-        .max(16, 'Field must be less tnan 16 characters'),
+        .min(2, t('validation.min'))
+        .max(16, t('validation.namePetMax')),
       breed: Yup.string()
-        .min(2, 'Field must include more tnan 2 characters')
-        .max(24, 'Field must be less tnan 24 characters'),
-      sex: Yup.string().required('This is a required field'),
+        .min(2, t('validation.min'))
+        .max(24, t('validation.max')),
+      sex: Yup.string().required(t('validation.required')),
       location: Yup.string()
-        .min(2, 'Field must include more tnan 2 characters')
-        .max(24, 'Field must be less tnan 24 characters')
-        .required('This is a required field'),
+        .min(2, t('validation.min'))
+        .max(24, t('validation.max'))
+        .required(t('validation.required')),
       price: Yup.number()
-        .typeError('Enter the number')
-        .integer('Only integer numbers')
-        .required('This is a required field'),
+        .typeError(t('validation.priceNum'))
+        .integer(t('validation.priceInt'))
+        .required(t('validation.required')),
       comments: Yup.string()
-        .min(8, 'Field must include more tnan 8 characters')
-        .max(120, 'Field must be less tnan 120 characters'),
+        .min(8, t('validation.commentsMin'))
+        .max(120, t('validation.commentsMax')),
     }),
   });
 
@@ -125,11 +125,11 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
     e.preventDefault();
 
     if (location === '' || (category === 'sell' && price === '')) {
-      showAlertMessage('Input all required fields');
+      showAlertMessage(t('errors.allFields'));
       return;
     }
     if (locationError || commentsError || (category === 'sell' && priceError)) {
-      showAlertMessage('Input all fields in the necessary format');
+      showAlertMessage(t('errors.allFieldsFormat'));
       return;
     }
 
@@ -171,12 +171,12 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
   const onPageChange = () => {
     if (page === 1) {
       if (title === '') {
-        showAlertMessage('Input all required fields');
+        showAlertMessage(t('errors.allFields'));
         return;
       }
 
       if (titleError || nameError || breedError) {
-        showAlertMessage('Input all fields in the necessary format');
+        showAlertMessage(t('errors.allFieldsFormat'));
         return;
       }
       setPage(2);
@@ -200,10 +200,7 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
         </button>
         <h2 className={s.title}> {t('noticesPage.addNotice.title')}</h2>
         {page === 1 && (
-          <p className={s.descr}>
-            Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
-            consectetur
-          </p>
+          <p className={s.descr}>{t('noticesPage.addNotice.descr')}</p>
         )}
         <form onSubmit={onFormSubmit}>
           {page === 1 && (
