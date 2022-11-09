@@ -12,7 +12,7 @@ const NewsList = ({ news }) => {
 
           return (
             <li className={s.item} key={_id}>
-              <h2 className={s.subtitle}>{title}</h2>
+              <h3 className={s.subtitle}>{title}</h3>
               <p className={s.text}>{text}</p>
               <div className={s.addData}>
                 <p className={s.date}>{date}</p>
