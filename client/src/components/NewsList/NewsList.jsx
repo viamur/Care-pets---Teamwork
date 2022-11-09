@@ -1,6 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import s from './NewsList.module.scss';
 
 const NewsList = ({ news }) => {
+  const { t } = useTranslation();
+
   return (
     <ul className={s.list}>
       {news &&
@@ -20,7 +23,7 @@ const NewsList = ({ news }) => {
                   rel="noopener noreferrer"
                   className={s.link}
                 >
-                  Read more
+                  {t('newsPage.more')}
                 </a>
               </div>
             </li>

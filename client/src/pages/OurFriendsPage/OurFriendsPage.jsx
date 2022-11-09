@@ -3,10 +3,12 @@ import { fetchFriends } from '../../utils/api';
 import { useEffect, useState } from 'react';
 import OurFriendsList from '../../components/OurFriends/OurFriendsList';
 import { showLoadingHourglass, removeLoading } from '../../utils/showLoading';
+import { useTranslation } from 'react-i18next';
 import Container from '../../components/Container/Container';
 
 const OurFriendsPage = () => {
   const [friends, setFriends] = useState([]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     showLoadingHourglass('Loading ...');
@@ -21,7 +23,7 @@ const OurFriendsPage = () => {
 
   return (
     <Container>
-      <h1 className={s.mainTitle}>Our friends</h1>
+      <h1 className={s.mainTitle}>{t('titles.friendsPage')}</h1>
 
       <OurFriendsList friends={friends} />
     </Container>

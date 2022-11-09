@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { showAlertMessage } from '../../utils/showMessages';
 import s from './NewsSearch.module.scss';
 
 const NewsSearch = ({ onSubmit, news, onChange }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useTranslation();
 
   const handleChange = e => {
     setIsOpen(true);
@@ -38,7 +40,7 @@ const NewsSearch = ({ onSubmit, news, onChange }) => {
       <input
         type="text"
         className={s.input}
-        placeholder="Search"
+        placeholder={t('newsPage.placeholder')}
         autoComplete="off"
         autoFocus
         value={searchQuery}
