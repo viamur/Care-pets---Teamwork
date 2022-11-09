@@ -5,7 +5,7 @@ import NewsList from '../../components/NewsList/NewsList';
 import NewsSearch from '../../components/NewsSearch/NewsSearch';
 import Container from '../../components/Container/Container';
 import s from './NewsPage.module.scss';
-import { showLoadingHourglass, removeLoading } from '../../utils/showLoading';
+// import { showLoadingHourglass, removeLoading } from '../../utils/showLoading';
 import filteArrByTitle from '../../utils/filteArrByTitle';
 
 const NewsPage = () => {
@@ -13,7 +13,7 @@ const NewsPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    showLoadingHourglass('Loading ...');
+    // showLoadingHourglass('Loading ...');
 
     fetchNews()
       .then(news => {
@@ -22,8 +22,8 @@ const NewsPage = () => {
           showInfoMessage('Sorry, there are no news.');
         }
       })
-      .catch(err => console.log(err))
-      .finally(() => removeLoading());
+      .catch(err => console.log(err));
+    // .finally(() => removeLoading());
   }, []);
 
   const onSubmitSearch = searchQuery => {
