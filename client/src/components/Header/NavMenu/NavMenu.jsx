@@ -10,28 +10,27 @@ const NavMenu = ({ isUserLoggedIn }) => {
   const { categoryName } = useParams();
   const userName = useSelector(getUserName);
   const userAvatar = useSelector(getUserAvatar);
-  const getActiveLink = ({ isActive }) => {
-    // isActive ? s.linkActive + ' ' + s.link : s.link;
 
-    if (isActive) {
-      return s.linkActive + ' ' + s.link;
-    } else {
-      return s.link;
-    }
-  };
+  // const { t } = useTranslation();
+
+  const getActiveLink = ({ isActive }) =>
+    isActive ? `${s.linkActive} ${s.link}` : s.link;
 
   const getActiveNotice = () => {
-    if (categoryName === 'sell') {
-      return s.linkActive + ' ' + s.link;
-    } else if (categoryName === 'for-free') {
-      return s.linkActive + ' ' + s.link;
-    } else if (categoryName === 'lost-found') {
-      return s.linkActive + ' ' + s.link;
-    } else return s.link;
+    if (
+      categoryName === 'sell' ||
+      categoryName === 'for-free' ||
+      categoryName === 'lost-found' ||
+      categoryName === 'favorite' ||
+      categoryName === 'own'
+    ) {
+      return `${s.linkActive} ${s.link}`;
+    }
+    return s.link;
   };
 
   const getActiveButton = ({ isActive }) =>
-    isActive ? s.buttonActive + ' ' + s.button : s.button;
+    isActive ? `${s.buttonActive} ${s.button}` : s.button;
 
   return (
     <header className={s.header}>
