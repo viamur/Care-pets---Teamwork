@@ -9,11 +9,13 @@ import { showAlertMessage } from '../../utils/showMessages';
 import { addNotice, fetchOwnAds } from '../../utils/api';
 import imgLoad from '../../images/modals/loadMobile.png';
 import sprite from '../../images/icons/sprite.svg';
+import { useTranslation } from 'react-i18next';
 import s from './ModalAddNotice.module.scss';
 
 const portalModal = document.querySelector('#modal-root');
 
 const ModalAddNotice = ({ setShowModal, array, setArray }) => {
+  const { t } = useTranslation();
   const [page, setPage] = useState(1);
   const [photo, setPhoto] = useState('');
   const { categoryName } = useParams();
@@ -196,7 +198,7 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
             <use href={sprite + '#close-icon'} />
           </svg>
         </button>
-        <h2 className={s.title}>Add pet</h2>
+        <h2 className={s.title}> {t('noticesPage.addNotice.title')}</h2>
         {page === 1 && (
           <p className={s.descr}>
             Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
@@ -214,7 +216,7 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
                       : s.notActiveCategory
                   }
                 >
-                  lost/found
+                  {t('noticesPage.categories.lostFound')}
                   <input
                     type="radio"
                     id="radio1"
@@ -231,7 +233,7 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
                       : s.notActiveCategory
                   }
                 >
-                  in good hands
+                  {t('noticesPage.categories.inGoodHands')}
                   <input
                     type="radio"
                     id="radio2"
@@ -246,7 +248,7 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
                     category === 'sell' ? s.activeCategory : s.notActiveCategory
                   }
                 >
-                  sell
+                  {t('noticesPage.categories.sell')}
                   <input
                     type="radio"
                     id="radio3"
@@ -258,14 +260,15 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
                 </label>
               </div>
               <label forhtml="title" className={s.label}>
-                Tittle of ad<span className={s.accent}>*</span>
+                {t('noticesPage.addNotice.titleAd')}
+                <span className={s.accent}>*</span>
               </label>
               <input
                 className={s.input}
                 type="text"
                 name="title"
                 id="title"
-                placeholder="Type name"
+                placeholder={t('noticesPage.addNotice.placeholders.titleAd')}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={title}
@@ -274,14 +277,14 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
                 {formik.touched.title && titleError && titleError}
               </p>
               <label forhtml="name" className={s.label}>
-                Name pet
+                {t('noticesPage.addNotice.name')}
               </label>
               <input
                 className={s.input}
                 type="text"
                 name="name"
                 id="name"
-                placeholder="Type name pet"
+                placeholder={t('noticesPage.addNotice.placeholders.name')}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={name}
@@ -290,7 +293,7 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
                 {formik.touched.name && nameError && nameError}
               </p>
               <label forhtml="birthdate" className={s.label}>
-                Date of birth
+                {t('noticesPage.addNotice.date')}
               </label>
               <DatePicker
                 clearIcon={null}
@@ -322,14 +325,14 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
               />
               <p className={s.error}></p>
               <label forhtml="breed" className={s.label}>
-                Breed
+                {t('noticesPage.addNotice.breed')}
               </label>
               <input
                 className={s.input}
                 type="text"
                 name="breed"
                 id="breed"
-                placeholder="Type breed"
+                placeholder={t('noticesPage.addNotice.placeholders.breed')}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={breed}
@@ -343,14 +346,14 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
                   type="button"
                   onClick={onBtnCloseClick}
                 >
-                  Cancel
+                  {t('noticesPage.buttons.cancel')}
                 </button>
                 <button
                   className={s.button}
                   type="button"
                   onClick={onPageChange}
                 >
-                  Next
+                  {t('noticesPage.buttons.next')}
                 </button>
               </div>
             </>
@@ -359,7 +362,8 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
             <>
               <div className={s.radioToolbarPage2}>
                 <p className={`${s.label} ${s.labelDistance}`}>
-                  The sex<span className={s.accent}>*</span>:
+                  {t('noticesPage.addNotice.sex.title')}
+                  <span className={s.accent}>*</span>:
                 </p>
                 <div className={s.blockOfRadio}>
                   <label className={`${s.sexLabel} ${s.labelMale}`}>
@@ -375,7 +379,7 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
                         sex === 'male' ? s.active : s.notActive
                       }`}
                     >
-                      Male
+                      {t('noticesPage.addNotice.sex.male')}
                     </span>
                   </label>
                   <label className={`${s.sexLabel} ${s.labelFemale}`}>
@@ -391,20 +395,21 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
                         sex === 'female' ? s.active : s.notActive
                       }`}
                     >
-                      Female
+                      {t('noticesPage.addNotice.sex.female')}
                     </span>
                   </label>
                 </div>
               </div>
               <label forhtml="location" className={s.label}>
-                Location<span className={s.accent}>*</span>:
+                {t('noticesPage.addNotice.location')}
+                <span className={s.accent}>*</span>:
               </label>
               <input
                 className={s.input}
                 type="text"
                 name="location"
                 id="location"
-                placeholder="Type location"
+                placeholder={t('noticesPage.addNotice.placeholders.location')}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={location}
@@ -413,7 +418,10 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
                 {formik.touched.location && locationError && locationError}
               </p>
               <div className={s.loadImgGroup}>
-                <p className={s.titleLoad}> Load the pet’s image</p>
+                <p className={s.titleLoad}>
+                  {' '}
+                  {t('noticesPage.addNotice.load')}
+                </p>
                 <label forhtml="file" className={s.labelLoad}>
                   {!photo && (
                     <img src={imgLoad} alt="add_photo" width="71" height="71" />
@@ -444,14 +452,15 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
               {category === 'sell' && (
                 <>
                   <label forhtml="price" className={s.label}>
-                    Price<span className={s.accent}>*</span>:
+                    {t('noticesPage.addNotice.price')}
+                    <span className={s.accent}>*</span>:
                   </label>
                   <input
                     className={s.input}
                     type="text"
                     name="price"
                     id="price"
-                    placeholder="Type price"
+                    placeholder={t('noticesPage.addNotice.placeholders.price')}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={price}
@@ -462,13 +471,13 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
                 </>
               )}
               <label forhtml="comments" className={s.label}>
-                Comments
+                {t('noticesPage.addNotice.comments')}
               </label>
               <textarea
                 className={s.textarea}
                 name="comments"
                 id="comments"
-                placeholder="Type comments"
+                placeholder={t('noticesPage.addNotice.placeholders.comments')}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={comments}
@@ -482,10 +491,10 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
                   type="button"
                   onClick={onPageChange}
                 >
-                  Back
+                  {t('noticesPage.buttons.back')}
                 </button>
                 <button className={s.button} type="submit">
-                  Done
+                  {t('noticesPage.buttons.done')}
                 </button>
               </div>
             </>

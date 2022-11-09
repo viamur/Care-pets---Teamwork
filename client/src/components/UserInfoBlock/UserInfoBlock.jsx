@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ImageUploading from 'react-images-uploading';
 import { getAllUserInfo } from '../../redux/user/userSelectrors';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import moment from 'moment';
+import { useTranslation } from 'react-i18next';
 import { pathInfoUser } from 'redux/user/userOperations';
 import Logout from '../Logout/Logout';
 
@@ -19,6 +19,7 @@ const cityRegex =
 
 const UserInfoBlock = () => {
   const [isDisabled, setIsDisabled] = useState(true);
+  const { t } = useTranslation();
   /* Селекторы */
   const userInfo = useSelector(getAllUserInfo);
 
@@ -173,7 +174,7 @@ const UserInfoBlock = () => {
 
   return (
     <>
-      <h2 className={s.title}>My information:</h2>
+      <h2 className={s.title}>{t('userPage.infoBlock.title')}:</h2>
       <div className={s.infoWrapper}>
         <div className={s.bg}></div>
         <div className={s.avatarWrapper}>
@@ -188,7 +189,7 @@ const UserInfoBlock = () => {
             <svg className={s.iconInputFile}>
               <use href={sprite + '#camera-icon'} />
             </svg>
-            Edit photo
+            {t('userPage.infoBlock.photo')}
             <input
               type="file"
               name="avatar"
@@ -201,7 +202,7 @@ const UserInfoBlock = () => {
         </div>
         <ul ref={listRef} className={s.list}>
           <li className={s.item}>
-            <p className={s.item__title}>Name:</p>
+            <p className={s.item__title}>{t('userPage.infoBlock.name')}:</p>
             <input
               type="text"
               // pattern="[a-zA-Z]{2,12}"
@@ -219,7 +220,7 @@ const UserInfoBlock = () => {
             ></button>
           </li>
           <li className={s.item}>
-            <p className={s.item__title}>Email:</p>
+            <p className={s.item__title}>{t('userPage.infoBlock.email')}:</p>
             <input
               type="text"
               name="email"
@@ -236,7 +237,7 @@ const UserInfoBlock = () => {
             ></button>
           </li>
           <li className={s.item}>
-            <p className={s.item__title}>Birthday:</p>
+            <p className={s.item__title}>{t('userPage.infoBlock.birthday')}:</p>
             {/* <input
               type="date"
               name="birthday"
@@ -278,7 +279,7 @@ const UserInfoBlock = () => {
             ></button>
           </li>
           <li className={s.item}>
-            <p className={s.item__title}>Phone:</p>
+            <p className={s.item__title}>{t('userPage.infoBlock.phone')}:</p>
             <input
               type="text"
               name="phone"
@@ -295,7 +296,7 @@ const UserInfoBlock = () => {
             ></button>
           </li>
           <li className={s.item}>
-            <p className={s.item__title}>City:</p>
+            <p className={s.item__title}>{t('userPage.infoBlock.city')}:</p>
             <input
               type="text"
               name="city"

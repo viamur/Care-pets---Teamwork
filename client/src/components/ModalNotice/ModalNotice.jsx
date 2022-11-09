@@ -5,6 +5,7 @@ import { useMediaQuery } from 'react-responsive';
 import { showAlertMessage } from '../../utils/showMessages';
 import { getAdInfo } from '../../utils/api';
 import { getUserEmail } from '../../redux/auth/authSelectors';
+import { useTranslation } from 'react-i18next';
 import sprite from '../../images/icons/sprite.svg';
 import s from './ModalNotice.module.scss';
 
@@ -20,6 +21,7 @@ const ModalNotice = ({
   setShowButton,
 }) => {
   const [info, setInfo] = useState(null);
+  const { t } = useTranslation();
   const userEmail = useSelector(getUserEmail);
 
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
@@ -99,7 +101,7 @@ const ModalNotice = ({
                     <td
                       className={`${s.descrTitle}  ${s.descrAccent} ${s.descrFirst}`}
                     >
-                      <p>Name:</p>
+                      <p>{t('noticesPage.modal.name')}:</p>
                     </td>
                     <td className={s.descr}>
                       <p>{info.name ? info.name : '-'}</p>
@@ -107,7 +109,7 @@ const ModalNotice = ({
                   </tr>
                   <tr>
                     <td className={`${s.descrTitle} ${s.descrAccent}`}>
-                      <p>Birthday:</p>
+                      <p>{t('noticesPage.modal.birthday')}:</p>
                     </td>
                     <td className={s.descr}>
                       <p>
@@ -117,7 +119,7 @@ const ModalNotice = ({
                   </tr>
                   <tr>
                     <td className={`${s.descrTitle} ${s.descrAccent}`}>
-                      <p>Breed:</p>
+                      <p>{t('noticesPage.modal.breed')}:</p>
                     </td>
                     <td className={s.descr}>
                       <p>{info.breed ? info.breed : '-'}</p>
@@ -125,7 +127,7 @@ const ModalNotice = ({
                   </tr>
                   <tr>
                     <td className={`${s.descrTitle} ${s.descrAccent}`}>
-                      <p>Place:</p>
+                      <p>{t('noticesPage.modal.place')}:</p>
                     </td>
                     <td className={s.descr}>
                       <p>{info.location}</p>
@@ -133,7 +135,7 @@ const ModalNotice = ({
                   </tr>
                   <tr>
                     <td className={`${s.descrTitle} ${s.descrAccent}`}>
-                      <p>The sex:</p>
+                      <p>{t('noticesPage.modal.sex')}:</p>
                     </td>
                     <td className={s.descr}>
                       <p>{info.sex}</p>
@@ -141,7 +143,7 @@ const ModalNotice = ({
                   </tr>
                   <tr>
                     <td className={`${s.descrTitle} ${s.descrAccent}`}>
-                      <p>Email:</p>
+                      <p>{t('noticesPage.modal.email')}:</p>
                     </td>
                     <td className={s.descr}>
                       <p>{info.owner?.email}</p>
@@ -149,7 +151,7 @@ const ModalNotice = ({
                   </tr>
                   <tr>
                     <td className={`${s.descrTitle} ${s.descrAccent}`}>
-                      <p>Phone:</p>
+                      <p>{t('noticesPage.modal.phone')}:</p>
                     </td>
                     <td className={s.descr}>
                       <p>{info.owner?.phone}</p>
@@ -160,7 +162,7 @@ const ModalNotice = ({
                       <td
                         className={`${s.descrTitle} ${s.descrAccent} ${s.descrLast}`}
                       >
-                        <p>Sell:</p>
+                        <p>{t('noticesPage.modal.sell')}:</p>
                       </td>
                       <td className={s.descr}>
                         <p>{info.price} UAH</p>
@@ -173,13 +175,14 @@ const ModalNotice = ({
           </div>
           {info.comments && (
             <p className={s.commentsDescr}>
-              Comments: <span className={s.comments}>{info.comments}</span>
+              {t('noticesPage.modal.comments')}:
+              <span className={s.comments}>{info.comments}</span>
             </p>
           )}
           <div className={s.blockOfBtn}>
             {userEmail === info.owner?.email && (
               <button className={s.btn} type="button" onClick={onDeleteAdClick}>
-                Delete
+                {t('noticesPage.buttons.delete')}
               </button>
             )}
             <button
@@ -188,7 +191,9 @@ const ModalNotice = ({
               onClick={onClickFavorite}
             >
               <span className={s.iconTitle}>
-                {isFavorite ? 'Remove from' : 'Add to'}
+                {isFavorite
+                  ? t('noticesPage.buttons.removeFavorite')
+                  : t('noticesPage.buttons.addFavorite')}
               </span>
               <svg
                 width="16px"
@@ -200,7 +205,7 @@ const ModalNotice = ({
               </svg>
             </button>
             <a className={s.btn} href={`tel:{info.owner?.phone}`}>
-              Contact
+              {t('noticesPage.buttons.contact')}
             </a>
           </div>
         </div>

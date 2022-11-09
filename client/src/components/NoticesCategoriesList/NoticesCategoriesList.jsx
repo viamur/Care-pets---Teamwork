@@ -7,6 +7,7 @@ import {
   fetchFavoriteAds,
   fetchOwnAds,
 } from '../../utils/api';
+import { useTranslation } from 'react-i18next';
 import NoticeCategoryItem from 'components/NoticeCategoryItem/NoticeCategoryItem';
 import AddNoticeButton from 'components/AddNoticeButton/AddNoticeButton';
 
@@ -19,6 +20,7 @@ const categoriesForBack = {
 };
 
 const NoticesCategoriesList = ({ category, searchQuery }) => {
+  const { t } = useTranslation();
   const [array, setArray] = useState([]);
   const [showButton, setShowButton] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
@@ -74,15 +76,13 @@ const NoticesCategoriesList = ({ category, searchQuery }) => {
         array.length === 0 &&
         category !== 'favorite' &&
         category !== 'own' && (
-          <p className={s.noResults}>There are no results in this category</p>
+          <p className={s.noResults}>{t('noticesPage.noResults.category')}</p>
         )}
       {!isLoading && array.length === 0 && category === 'favorite' && (
-        <p className={s.noResults}>
-          You haven't added anything to your favorite
-        </p>
+        <p className={s.noResults}>{t('noticesPage.noResults.favorite')}</p>
       )}
       {!isLoading && array.length === 0 && category === 'own' && (
-        <p className={s.noResults}>You haven't added your own ads</p>
+        <p className={s.noResults}>{t('noticesPage.noResults.ownAds')}</p>
       )}
       <ul className={s.list}>
         {array &&
@@ -104,12 +104,16 @@ const NoticesCategoriesList = ({ category, searchQuery }) => {
               />
             ))}
         {showButton && isMobile && (
-          <AddNoticeButton title="Add pet" array={array} setArray={setArray} />
+          <AddNoticeButton
+            title={t('noticesPage.buttons.addPet')}
+            array={array}
+            setArray={setArray}
+          />
         )}
       </ul>
       {showButton && !isMobile && (
         <div className={s.boxAddPet}>
-          <p className={s.textAddPet}>Add pet</p>
+          <p className={s.textAddPet}>{t('noticesPage.buttons.addPet')}</p>
           <AddNoticeButton array={array} setArray={setArray} />
         </div>
       )}

@@ -1,6 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import s from './OurFriendsList.module.scss';
 
 const OurFriendsList = ({ friends }) => {
+  const { t } = useTranslation();
+
   return (
     <ul className={s.list}>
       {friends &&
@@ -17,7 +20,7 @@ const OurFriendsList = ({ friends }) => {
                 <li className={s.discriptionEl}>
                   <div className={s.time}>
                     <p className={s.timeHoverDiscription}>
-                      Time: <br></br>
+                      {t('friendsPage.time')}: <br></br>
                       {friend.time}
                     </p>
                     <div className={s.timeOverlay}>
@@ -34,17 +37,17 @@ const OurFriendsList = ({ friends }) => {
 
                 <li className={s.discriptionEl}>
                   <p className={s.discription}>
-                    Adress: <br></br> {friend.adress}
+                    {t('friendsPage.adress')}: <br></br> {friend.adress}
                   </p>
                 </li>
                 <li className={s.discriptionEl}>
-                  <p className={s.discription}>Email:</p>
+                  <p className={s.discription}>{t('friendsPage.email')}:</p>
                   <a href={`mailto:${friend.email}`} className={s.discription}>
                     {friend.email}
                   </a>
                 </li>
                 <li className={s.discriptionEl}>
-                  <p className={s.discription}>Phone:</p>
+                  <p className={s.discription}>{t('friendsPage.phone')}:</p>
                   <a href={`tel:${friend.phone}`} className={s.discription}>
                     {friend.phone}
                   </a>
