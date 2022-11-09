@@ -1,0 +1,135 @@
+{
+  "titles": {
+    "homePage": "Take good care of your small pets",
+    "newsPage": "News",
+    "friendsPage": "Our friends",
+    "noticesPage": "Find your favorite pet"
+  },
+
+  "navigation": {
+    "newsPage": "News",
+    "friendsPage": "Our friends",
+    "noticesPage": "Find pet",
+    "login": "Login",
+    "registartion": "Registration",
+    "account": "Account"
+  },
+
+  "newsPage": {
+    "more": "Read more",
+    "placeholder": "Search"
+  },
+  "friendsPage": {
+    "time": "Time",
+    "adress": "Adress",
+    "email": "Email",
+    "phone": "Phone"
+  },
+
+  "noticesPage": {
+    "placeholder": "Search",
+    "buttons": {
+      "sell": "Sell",
+      "lostFound": "Lost/found",
+      "goodHands": "In good hands",
+      "favorite": "Favorite ads",
+      "ownAds": "My ads",
+      "addPet": "Add pet",
+      "learnMore": "Learn more",
+      "delete": "Delete",
+      "addFavorite": "Add to",
+      "removeFavorite": "Remove from",
+      "contact": "Contact",
+      "cancel": "Cancel",
+      "next": "Next",
+      "back": "Back",
+      "done": "Done"
+    },
+    "noResults": {
+      "category": "There are no results in this category",
+      "favorite": "You haven't added anything to your favorite",
+      "ownAds": "You haven't added your own ads"
+    },
+    "categories": {
+      "sell": "sell",
+      "lostFound": "lost/found",
+      "inGoodHands": "in good hands"
+    },
+    "age": {
+      "title": "Age",
+      "month": "month",
+      "months": "months",
+      "year": "year",
+      "years": "years",
+      "lessOne": "month"
+    },
+    "item": { "breed": "Breed", "place": "Place", "price": "Price" },
+    "modal": {
+      "name": "Name",
+      "birthday": "Birthday",
+      "breed": "Breed",
+      "place": "Place",
+      "sex": "The sex",
+      "email": "Email",
+      "phone": "Phone",
+      "sell": "Sell",
+      "comments": "Comments"
+    },
+    "addNotice": {
+      "title": "Add pet",
+      "titleAd": "Tittle of ad",
+      "name": "Name pet",
+      "date": "Date of birth",
+      "breed": "Breed",
+      "location": "Location",
+      "load": "Load the pet’s image",
+      "price": "Price",
+      "comments": "Comments",
+      "sex": {
+        "title": "The sex",
+        "male": "Male",
+        "female": "Female"
+      },
+      "placeholders": {
+        "titleAd": "Type name",
+        "name": "Type name pet",
+        "breed": "Ty breed",
+        "location": "Type location",
+        "price": "Type price",
+        "comments": "Type comments"
+      }
+    }
+  },
+  "userPage": {
+    "buttons": { "addPet": "Add pet", "logout": "Logout" },
+    "infoBlock": {
+      "title": "My information",
+      "photo": "Edit photo",
+      "name": "Name",
+      "email": "Email",
+      "birthday": "Birthday",
+      "phone": "Phone",
+      "city": "City"
+    },
+    "petsBlock": {
+      "title": "My pets",
+      "name": "Name",
+      "date": "Date of birth",
+      "breed": "Breed",
+      "comments": "Comments"
+    },
+    "addPet": {
+      "title": "Add pet",
+      "description": "Add photo and some comments",
+      "name": "Name pet",
+      "date": "Date of birth",
+      "breed": "Breed",
+      "comments": "Comments",
+      "placeholders": {
+        "name": "Type name pet",
+        "breed": "Ty breed",
+        "comments": "Type comments"
+      }
+    }
+  }
+}

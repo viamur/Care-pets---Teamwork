@@ -27,16 +27,13 @@ const userSlice = createSlice({
 
   extraReducers: {
     [getCurUser.pending]: state => {
-      state.isLoading = true;
       state.error = null;
     },
     [getCurUser.fulfilled]: (state, { payload }) => ({
       ...payload,
-      isLoading: false,
       error: null,
     }),
     [getCurUser.rejected]: (state, { payload }) => {
-      state.isLoading = false;
       state.error = payload;
     },
     [pathInfoUser.pending]: state => {

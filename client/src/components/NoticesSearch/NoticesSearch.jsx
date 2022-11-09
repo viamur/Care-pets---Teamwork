@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { showAlertMessage } from '../../utils/showMessages';
 import sprite from '../../images/icons/sprite.svg';
-
+import { useTranslation } from 'react-i18next';
 import s from './NoticesSearch.module.scss';
 
 const NoticesSearch = ({ setSearchQuery, title }) => {
   const [query, setQuery] = useState('');
-
+  const { t } = useTranslation();
   const onHadleChange = e => {
     setQuery(e.target.value);
   };
@@ -35,7 +35,7 @@ const NoticesSearch = ({ setSearchQuery, title }) => {
           type="text"
           autoComplete="off"
           autoFocus
-          placeholder="Search"
+          placeholder={t('noticesPage.placeholder')}
           value={query}
           onChange={onHadleChange}
         />

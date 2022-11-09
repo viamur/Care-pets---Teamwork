@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { fetchNews } from '../../utils/api';
 import { showInfoMessage } from '../../utils/showMessages';
+import { useTranslation } from 'react-i18next';
 import NewsList from '../../components/NewsList/NewsList';
 import NewsSearch from '../../components/NewsSearch/NewsSearch';
 import Container from '../../components/Container/Container';
@@ -11,6 +12,7 @@ import filteArrByTitle from '../../utils/filteArrByTitle';
 const NewsPage = () => {
   const [news, setNews] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const { t } = useTranslation();
 
   useEffect(() => {
     // showLoadingHourglass('Loading ...');
@@ -36,7 +38,7 @@ const NewsPage = () => {
 
   return (
     <Container>
-      <h1 className={s.title}>News</h1>
+      <h1 className={s.title}>{t('titles.newsPage')}</h1>
 
       <NewsSearch
         onSubmit={onSubmitSearch}
