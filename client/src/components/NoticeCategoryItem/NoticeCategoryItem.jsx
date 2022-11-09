@@ -15,7 +15,6 @@ const NoticeCategoryItem = ({
   array,
   setArray,
   category: path,
-  setShowButton,
 }) => {
   const {
     birthdate,
@@ -76,9 +75,6 @@ const NoticeCategoryItem = ({
 
   const onLearnMoreClick = () => {
     setShowModal(true);
-    if (isMobile) {
-      setShowButton(false);
-    }
   };
 
   function convertAge(date) {
@@ -219,7 +215,6 @@ const NoticeCategoryItem = ({
           onClickFavorite={onClickFavorite}
           onDeleteAdClick={onDeleteAdClick}
           categories={categoriesForFront}
-          setShowButton={setShowButton}
         />
       )}
     </>
