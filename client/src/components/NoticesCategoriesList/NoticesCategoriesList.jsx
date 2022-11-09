@@ -22,7 +22,6 @@ const categoriesForBack = {
 const NoticesCategoriesList = ({ category, searchQuery }) => {
   const { t } = useTranslation();
   const [array, setArray] = useState([]);
-  const [showButton, setShowButton] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
@@ -100,10 +99,9 @@ const NoticesCategoriesList = ({ category, searchQuery }) => {
                 array={array}
                 setArray={setArray}
                 category={category}
-                setShowButton={setShowButton}
               />
             ))}
-        {showButton && isMobile && (
+        {isMobile && (
           <AddNoticeButton
             title={t('noticesPage.buttons.addPet')}
             array={array}
@@ -111,7 +109,7 @@ const NoticesCategoriesList = ({ category, searchQuery }) => {
           />
         )}
       </ul>
-      {showButton && !isMobile && (
+      {!isMobile && (
         <div className={s.boxAddPet}>
           <p className={s.textAddPet}>{t('noticesPage.buttons.addPet')}</p>
           <AddNoticeButton array={array} setArray={setArray} />

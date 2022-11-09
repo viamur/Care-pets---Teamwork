@@ -12,11 +12,12 @@ import s from './mobileMenu.module.scss';
 const MobileMenu = ({ isUserLoggedIn }) => {
   const userName = useSelector(getUserName);
   const userAvatar = useSelector(getUserAvatar);
+  const { t } = useTranslation();
+
   const getActiveLink = ({ isActive }) =>
     isActive ? s.linkActive + ' ' + s.link : s.link;
   const getActiveButton = ({ isActive }) =>
     isActive ? s.buttonActive + ' ' + s.button : s.button;
-  const { t } = useTranslation();
 
   // const setMenuStatus = useState(false);
   // setMenuStatus(prev => !prev);
@@ -60,7 +61,6 @@ const MobileMenu = ({ isUserLoggedIn }) => {
             )}
           </li>
           <li>
-            {' '}
             {!isUserLoggedIn && (
               <NavLink
                 onClick={handleClick}
