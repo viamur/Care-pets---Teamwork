@@ -46,11 +46,13 @@ const NewsPage = () => {
         onChange={onInputChange}
       />
 
-      {isLoading && <Loader />}
-
-      <NewsList
-        news={searchQuery !== '' ? filteArrByTitle(news, searchQuery) : news}
-      />
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <NewsList
+          news={searchQuery !== '' ? filteArrByTitle(news, searchQuery) : news}
+        />
+      )}
     </Container>
   );
 };
