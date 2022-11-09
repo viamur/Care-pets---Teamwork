@@ -11,9 +11,39 @@
     "friendsPage": "Наші друзі",
     "noticesPage": "Знайти улюбленця",
     "login": "Логін",
-    "registartion": "Реєстрація",
     "account": "Кабінет"
   },
+
+  "login": {
+    "title": "Увійти",
+    "linkDescr": "Ще не маєте аккаунту?",
+    "link": "Зареєструватись",
+    "button": "Увійти",
+    "placeholders": {
+      "password": "Пароль",
+      "email": "Email"
+    }
+  },
+
+  "registration": {
+    "title": "Реєстрація",
+    "linkDescr": "Вже маєте аккаунт?",
+    "link": "Увійти",
+    "buttons": {
+      "next": "Далі",
+      "register": "Зареєструватись",
+      "back": "Назад"
+    },
+    "placeholders": {
+      "password": "Пароль",
+      "email": "Email",
+      "confirmPassword": "Підтвердити пароль",
+      "name": "Ім'я",
+      "city": "Місто, область",
+      "phone": "Мобільний телефон"
+    }
+  },
+
   "newsPage": {
     "more": "Читати більше",
     "placeholder": "Пошук"
@@ -75,6 +105,7 @@
     },
     "addNotice": {
       "title": "Додати улюбленця",
+      "descr": "Введіть дані про тваринку. Всі обов'язкові поля мають бути заповнені",
       "titleAd": "Заголовок",
       "name": "Кличка",
       "date": "Дата народження",

@@ -5,9 +5,11 @@ import * as Yup from 'yup';
 import { showAlertMessage } from '../../utils/showMessages';
 import { loginUser } from '../../redux/auth/authOperations';
 import { getAuthError } from '../../redux/auth/authSelectors';
+import { useTranslation } from 'react-i18next';
 import s from './LoginForm.module.scss';
 
 const LoginForm = () => {
+  const { t } = useTranslation();
   const error = useSelector(getAuthError);
   const dispatch = useDispatch();
 
@@ -70,7 +72,7 @@ const LoginForm = () => {
         className={s.input}
         type="email"
         name="email"
-        placeholder="*Email"
+        placeholder={`*${t('login.placeholders.email')}`}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={email}
@@ -82,7 +84,7 @@ const LoginForm = () => {
         className={s.input}
         type="password"
         name="password"
-        placeholder="*Password"
+        placeholder={`*${t('login.placeholders.password')}`}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={password}
@@ -91,7 +93,7 @@ const LoginForm = () => {
         {formik.touched.password && passwordError && passwordError}
       </p>
       <button className={s.button} type="submit">
-        Login
+        {t('login.button')}
       </button>
     </form>
   );

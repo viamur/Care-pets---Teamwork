@@ -11,8 +11,33 @@
     "friendsPage": "Our friends",
     "noticesPage": "Find pet",
     "login": "Login",
-    "registartion": "Registration",
     "account": "Account"
+  },
+
+  "login": {
+    "title": "Login",
+    "linkDescr": "Don't have an account?",
+    "link": "Register",
+    "button": "Login",
+    "placeholders": {
+      "password": "Password",
+      "email": "Email"
+    }
+  },
+
+  "registration": {
+    "title": "Registration",
+    "linkDescr": "Already have an account?",
+    "link": "Login",
+    "buttons": { "next": "Next", "register": "Register", "back": "Back" },
+    "placeholders": {
+      "password": "Password",
+      "email": "Email",
+      "confirmPassword": "Confirm Password",
+      "name": "Name",
+      "city": "City, region",
+      "phone": "Mobile phone"
+    }
   },
 
   "newsPage": {
@@ -77,6 +102,7 @@
     },
     "addNotice": {
       "title": "Add pet",
+      "descr": "Enter data about the pet. Fill in all required fields",
       "titleAd": "Tittle of ad",
       "name": "Name pet",
       "date": "Date of birth",

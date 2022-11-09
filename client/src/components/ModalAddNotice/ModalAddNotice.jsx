@@ -200,10 +200,7 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
         </button>
         <h2 className={s.title}> {t('noticesPage.addNotice.title')}</h2>
         {page === 1 && (
-          <p className={s.descr}>
-            Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
-            consectetur
-          </p>
+          <p className={s.descr}>{t('noticesPage.addNotice.descr')}</p>
         )}
         <form onSubmit={onFormSubmit}>
           {page === 1 && (

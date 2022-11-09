@@ -6,9 +6,11 @@ import { showAlertMessage } from '../../utils/showMessages';
 import { registerUser } from '../../redux/auth/authOperations';
 import { getCheckEmail } from '../../utils/api';
 import { getAuthError } from '../../redux/auth/authSelectors';
+import { useTranslation } from 'react-i18next';
 import s from './RegisterForm.module.scss';
 
 const RegisterForm = () => {
+  const { t } = useTranslation();
   const [page, setPage] = useState(1);
   const error = useSelector(getAuthError);
   const dispatch = useDispatch();
@@ -134,7 +136,7 @@ const RegisterForm = () => {
               className={s.input}
               type="email"
               name="email"
-              placeholder="*Email"
+              placeholder={`*${t('registration.placeholders.email')}`}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={email}
@@ -146,7 +148,7 @@ const RegisterForm = () => {
               className={s.input}
               type="password"
               name="password"
-              placeholder="*Password"
+              placeholder={`*${t('registration.placeholders.password')}`}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={password}
@@ -158,7 +160,7 @@ const RegisterForm = () => {
               className={s.input}
               type="password"
               name="confirm_password"
-              placeholder="*Confirm Password"
+              placeholder={`*${t('registration.placeholders.confirmPassword')}`}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={confirm_password}
@@ -174,7 +176,7 @@ const RegisterForm = () => {
               className={s.input}
               type="text"
               name="name"
-              placeholder="*Name"
+              placeholder={`*${t('registration.placeholders.name')}`}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={name}
@@ -186,7 +188,7 @@ const RegisterForm = () => {
               className={s.input}
               type="text"
               name="city"
-              placeholder="*City, region"
+              placeholder={`*${t('registration.placeholders.city')}`}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={city}
@@ -198,7 +200,7 @@ const RegisterForm = () => {
               className={s.input}
               type="tel"
               name="phone"
-              placeholder="*Mobile phone"
+              placeholder={`*${t('registration.placeholders.phone')}`}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={phone}
@@ -207,7 +209,7 @@ const RegisterForm = () => {
               {formik.touched.phone && phoneError && phoneError}
             </p>
             <button className={s.button} type="submit">
-              Register
+              {t('registration.buttons.register')}
             </button>
           </>
         )}
@@ -216,7 +218,9 @@ const RegisterForm = () => {
           type="button"
           onClick={onPageChange}
         >
-          {page === 1 ? 'Next' : 'Back'}
+          {page === 1
+            ? t('registration.buttons.next')
+            : t('registration.buttons.back')}
         </button>
       </form>
     </>
