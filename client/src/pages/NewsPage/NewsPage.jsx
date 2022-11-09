@@ -21,7 +21,7 @@ const NewsPage = () => {
       .then(news => {
         setNews(news);
         if (news === []) {
-          showInfoMessage('Sorry, there are no news.');
+          showInfoMessage(t('errors.noNews'));
         }
       })
       .catch(err => console.log(err));

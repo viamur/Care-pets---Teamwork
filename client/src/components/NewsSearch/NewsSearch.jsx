@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import filteArrByTitle from '../../utils/filteArrByTitle';
 import { useTranslation } from 'react-i18next';
-import { showInfoMessage } from '../../utils/showMessages';
+import { showInfoMessage, showAlertMessage } from '../../utils/showMessages';
 import s from './NewsSearch.module.scss';
 
 const NewsSearch = ({ onSubmit, news, onChange }) => {
@@ -24,12 +24,11 @@ const NewsSearch = ({ onSubmit, news, onChange }) => {
   const handleSubmitClick = e => {
     e.preventDefault();
     if (!searchQuery) {
-      showInfoMessage('Sorry, your query is empty');
+      showAlertMessage(t('errors.emptyQuery'));
+
       return;
     } else if (filteArrByTitle(news, searchQuery).length === 0) {
-      showInfoMessage(
-        'Sorry, there are no news matching your search query. Please try again.'
-      );
+      showInfoMessage(t('errors.news'));
     }
 
     onSubmit(searchQuery);
