@@ -15,7 +15,7 @@ const AddNoticeButton = ({ title, array, setArray }) => {
 
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
-  const onBtnAddNoticeClick = title => {
+  const onBtnAddNoticeClick = () => {
     if (!userEmail) {
       showInfoMessage(t('errors.noAddNotice'));
       return;
