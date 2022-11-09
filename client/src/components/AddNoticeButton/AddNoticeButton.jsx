@@ -4,10 +4,12 @@ import { useMediaQuery } from 'react-responsive';
 import { showInfoMessage } from '../../utils/showMessages';
 import { getUserEmail } from '../../redux/auth/authSelectors';
 import ModalAddNotice from 'components/ModalAddNotice/ModalAddNotice';
+import { useTranslation } from 'react-i18next';
 import sprite from '../../images/icons/sprite.svg';
 import s from './AddNoticeButton.module.scss';
 
 const AddNoticeButton = ({ title, array, setArray }) => {
+  const { t } = useTranslation();
   const [showModal, setShowModal] = useState(false);
   const userEmail = useSelector(getUserEmail);
 
@@ -15,7 +17,7 @@ const AddNoticeButton = ({ title, array, setArray }) => {
 
   const onBtnAddNoticeClick = title => {
     if (!userEmail) {
-      showInfoMessage('Please, log in for adding notice');
+      showInfoMessage(t('errors.noAddNotice'));
       return;
     }
     setShowModal(true);

@@ -167,7 +167,9 @@
     "news": "Sorry, there are no news matching your search query. Please try again.",
     "noNews": "Sorry, there are no news.",
     "notRightComments": "Input field comments in the necessary format or just miss it",
-    "noPets": "You haven't added your pets"
+    "noPets": "You haven't added your pets",
+    "noAddNotice": "Please, log in for adding notice",
+    "noAddFavorite": "Please, log in for adding to favorite"
   },
   "validation": {
     "email": "Invalid email address",

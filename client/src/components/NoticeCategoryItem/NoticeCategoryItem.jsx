@@ -42,7 +42,7 @@ const NoticeCategoryItem = ({
 
   const onClickFavorite = e => {
     if (!userEmail) {
-      showInfoMessage('Please, log in for adding to favorite');
+      showInfoMessage(t('errors.noAddFavorite'));
       return;
     }
 
