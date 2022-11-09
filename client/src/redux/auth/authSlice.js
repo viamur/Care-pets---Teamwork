@@ -50,6 +50,11 @@ const authSlice = createSlice({
     [getCurUser.fulfilled]: (state, { payload }) => {
       state.email = payload.email;
     },
+    [getCurUser.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      state.email = null;
+      state.accessToken = null;
+    },
     [logOutUser.pending]: state => {
       state.isLoading = true;
       state.error = null;

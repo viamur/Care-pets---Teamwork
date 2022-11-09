@@ -6,10 +6,10 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import moment from 'moment';
 import { pathInfoUser } from 'redux/user/userOperations';
 import Logout from '../Logout/Logout';
-import { getCheckEmail } from '../../utils/api';
 
 import s from './UserInfoBlock.module.scss';
 import sprite from '../../images/icons/sprite.svg';
+import DatePicker from 'react-date-picker';
 
 /* ----------REGEX--------------- */
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -18,6 +18,8 @@ const cityRegex =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z0-9]).{3,32},(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z0-9]).{3,32}$/;
 
 const UserInfoBlock = () => {
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [btnClass, setBtnClass] = useState('pencil');
   /* Селекторы */
   const userInfo = useSelector(getAllUserInfo);
 
@@ -48,7 +50,7 @@ const UserInfoBlock = () => {
     setName(userInfo.name);
     setCity(userInfo.city);
     setPhone(userInfo.phone);
-    setBirthday(userInfo.birthday && userInfo.birthday);
+    setBirthday(userInfo.birthday && new Date(userInfo.birthday));
   }, [userInfo]);
 
   // create a preview as a side effect, whenever selected file is changed
@@ -70,6 +72,17 @@ const UserInfoBlock = () => {
     // free memory when ever this component is unmounted
     return () => URL.revokeObjectURL(objectUrl);
   }, [selectedFile]);
+
+  const datepickerClick = () => {
+    if (isDisabled) {
+      setIsDisabled(false);
+      setBtnClass('galochka');
+      return;
+    }
+    setBtnClass('pencil');
+    setIsDisabled(true);
+    dispatch(pathInfoUser({ birthday }));
+  };
 
   /* При клике на кнопку меняем disabled class отправлем на бек форму */
   const handleClick = e => {
@@ -94,6 +107,7 @@ const UserInfoBlock = () => {
             if (name.length > 10) {
               return Notify.failure('max length "name" 10');
             }
+            // console.log(nameRegex.exec(name));
             dispatch(pathInfoUser({ name }));
           }
           if (btn.name === 'email') {
@@ -109,10 +123,16 @@ const UserInfoBlock = () => {
             }
             dispatch(pathInfoUser({ email }));
           }
-          if (btn.name === 'birthday') {
-            /* Надо придумать валидацию */
-            dispatch(pathInfoUser({ birthday }));
-          }
+          // if (btn.name === 'birthday') {
+          //   const check = moment(birthday).isBefore(
+          //     moment().add(1, 'day').format('YYYY-MM-DD')
+          //   );
+          //   if (!check) {
+          //     return Notify.failure('Wrong format!');
+          //   }
+          //   /* Надо придумать валидацию */
+          //   dispatch(pathInfoUser({ birthday }));
+          // }
           if (btn.name === 'phone') {
             if (phone.length !== 13) {
               return Notify.failure('length "phone" 13');
@@ -158,7 +178,13 @@ const UserInfoBlock = () => {
       <div className={s.infoWrapper}>
         <div className={s.bg}></div>
         <div className={s.avatarWrapper}>
-          <img src={photo} alt="avatar" width={200} height={200} className={s.avatar} />
+          <img
+            src={photo}
+            alt="avatar"
+            width={200}
+            height={200}
+            className={s.avatar}
+          />
           <label className={s.avatarInputFile}>
             <svg className={s.iconInputFile}>
               <use href={sprite + '#camera-icon'} />
@@ -179,13 +205,19 @@ const UserInfoBlock = () => {
             <p className={s.item__title}>Name:</p>
             <input
               type="text"
+              // pattern="[a-zA-Z]{2,12}"
               name="name"
               disabled={true}
               onChange={e => setName(e.target.value)}
               value={name}
               className={s.item__input}
             />
-            <button type="button" name="name" className={'pencil'} onClick={handleClick}></button>
+            <button
+              type="button"
+              name="name"
+              className={'pencil'}
+              onClick={handleClick}
+            ></button>
           </li>
           <li className={s.item}>
             <p className={s.item__title}>Email:</p>
@@ -197,11 +229,16 @@ const UserInfoBlock = () => {
               value={email}
               className={s.item__input}
             />
-            <button type="button" name="email" className={'pencil'} onClick={handleClick}></button>
+            <button
+              type="button"
+              name="email"
+              className={'pencil'}
+              onClick={handleClick}
+            ></button>
           </li>
           <li className={s.item}>
             <p className={s.item__title}>Birthday:</p>
-            <input
+            {/* <input
               type="date"
               name="birthday"
               disabled={true}
@@ -211,12 +248,32 @@ const UserInfoBlock = () => {
               }}
               value={birthday && birthday.split('T')[0]}
               className={s.item__input}
+            /> */}
+            <DatePicker
+              clearIcon={null}
+              calendarIcon={null}
+              format="dd.MM.yyyy"
+              className={s.item__input}
+              disabled={isDisabled}
+              selected={birthday}
+              maxDate={new Date()}
+              yearPlaceholder="yyyy"
+              monthPlaceholder="mm"
+              dayPlaceholder="dd"
+              name="birthday"
+              value={birthday}
+              onChange={value => {
+                if (!value) {
+                  return;
+                }
+                setBirthday(new Date(Date.parse(value)));
+              }}
             />
             <button
               type="button"
               name="birthday"
-              className={'pencil'}
-              onClick={handleClick}
+              className={btnClass}
+              onClick={datepickerClick}
             ></button>
           </li>
           <li className={s.item}>
@@ -229,7 +286,12 @@ const UserInfoBlock = () => {
               value={phone}
               className={s.item__input}
             />
-            <button type="button" name="phone" className={'pencil'} onClick={handleClick}></button>
+            <button
+              type="button"
+              name="phone"
+              className={'pencil'}
+              onClick={handleClick}
+            ></button>
           </li>
           <li className={s.item}>
             <p className={s.item__title}>City:</p>
@@ -241,7 +303,12 @@ const UserInfoBlock = () => {
               value={city}
               className={s.item__input}
             />
-            <button type="button" name="city" className={'pencil'} onClick={handleClick}></button>
+            <button
+              type="button"
+              name="city"
+              className={'pencil'}
+              onClick={handleClick}
+            ></button>
           </li>
         </ul>
         <Logout />

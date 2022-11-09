@@ -12,17 +12,18 @@ const NoticesCategoriesNav = () => {
   return (
     <div className={s.navigationWrapper}>
       <nav className={s.navigation}>
+        <NavLink to="/notices/sell" className={setActiveLinkClass}>
+          Sell
+        </NavLink>
+
         <NavLink to="/notices/lost-found" className={setActiveLinkClass}>
-          lost/found
+          Lost/found
         </NavLink>
 
         <NavLink to="/notices/for-free" className={setActiveLinkClass}>
           In good hands
         </NavLink>
 
-        <NavLink to="/notices/sell" className={setActiveLinkClass}>
-          sell
-        </NavLink>
         {userEmail && (
           <>
             <NavLink to="/notices/favorite" className={setActiveLinkClass}>

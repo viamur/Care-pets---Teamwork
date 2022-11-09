@@ -10,7 +10,7 @@ import s from './mobileMenu.module.scss';
 
 const MobileMenu = ({ isUserLoggedIn }) => {
   const userName = useSelector(getUserName);
-    const userAvatar = useSelector(getUserAvatar);
+  const userAvatar = useSelector(getUserAvatar);
   const getActiveLink = ({ isActive }) => (isActive ? s.linkActive + ' ' + s.link : s.link);
   const getActiveButton = ({ isActive }) => (isActive ? s.buttonActive + ' ' + s.button : s.button);
 
