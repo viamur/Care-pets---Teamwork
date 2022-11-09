@@ -1,5 +1,6 @@
 import s from './PetsList.module.scss';
 import photoPet from '../../images/testNotice.jpg';
+import { useTranslation } from 'react-i18next';
 
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,6 +11,7 @@ import { delPetInUserCard } from '../../redux/user/userOperations';
 const PetsList = () => {
   const dispatch = useDispatch();
   const petsList = useSelector(getUserPets);
+  const { t } = useTranslation();
 
   const convertDate = date => {
     const transformedDate = date.split('T')[0];
@@ -43,17 +45,27 @@ const PetsList = () => {
                   </svg>
                 </button>
                 <p className={s.categoryDiscription}>
-                  <span className={s.discriptionTitle}>Name:</span> {pet.name}
+                  <span className={s.discriptionTitle}>
+                    {t('userPage.petsBlock.name')}:
+                  </span>{' '}
+                  {pet.name}
                 </p>
                 <p className={s.categoryDiscription}>
-                  <span className={s.discriptionTitle}>Date of birth:</span>
+                  <span className={s.discriptionTitle}>
+                    {t('userPage.petsBlock.date')}:
+                  </span>
                   {convertDate(pet.birthday)}
                 </p>
                 <p className={s.categoryDiscription}>
-                  <span className={s.discriptionTitle}>Breed:</span> {pet.breed}
+                  <span className={s.discriptionTitle}>
+                    {t('userPage.petsBlock.breed')}:
+                  </span>{' '}
+                  {pet.breed}
                 </p>
                 <p className={s.categoryDiscription}>
-                  <span className={s.discriptionTitle}>Comments:</span>
+                  <span className={s.discriptionTitle}>
+                    {t('userPage.petsBlock.comments')}:
+                  </span>
                   {pet.comments}
                 </p>
               </div>

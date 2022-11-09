@@ -6,13 +6,8 @@ import sprite from '../../images/icons/sprite.svg';
 import { addFavoriteAd, removeFavoriteAd, deleteOwnAd } from '../../utils/api';
 import { getUserEmail } from '../../redux/auth/authSelectors';
 import ModalNotice from 'components/ModalNotice/ModalNotice';
+import { useTranslation } from 'react-i18next';
 import s from './NoticeCategoryItem.module.scss';
-
-const categoriesForFront = {
-  sell: 'sell',
-  lostFound: 'lost/found',
-  inGoodHands: 'In good hands',
-};
 
 const NoticeCategoryItem = ({
   data,
@@ -32,9 +27,16 @@ const NoticeCategoryItem = ({
     title,
     breed,
   } = data;
+  const { t } = useTranslation();
   const [isFavorite, setIsFavorite] = useState(favorite);
   const [showModal, setShowModal] = useState(false);
   const userEmail = useSelector(getUserEmail);
+
+  const categoriesForFront = {
+    sell: t('noticesPage.categories.sell'),
+    lostFound: t('noticesPage.categories.lostFound'),
+    inGoodHands: t('noticesPage.categories.inGoodHands'),
+  };
 
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
@@ -98,18 +100,30 @@ const NoticeCategoryItem = ({
     if (transformedYear > 0) {
       if (transformedMonth) {
         return `${transformedYear} ${
-          transformedYear === 1 ? 'year' : 'years'
-        } ${transformedMonth} ${transformedMonth === 1 ? 'month' : 'months'} `;
+          transformedYear === 1
+            ? t('noticesPage.age.year')
+            : t('noticesPage.age.years')
+        } ${transformedMonth} ${
+          transformedMonth === 1
+            ? t('noticesPage.age.month')
+            : t('noticesPage.age.months')
+        } `;
       }
-      return `${transformedYear} ${transformedYear === 1 ? 'year' : 'years'}`;
+      return `${transformedYear} ${
+        transformedYear === 1
+          ? t('noticesPage.age.year')
+          : t('noticesPage.age.years')
+      }`;
     }
 
     if (transformedMonth) {
       return `${transformedMonth} ${
-        transformedMonth === 1 ? 'month' : 'months'
+        transformedMonth === 1
+          ? t('noticesPage.age.month')
+          : t('noticesPage.age.months')
       }`;
     }
-    return '< 1 month';
+    return `< 1 ${t('noticesPage.age.lessOne')}`;
   }
 
   return (
@@ -142,7 +156,7 @@ const NoticeCategoryItem = ({
               <tbody>
                 <tr>
                   <td className={`${s.descrTitle} ${s.descrFirst}`}>
-                    <p>Breed:</p>
+                    <p>{t('noticesPage.item.breed')}:</p>
                   </td>
                   <td className={`${s.descr} ${s.descrFirst}`}>
                     <p>{breed ? breed : '-'}</p>
@@ -150,7 +164,7 @@ const NoticeCategoryItem = ({
                 </tr>
                 <tr>
                   <td className={s.descrTitle}>
-                    <p>Place:</p>
+                    <p>{t('noticesPage.item.place')}:</p>
                   </td>
                   <td className={s.descr}>
                     <p>{location}</p>
@@ -158,7 +172,7 @@ const NoticeCategoryItem = ({
                 </tr>
                 <tr>
                   <td className={s.descrTitle}>
-                    <p>Age:</p>
+                    <p>{t('noticesPage.age.title')}:</p>
                   </td>
                   <td className={s.descr}>
                     <p>{birthdate ? convertAge(birthdate) : '-'}</p>
@@ -166,10 +180,14 @@ const NoticeCategoryItem = ({
                 </tr>
                 <tr>
                   <td className={`${s.descrTitle} ${s.descrLast}`}>
-                    {category === 'sell' && <p>Price:</p>}
+                    {category === 'sell' && (
+                      <p>{t('noticesPage.item.price')}:</p>
+                    )}
                   </td>
                   <td className={`${s.descrTitle} ${s.descrLast}`}>
-                    {category === 'sell' && <p>{price ? `${price}$` : '-'}</p>}
+                    {category === 'sell' && (
+                      <p>{price ? `${price} UAH` : '-'}</p>
+                    )}
                   </td>
                 </tr>
               </tbody>
@@ -180,7 +198,7 @@ const NoticeCategoryItem = ({
             type="button"
             onClick={onLearnMoreClick}
           >
-            Learn more
+            {t('noticesPage.buttons.learnMore')}
           </button>
           {path === 'own' && (
             <button
@@ -188,7 +206,7 @@ const NoticeCategoryItem = ({
               type="button"
               onClick={onDeleteAdClick}
             >
-              Delete
+              {t('noticesPage.buttons.delete')}
             </button>
           )}
         </div>

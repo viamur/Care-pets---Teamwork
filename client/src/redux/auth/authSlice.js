@@ -51,7 +51,6 @@ const authSlice = createSlice({
       state.email = payload.email;
     },
     [getCurUser.rejected]: (state, { payload }) => {
-      state.isLoading = false;
       state.email = null;
       state.accessToken = null;
     },

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
+import LanguageSwitcher from 'components/LanguageSwitcher/LanguageSwitcher';
 
 import NavMenu from './NavMenu';
 import Modal from 'components/ModalMobile/MobileModal';
@@ -35,6 +36,7 @@ const Header = () => {
     <Container>
       <div className={s.navContainer}>
         <NavMenu isUserLoggedIn={isUserLoggedIn} />
+        <LanguageSwitcher />
 
         <button onClick={handleClick} className={s.menuButton}>
           <svg viewBox=" 1 1 28 28" height={35} width={40}>
@@ -43,7 +45,10 @@ const Header = () => {
         </button>
 
         {menuStatus && (
-          <Modal close={onClose} children={<MobileMenu isUserLoggedIn={isUserLoggedIn} />} />
+          <Modal
+            close={onClose}
+            children={<MobileMenu isUserLoggedIn={isUserLoggedIn} />}
+          />
         )}
       </div>
     </Container>
