@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { fetchNews } from '../../utils/api';
+import { showInfoMessage } from '../../utils/showMessages';
 import { useTranslation } from 'react-i18next';
-import { showInfoMessage, showAlertMessage } from '../../utils/showMessages';
 import NewsList from '../../components/NewsList/NewsList';
 import NewsSearch from '../../components/NewsSearch/NewsSearch';
 import Container from '../../components/Container/Container';
 import s from './NewsPage.module.scss';
-import { showLoadingHourglass, removeLoading } from '../../utils/showLoading';
+// import { showLoadingHourglass, removeLoading } from '../../utils/showLoading';
+import filteArrByTitle from '../../utils/filteArrByTitle';
 
 const NewsPage = () => {
   const [news, setNews] = useState([]);
@@ -14,17 +15,17 @@ const NewsPage = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    showLoadingHourglass('Loading ...');
+    // showLoadingHourglass('Loading ...');
 
     fetchNews()
       .then(news => {
         setNews(news);
         if (news === []) {
-          showInfoMessage('Sorry, there are no news.');
+          showInfoMessage(t('errors.noNews'));
         }
       })
-      .catch(err => console.log(err))
-      .finally(() => removeLoading());
+      .catch(err => console.log(err));
+    // .finally(() => removeLoading());
   }, []);
 
   const onSubmitSearch = searchQuery => {
@@ -33,24 +34,6 @@ const NewsPage = () => {
 
   const onInputChange = searchQuery => {
     setSearchQuery(searchQuery);
-  };
-
-  const filterNews = () => {
-    if (searchQuery === '') return;
-
-    const normalizeSearchQuery = searchQuery.toLowerCase();
-
-    const queriedNews = news.filter(el =>
-      el.title.toLowerCase().includes(normalizeSearchQuery)
-    );
-
-    if (queriedNews.length === 0) {
-      showAlertMessage(
-        'Sorry, there are no news matching your search query. Please try again.'
-      );
-    }
-
-    return queriedNews;
   };
 
   return (
@@ -63,7 +46,9 @@ const NewsPage = () => {
         onChange={onInputChange}
       />
 
-      <NewsList news={searchQuery !== '' ? filterNews() : news} />
+      <NewsList
+        news={searchQuery !== '' ? filteArrByTitle(news, searchQuery) : news}
+      />
     </Container>
   );
 };

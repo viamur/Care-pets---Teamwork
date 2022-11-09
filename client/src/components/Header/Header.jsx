@@ -35,8 +35,8 @@ const Header = () => {
   return (
     <Container>
       <div className={s.navContainer}>
-        <NavMenu isUserLoggedIn={isUserLoggedIn} />
         <LanguageSwitcher />
+        <NavMenu isUserLoggedIn={isUserLoggedIn} />
 
         <button onClick={handleClick} className={s.menuButton}>
           <svg viewBox=" 1 1 28 28" height={35} width={40}>

@@ -5,9 +5,11 @@ import * as Yup from 'yup';
 import { showAlertMessage } from '../../utils/showMessages';
 import { loginUser } from '../../redux/auth/authOperations';
 import { getAuthError } from '../../redux/auth/authSelectors';
+import { useTranslation } from 'react-i18next';
 import s from './LoginForm.module.scss';
 
 const LoginForm = () => {
+  const { t } = useTranslation();
   const error = useSelector(getAuthError);
   const dispatch = useDispatch();
 
@@ -23,17 +25,17 @@ const LoginForm = () => {
 
     validationSchema: Yup.object({
       email: Yup.string()
-        .email('Invalid email address')
-        .max(25, 'Email must be less tnan 25 characters')
-        .required('This is a required field'),
+        .email(t('validation.email'))
+        .max(25, t('validation.emailMax'))
+        .required(t('validation.required')),
       password: Yup.string()
-        .min(7, 'Password must include more tnan 7 characters')
-        .max(32, 'Password must be less tnan 32 characters')
+        .min(7, t('validation.passwordMin'))
+        .max(32, t('validation.passwordMax'))
         .matches(
           /^(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z0-9])/,
-          'Password must contain at least 1 lowercase letter, 1 uppercase letter and 1 number'
+          t('validation.password')
         )
-        .required('This is a required field'),
+        .required(t('validation.required')),
     }),
   });
 
@@ -49,11 +51,11 @@ const LoginForm = () => {
     e.preventDefault();
 
     if (email === '' || password === '') {
-      showAlertMessage('Input all required fields');
+      showAlertMessage(t('errors.allFields'));
       return;
     }
     if (passwordError || emailError) {
-      showAlertMessage('Input all fields in the necessary format');
+      showAlertMessage(t('errors.allFieldsFormat'));
       return;
     }
     dispatch(
@@ -70,7 +72,7 @@ const LoginForm = () => {
         className={s.input}
         type="email"
         name="email"
-        placeholder="*Email"
+        placeholder={`*${t('login.placeholders.email')}`}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={email}
@@ -82,7 +84,7 @@ const LoginForm = () => {
         className={s.input}
         type="password"
         name="password"
-        placeholder="*Password"
+        placeholder={`*${t('login.placeholders.password')}`}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={password}
@@ -91,7 +93,7 @@ const LoginForm = () => {
         {formik.touched.password && passwordError && passwordError}
       </p>
       <button className={s.button} type="submit">
-        Login
+        {t('login.button')}
       </button>
     </form>
   );

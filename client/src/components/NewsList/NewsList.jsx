@@ -17,7 +17,6 @@ const NewsList = ({ news }) => {
               <div className={s.addData}>
                 <p className={s.date}>{date}</p>
                 <a
-                  //   need to point the link to the news site instead of plug
                   href={link}
                   target="_blank"
                   rel="noopener noreferrer"
