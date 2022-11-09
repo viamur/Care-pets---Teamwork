@@ -1,13 +1,37 @@
+@import '../../sass/mixin';
 .loclIcon {
   outline: none;
-  border: none;
   background: transparent;
-  /* padding: 5px; */
+
+  border: 2px solid var(--accent-color);
+  border-radius: 50%;
+
+  transition: all var(--transition);
+  text-transform: uppercase;
+  padding: 8px;
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    background-color: var(--accent-color);
+    color: var(--white);
+  }
+}
+.loclIconActive {
+  outline: none;
+  background: var(--accent-color);
+
+  border: 2px solid var(--accent-color);
+  border-radius: 50%;
+
+  transition: all var(--transition);
+  text-transform: uppercase;
+  padding: 8px;
+  color: var(--white);
   cursor: pointer;
 }
-
-.loclIcon:first-child {
-  margin-right: 7px;
+.loclIcon:first-child,
+.loclIconActive:first-child {
+  margin-right: 8px;
 }
 
 .icon {
@@ -17,5 +41,15 @@
 @media screen and (min-width: 768px) {
   .icon {
     width: 30px;
+  }
+}
+.block {
+  position: absolute;
+  left: 65%;
+  @include mq(tab) {
+    left: 55%;
+  }
+  @include mq(desk) {
+    left: 80%;
   }
 }
