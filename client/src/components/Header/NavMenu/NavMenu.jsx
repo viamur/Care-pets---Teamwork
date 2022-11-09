@@ -10,24 +10,21 @@ const NavMenu = ({ isUserLoggedIn }) => {
   const { categoryName } = useParams();
   const userName = useSelector(getUserName);
   const userAvatar = useSelector(getUserAvatar);
-  const getActiveLink = ({ isActive }) => {
-    // isActive ? s.linkActive + ' ' + s.link : s.link;
 
-    if (isActive) {
-      return s.linkActive + ' ' + s.link;
-    } else {
-      return s.link;
-    }
-  };
+  const getActiveLink = ({ isActive }) =>
+    isActive ? `${s.link} ${s.linkActive}` : s.link;
 
   const getActiveNotice = () => {
-    if (categoryName === 'sell') {
-      return s.linkActive + ' ' + s.link;
-    } else if (categoryName === 'for-free') {
-      return s.linkActive + ' ' + s.link;
-    } else if (categoryName === 'lost-found') {
-      return s.linkActive + ' ' + s.link;
-    } else return s.link;
+    if (
+      categoryName === 'sell' ||
+      categoryName === 'for-free' ||
+      categoryName === 'lost-found' ||
+      categoryName === 'favorite' ||
+      categoryName === 'own'
+    ) {
+      return `${s.link} ${s.linkActive}`;
+    }
+    return s.link;
   };
 
   const getActiveButton = ({ isActive }) =>
@@ -47,7 +44,7 @@ const NavMenu = ({ isUserLoggedIn }) => {
           </NavLink>
         </li>
         <li className={s.navLi}>
-          <NavLink className={getActiveNotice} to={`notices/sell`}>
+          <NavLink className={getActiveNotice} to="/notices/sell">
             Find pet
           </NavLink>
         </li>
