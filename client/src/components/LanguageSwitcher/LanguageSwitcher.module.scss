@@ -45,11 +45,11 @@
 }
 .block {
   position: absolute;
-  left: 65%;
+  right: 60px;
   @include mq(tab) {
-    left: 55%;
+    right:400px;
   }
   @include mq(desk) {
-    left: 80%;
+    right: 340px;
   }
 }
