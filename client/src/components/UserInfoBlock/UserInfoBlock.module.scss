@@ -78,7 +78,7 @@
   @include mq(desk) {
     position: absolute;
     right: 0;
-    bottom: 0;
+    bottom: -15px;
   }
 }
 
@@ -134,6 +134,9 @@
     min-width: 85px;
     @include mq(tab) {
       min-width: 125px;
+    }
+    @include mq(desk) {
+      margin-right: 0px;
     }
   }
   &:nth-child(3) p {
