@@ -38,7 +38,6 @@ const ModalNotice = ({
   useEffect(() => {
     getAdInfo(id)
       .then(data => {
-        console.log(data);
         setInfo(data);
       })
       .catch(error => showAlertMessage(error.response.data.message));
