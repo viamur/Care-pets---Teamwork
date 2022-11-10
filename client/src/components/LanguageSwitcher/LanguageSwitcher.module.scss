@@ -53,3 +53,14 @@
     right: 340px;
   }
 }
+
+.activeBlock {
+    position: absolute;
+  right: 60px;
+  @include mq(tab) {
+    right:220px;
+  }
+  @include mq(desk) {
+    right: 160px;
+  }
+}

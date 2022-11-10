@@ -4,6 +4,8 @@ import i18n from '../../i18n';
 import english from '../../images/languages/english.png';
 import ukrainian from '../../images/languages/ukrainian.png';
 import s from './LanguageSwitcher.module.scss';
+import { useSelector } from 'react-redux';
+import { getUserEmail } from '../../redux/auth/authSelectors';
 
 export default function LanguageSwitcher() {
   const [lang, setLang] = useState('en');
@@ -11,9 +13,10 @@ export default function LanguageSwitcher() {
     i18n.changeLanguage(language);
     setLang(language);
   };
+  const userEmail = useSelector(getUserEmail);
 
   return (
-    <div className={s.block}>
+    <div className={userEmail ? s.activeBlock : s.block}>
       <button
         className={lang === 'en' ? s.loclIconActive : s.loclIcon}
         onClick={() => changeLanguage('en')}
