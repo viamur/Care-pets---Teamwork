@@ -2,7 +2,7 @@
 
 .hero {
   max-width: 100vw;
-  min-height: calc(100vh - 119px);
+  min-height: calc(100vh - 117px);
 
   background-repeat: no-repeat;
 
@@ -29,7 +29,7 @@
   }
 
   @include mq(desk) {
-    min-height: calc(100vh - 132px);
+    min-height: calc(100vh - 133px);
 
     background-image: url('../../images/bgs/home-woman-desk-1x.png'), url('../../images/bgs-svg/main-bg-heart.svg'), url('../../images/bgs/home-waves-desk-1x.png');
     background-size: contain, auto, 100% auto;
@@ -81,7 +81,7 @@
   }
 
   @include mq(tab) {
-    min-height: calc(100vh - 421px);
+    min-height: calc(100vh - 422px);
 
     background-image: url('../../images/bgs/home-woman-tab-1x.png');
     background-size: contain;
