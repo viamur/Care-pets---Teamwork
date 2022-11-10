@@ -11,7 +11,7 @@ import sprite from '../../images/icons/sprite.svg';
 import DatePicker from 'react-date-picker';
 
 /* ----------REGEX--------------- */
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const emailRegex = /^[a-zA-Z0-9^\s@]+@[a-zA-Z^\s@]+\.[a-zA-Z^\s@]+$/;
 const phoneRegex = /^\+380\d{9}/;
 const cityRegex =
   /^(?=.*[a-zа-я])(?=.*[A-ZА-Я]).{3,32},(?=.*[a-zа-я])(?=.*[A-ZА-Я]).{3,32}$/;
