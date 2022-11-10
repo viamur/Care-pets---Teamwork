@@ -24,13 +24,27 @@ const OurFriendsList = ({ friends }) => {
                       {friend.time}
                     </p>
                     <div className={s.timeOverlay}>
-                      <p className={s.timeDiscription}>MN {friend.time}</p>
-                      <p className={s.timeDiscription}>TU {friend.time}</p>
-                      <p className={s.timeDiscription}>WE {friend.time}</p>
-                      <p className={s.timeDiscription}>TH {friend.time}</p>
-                      <p className={s.timeDiscription}>FR {friend.time}</p>
-                      <p className={s.timeDiscription}>SA {friend.time}</p>
-                      <p className={s.timeDiscription}>SU {friend.time}</p>
+                      <p className={s.timeDiscription}>
+                        {t('friendsPage.hours.monday')} {friend.time}
+                      </p>
+                      <p className={s.timeDiscription}>
+                        {t('friendsPage.hours.tuesday')} {friend.time}
+                      </p>
+                      <p className={s.timeDiscription}>
+                        {t('friendsPage.hours.wednesday')} {friend.time}
+                      </p>
+                      <p className={s.timeDiscription}>
+                        {t('friendsPage.hours.thursday')} {friend.time}
+                      </p>
+                      <p className={s.timeDiscription}>
+                        {t('friendsPage.hours.friday')} {friend.time}
+                      </p>
+                      <p className={s.timeDiscription}>
+                        {t('friendsPage.hours.saturday')} {friend.time}
+                      </p>
+                      <p className={s.timeDiscription}>
+                        {t('friendsPage.hours.sunday')} {friend.time}
+                      </p>
                     </div>
                   </div>
                 </li>

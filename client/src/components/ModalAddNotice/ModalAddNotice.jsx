@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom';
 import { showAlertMessage } from '../../utils/showMessages';
 import { addNotice, fetchOwnAds } from '../../utils/api';
 import imgLoad from '../../images/modals/loadMobile.png';
+import Loader from '../../components/Loader/Loader';
 import sprite from '../../images/icons/sprite.svg';
 import { useTranslation } from 'react-i18next';
 import s from './ModalAddNotice.module.scss';
@@ -19,6 +20,7 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
   const [page, setPage] = useState(1);
   const [photo, setPhoto] = useState('');
   const { categoryName } = useParams();
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -132,7 +134,7 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
       showAlertMessage(t('errors.allFieldsFormat'));
       return;
     }
-
+    setIsLoading(true);
     const transformedPrice = category === 'sell' ? Number(price) : '';
 
     const arrayOfData = Object.entries({
@@ -164,6 +166,8 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
       setArray(response);
     } catch (error) {
       showAlertMessage(error.response.data.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -491,7 +495,11 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
                 >
                   {t('noticesPage.buttons.back')}
                 </button>
-                <button className={s.button} type="submit">
+                <button
+                  className={isLoading ? s.disabled : s.button}
+                  type="submit"
+                  disabled={isLoading ? true : false}
+                >
                   {t('noticesPage.buttons.done')}
                 </button>
               </div>
@@ -499,6 +507,11 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
           )}
         </form>
       </div>
+      {isLoading && (
+        <div className={s.loader}>
+          <Loader />
+        </div>
+      )}
     </div>,
     portalModal
   );
