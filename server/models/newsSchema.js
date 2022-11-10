@@ -12,6 +12,9 @@ const news = new Schema(
     date: {
       type: String,
     },
+    link: {
+      type: String,
+    },
   }
 );
 

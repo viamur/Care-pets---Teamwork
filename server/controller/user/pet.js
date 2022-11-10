@@ -1,9 +1,7 @@
 const { schemas } = require('../../models/user');
 const service = require('../../service');
-const { v4: uuidv4 } = require('uuid');
 const fs = require('fs').promises;
-const path = require('path');
-const convertingImgNotices = require('../../service/convertingImgNotices');
+const { clodinaryUpload, clodinaryRemove } = require('../../service/cloudinary');
 
 const addPet = async (req, res) => {
   /* Беремо данні з request */
@@ -17,28 +15,12 @@ const addPet = async (req, res) => {
   }
 
   /* defaults img яку буде перезаписане якщо зображення прикріпленне к формі */
-  let imgURL = 'pet/default.jpg';
+  let imgURL = 'https://pet-support.herokuapp.com/pet/default.jpg';
 
   try {
-    /* -------------якщо є зоображення то функція виконуєтся-------------- */
+    /* =======Загрузка файла======= */
     if (file) {
-      /* Генеруємо нове імя файлу та новий шлях*/
-      const uuid = uuidv4();
-      const extension = file.originalname.split('.').reverse()[0];
-      const newName = `${uuid}.${extension}`;
-      const newPathNotices = path.join(__dirname, '../../public/pet/', newName);
-
-      /* Якщо тип файлу не  image/webp' то воно обрізає його, бібліотека не працює з циф форматом((*/
-      if (file.mimetype !== 'image/webp') {
-        /* Функція яка обрізає зображення та зберігає його у тій же папці  */
-        await convertingImgNotices({ tmpDir: file.path });
-      }
-
-      /* Переміщуємо файл в іншу директорію */
-      await fs.rename(file.path, newPathNotices);
-
-      /* Перезаписуємо шлях до зображення */
-      imgURL = `pet/${newName}`;
+      imgURL = await clodinaryUpload(file.path, 'pet');
     }
 
     const response = await service.user.addPet({
@@ -54,6 +36,7 @@ const addPet = async (req, res) => {
   }
 };
 
+/* ============Удаление из акаунта животного============ */
 const removePet = async (req, res) => {
   const user = req.user;
   const id = req.params.id;
@@ -68,7 +51,13 @@ const removePet = async (req, res) => {
   }
 
   try {
-    await service.user.deletePet({ id, userId: user.id });
+    const response = await service.user.deletePet({ id, userId: user.id });
+    const pet = response.pets.filter(el => el._id.toString() === id);
+    if (pet[0].imgURL !== 'https://pet-support.herokuapp.com/pet/default.jpg') {
+      console.log('🚀 -- pet[0].imgURL', pet[0].imgURL);
+      /* Удаляем файл с животного на cloudinary */
+      await clodinaryRemove(pet[0].imgURL, 'pet');
+    }
     res.status(200).json({ success: true });
   } catch (error) {
     res.status(500).json({ message: error.message, success: false });

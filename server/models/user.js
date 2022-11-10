@@ -3,11 +3,10 @@ const Joi = require('joi');
 
 const { handleSchemaValidationErrors } = require('../helpers');
 
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const emailRegex = /^[a-zA-Z0-9^\s@]+@[a-zA-Z^\s@]+\.[a-zA-Z^\s@]+$/;
 const phoneRegex = /^\+380\d{9}/;
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z0-9]).{7,32}$/;
-const cityRegex =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z0-9]).{3,32},(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z0-9]).{3,32}$/;
+const cityRegex = /^(?=.*[a-zа-я])(?=.*[A-ZА-Я]).{3,32},(?=.*[a-zа-я])(?=.*[A-ZА-Я]).{3,32}$/;
 
 const userShema = new Schema(
   {
@@ -29,7 +28,6 @@ const userShema = new Schema(
     },
     birthday: {
       type: Date,
-      default: new Date(),
     },
     phone: {
       type: String,
@@ -47,7 +45,6 @@ const userShema = new Schema(
         },
         birthday: {
           type: Date,
-          default: new Date(),
         },
         breed: {
           type: String,
@@ -56,7 +53,7 @@ const userShema = new Schema(
         },
         imgURL: {
           type: String,
-          default: 'pet/default.jpg',
+          default: 'https://pet-support.herokuapp.com/pet/default.jpg',
         },
         comments: {
           type: String,
@@ -67,7 +64,7 @@ const userShema = new Schema(
     ],
     avatarURL: {
       type: String,
-      default: 'avatar/default.jpg',
+      default: 'https://pet-support.herokuapp.com/avatar/default.jpg',
     },
     token: {
       type: String,
@@ -80,7 +77,7 @@ const userShema = new Schema(
 userShema.post('save', handleSchemaValidationErrors);
 
 const singupSchema = Joi.object({
-  email: Joi.string().pattern(emailRegex).min(6).required(),
+  email: Joi.string().pattern(emailRegex).min(6).max(25).required(),
   password: Joi.string().pattern(passwordRegex).min(7).max(32).required(),
   confirm_password: Joi.string().required().valid(Joi.ref('password')),
   name: Joi.string().min(2).max(10).required(),
@@ -89,15 +86,15 @@ const singupSchema = Joi.object({
 });
 
 const loginSchema = Joi.object({
-  email: Joi.string().min(6).max(63).pattern(emailRegex).required(),
-  password: Joi.string().min(6).required(),
+  email: Joi.string().min(6).max(25).pattern(emailRegex).required(),
+  password: Joi.string().min(7).max(32).required(),
 });
 
 const pathUser = Joi.object({
-  email: Joi.string().pattern(emailRegex).min(6),
+  email: Joi.string().pattern(emailRegex).min(6).max(25),
   name: Joi.string().min(2).max(10),
   city: Joi.string().pattern(cityRegex),
-  phone: Joi.string().min(9).max(13),
+  phone: Joi.string().length(13).pattern(phoneRegex),
   birthday: Joi.date(),
 });
 
@@ -110,7 +107,7 @@ const addPet = Joi.object({
 });
 
 const checkEmail = Joi.object({
-  email: Joi.string().min(6).max(63).pattern(emailRegex).required(),
+  email: Joi.string().min(6).max(25).pattern(emailRegex).required(),
 });
 
 const schemas = {
