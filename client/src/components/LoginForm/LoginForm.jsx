@@ -82,7 +82,9 @@ const LoginForm = () => {
         type="password"
         name="password"
         placeholder={`*${t('login.placeholders.password')}`}
-        onChange={formik.handleChange}
+        onChange={event => {
+          formik.setFieldValue('password', event.target.value.trim());
+        }}
         onBlur={formik.handleBlur}
         value={password}
       />
