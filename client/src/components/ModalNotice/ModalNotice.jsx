@@ -37,6 +37,7 @@ const ModalNotice = ({
   useEffect(() => {
     getAdInfo(id)
       .then(data => {
+        console.log(data);
         setInfo(data);
       })
       .catch(error => showAlertMessage(error.response.data.message));
@@ -100,7 +101,7 @@ const ModalNotice = ({
                     </td>
                     <td className={s.descr}>
                       <p>
-                        {info.birthday ? convertBirthday(info.birthday) : '-'}
+                        {info.birthdate ? convertBirthday(info.birthdate) : '-'}
                       </p>
                     </td>
                   </tr>

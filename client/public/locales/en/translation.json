@@ -176,6 +176,7 @@
   },
   "validation": {
     "email": "Invalid email address",
+    "emailMin": "Email must include more tnan 6 characters",
     "emailMax": "Email must be less tnan 25 characters",
     "passwordMin": "Password must include more tnan 7 characters",
     "passwordMax": "Password must be less tnan 32 characters",
@@ -186,6 +187,7 @@
     "nameMax": "Name must be less tnan 10 characters",
     "cityRegion": "Please, enter the city and region separated by virgule",
     "phone": "Please, enter the phone number in the following way: +380XXXXXXXXX",
+    "phoneLength": "Phone must include 13 characters",
     "priceNum": "Enter the number",
     "priceInt": "Only integer numbers",
     "min": "Field must include more tnan 2 characters",

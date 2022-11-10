@@ -37,10 +37,7 @@ const RegisterForm = () => {
       password: Yup.string()
         .min(7, t('validation.passwordMin'))
         .max(32, t('validation.passwordMax'))
-        .matches(
-          /^(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z0-9])/,
-          t('validation.password')
-        )
+        .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/, t('validation.password'))
         .required(t('validation.required')),
       confirm_password: Yup.string()
         .oneOf([Yup.ref('password'), null], t('validation.notMatchPasswords'))
@@ -51,7 +48,7 @@ const RegisterForm = () => {
         .required(t('validation.required')),
       city: Yup.string()
         .matches(
-          /^(?=.*[a-z])(?=.*[A-Z]).{3,32},(?=.*[a-z])(?=.*[A-Z]).{3,32}$/,
+          /^(?=.*[a-zа-я])(?=.*[A-ZА-Я]).{3,32},(?=.*[a-zа-я])(?=.*[A-ZА-Я]).{3,32}$/,
           t('validation.cityRegion')
         )
         .required(t('validation.required')),
@@ -143,7 +140,9 @@ const RegisterForm = () => {
               type="password"
               name="password"
               placeholder={`*${t('registration.placeholders.password')}`}
-              onChange={formik.handleChange}
+              onChange={event => {
+                formik.setFieldValue('password', event.target.value.trim());
+              }}
               onBlur={formik.handleBlur}
               value={password}
             />
