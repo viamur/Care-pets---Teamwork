@@ -125,7 +125,11 @@ const ModalNotice = ({
                       <p>{t('noticesPage.modal.sex')}:</p>
                     </td>
                     <td className={s.descr}>
-                      <p>{info.sex}</p>
+                      <p>
+                        {info.sex === 'male'
+                          ? t('noticesPage.addNotice.sex.male')
+                          : t('noticesPage.addNotice.sex.female')}
+                      </p>
                     </td>
                   </tr>
                   <tr>
