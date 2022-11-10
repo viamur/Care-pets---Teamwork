@@ -3,6 +3,7 @@ const fs = require('fs').promises;
 const path = require('path');
 const convertingImgNotices = require('../../service/convertingImgNotices');
 const { schemas } = require('../../models/user');
+const { clodinaryUpload, clodinaryRemove } = require('../../service/cloudinary');
 
 const pathUser = async (req, res) => {
   const user = req.user;
@@ -16,30 +17,24 @@ const pathUser = async (req, res) => {
   }
 
   /* defaults img яку буде перезаписане якщо зображення прикріпленне к формі */
-  let avatarURL = 'avatar/default.jpg';
+  let avatarURL = 'https://pet-support.herokuapp.com/avatar/default.jpg';
 
   try {
     const beforeUpdateInfoUser = await service.user.getUserInfo({ id: user.id });
     avatarURL = beforeUpdateInfoUser.avatarURL;
-    /* -------------якщо є зоображення то функція виконуєтся-------------- */
+
+    /* =======Загрузка файла======= */
     if (file) {
-      /* Генеруємо нове імя файлу та новий шлях*/
-      const extension = file.originalname.split('.').reverse()[0];
-      const newName = `${user.id}.${extension}`;
-      const newPathNotices = path.join(__dirname, '../../public/avatar/', newName);
+      avatarURL = await clodinaryUpload(file.path, 'avatar');
 
-      /* Якщо тип файлу не  image/webp' то воно обрізає його, бібліотека не працює з циф форматом((*/
-      if (file.mimetype !== 'image/webp') {
-        /* Функція яка обрізає зображення та зберігає його у тій же папці  */
-        await convertingImgNotices({ tmpDir: file.path });
+      /* Удалить изображение с cloudinary если изображение не равно default */
+      if (
+        beforeUpdateInfoUser.avatarURL !== 'https://pet-support.herokuapp.com/avatar/default.jpg'
+      ) {
+        await clodinaryRemove(beforeUpdateInfoUser.avatarURL, 'avatar');
       }
-
-      /* Переміщуємо файл в іншу директорію */
-      await fs.rename(file.path, newPathNotices);
-
-      /* Перезаписуємо шлях до зображення */
-      avatarURL = `avatar/${newName}`;
     }
+
     const response = await service.user.updateUser({
       id: user.id,
       body: { ...req.body, avatarURL },
@@ -47,7 +42,7 @@ const pathUser = async (req, res) => {
     res.status(200).json({ data: response, success: true });
   } catch (error) {
     /* Видаляємо файл якщо помилка */
-    fs.unlink(file.path);
+    file && fs.unlink(file.path);
     /* Відповідь сервера при помилки */
     res.status(500).json({ message: error.message, success: false });
   }

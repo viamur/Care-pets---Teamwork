@@ -45,7 +45,7 @@ const noticesSchema = new Schema(
     },
     imgURL: {
       type: String,
-      default: 'notices/default.jpg',
+      default: 'https://pet-support.herokuapp.com/notices/default.jpg',
     },
     comments: {
       type: String,
@@ -85,7 +85,7 @@ const joiSchemaPostUser = Joi.object({
   title: Joi.string().min(2).max(48).required(),
   name: Joi.string().min(2).max(16),
   birthdate: Joi.date(),
-  bread: Joi.string().min(2).max(24),
+  breed: Joi.string().min(2).max(24),
   sex: Joi.string().valid('male', 'female').required(),
   location: Joi.string().min(2).max(24).required(),
   price: Joi.number().integer().min(1),

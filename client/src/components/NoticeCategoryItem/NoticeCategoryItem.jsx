@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useMediaQuery } from 'react-responsive';
 import { showAlertMessage, showInfoMessage } from '../../utils/showMessages';
 import sprite from '../../images/icons/sprite.svg';
 import { addFavoriteAd, removeFavoriteAd, deleteOwnAd } from '../../utils/api';
@@ -10,16 +9,7 @@ import { useTranslation } from 'react-i18next';
 import s from './NoticeCategoryItem.module.scss';
 
 const NoticeCategoryItem = ({ data, id, array, setArray, category: path }) => {
-  const {
-    birthdate,
-    category,
-    favorite,
-    imgURL,
-    location,
-    price,
-    title,
-    breed,
-  } = data;
+  const { birthdate, category, favorite, imgURL, location, price, title, breed } = data;
   const { t } = useTranslation();
   const [isFavorite, setIsFavorite] = useState(favorite);
   const [showModal, setShowModal] = useState(false);
@@ -30,8 +20,6 @@ const NoticeCategoryItem = ({ data, id, array, setArray, category: path }) => {
     lostFound: t('noticesPage.categories.lostFound'),
     inGoodHands: t('noticesPage.categories.inGoodHands'),
   };
-
-  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
   const onClickFavorite = e => {
     if (!userEmail) {
@@ -83,9 +71,7 @@ const NoticeCategoryItem = ({ data, id, array, setArray, category: path }) => {
     const years = months / 12;
     const transformedYear = Number(years.toString().split('.')[0]);
     const restDivision = years.toString().split('.')[1];
-    const transformedMonth = restDivision
-      ? Math.floor(Number(`0.${restDivision}` * 12))
-      : null;
+    const transformedMonth = restDivision ? Math.floor(Number(`0.${restDivision}` * 12)) : null;
 
     if (transformedYear > 0) {
       if (transformedMonth) {
@@ -131,11 +117,7 @@ const NoticeCategoryItem = ({ data, id, array, setArray, category: path }) => {
           <img src={imgURL} className={s.imgCard} alt="animal" />
           <p className={s.status}>{categoriesForFront[category]}</p>
 
-          <button
-            type="button"
-            className={s.btnToggleFavorite}
-            onClick={onClickFavorite}
-          >
+          <button type="button" className={s.btnToggleFavorite} onClick={onClickFavorite}>
             {!isFavorite ? (
               <svg className={s.iconFavorite} aria-label="Add to favorite">
                 <use href={sprite + '#like0-icon'} />
@@ -178,24 +160,16 @@ const NoticeCategoryItem = ({ data, id, array, setArray, category: path }) => {
                 </tr>
                 <tr>
                   <td className={`${s.descrTitle} ${s.descrLast}`}>
-                    {category === 'sell' && (
-                      <p>{t('noticesPage.item.price')}:</p>
-                    )}
+                    {category === 'sell' && <p>{t('noticesPage.item.price')}:</p>}
                   </td>
                   <td className={`${s.descrTitle} ${s.descrLast}`}>
-                    {category === 'sell' && (
-                      <p>{price ? `${price} UAH` : '-'}</p>
-                    )}
+                    {category === 'sell' && <p>{price ? `${price} UAH` : '-'}</p>}
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <button
-            className={s.btnMore}
-            type="button"
-            onClick={onLearnMoreClick}
-          >
+          <button className={s.btnMore} type="button" onClick={onLearnMoreClick}>
             {t('noticesPage.buttons.learnMore')}
           </button>
           {path === 'own' && (

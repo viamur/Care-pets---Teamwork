@@ -21,6 +21,9 @@ app.use('/friends', router.friends);
 app.use('/auth', router.auth);
 app.use('/user', router.user);
 
+/* если зайти просто на '/' то будет редирект на документацию */
+app.get('/', (req, res, next) => res.redirect('/doc/backDoc.pdf'));
+
 app.use((req, res) => {
   res.status(404).json({ message: 'Not Found' });
 });

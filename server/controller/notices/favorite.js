@@ -5,7 +5,7 @@ const get = async (req, res) => {
   const user = req.user;
   try {
     const response = await service.notices.getFavorites({ id: user.id });
-    const result = response.map(el => ({ ...el?._doc, favorite: true }));
+    const result = response.map(el => ({ ...el?._doc, favorite: true })).reverse();
     res.status(200).json({ data: result, success: true });
   } catch (error) {
     res.status(500).json({ message: error.message, success: false });

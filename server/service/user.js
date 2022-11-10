@@ -19,6 +19,7 @@ const addPet = async ({ id, body }) => {
 
 const deletePet = async ({ id, userId }) => {
   const response = await User.findByIdAndUpdate(userId, { $pull: { pets: { _id: id } } });
+
   return response;
 };
 

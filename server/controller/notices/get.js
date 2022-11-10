@@ -14,15 +14,17 @@ const all = async (req, res) => {
 
     /* Якщо користувач авторизован то перебираємо массив оголошень, шукаємо чи оголошення у користувача в favorite */
     if (user) {
-      const result = response.map(el => {
-        const favorite = el.favorite.includes(user.id);
-        return { ...el?._doc, favorite };
-      });
+      const result = response
+        .map(el => {
+          const favorite = el.favorite.includes(user.id);
+          return { ...el?._doc, favorite };
+        })
+        .reverse();
       res.status(200).json({ data: result, success: true });
       return;
     }
     /* Якщо користувач не авторизован перебираєм массив і просто замінюємо favorite і ставимо false */
-    const newResponse = response.map(el => ({ ...el?._doc, favorite: false }));
+    const newResponse = response.map(el => ({ ...el?._doc, favorite: false })).reverse();
 
     res.status(200).json({ data: newResponse, success: true });
   } catch (error) {
