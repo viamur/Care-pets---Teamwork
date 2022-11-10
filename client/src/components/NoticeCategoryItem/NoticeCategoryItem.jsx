@@ -81,7 +81,7 @@ const NoticeCategoryItem = ({ data, id, array, setArray, category: path }) => {
     const days = Math.floor(dif / day);
     const months = Math.floor(days / 30.4);
     const years = months / 12;
-    const transformedYear = Number(years.toFixed(0));
+    const transformedYear = Number(years.toString().split('.')[0]);
     const restDivision = years.toString().split('.')[1];
     const transformedMonth = restDivision
       ? Math.floor(Number(`0.${restDivision}` * 12))
