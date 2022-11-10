@@ -38,7 +38,6 @@ const ModalNotice = ({
   useEffect(() => {
     getAdInfo(id)
       .then(data => {
-        console.log(data);
         setInfo(data);
       })
       .catch(error => showAlertMessage(error.response.data.message));
@@ -125,7 +124,11 @@ const ModalNotice = ({
                       <p>{t('noticesPage.modal.sex')}:</p>
                     </td>
                     <td className={s.descr}>
-                      <p>{info.sex}</p>
+                      <p>
+                        {info.sex === 'male'
+                          ? t('noticesPage.addNotice.sex.male')
+                          : t('noticesPage.addNotice.sex.female')}
+                      </p>
                     </td>
                   </tr>
                   <tr>

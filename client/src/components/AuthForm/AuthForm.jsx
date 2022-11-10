@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAuthError } from '../../redux/auth/authSelectors';
 import { changeError } from '../../redux/auth/authSlice';
@@ -9,10 +9,9 @@ import s from './AuthForm.module.scss';
 
 const AuthForm = ({ title }) => {
   const { t } = useTranslation();
+  const { pathname } = useLocation();
   const error = useSelector(getAuthError);
   const dispatch = useDispatch();
-
-  console.log(title);
 
   const onLinkClick = e => {
     if (error) {
@@ -23,26 +22,20 @@ const AuthForm = ({ title }) => {
   return (
     <div className={s.container}>
       <h2 className={s.title}>{title}</h2>
-      {(title === 'Login' || title === 'Увійти') && <LoginForm />}
-      {(title === 'Registration' || title === 'Реєстрація') && <RegisterForm />}
+      {pathname === '/login' && <LoginForm />}
+      {pathname === '/register' && <RegisterForm />}
       <p className={s.question}>
-        {title === 'Registration' || title === 'Реєстрація'
+        {pathname === '/register'
           ? t('registration.linkDescr')
           : t('login.linkDescr')}
         &nbsp;
       </p>
       <Link
-        to={
-          title === 'Registration' || title === 'Реєстрація'
-            ? '/login'
-            : '/register'
-        }
+        to={pathname === '/register' ? '/login' : '/register'}
         className={s.link}
         onClick={onLinkClick}
       >
-        {title === 'Registration' || title === 'Реєстрація'
-          ? t('registration.link')
-          : t('login.link')}
+        {pathname === '/register' ? t('registration.link') : t('login.link')}
       </Link>
     </div>
   );

@@ -121,7 +121,7 @@ const ModalAddsPet = ({ setShowModal }) => {
       comments,
       pet,
     });
-    console.log('modal', birthday);
+
     const filteredArray = arrayOfData.filter(item => item[1]);
     const info = filteredArray.reduce((previousValue, feature) => {
       return { ...previousValue, [feature[0]]: feature[1] };
@@ -180,9 +180,9 @@ const ModalAddsPet = ({ setShowModal }) => {
                 className={s.input}
                 selected={birthday}
                 maxDate={new Date()}
-                yearPlaceholder="yyyy"
-                monthPlaceholder="mm"
-                dayPlaceholder="dd"
+                yearPlaceholder={t('userPage.addPet.placeholders.years')}
+                monthPlaceholder={t('userPage.addPet.placeholders.months')}
+                dayPlaceholder={t('userPage.addPet.placeholders.days')}
                 id="birthday"
                 name="birthday"
                 value={birthday}

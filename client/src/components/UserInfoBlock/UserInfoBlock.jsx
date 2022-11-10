@@ -109,7 +109,6 @@ const UserInfoBlock = () => {
             if (name.length > 10) {
               return Notify.failure(t('validation.nameMax'));
             }
-            // console.log(nameRegex.exec(name));
             dispatch(pathInfoUser({ name }));
           }
           if (btn.name === 'email') {

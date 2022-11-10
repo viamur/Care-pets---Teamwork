@@ -134,8 +134,7 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
     }
 
     const transformedPrice = category === 'sell' ? Number(price) : '';
-    console.log(typeof price);
-    console.log(typeof transformedPrice);
+
     const arrayOfData = Object.entries({
       category,
       title,
@@ -304,9 +303,11 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
                 dateFormat="dd.MM.yyyy"
                 selected={birthdate}
                 maxDate={new Date()}
-                yearPlaceholder="yyyy"
-                monthPlaceholder="mm"
-                dayPlaceholder="dd"
+                yearPlaceholder={t('noticesPage.addNotice.placeholders.years')}
+                monthPlaceholder={t(
+                  'noticesPage.addNotice.placeholders.months'
+                )}
+                dayPlaceholder={t('noticesPage.addNotice.placeholders.days')}
                 id="birthdate"
                 name="birthdate"
                 value={birthdate}

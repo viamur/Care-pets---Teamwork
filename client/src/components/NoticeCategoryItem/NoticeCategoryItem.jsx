@@ -72,7 +72,7 @@ const NoticeCategoryItem = ({ data, id, array, setArray, category: path }) => {
   };
 
   function convertAge(date) {
-    const dif = Date.now() - new Date(date.split('T')[0]);
+    const dif = Date.now() - new Date(date);
     const second = 1000;
     const minute = second * 60;
     const hour = minute * 60;
