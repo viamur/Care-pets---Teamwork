@@ -303,9 +303,11 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
                 dateFormat="dd.MM.yyyy"
                 selected={birthdate}
                 maxDate={new Date()}
-                yearPlaceholder="yyyy"
-                monthPlaceholder="mm"
-                dayPlaceholder="dd"
+                yearPlaceholder={t('noticesPage.addNotice.placeholders.years')}
+                monthPlaceholder={t(
+                  'noticesPage.addNotice.placeholders.months'
+                )}
+                dayPlaceholder={t('noticesPage.addNotice.placeholders.days')}
                 id="birthdate"
                 name="birthdate"
                 value={birthdate}

@@ -125,7 +125,10 @@
         "breed": "Ty breed",
         "location": "Type location",
         "price": "Type price",
-        "comments": "Type comments"
+        "comments": "Type comments",
+        "years": "yyyy",
+        "days": "dd",
+        "months": "mm"
       }
     }
   },
@@ -157,7 +160,10 @@
       "placeholders": {
         "name": "Type name pet",
         "breed": "Ty breed",
-        "comments": "Type comments"
+        "comments": "Type comments",
+        "years": "yyyy",
+        "days": "dd",
+        "months": "mm"
       }
     }
   },
