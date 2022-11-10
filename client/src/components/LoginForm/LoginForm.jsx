@@ -31,10 +31,7 @@ const LoginForm = () => {
       password: Yup.string()
         .min(7, t('validation.passwordMin'))
         .max(32, t('validation.passwordMax'))
-        .matches(
-          /^(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z0-9])/,
-          t('validation.password')
-        )
+        .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/, t('validation.password'))
         .required(t('validation.required')),
     }),
   });
