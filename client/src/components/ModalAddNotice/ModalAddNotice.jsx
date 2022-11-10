@@ -134,8 +134,7 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
     }
 
     const transformedPrice = category === 'sell' ? Number(price) : '';
-    console.log(typeof price);
-    console.log(typeof transformedPrice);
+
     const arrayOfData = Object.entries({
       category,
       title,

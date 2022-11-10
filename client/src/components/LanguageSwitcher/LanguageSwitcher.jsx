@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { useTransition } from 'react';
 import i18n from '../../i18n';
-import english from '../../images/languages/english.png';
-import ukrainian from '../../images/languages/ukrainian.png';
+// import english from '../../images/languages/english.png';
+// import ukrainian from '../../images/languages/ukrainian.png';
 import s from './LanguageSwitcher.module.scss';
 
 export default function LanguageSwitcher() {

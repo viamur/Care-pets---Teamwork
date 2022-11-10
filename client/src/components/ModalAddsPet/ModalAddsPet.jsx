@@ -121,7 +121,7 @@ const ModalAddsPet = ({ setShowModal }) => {
       comments,
       pet,
     });
-    console.log('modal', birthday);
+
     const filteredArray = arrayOfData.filter(item => item[1]);
     const info = filteredArray.reduce((previousValue, feature) => {
       return { ...previousValue, [feature[0]]: feature[1] };
