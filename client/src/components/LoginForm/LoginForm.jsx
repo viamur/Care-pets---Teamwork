@@ -26,6 +26,10 @@ const LoginForm = () => {
     validationSchema: Yup.object({
       email: Yup.string()
         .email(t('validation.email'))
+        .matches(
+          /^[a-zA-Z0-9^\s@]+@[a-zA-Z^\s@]+\.[a-zA-Z^\s@]+$/,
+          t('validation.emailLatin')
+        )
         .max(25, t('validation.emailMax'))
         .required(t('validation.required')),
       password: Yup.string()
@@ -62,6 +66,18 @@ const LoginForm = () => {
       })
     );
   };
+
+  // $('#user').keyup(function (event) {
+  //   if (event.altKey == false && event.ctrlKey == false)
+  //     if (
+  //       (event.keyCode >= 48 &&
+  //         event.keyCode <= 57 &&
+  //         event.shiftKey == false) ||
+  //       (event.keyCode >= 65 && event.keyCode <= 90) ||
+  //       (event.keyCode >= 97 && event.keyCode <= 122)
+  //     )
+  //       alert('0-9, a-z or A-Z');
+  // });
 
   return (
     <form onSubmit={onFormSubmit}>

@@ -3,7 +3,7 @@
 .container {
   max-width: 100%;
 
-  padding: 0 20px 20px;
+  padding: 0 20px 100px;
   margin: 0 auto;
 
   @include mq(mob) {
@@ -13,11 +13,11 @@
   @include mq(tab) {
     position: relative;
     width: 768px;
-    padding: 0 32px 32px;
+    padding: 0 32px 100px;
   }
 
   @include mq(desk) {
     width: 1280px;
-    padding: 0 16px 16px;
+    padding: 0 16px 200px;
   }
 }
