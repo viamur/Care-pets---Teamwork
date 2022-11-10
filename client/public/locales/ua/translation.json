@@ -53,7 +53,16 @@
     "time": "Час роботи",
     "adress": "Адреса",
     "email": "Email",
-    "phone": "Телефон"
+    "phone": "Телефон",
+    "hours": {
+      "monday": "ПН",
+      "tuesday": "ВТ",
+      "wednesday": "СР",
+      "thursday": "ЧТ",
+      "friday": "ПТ",
+      "saturday": "СБ",
+      "sunday": "НД"
+    }
   },
   "noticesPage": {
     "placeholder": "Пошук",
