@@ -2,7 +2,7 @@
 
 .hero {
   max-width: 100vw;
-  min-height: calc(100vh - 117px);
+  min-height: calc(100vh - 119px);
 
   background-repeat: no-repeat;
 
@@ -29,16 +29,14 @@
   }
 
   @include mq(desk) {
-    display: flex;
+    min-height: calc(100vh - 132px);
 
-    min-height: calc(100vh - 133px);
-
-    background-image: url('../../images/bgs-svg/main-bg-heart.svg'), url('../../images/bgs/home-waves-desk-1x.png');
-    background-size: auto, 100% auto;
-    background-position: top 5% right 40%, center bottom;
+    background-image: url('../../images/bgs/home-woman-desk-1x.png'), url('../../images/bgs-svg/main-bg-heart.svg'), url('../../images/bgs/home-waves-desk-1x.png');
+    background-size: contain, auto, 100% auto;
+    background-position: right bottom, top 5% right 40%, center bottom;
 
       @include mq(retina) {
-        background-image: url('../../images/bgs-svg/main-bg-heart.svg'), url('../../images/bgs/home-waves-desk-2x.png');
+        background-image: url('../../images/bgs/home-woman-desk-2x.png'), url('../../images/bgs-svg/main-bg-heart.svg'), url('../../images/bgs/home-waves-desk-2x.png');
       }
   }
 }
@@ -66,7 +64,7 @@
 }
 
 .thumb {
-  min-height: calc(100vh - 226px);
+  min-height: calc(100vh - 225px);
 
   background-repeat: no-repeat;
 
@@ -75,13 +73,15 @@
   background-position: center bottom;
 
   @include mq(mob) {
+    min-height: calc(100vh - 225px);
+
     @include mq(retina) {
       background-image: url('../../images/bgs/home-woman-mob-2x.png');
     }
   }
 
   @include mq(tab) {
-    min-height: calc(100vh - 422px);
+    min-height: calc(100vh - 421px);
 
     background-image: url('../../images/bgs/home-woman-tab-1x.png');
     background-size: contain;
@@ -93,15 +93,16 @@
   }
 
    @include mq(desk) {
-    min-width: 624px;
-    min-height: calc(100vh - 133px);
+    // min-width: 624px;
+    // min-height: calc(100vh - 133px);
 
-    background-image: url('../../images/bgs/home-woman-desk-1x.png');
-    background-size: contain;
-    background-position: right bottom;
+    // background-image: url('../../images/bgs/home-woman-desk-1x.png');
+    // background-size: contain;
+    // background-position: right bottom;
 
-      @include mq(retina) {
-        background-image: url('../../images/bgs/home-woman-desk-2x.png');
-      }
+    //   @include mq(retina) {
+    //     background-image: url('../../images/bgs/home-woman-desk-2x.png');
+    //   }
+    background: none
       }
 }
