@@ -47,7 +47,7 @@ const Header = () => {
         {menuStatus && (
           <Modal
             close={onClose}
-            children={<MobileMenu isUserLoggedIn={isUserLoggedIn} />}
+            children={<MobileMenu onClose={onClose} isUserLoggedIn={isUserLoggedIn} />}
           />
         )}
       </div>

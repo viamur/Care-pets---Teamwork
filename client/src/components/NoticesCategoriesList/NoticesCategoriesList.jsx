@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { showAlertMessage } from '../../utils/showMessages';
-import { showLoadingHourglass, removeLoading } from '../../utils/showLoading';
 import {
   fetchAdsByCategory,
   fetchFavoriteAds,
   fetchOwnAds,
 } from '../../utils/api';
 import { useTranslation } from 'react-i18next';
+import Loader from '../../components/Loader/Loader';
 import NoticeCategoryItem from 'components/NoticeCategoryItem/NoticeCategoryItem';
 import AddNoticeButton from 'components/AddNoticeButton/AddNoticeButton';
 
@@ -26,7 +26,6 @@ const NoticesCategoriesList = ({ category, searchQuery }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
   useEffect(() => {
-    showLoadingHourglass('Loading ...');
     setIsLoading(true);
 
     if (category === 'favorite') {
@@ -36,21 +35,18 @@ const NoticesCategoriesList = ({ category, searchQuery }) => {
         })
         .catch(error => showAlertMessage(error.response.data.message))
         .finally(() => {
-          removeLoading();
           setIsLoading(false);
         });
       return;
     }
 
     if (category === 'own') {
-      showLoadingHourglass('Loading ...');
       fetchOwnAds()
         .then(data => {
           setArray(data);
         })
         .catch(error => showAlertMessage(error.response.data.message))
         .finally(() => {
-          removeLoading();
           setIsLoading(false);
         });
       return;
@@ -62,7 +58,6 @@ const NoticesCategoriesList = ({ category, searchQuery }) => {
       })
       .catch(error => showAlertMessage(error.response.data.message))
       .finally(() => {
-        removeLoading();
         setIsLoading(false);
       });
 
@@ -83,8 +78,14 @@ const NoticesCategoriesList = ({ category, searchQuery }) => {
       {!isLoading && array.length === 0 && category === 'own' && (
         <p className={s.noResults}>{t('noticesPage.noResults.ownAds')}</p>
       )}
+      {isLoading && (
+        <div className={s.loader}>
+          <Loader />
+        </div>
+      )}
       <ul className={s.list}>
-        {array &&
+        {!isLoading &&
+          array &&
           array
             .filter(
               ({ title, breed }) =>

@@ -40,17 +40,17 @@ const NavMenu = ({ isUserLoggedIn }) => {
         </li>
         <li className={s.navLi}>
           <NavLink className={getActiveLink} to="/news">
-            News
+            {t('navigation.newsPage')}
           </NavLink>
         </li>
         <li className={s.navLi}>
           <NavLink className={getActiveNotice} to={`notices/sell`}>
-            Find pet
+            {t('navigation.noticesPage')}
           </NavLink>
         </li>
         <div className={s.nav}>
           <NavLink className={getActiveLink} to="/friends">
-            Our Friends
+            {t('navigation.friendsPage')}
           </NavLink>
         </div>
       </ul>
@@ -58,14 +58,14 @@ const NavMenu = ({ isUserLoggedIn }) => {
         <li className={s.buttonL}>
           {!isUserLoggedIn && (
             <NavLink className={getActiveButton} to="/login">
-              Login
+              {t('navigation.login')}
             </NavLink>
           )}
         </li>
         <li>
           {!isUserLoggedIn && (
             <NavLink className={getActiveButton} to="/register">
-              Registration
+              {t('navigation.registration')}
             </NavLink>
           )}
         </li>
@@ -82,7 +82,7 @@ const NavMenu = ({ isUserLoggedIn }) => {
                   ></path>
                 </svg>
               )}
-              {userName ? userName : 'Account'}
+              {userName ? userName : t('navigation.account')}
             </NavLink>
           )}
         </li>
