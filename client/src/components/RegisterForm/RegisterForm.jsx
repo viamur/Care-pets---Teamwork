@@ -32,6 +32,10 @@ const RegisterForm = () => {
     validationSchema: Yup.object({
       email: Yup.string()
         .email(t('validation.email'))
+        .matches(
+          /^[a-zA-Z0-9^\s@]+@[a-zA-Z^\s@]+\.[a-zA-Z^\s@]+$/,
+          t('validation.emailLatin')
+        )
         .max(25, t('validation.emailMax'))
         .required(t('validation.required')),
       password: Yup.string()
