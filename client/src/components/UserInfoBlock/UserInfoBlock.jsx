@@ -13,8 +13,7 @@ import DatePicker from 'react-date-picker';
 /* ----------REGEX--------------- */
 const emailRegex = /^[a-zA-Z0-9^\s@]+@[a-zA-Z^\s@]+\.[a-zA-Z^\s@]+$/;
 const phoneRegex = /^\+380\d{9}/;
-const cityRegex =
-  /^(?=.*[a-zа-я])(?=.*[A-ZА-Я]).{3,32},(?=.*[a-zа-я])(?=.*[A-ZА-Я]).{3,32}$/;
+const cityRegex = /^(?=.*[a-zа-я])(?=.*[A-ZА-Я]).{3,32},(?=.*[a-zа-я])(?=.*[A-ZА-Я]).{3,32}$/;
 
 const UserInfoBlock = () => {
   const {
@@ -73,7 +72,7 @@ const UserInfoBlock = () => {
 
     // free memory when ever this component is unmounted
     return () => URL.revokeObjectURL(objectUrl);
-  }, [selectedFile]);
+  }, [selectedFile, dispatch]);
 
   const datepickerClick = event => {
     if (isDisabled) {
@@ -168,13 +167,7 @@ const UserInfoBlock = () => {
       <h2 className={s.title}>{t('userPage.infoBlock.title')}:</h2>
       <div className={s.infoWrapper}>
         <div className={s.avatarWrapper}>
-          <img
-            src={photo}
-            alt="avatar"
-            width={200}
-            height={200}
-            className={s.avatar}
-          />
+          <img src={photo} alt="avatar" width={200} height={200} className={s.avatar} />
           <label className={s.avatarInputFile}>
             <svg className={s.iconInputFile}>
               <use href={sprite + '#camera-icon'} />
@@ -201,12 +194,7 @@ const UserInfoBlock = () => {
               value={name}
               className={s.item__input}
             />
-            <button
-              type="button"
-              name="name"
-              className={'pencil'}
-              onClick={handleClick}
-            ></button>
+            <button type="button" name="name" className={'pencil'} onClick={handleClick}></button>
           </li>
           <li className={language === 'ua' ? s.itemUA : s.itemUS}>
             <p className={s.item__title}>{t('userPage.infoBlock.email')}:</p>
@@ -218,12 +206,7 @@ const UserInfoBlock = () => {
               value={email}
               className={s.item__input}
             />
-            <button
-              type="button"
-              name="email"
-              className={'pencil'}
-              onClick={handleClick}
-            ></button>
+            <button type="button" name="email" className={'pencil'} onClick={handleClick}></button>
           </li>
           <li className={language === 'ua' ? s.itemUA : s.itemUS}>
             <p className={s.item__title}>{t('userPage.infoBlock.birthday')}:</p>
@@ -231,9 +214,7 @@ const UserInfoBlock = () => {
               clearIcon={null}
               calendarIcon={null}
               format="dd.MM.yyyy"
-              className={
-                isDisabled ? s.itemDatepicker__disabled : s.item__input
-              }
+              className={isDisabled ? s.itemDatepicker__disabled : s.item__input}
               disabled={isDisabled}
               selected={birthday}
               maxDate={new Date()}
@@ -266,12 +247,7 @@ const UserInfoBlock = () => {
               value={phone}
               className={s.item__input}
             />
-            <button
-              type="button"
-              name="phone"
-              className={'pencil'}
-              onClick={handleClick}
-            ></button>
+            <button type="button" name="phone" className={'pencil'} onClick={handleClick}></button>
           </li>
           <li className={language === 'ua' ? s.itemUA : s.itemUS}>
             <p className={s.item__title}>{t('userPage.infoBlock.city')}:</p>
@@ -283,12 +259,7 @@ const UserInfoBlock = () => {
               value={city}
               className={s.item__input}
             />
-            <button
-              type="button"
-              name="city"
-              className={'pencil'}
-              onClick={handleClick}
-            ></button>
+            <button type="button" name="city" className={'pencil'} onClick={handleClick}></button>
           </li>
         </ul>
         <Logout />

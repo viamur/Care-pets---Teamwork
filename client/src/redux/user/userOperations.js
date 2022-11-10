@@ -50,7 +50,7 @@ export const delPetInUserCard = createAsyncThunk(
   'user/delPet',
   async (userData, { rejectWithValue, getState, dispatch }) => {
     try {
-      const response = await deltPetUserCardApi(userData);
+      await deltPetUserCardApi(userData);
       return userData;
     } catch (error) {
       return rejectWithValue(error.response.data.message);
