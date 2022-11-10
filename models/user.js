@@ -1,13 +1,12 @@
-const { Schema, model } = require("mongoose");
-const Joi = require("joi");
+const { Schema, model } = require('mongoose');
+const Joi = require('joi');
 
-const { handleSchemaValidationErrors } = require("../helpers");
+const { handleSchemaValidationErrors } = require('../helpers');
 
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const emailRegex = /^[a-zA-Z0-9^\s@]+@[a-zA-Z^\s@]+\.[a-zA-Z^\s@]+$/;
 const phoneRegex = /^\+380\d{9}/;
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z0-9]).{7,32}$/;
-const cityRegex =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z0-9]).{3,32},(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z0-9]).{3,32}$/;
+const cityRegex = /^(?=.*[a-zа-я])(?=.*[A-ZА-Я]).{3,32},(?=.*[a-zа-я])(?=.*[A-ZА-Я]).{3,32}$/;
 
 const userShema = new Schema(
   {
@@ -20,7 +19,7 @@ const userShema = new Schema(
       type: String,
       minlength: 6,
       maxLength: 63,
-      required: [true, "Email is required"],
+      required: [true, 'Email is required'],
       match: emailRegex,
       unique: true,
     },
@@ -54,7 +53,7 @@ const userShema = new Schema(
         },
         imgURL: {
           type: String,
-          default: "https://pet-support.herokuapp.com/pet/default.jpg",
+          default: 'https://pet-support.herokuapp.com/pet/default.jpg',
         },
         comments: {
           type: String,
@@ -65,22 +64,22 @@ const userShema = new Schema(
     ],
     avatarURL: {
       type: String,
-      default: "https://pet-support.herokuapp.com/avatar/default.jpg",
+      default: 'https://pet-support.herokuapp.com/avatar/default.jpg',
     },
     token: {
       type: String,
-      default: "",
+      default: '',
     },
   },
   { versionKey: false, timestamps: true }
 );
 
-userShema.post("save", handleSchemaValidationErrors);
+userShema.post('save', handleSchemaValidationErrors);
 
 const singupSchema = Joi.object({
   email: Joi.string().pattern(emailRegex).min(6).max(25).required(),
   password: Joi.string().pattern(passwordRegex).min(7).max(32).required(),
-  confirm_password: Joi.string().required().valid(Joi.ref("password")),
+  confirm_password: Joi.string().required().valid(Joi.ref('password')),
   name: Joi.string().min(2).max(10).required(),
   city: Joi.string().pattern(cityRegex).required(),
   phone: Joi.string().length(13).pattern(phoneRegex).required(),
@@ -119,7 +118,7 @@ const schemas = {
   checkEmail,
 };
 
-const User = model("user", userShema);
+const User = model('user', userShema);
 
 module.exports = {
   User,
