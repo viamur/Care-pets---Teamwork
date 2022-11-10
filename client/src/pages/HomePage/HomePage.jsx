@@ -5,10 +5,11 @@ import s from './HomePage.module.scss';
 const HomePage = () => {
   const { t } = useTranslation();
   return (
-    <section className={s.container}>
+    <section className={s.hero}>
       <Container>
         <h1 className={s.title}>{t('titles.homePage')}</h1>
       </Container>
+      <div className={s.thumb}></div>
     </section>
   );
 };
