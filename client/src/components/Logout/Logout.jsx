@@ -15,7 +15,7 @@ const Logout = () => {
       type="button"
       className={s.btn}
     >
-      <img src={logout} alt="Pet Foto" className={s.icon} />
+      <img src={logout} alt="Pet Foto" className={s.icon} width={18} height={18} />
       {t('userPage.buttons.logout')}
     </button>
   );
