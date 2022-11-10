@@ -5,6 +5,7 @@ import { showAlertMessage } from '../../utils/showMessages';
 import { getAdInfo } from '../../utils/api';
 import { getUserEmail } from '../../redux/auth/authSelectors';
 import { useTranslation } from 'react-i18next';
+import moment from 'moment';
 import sprite from '../../images/icons/sprite.svg';
 import s from './ModalNotice.module.scss';
 
@@ -53,9 +54,7 @@ const ModalNotice = ({
   };
 
   const convertBirthday = birthday => {
-    const date = birthday.split('T')[0];
-    const dateTransformed = date.split('-').reverse().join('.');
-    return dateTransformed;
+    return moment(birthday).format('DD.MM.YYYY');
   };
 
   return createPortal(
