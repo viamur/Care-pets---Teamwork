@@ -1,12 +1,9 @@
-import s from './PetsList.module.scss';
-import photoPet from '../../images/testNotice.jpg';
 import { useTranslation } from 'react-i18next';
-
-import React, { useEffect, useState } from 'react';
+import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserPets } from '../../redux/user/userSelectrors';
-
 import { delPetInUserCard } from '../../redux/user/userOperations';
+import s from './PetsList.module.scss';
 
 const PetsList = () => {
   const dispatch = useDispatch();
@@ -14,9 +11,7 @@ const PetsList = () => {
   const { t } = useTranslation();
 
   const convertDate = date => {
-    const transformedDate = date.split('T')[0];
-    const result = transformedDate.split('-').reverse().join('.');
-    return result;
+    return moment(date).format('DD.MM.YYYY');
   };
 
   return (
