@@ -44,12 +44,6 @@
   }
 }
 .block {
-  position: absolute;
-  left: 65%;
-  @include mq(tab) {
-    left: 55%;
-  }
-  @include mq(desk) {
-    left: 80%;
-  }
+  margin-right: 20px;
+  margin-left: auto;
 }

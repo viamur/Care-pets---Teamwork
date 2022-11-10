@@ -7,13 +7,16 @@
   justify-content: space-between;
   align-items: center;
 
+
   @include mq(tab) {
     // justify-content: flex-end;
+    margin-right: 20px;
   }
 
   @include mq(desk) {
     // flex-direction: row-reverse;
     justify-content: space-between;
+    margin-right: 0;
   }
 }
 
