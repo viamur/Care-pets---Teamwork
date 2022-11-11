@@ -1,4 +1,3 @@
-import { changeLanguage } from 'i18next';
 import { useTranslation } from 'react-i18next';
 import s from './NewsList.module.scss';
 
