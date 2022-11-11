@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { showAlertMessage } from '../../utils/showMessages';
 import { getAdInfo } from '../../utils/api';
 import { getUserEmail } from '../../redux/auth/authSelectors';
-import { useTranslation } from 'react-i18next';
 import moment from 'moment';
 import sprite from '../../images/icons/sprite.svg';
 import s from './ModalNotice.module.scss';

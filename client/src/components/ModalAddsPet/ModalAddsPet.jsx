@@ -4,11 +4,11 @@ import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import DatePicker from 'react-date-picker';
+import { useTranslation } from 'react-i18next';
 import { showAlertMessage } from '../../utils/showMessages';
 import { addPetInUserCard } from '../../redux/user/userOperations';
 import imgLoad from '../../images/modals/loadMobile.png';
 import sprite from '../../images/icons/sprite.svg';
-import { useTranslation } from 'react-i18next';
 import s from './ModalAddsPet.module.scss';
 
 const modalContainer = document.getElementById('modal-root');
