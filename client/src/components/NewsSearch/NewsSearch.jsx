@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import filterArrByTitle from '../../utils/filterArrByTitle';
 import { useTranslation } from 'react-i18next';
+import filterArrByTitle from '../../utils/filterArrByTitle';
 import { showInfoMessage, showAlertMessage } from '../../utils/showMessages';
 import s from './NewsSearch.module.scss';
 
@@ -57,11 +57,7 @@ const NewsSearch = ({ onSubmit, news, onChange }) => {
               const { title, _id } = el;
 
               return (
-                <li
-                  className={s.autocomplete__Item}
-                  key={_id}
-                  onClick={handleItemClick}
-                >
+                <li className={s.autocomplete__Item} key={_id} onClick={handleItemClick}>
                   {title}
                 </li>
               );

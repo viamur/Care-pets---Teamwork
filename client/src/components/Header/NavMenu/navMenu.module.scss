@@ -7,7 +7,6 @@
   justify-content: space-between;
   align-items: center;
 
-
   @include mq(tab) {
     // justify-content: flex-end;
     margin-right: 20px;
@@ -49,8 +48,15 @@
   font-size: 32px;
   font-weight: 500;
 
+  transition: all var(--transition);
+
   @include mq(desk) {
     font-size: 20px;
+  }
+  &:hover,
+  &:focus {
+    color: var(--accent-color);
+    text-decoration: underline solid var(--accent-color);
   }
 }
 
