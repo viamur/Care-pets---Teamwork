@@ -1,14 +1,9 @@
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { getUserName, getUserAvatar } from 'redux/user/userSelectrors';
 import { useTranslation } from 'react-i18next';
 
-// import { useState } from 'react';
-// import { slide as Menu } from 'react-burger-menu';
-
 import s from './mobileMenu.module.scss';
-// import NavMenu from '../NavMenu';
 
 const MobileMenu = ({ isUserLoggedIn, onClose }) => {
   const { categoryName } = useParams();
@@ -22,29 +17,9 @@ const MobileMenu = ({ isUserLoggedIn, onClose }) => {
   const getActiveButton = ({ isActive }) =>
     isActive ? s.buttonActive + ' ' + s.button : s.button;
 
-  // const setMenuStatus = useState(false);
-  // setMenuStatus(prev => !prev);
-
-  // const onClose = () => {
-  //   setMenuStatus(false);
-  // };
-
   const handleClick = e => {
-    // e.preventDefault();
-    // const id = document.getElementById('modal-root');
-    // if (id.contains('modal-root')) {
-    //   id.remove('modal-root');
     onClose();
   };
-  // if (e.code === 'Escape') {
-  //   close();
-  //   changeClass('on', 'off');
-  //   return;
-  // }
-  // if (e.target === e.currentTarget) {
-  //   close();
-  //   changeClass('on', 'off');
-
   const getActiveNotice = () => {
     if (
       categoryName === 'sell' ||
@@ -60,9 +35,6 @@ const MobileMenu = ({ isUserLoggedIn, onClose }) => {
 
   return (
     <>
-      {/* <NavLink className={s.logo} to="/">
-        pe<span className={s.logoT}>t</span>ly
-      </NavLink> */}
       <div className={s.menuContainer}>
         <ul className={s.auth}>
           <li>

@@ -1,8 +1,8 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import ModalAddsPet from '..//ModalAddsPet/ModalAddsPet';
 import PetsList from 'components/PetsList/PetsList';
 import sprite from '../../images/icons/sprite.svg';
-import { useTranslation } from 'react-i18next';
 import s from './PetsData.module.scss';
 
 const PetsData = props => {
