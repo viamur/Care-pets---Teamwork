@@ -5,7 +5,7 @@ import Modal from 'components/ModalMobile/MobileModal';
 import MobileMenu from './MobileMenu';
 import Container from 'components/Container/Container';
 
-import s from './header.module.scss';
+import s from './Header.module.scss';
 import useMail from 'hooks/useLogin';
 
 const Header = () => {
@@ -44,9 +44,7 @@ const Header = () => {
         {menuStatus && (
           <Modal
             close={onClose}
-            children={
-              <MobileMenu onClose={onClose} isUserLoggedIn={isUserLoggedIn} />
-            }
+            children={<MobileMenu onClose={onClose} isUserLoggedIn={isUserLoggedIn} />}
           />
         )}
       </div>
