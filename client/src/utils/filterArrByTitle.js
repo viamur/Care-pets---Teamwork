@@ -1,4 +1,4 @@
-const filteArrByTitle = (arr, query) => {
+const filterArrByTitle = (arr, query) => {
   if (query === '') return;
 
   const normalizeQuery = query.toLowerCase();
@@ -6,4 +6,4 @@ const filteArrByTitle = (arr, query) => {
   return arr.filter(el => el.title.toLowerCase().includes(normalizeQuery));
 };
 
-export default filteArrByTitle;
+export default filterArrByTitle;

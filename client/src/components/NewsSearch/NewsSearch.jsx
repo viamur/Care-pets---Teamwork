@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import filteArrByTitle from '../../utils/filteArrByTitle';
+import filterArrByTitle from '../../utils/filterArrByTitle';
 import { useTranslation } from 'react-i18next';
 import { showInfoMessage, showAlertMessage } from '../../utils/showMessages';
 import s from './NewsSearch.module.scss';
@@ -27,7 +27,7 @@ const NewsSearch = ({ onSubmit, news, onChange }) => {
       showAlertMessage(t('errors.emptyQuery'));
 
       return;
-    } else if (filteArrByTitle(news, searchQuery).length === 0) {
+    } else if (filterArrByTitle(news, searchQuery).length === 0) {
       showInfoMessage(t('errors.news'));
     }
 
@@ -53,7 +53,7 @@ const NewsSearch = ({ onSubmit, news, onChange }) => {
       />
       <ul className={s.autocomplete__List}>
         {searchQuery && isOpen
-          ? filteArrByTitle(news, searchQuery).map(el => {
+          ? filterArrByTitle(news, searchQuery).map(el => {
               const { title, _id } = el;
 
               return (
