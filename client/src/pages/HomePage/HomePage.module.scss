@@ -1,0 +1,105 @@
+@import '../../sass/mixin';
+
+.hero {
+  max-width: 100vw;
+
+  // min height is reduced by the header height
+  min-height: calc(100vh - 117px);
+
+  background-repeat: no-repeat;
+
+  background-image: url('../../images/bgs/home-waves-mob-1x.png');
+  background-size: 100% auto;
+  background-position: center bottom;
+
+  @include mq(mob) {
+    @include mq(retina) {
+      background-image: url('../../images/bgs/home-waves-mob-2x.png');
+    }
+  }
+
+  @include mq(tab) {
+    min-height: calc(100vh - 144px);
+
+    background-image: url('../../images/bgs/home-waves-tab-1x.png');
+    background-size: 100% auto;
+    background-position: center bottom;
+
+      @include mq(retina) {
+        background-image: url('../../images/bgs/home-waves-tab-2x.png');
+      }
+  }
+
+  @include mq(desk) {
+    min-height: calc(100vh - 133px);
+
+    background-image: url('../../images/bgs/home-woman-desk-1x.png'), url('../../images/bgs-svg/main-bg-heart.svg'), url('../../images/bgs/home-waves-desk-1x.png');
+    background-size: contain, auto, 100% auto;
+    background-position: right bottom, top 5% right 40%, center bottom;
+
+      @include mq(retina) {
+        background-image: url('../../images/bgs/home-woman-desk-2x.png'), url('../../images/bgs-svg/main-bg-heart.svg'), url('../../images/bgs/home-waves-desk-2x.png');
+      }
+  }
+}
+
+.title {
+  min-height: 133px;
+
+  font-family: 'Manrope Bold';
+  font-size: 32px;
+  line-height: 1.38;
+
+  @include mq(mob) {
+    min-height: 88px;
+  }
+
+  @include mq(tab) {
+    min-height: 346px;
+    padding-top: 46px;
+
+    font-size: 68px;
+    line-height: 1.47;
+  }
+
+  @include mq(desk) {
+    max-width: 588px;
+    min-height: 334px;
+    padding-top: 34px;
+  }
+}
+
+.thumb {
+  // min height is reduced by the header and the title height
+  min-height: calc(100vh - 270px);
+
+  background-repeat: no-repeat;
+
+  background-image: url('../../images/bgs/home-woman-mob-1x.png');
+  background-size: contain;
+  background-position: center bottom;
+
+  @include mq(mob) {
+    min-height: calc(100vh - 225px);
+
+    @include mq(retina) {
+      background-image: url('../../images/bgs/home-woman-mob-2x.png');
+    }
+  }
+
+  @include mq(tab) {
+    min-height: calc(100vh - 522px);
+
+    background-image: url('../../images/bgs/home-woman-tab-1x.png');
+    background-size: contain;
+    background-position: center bottom;
+
+      @include mq(retina) {
+        background-image: url('../../images/bgs/home-woman-tab-2x.png');
+      }
+  }
+
+   @include mq(desk) {
+    background: none
+  }
+}

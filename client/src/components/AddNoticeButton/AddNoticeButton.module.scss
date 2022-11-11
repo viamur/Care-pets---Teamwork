@@ -1,0 +1,54 @@
+.btnAddPet {
+  position: absolute;
+  top: 466px;
+  right: 20px;
+  z-index: 0;
+  width: 80px;
+  height: 80px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  font-family: 'Manrope Medium';
+  font-size: 12px;
+  line-height: 1.33;
+  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
+
+  color: var(--white);
+  background-color: var(--accent-color);
+  border-radius: 50%;
+  border: none;
+
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+  @media screen and (min-width: 480px) {
+    right: calc(50% - 220px);
+  }
+
+  @media screen and (min-width: 768px) {
+    position: static;
+    z-index: 0;
+    width: 44px;
+    height: 44px;
+
+    flex-direction: row;
+  }
+}
+
+.btnMobileHide {
+  display: none;
+}
+
+.iconAddPet {
+  width: 24px;
+  height: 24px;
+}
+
+.title {
+  font-family: 'Manrope Medium';
+  font-size: 12px;
+  line-height: 16px;
+}

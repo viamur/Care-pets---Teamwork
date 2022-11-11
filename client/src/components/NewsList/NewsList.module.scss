@@ -1,0 +1,128 @@
+@import "../../sass/fonts";
+@import "../../sass/mixin";
+
+.list{
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 40px 0;
+
+    padding-bottom: 80px;
+
+    @include mq(tab) {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        gap: 60px 32px;
+
+        padding-bottom: 68px;
+    }
+
+    @include mq(desk) {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr;
+
+        padding-bottom: 184px;
+    }
+}
+
+
+.item::before {
+    content: "";
+    display: block;
+    width: 71%;
+    height: 4px;
+    margin-bottom: 4px;
+
+    background: var(--gradient);
+    border-radius: 40px;
+
+    @include mq(tab) {
+        width: 83%;
+        height: 8px;
+    }
+
+    @include mq(desk) {
+        width: 86%;
+    }
+}
+
+.subtitle {
+    width: 100%;
+    min-height: 66px;
+    margin-bottom: 16px;
+
+    // allows only 2 lines to be displayed
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis ellipsis;
+
+    font-family: 'Manrope Bold';
+    font-size: 24px;
+    line-height: 1.38;
+    letter-spacing: -0.01em;
+}
+
+.message {
+    text-align: center;
+}
+
+.text {
+    width: 100%;
+    min-height: 154px;
+    margin-bottom: 20px;
+
+    // allows only 7 lines to be displayed
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 7;
+    overflow: hidden;
+    text-overflow: ellipsis ellipsis;
+
+    font-size: 16px;
+    line-height: 1.38;
+    color: var(--font-news-color);
+
+    @include mq(tab) {
+        min-height: 132px;
+        margin-bottom: 40px;
+
+        // allows only 6 lines to be displayed
+        -webkit-line-clamp: 6;
+    }
+
+    @include mq(desk) {
+        min-height: 110px;
+       // allows only 5 lines to be displayed
+        -webkit-line-clamp: 5;
+    }
+}
+
+.addData {
+    display: flex;
+    justify-content: space-between;
+}
+
+.date {
+    font-size: 16px;
+    line-height: 1.38;
+    color: var(--date-color);
+}
+
+.link {
+    font-family: 'Manrope Medium';
+    font-size: 16px;
+    line-height: 1.38;
+    text-decoration-line: underline;
+
+    color: var(--accent-color);
+
+    transition: all var(--transition);
+
+    &:hover,
+    &:focus {
+        letter-spacing: 0.7px;;
+    }
+}

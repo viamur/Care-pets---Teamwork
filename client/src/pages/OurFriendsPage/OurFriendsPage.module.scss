@@ -1,0 +1,27 @@
+@import '../../sass/mixin';
+@import '../../sass/fonts';
+
+.mainTitle {
+  margin: 0px 0px 28px 0px;
+  text-align: center;
+
+  font-family: 'Manrope Bold';
+  line-height: 1.37;
+  /* identical to box height */
+
+  color: #000000;
+
+  @include mq(tab) {
+    margin: 47px 0px 45px 0px;
+    font-size: 48px;
+    line-height: 66px;
+  }
+
+  @include mq(desk) {
+    margin: 18px 0px 60px 0px;
+  }
+}
+
+.loader {
+  margin-top: 300px;
+}

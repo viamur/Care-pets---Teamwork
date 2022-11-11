@@ -1,0 +1,310 @@
+@import '../../sass/mixin';
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(17, 17, 17, 0.6);
+  backdrop-filter: blur(10px);
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
+  width: 90%;
+  max-height: 90%;
+  overflow: auto;
+  border-radius: 20px;
+  padding: 40px 20px;
+  background: var(--white);
+
+  @media screen and (min-width: 480px) {
+    width: 480px;
+  }
+
+  @include mq(tab) {
+    width: 608px;
+    border-radius: 40px;
+    padding: 40px 80px;
+    box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+  }
+}
+
+.modalSecondPage {
+  composes: modal;
+
+  @include mq(tab) {
+    padding-left: 107px;
+    padding-right: 107px;
+  }
+}
+
+.btnClose {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+
+  background-color: var(--bg-color);
+
+  @include mq(tab) {
+    width: 44px;
+    height: 44px;
+    top: 20px;
+    right: 20px;
+  }
+
+  @include mq(desk) {
+    top: 24px;
+    right: 24px;
+  }
+}
+
+.btnClose:hover {
+  background-color: var(--accent-color);
+}
+.btnClose:hover .iconClose {
+  fill: var(--white);
+}
+
+.title {
+  font-family: 'Manrope Medium';
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.38;
+  text-align: center;
+  color: var(--font-color);
+  margin-bottom: 28px;
+
+  @include mq(tab) {
+    font-size: 36px;
+    line-height: 1.36;
+  }
+}
+
+.titleSecondPage {
+  composes: title;
+  margin-bottom: 20px;
+}
+
+.descr {
+  font-family: 'Manrope Medium';
+  font-size: 16px;
+  line-height: 1.38;
+  text-align: center;
+  color: var(--font-color);
+  margin-bottom: 20px;
+
+  @include mq(tab) {
+    font-size: 20 px;
+    line-height: 1.32;
+  }
+}
+
+.error {
+  height: 16px;
+  text-align: left;
+  font-size: 10px;
+  line-height: 12px;
+  color: var(--accent-color);
+  letter-spacing: 0.04em;
+  padding: 5px 15px;
+
+  @include mq(tab) {
+    margin-bottom: 12px;
+  }
+}
+
+.error--last {
+  composes: error;
+  margin-bottom: 24px;
+}
+
+.label {
+  display: block;
+  font-family: 'Manrope Medium';
+  font-size: 18px;
+  line-height: 1.44;
+  margin-bottom: 8px;
+
+  @include mq(tab) {
+    font-size: 24px;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+}
+
+.accent {
+  color: var(--accent-color);
+}
+
+.input {
+  width: 100%;
+  font-size: 14px;
+  line-height: 1.36;
+  letter-spacing: 0.04em;
+  background: var(--bg-color);
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 40px;
+  outline: none;
+  padding: 11px 14px 12px;
+
+  @include mq(tab) {
+    font-size: 16px;
+    line-height: 1.63;
+    padding: 11px 16px 10px;
+  }
+}
+
+.input::placeholder {
+  font-size: 14px;
+  line-height: 1.36;
+  letter-spacing: 0.04em;
+  color: rgba(27, 27, 27, 0.6);
+
+  @include mq(tab) {
+    font-size: 16px;
+    line-height: 1.62;
+  }
+}
+
+.inputLoad {
+  display: none;
+}
+
+.labelLoad {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 208px;
+  height: 208px;
+  background: var(--bg-color);
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+  margin-bottom: 20px;
+
+  @include mq(tab) {
+    margin-bottom: 40px;
+    width: 182px;
+    height: 182px;
+    border-radius: 40px;
+  }
+}
+
+.thumbLoadImg {
+  width: 208px;
+  height: 208px;
+  border-radius: 20px;
+
+  @include mq(tab) {
+    width: 182px;
+    height: 182px;
+    border-radius: 40px;
+  }
+}
+
+.loadImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+
+  @include mq(tab) {
+    border-radius: 40px;
+  }
+}
+
+.textarea {
+  width: 100%;
+  height: 100px;
+
+  background: var(--bg-color);
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 20px;
+  padding: 12px 14px;
+  outline: none;
+  resize: none;
+
+  @include mq(tab) {
+    width: 394px;
+    height: 116px;
+    padding: 16px;
+  }
+}
+
+.textarea::placeholder {
+  font-size: 14px;
+  line-height: 1.85;
+  letter-spacing: 0.04em;
+  color: rgba(27, 27, 27, 0.6);
+
+  @include mq(tab) {
+    font-size: 16px;
+    line-height: 1.62;
+  }
+}
+
+.blockOfButtons {
+  display: flex;
+  flex-direction: column-reverse;
+  @include mq(tab) {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+.button {
+  display: block;
+  width: 100%;
+  font-family: 'Manrope Medium';
+  font-size: 16px;
+  line-height: 1.38;
+  letter-spacing: 0.04em;
+
+  color: var(--font-color);
+  background-color: var(--white);
+  border: 2px solid var(--accent-color);
+  border-radius: 40px;
+  cursor: pointer;
+
+  padding-top: 9px;
+  padding-bottom: 9px;
+
+  @include mq(tab) {
+    width: 180px;
+    font-size: 20px;
+    line-height: 1.35;
+  }
+}
+
+.accentBtn {
+  background-color: var(--accent-color);
+  color: var(--white);
+}
+
+.button:first-child {
+  @include mq(tab) {
+    margin-right: 20px;
+  }
+}
+
+.button:last-child {
+  @include mq(mob-only) {
+    margin-bottom: 12px;
+  }
+}

@@ -1,0 +1,466 @@
+@import '../../sass/mixin';
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(17, 17, 17, 0.6);
+  backdrop-filter: blur(10px);
+}
+
+.modal {
+  position: absolute;
+  overflow: auto;
+  height: 90%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
+  width: 90%;
+  max-height: 90%;
+  border-radius: 20px;
+  padding: 40px 15px 40px 20px;
+  background: var(--white);
+
+  @media screen and (min-width: 480px) {
+    width: 480px;
+  }
+
+  @include mq(tab) {
+    width: 608px;
+    border-radius: 40px;
+    padding: 40px 75px 40px 80px;
+  }
+}
+
+.btnClose {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+
+  background-color: var(--bg-color);
+
+  @include mq(tab) {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.btnClose:hover {
+  background-color: var(--accent-color);
+}
+.btnClose:hover .iconClose {
+  fill: var(--white);
+}
+
+.title {
+  font-family: 'Manrope Medium';
+  font-size: 24px;
+  line-height: 1.38;
+  text-align: center;
+  color: var(--font-color);
+  margin-bottom: 20px;
+
+  @include mq(tab) {
+    font-family: 'Manrope SemiBold';
+    font-size: 36px;
+    line-height: 1.36;
+  }
+}
+
+.descr {
+  font-family: 'Manrope Medium';
+  font-size: 16px;
+  line-height: 1.38;
+  letter-spacing: -0.01em;
+  text-align: center;
+  margin-bottom: 20px;
+
+  @include mq(tab) {
+    font-size: 20px;
+    line-height: 1.35;
+    margin-bottom: 28px;
+  }
+}
+
+.error {
+  height: 16px;
+  text-align: left;
+  font-size: 10px;
+  line-height: 12px;
+  color: var(--accent-color);
+  letter-spacing: 0.04em;
+  padding: 5px 15px;
+
+  @include mq(tab) {
+    margin-bottom: 12px;
+  }
+}
+
+.error--last {
+  composes: error;
+  margin-bottom: 24px;
+}
+
+.label {
+  display: block;
+  font-family: 'Manrope Medium';
+  font-size: 18px;
+  line-height: 1.44;
+  margin-bottom: 8px;
+
+  @include mq(tab) {
+    font-size: 24px;
+    line-height: 1.1;
+  }
+}
+
+.accent {
+  color: var(--accent-color);
+}
+
+.input {
+  width: 100%;
+  font-size: 14px;
+  line-height: 1.36;
+  letter-spacing: 0.04em;
+  background: var(--bg-color);
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 40px;
+  outline: none;
+  padding: 11px 14px 12px;
+
+  @include mq(tab) {
+    font-size: 16px;
+    line-height: 1.62;
+    padding: 11px 16px 10px;
+  }
+}
+
+.input::placeholder {
+  font-size: 14px;
+  line-height: 1.36;
+  letter-spacing: 0.04em;
+  color: rgba(27, 27, 27, 0.6);
+
+  @include mq(tab) {
+    font-size: 16px;
+    line-height: 1.62;
+  }
+}
+
+.textarea {
+  width: 100%;
+  height: 100px;
+
+  background: var(--bg-color);
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 20px;
+  padding: 11px 14px;
+  outline: none;
+  resize: none;
+
+  @include mq(tab) {
+    height: 113px;
+    padding: 16px 18px;
+  }
+}
+
+.textarea::placeholder {
+  font-size: 14px;
+  line-height: 1.85;
+  letter-spacing: 0.04em;
+  color: rgba(27, 27, 27, 0.6);
+
+  @include mq(tab) {
+    font-size: 16px;
+    line-height: 1.62;
+  }
+}
+
+.radioToolbar {
+  margin-bottom: 32px;
+
+  @include mq(tab) {
+    margin-bottom: 28px;
+  }
+}
+
+.radioToolbar input[type='radio'] {
+  display: none;
+}
+
+.radioToolbar label {
+  display: inline-block;
+
+  font-family: 'Manrope Medium';
+  font-size: 14px;
+  line-height: 1.36;
+  text-align: center;
+  letter-spacing: 0.04em;
+
+  border: 2px solid var(--accent-color);
+  background-color: var(--white);
+  color: var(--font-color);
+  border-radius: 40px;
+  cursor: pointer;
+
+  padding: 8px 28px;
+
+  @include mq(tab) {
+    padding: 10px 28px;
+    font-size: 20px;
+    line-height: 1.35;
+  }
+}
+
+.radioToolbar label:not(:last-child) {
+  margin-right: 8px;
+}
+
+.radioToolbar label:last-child {
+  @media screen and (max-width: 325px) {
+    margin-top: 12px;
+  }
+}
+
+.radioToolbar label:first-child {
+  margin-bottom: 12px;
+
+  @media screen and (min-width: 480px) {
+    margin-bottom: 0px;
+  }
+
+  @include mq(tab) {
+    margin-bottom: 16px;
+  }
+}
+
+.radioToolbar label:hover {
+  background-color: var(--accent-color);
+  color: var(--white);
+}
+
+.activeCategory {
+  background-color: #f59256 !important;
+  color: #ffffff !important;
+}
+
+.radioToolbarPage2 {
+  margin-bottom: 71px;
+
+  @include mq(tab) {
+    margin-bottom: 87px;
+  }
+}
+
+.radioToolbarPage2 input[type='radio'] {
+  display: none;
+}
+
+.labelDistance {
+  margin-bottom: 16px;
+
+  @include mq(tab) {
+    margin-bottom: 28px;
+  }
+}
+
+.blockOfRadio {
+  display: flex;
+  margin-bottom: 32px;
+}
+
+.sexLabel {
+  position: relative;
+  display: block;
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+
+  @include mq(tab) {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+.labelMale {
+  background-image: url('../../images/modals/male.png');
+
+  margin-right: 40px;
+
+  @include mq(tab) {
+    margin-right: 83px;
+  }
+}
+
+.labelFemale {
+  background-image: url('../../images/modals/female.png');
+}
+
+.sexDescr {
+  position: absolute;
+  bottom: -39px;
+  font-family: 'Manrope Medium';
+  font-size: 18px;
+  line-height: 1.44px;
+
+  @include mq(tab) {
+    bottom: -47px;
+    text-align: center;
+  }
+}
+
+.active {
+  color: var(--accent-color);
+}
+
+.notActive {
+  color: var(--font-color);
+}
+
+.inputLoad {
+  display: none;
+}
+
+.titleLoad {
+  composes: label;
+}
+
+.labelLoad {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 116px;
+  height: 116px;
+  background: var(--bg-color);
+  border-radius: 20px;
+  cursor: pointer;
+  margin-bottom: 28px;
+
+  @include mq(tab) {
+    width: 140px;
+    height: 140px;
+  }
+}
+
+.thumbLoadImg {
+  width: 116px;
+  height: 116px;
+  border-radius: 20px;
+
+  @include mq(tab) {
+    width: 140px;
+    height: 140px;
+  }
+}
+
+.loadImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.blockOfButtons {
+  display: flex;
+  flex-direction: column-reverse;
+  @include mq(tab) {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+.button {
+  display: block;
+  width: 100%;
+  font-family: 'Manrope Medium';
+  font-size: 16px;
+  line-height: 1.38;
+  letter-spacing: 0.04em;
+
+  color: var(--font-color);
+  background-color: var(--white);
+  border: 2px solid var(--accent-color);
+  border-radius: 40px;
+  cursor: pointer;
+
+  padding-top: 9px;
+  padding-bottom: 9px;
+
+  @include mq(tab) {
+    width: 180px;
+  }
+}
+
+.accentBtn {
+  background-color: var(--accent-color);
+  color: var(--white);
+}
+
+.button:first-child {
+  @include mq(tab) {
+    margin-right: 20px;
+  }
+}
+
+.button:last-child {
+  @include mq(mob-only) {
+    margin-bottom: 12px;
+  }
+}
+
+.disabled {
+  display: block;
+  width: 100%;
+  font-family: 'Manrope Medium';
+  font-size: 16px;
+  line-height: 1.38;
+  letter-spacing: 0.04em;
+
+  color: var(--font-color);
+  background-color: var(--white);
+  border: 2px solid var(--accent-color);
+  border-radius: 40px;
+
+  padding-top: 9px;
+  padding-bottom: 9px;
+
+  @include mq(tab) {
+    width: 180px;
+  }
+}
+
+.disabled:first-child {
+  @include mq(tab) {
+    margin-right: 20px;
+  }
+}
+
+.disabled:last-child {
+  @include mq(mob-only) {
+    margin-bottom: 12px;
+  }
+}

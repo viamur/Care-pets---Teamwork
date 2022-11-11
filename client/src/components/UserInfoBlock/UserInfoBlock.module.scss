@@ -1,0 +1,246 @@
+@import '../../sass/mixin';
+
+.infoWrapper {
+  background: #ffffff;
+  box-shadow: 7px 4px 14px -5px rgba(0, 0, 0, 0.11);
+  border-radius: 20px;
+  padding: 20px 23px;
+
+  @include mq(tab) {
+    position: relative;
+    // margin: 0px 32px 0px 0px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    padding: 24px 40px;
+    border-radius: 40px;
+  }
+
+  @include mq(desk) {
+    width: 395px;
+    display: block;
+    margin: 0px;
+    padding: 20px 16px 0 20px;
+
+    box-shadow: none;
+  }
+}
+
+.avatarWrapper {
+  margin-bottom: 36px;
+
+  @include mq(tab) {
+    margin-bottom: 0;
+  }
+
+  @include mq(desk) {
+    position: relative;
+    margin-bottom: 32px;
+  }
+}
+
+.avatar {
+  width: 233px;
+  height: 233px;
+  margin: auto;
+  margin-bottom: 12px;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+  filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
+
+  @include mq(tab) {
+    margin-bottom: 8px;
+  }
+}
+
+.avatarInputFile {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  margin-left: auto;
+  padding-right: 10px;
+
+  font-size: 12px;
+  line-height: 1.83;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--accent-color);
+  }
+  @include mq(tab) {
+    padding-right: 0;
+  }
+
+  @include mq(desk) {
+    position: absolute;
+    right: 0;
+    bottom: -15px;
+  }
+}
+
+.iconInputFile {
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+}
+
+.avatarInput {
+  display: none;
+}
+
+.list {
+  @include mq(tab) {
+    margin-top: 16px;
+    margin-right: 52px;
+    flex-shrink: 5;
+  }
+
+  @include mq(desk) {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 103px;
+  }
+}
+
+.itemUS {
+  display: flex;
+  align-items: center;
+
+  &:not(:last-child) {
+    margin-bottom: 4px;
+  }
+
+  @include mq(desk) {
+    width: 100%;
+  }
+  &:nth-child(3) p {
+    flex-shrink: 20;
+  }
+}
+.itemUA {
+  display: flex;
+  align-items: center;
+  &:not(:last-child) {
+    margin-bottom: 4px;
+  }
+  @include mq(desk) {
+    width: 100%;
+  }
+  & .item__title {
+    min-width: 85px;
+    @include mq(tab) {
+      min-width: 125px;
+    }
+    @include mq(desk) {
+      margin-right: 0px;
+    }
+  }
+  &:nth-child(3) p {
+    flex-shrink: 20;
+  }
+  &:nth-child(3) {
+    align-items: flex-end;
+  }
+  &:nth-child(3) .itemDatepicker__disabled,
+  &:nth-child(3) .item__input {
+    position: relative;
+    bottom: -4px;
+  }
+}
+
+.item__title {
+  min-width: 56px;
+
+  font-family: 'Manrope Medium';
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: 0.04em;
+
+  @include mq(tab) {
+    // min-width: 83px;
+    min-width: 110px;
+
+    font-size: 18px;
+    line-height: 1.39;
+  }
+
+  @include mq(desk) {
+    margin-right: 24px;
+  }
+}
+
+.item__input {
+  width: 100%;
+  margin-right: 9px;
+  padding: 4px 10px;
+
+  flex-shrink: 20;
+
+  font-family: 'Manrope Regular';
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: 0.04em;
+
+  background-color: var(--bg-color);
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 40px;
+
+  &:disabled {
+    background-color: var(--white);
+    border: 1px solid var(--white);
+  }
+
+  @include mq(tab) {
+    font-size: 18px;
+    line-height: 1.39;
+  }
+
+  @include mq(desk) {
+    width: 100%;
+  }
+}
+
+.itemDatepicker__disabled {
+  composes: item__input;
+  background-color: var(--white);
+  border: 1px solid var(--white);
+
+  @include mq(tab) {
+    font-size: 18px;
+    line-height: 1.39;
+  }
+
+  @include mq(desk) {
+    width: 100%;
+  }
+}
+
+.title {
+  // margin-left: 20px;
+  margin-bottom: 18px;
+  font-family: 'Manrope Medium';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 27px;
+
+  /* Черный */
+
+  color: #111111;
+
+  @include mq(tab) {
+    // margin-left: 32px;
+    font-size: 28px;
+    line-height: 38px;
+  }
+
+  @include mq(desk) {
+    font-size: 28px;
+    line-height: 38px;
+    margin: 0 0px 24px 0;
+  }
+}

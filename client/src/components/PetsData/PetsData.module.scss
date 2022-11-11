@@ -1,0 +1,97 @@
+@import '../../sass/mixin';
+
+.mainWrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 47px 0 0px 0;
+
+  @include mq(tab) {
+    margin: 20px 0 0px 0;
+  }
+
+  @include mq(desk) {
+    margin: 0;
+    width: 100%;
+  }
+}
+
+.headerPetsData {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  @include mq(desk) {
+    padding-right: 16px;
+  }
+}
+
+.title {
+  font-family: 'Manrope Medium';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 27px;
+
+  /* Черный */
+
+  color: #111111;
+
+  @include mq(tab) {
+    font-size: 28px;
+    line-height: 38px;
+  }
+
+  @include mq(desk) {
+    font-size: 28px;
+    line-height: 38px;
+  }
+}
+
+.addPetWrapper {
+  display: flex;
+  align-items: center;
+  @include mq(tab) {
+    display: flex;
+    position: absolute;
+    align-items: center;
+    top: 0;
+    right: 0;
+  }
+  @include mq(desk) {
+    position: relative;
+  }
+}
+
+.addPettTitle {
+  font-family: 'Manrope Medium';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 27px;
+
+  /* Черный */
+
+  color: #111111;
+}
+
+.buttonToModal {
+  width: 40px;
+  height: 40px;
+
+  margin-left: 15px;
+
+  font-size: 42px;
+  line-height: 18px;
+  //   padding: 8px;
+  border: none;
+  border-radius: 50%;
+  color: var(--white);
+  background-color: var(--accent-color);
+  cursor: pointer;
+
+  @include mq(tab) {
+    margin-left: 20px;
+  }
+
+  @include mq(desk) {
+  }
+}

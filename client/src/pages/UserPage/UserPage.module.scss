@@ -1,0 +1,24 @@
+@import '../../sass/mixin';
+
+.pageWrapper {
+  @include mq(tab) {
+    position: relative;
+  }
+
+  @include mq(desk) {
+    display: flex;
+  }
+}
+
+.userWrapper {
+  @include mq(tab) {
+    border-radius: 0px 40px 40px 0px;
+  }
+
+  @include mq(desk) {
+    display: flex;
+    flex-direction: column;
+    width: 411px;
+    margin-right: 32px;
+  }
+}

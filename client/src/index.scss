@@ -3,15 +3,38 @@
 @import './sass/variables';
 @import './sass/mixin';
 
+// disable horizontal scroll on mobile
+
+html,
+body {
+  // overflow-x: hidden;
+}
+
 body {
   margin: 0;
-  font-family: 'Roboto Regular', sans-serif;
+  font-family: 'Manrope Regular', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background-color: var(--bg-color);
+  color: var(--font-color);
+}
+
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--accent-color);
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
 
 /* RESET */
@@ -44,4 +67,47 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+// .on {
+//   overflow: hidden;
+// }
+
+.react-date-picker__wrapper {
+  border: none !important;
+  cursor: pointer;
+}
+
+.pencil,
+.galochka {
+  width: 20px;
+  height: 20px;
+
+  border: none;
+  border-radius: 50%;
+
+  background-color: var(--bg-color);
+
+  background-repeat: no-repeat;
+  background-size: 12px 12px;
+  background-position: center;
+
+  @include mq(tab) {
+    width: 32px;
+    height: 32px;
+
+    background-size: 20px 20px;
+  }
+}
+
+.pencil {
+  background-image: url('./images/icons/pencil-icon.svg');
+}
+
+.galochka {
+  background-image: url('./images/icons/check-icon.svg');
+}
+
+.pencil:hover {
+  background-image: url('./images/icons/pencil-accent-icon.svg');
 }

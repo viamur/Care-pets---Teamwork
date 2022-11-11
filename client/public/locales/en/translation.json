@@ -1,0 +1,216 @@
+{
+  "titles": {
+    "homePage": "Take good care of your small pets",
+    "newsPage": "News",
+    "friendsPage": "Our friends",
+    "noticesPage": "Find your favorite pet"
+  },
+
+  "navigation": {
+    "newsPage": "News",
+    "friendsPage": "Our friends",
+    "noticesPage": "Find pet",
+    "login": "Login",
+    "registration": "Registration",
+    "account": "Account"
+  },
+
+  "login": {
+    "title": "Login",
+    "linkDescr": "Don't have an account?",
+    "link": "Register",
+    "button": "Login",
+    "placeholders": {
+      "password": "Password",
+      "email": "Email"
+    }
+  },
+
+  "registration": {
+    "title": "Registration",
+    "linkDescr": "Already have an account?",
+    "link": "Login",
+    "buttons": { "next": "Next", "register": "Register", "back": "Back" },
+    "placeholders": {
+      "password": "Password",
+      "email": "Email",
+      "confirmPassword": "Confirm Password",
+      "name": "Name",
+      "city": "City, region",
+      "phone": "Mobile phone"
+    }
+  },
+
+  "newsPage": {
+    "more": "Read more",
+    "placeholder": "Search"
+  },
+  "friendsPage": {
+    "time": "Time",
+    "adress": "Adress",
+    "email": "Email",
+    "phone": "Phone",
+    "hours": {
+      "monday": "MN",
+      "tuesday": "TU",
+      "wednesday": "WE",
+      "thursday": "TH",
+      "friday": "FR",
+      "saturday": "SA",
+      "sunday": "SU"
+    }
+  },
+
+  "noticesPage": {
+    "placeholder": "Search",
+    "buttons": {
+      "sell": "Sell",
+      "lostFound": "Lost/found",
+      "goodHands": "In good hands",
+      "favorite": "Favorite ads",
+      "ownAds": "My ads",
+      "addPet": "Add pet",
+      "learnMore": "Learn more",
+      "delete": "Delete",
+      "addFavorite": "Add to",
+      "removeFavorite": "Remove from",
+      "contact": "Contact",
+      "cancel": "Cancel",
+      "next": "Next",
+      "back": "Back",
+      "done": "Done"
+    },
+    "noResults": {
+      "category": "There are no results in this category",
+      "favorite": "You haven't added anything to your favorite",
+      "ownAds": "You haven't added your own ads"
+    },
+    "categories": {
+      "sell": "sell",
+      "lostFound": "lost/found",
+      "inGoodHands": "in good hands"
+    },
+    "age": {
+      "title": "Age",
+      "month": "month",
+      "months": "months",
+      "monthMoreFour": "months",
+      "year": "year",
+      "years": "years",
+      "yearsMoreFour": "years",
+      "lessOne": "month"
+    },
+    "item": { "breed": "Breed", "place": "Place", "price": "Price" },
+    "modal": {
+      "name": "Name",
+      "birthday": "Birthday",
+      "breed": "Breed",
+      "place": "Place",
+      "sex": "The sex",
+      "email": "Email",
+      "phone": "Phone",
+      "sell": "Sell",
+      "comments": "Comments"
+    },
+    "addNotice": {
+      "title": "Add pet",
+      "descr": "Enter data about the pet. Fill in all required fields",
+      "titleAd": "Tittle of ad",
+      "name": "Name pet",
+      "date": "Date of birth",
+      "breed": "Breed",
+      "location": "Location",
+      "load": "Load the pet’s image",
+      "price": "Price",
+      "comments": "Comments",
+      "sex": {
+        "title": "The sex",
+        "male": "Male",
+        "female": "Female"
+      },
+      "placeholders": {
+        "titleAd": "Type name",
+        "name": "Type name pet",
+        "breed": "Type breed",
+        "location": "Type location",
+        "price": "Type price",
+        "comments": "Type comments",
+        "years": "yyyy",
+        "days": "dd",
+        "months": "mm"
+      }
+    }
+  },
+  "userPage": {
+    "buttons": { "addPet": "Add pet", "logout": "Logout" },
+    "infoBlock": {
+      "title": "My information",
+      "photo": "Edit photo",
+      "name": "Name",
+      "email": "Email",
+      "birthday": "Birthday",
+      "phone": "Phone",
+      "city": "City"
+    },
+    "petsBlock": {
+      "title": "My pets",
+      "name": "Name",
+      "date": "Date of birth",
+      "breed": "Breed",
+      "comments": "Comments"
+    },
+    "addPet": {
+      "title": "Add pet",
+      "description": "Add photo and some comments",
+      "name": "Name pet",
+      "date": "Date of birth",
+      "breed": "Breed",
+      "comments": "Comments",
+      "placeholders": {
+        "name": "Type name pet",
+        "breed": "Type breed",
+        "comments": "Type comments",
+        "years": "yyyy",
+        "days": "dd",
+        "months": "mm"
+      }
+    }
+  },
+
+  "errors": {
+    "allFields": "Input all required fields",
+    "allFieldsFormat": "Input all fields in the necessary format",
+    "emptyQuery": "Sorry, your query is empty",
+    "isRegistration": "You have already registered, just login",
+    "news": "Sorry, there are no news matching your search query. Please try again.",
+    "noNews": "Sorry, there are no news.",
+    "notRightComments": "Input field comments in the necessary format or just miss it",
+    "noPets": "You haven't added your pets",
+    "noAddNotice": "Please, log in for adding notice",
+    "noAddFavorite": "Please, log in for adding to favorite"
+  },
+  "validation": {
+    "email": "Invalid email address",
+    "emailLatin": "Cyrillic is not allowed",
+    "emailMin": "Email must include more tnan 6 characters",
+    "emailMax": "Email must be less tnan 25 characters",
+    "passwordMin": "Password must include more tnan 7 characters",
+    "passwordMax": "Password must be less tnan 32 characters",
+    "password": "Password must contain at least 1 lowercase letter, 1 uppercase letter and 1 number",
+    "required": "This is a required field",
+    "notMatchPasswords": "Password and confirm password don't match",
+    "nameMin": "Name must include more tnan 2 characters",
+    "nameMax": "Name must be less tnan 10 characters",
+    "cityRegion": "Please, enter the city and region separated by virgule",
+    "phone": "Please, enter the phone number in the following way: +380XXXXXXXXX",
+    "phoneLength": "Phone must include 13 characters",
+    "priceNum": "Enter the number",
+    "priceInt": "Only integer numbers",
+    "min": "Field must include more tnan 2 characters",
+    "max": "Field must be less tnan 24 characters",
+    "titleMax": "Field must be less tnan 48 characters",
+    "namePetMax": "Field must be less tnan 16 characters",
+    "commentsMin": "Field must include more tnan 8 characters",
+    "commentsMax": "Field must be less tnan 120 characters"
+  }
+}
