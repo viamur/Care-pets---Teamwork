@@ -4,11 +4,11 @@ import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import DatePicker from 'react-date-picker';
+import { useTranslation } from 'react-i18next';
 import { showAlertMessage } from '../../utils/showMessages';
 import { addPetInUserCard } from '../../redux/user/userOperations';
 import imgLoad from '../../images/modals/loadMobile.png';
 import sprite from '../../images/icons/sprite.svg';
-import { useTranslation } from 'react-i18next';
 import s from './ModalAddsPet.module.scss';
 
 const modalContainer = document.getElementById('modal-root');
@@ -220,7 +220,7 @@ const ModalAddsPet = ({ setShowModal }) => {
                   {t('noticesPage.buttons.cancel')}
                 </button>
                 <button
-                  className={s.button}
+                  className={`${s.button} ${s.accentBtn}`}
                   type="button"
                   onClick={onPageChange}
                 >
@@ -284,7 +284,7 @@ const ModalAddsPet = ({ setShowModal }) => {
                 >
                   {t('noticesPage.buttons.back')}
                 </button>
-                <button className={s.button} type="submit">
+                <button className={`${s.button} ${s.accentBtn}`} type="submit">
                   {t('noticesPage.buttons.done')}
                 </button>
               </div>

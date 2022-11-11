@@ -205,13 +205,13 @@ const RegisterForm = () => {
             <p className={s['error--last']}>
               {formik.touched.phone && phoneError && phoneError}
             </p>
-            <button className={s.button} type="submit">
+            <button className={`${s.button} ${s.accent}`} type="submit">
               {t('registration.buttons.register')}
             </button>
           </>
         )}
         <button
-          className={s['button--last']}
+          className={`${s['button--last']} ${page === 1 && s.accent}`}
           type="button"
           onClick={onPageChange}
         >

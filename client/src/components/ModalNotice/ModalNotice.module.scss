@@ -253,7 +253,7 @@
   }
 }
 
-.btn:hover {
+.accent {
   background-color: var(--accent-color);
   color: var(--white);
 }
@@ -264,8 +264,4 @@
 
 .icon {
   fill: #f59256;
-}
-
-.btn:hover .icon {
-  fill: #fff;
 }

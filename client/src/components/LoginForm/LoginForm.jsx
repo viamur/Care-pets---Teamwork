@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useTranslation } from 'react-i18next';
 import { showAlertMessage } from '../../utils/showMessages';
 import { loginUser } from '../../redux/auth/authOperations';
 import { getAuthError } from '../../redux/auth/authSelectors';
-import { useTranslation } from 'react-i18next';
 import s from './LoginForm.module.scss';
 
 const LoginForm = () => {
@@ -95,7 +95,7 @@ const LoginForm = () => {
       <p className={s['error--last']}>
         {formik.touched.password && passwordError && passwordError}
       </p>
-      <button className={s.button} type="submit">
+      <button className={`${s.button} ${s.accent}`} type="submit">
         {t('login.button')}
       </button>
     </form>

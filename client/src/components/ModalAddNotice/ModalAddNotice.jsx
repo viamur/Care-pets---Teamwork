@@ -1,21 +1,20 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import DatePicker from 'react-date-picker';
-import { useParams } from 'react-router-dom';
 import { showAlertMessage } from '../../utils/showMessages';
 import { addNotice, fetchOwnAds } from '../../utils/api';
 import imgLoad from '../../images/modals/loadMobile.png';
 import Loader from '../../components/Loader/Loader';
 import sprite from '../../images/icons/sprite.svg';
-import { useTranslation } from 'react-i18next';
 import s from './ModalAddNotice.module.scss';
 
 const portalModal = document.querySelector('#modal-root');
 
-const ModalAddNotice = ({ setShowModal, array, setArray }) => {
+const ModalAddNotice = ({ setShowModal, setArray }) => {
   const { t } = useTranslation();
   const [page, setPage] = useState(1);
   const [photo, setPhoto] = useState('');
@@ -351,7 +350,7 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
                   {t('noticesPage.buttons.cancel')}
                 </button>
                 <button
-                  className={s.button}
+                  className={`${s.button} ${s.accentBtn}`}
                   type="button"
                   onClick={onPageChange}
                 >
@@ -496,7 +495,9 @@ const ModalAddNotice = ({ setShowModal, array, setArray }) => {
                   {t('noticesPage.buttons.back')}
                 </button>
                 <button
-                  className={isLoading ? s.disabled : s.button}
+                  className={
+                    isLoading ? s.disabled : `${s.button} ${s.accentBtn}`
+                  }
                   type="submit"
                   disabled={isLoading ? true : false}
                 >

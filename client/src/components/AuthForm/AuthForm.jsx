@@ -1,10 +1,10 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { getAuthError } from '../../redux/auth/authSelectors';
 import { changeError } from '../../redux/auth/authSlice';
 import LoginForm from 'components/LoginForm/LoginForm';
 import RegisterForm from 'components/RegisterForm/RegisterForm';
-import { useTranslation } from 'react-i18next';
 import s from './AuthForm.module.scss';
 
 const AuthForm = ({ title }) => {
