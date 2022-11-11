@@ -95,7 +95,7 @@ const LoginForm = () => {
       <p className={s['error--last']}>
         {formik.touched.password && passwordError && passwordError}
       </p>
-      <button className={s.button} type="submit">
+      <button className={`${s.button} ${s.accent}`} type="submit">
         {t('login.button')}
       </button>
     </form>

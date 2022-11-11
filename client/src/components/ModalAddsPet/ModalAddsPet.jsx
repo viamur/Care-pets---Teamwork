@@ -220,7 +220,7 @@ const ModalAddsPet = ({ setShowModal }) => {
                   {t('noticesPage.buttons.cancel')}
                 </button>
                 <button
-                  className={s.button}
+                  className={`${s.button} ${s.accentBtn}`}
                   type="button"
                   onClick={onPageChange}
                 >
@@ -284,7 +284,7 @@ const ModalAddsPet = ({ setShowModal }) => {
                 >
                   {t('noticesPage.buttons.back')}
                 </button>
-                <button className={s.button} type="submit">
+                <button className={`${s.button} ${s.accentBtn}`} type="submit">
                   {t('noticesPage.buttons.done')}
                 </button>
               </div>

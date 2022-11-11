@@ -194,7 +194,10 @@ const ModalNotice = ({
                 <use href={sprite + '#like2-icon'} />
               </svg>
             </button>
-            <a className={s.btn} href={`tel:${info.owner?.phone}`}>
+            <a
+              className={`${s.btn} ${s.accent}`}
+              href={`tel:${info.owner?.phone}`}
+            >
               {t('noticesPage.buttons.contact')}
             </a>
           </div>
