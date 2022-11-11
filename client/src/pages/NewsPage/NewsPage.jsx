@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { fetchNews } from '../../utils/api';
 import { showInfoMessage } from '../../utils/showMessages';
-import filteArrByTitle from '../../utils/filteArrByTitle';
+import filterArrByTitle from '../../utils/filterArrByTitle';
 import NewsList from '../../components/NewsList/NewsList';
 import NewsSearch from '../../components/NewsSearch/NewsSearch';
 import Container from '../../components/Container/Container';
@@ -50,9 +50,11 @@ const NewsPage = () => {
         <Loader />
       ) : (
         <NewsList
-          news={searchQuery !== '' ? filteArrByTitle(news, searchQuery) : news}
+          news={searchQuery !== '' ? filterArrByTitle(news, searchQuery) : news}
         />
       )}
+
+      {/* {filterArrByTitle(news, searchQuery).length !== 0 && <p>Not Found</p>} */}
     </Container>
   );
 };
