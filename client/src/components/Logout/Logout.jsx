@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { logOutUser } from '../../redux/auth/authOperations';
 import logout from '../../images/icons/logout-2.png';
-import { useTranslation } from 'react-i18next';
 import s from './Logout.module.scss';
 
 const Logout = () => {

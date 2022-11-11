@@ -1,8 +1,7 @@
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
-import { getUserName, getUserAvatar } from 'redux/user/userSelectrors';
+import { NavLink, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { getUserName, getUserAvatar } from 'redux/user/userSelectrors';
 import LanguageSwitcher from '../../LanguageSwitcher/LanguageSwitcher';
 
 import s from './navMenu.module.scss';

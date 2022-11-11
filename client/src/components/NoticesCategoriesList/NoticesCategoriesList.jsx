@@ -1,12 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { showAlertMessage } from '../../utils/showMessages';
-import {
-  fetchAdsByCategory,
-  fetchFavoriteAds,
-  fetchOwnAds,
-} from '../../utils/api';
 import { useTranslation } from 'react-i18next';
+import { showAlertMessage } from '../../utils/showMessages';
+import { fetchAdsByCategory, fetchFavoriteAds, fetchOwnAds } from '../../utils/api';
 import Loader from '../../components/Loader/Loader';
 import NoticeCategoryItem from 'components/NoticeCategoryItem/NoticeCategoryItem';
 import AddNoticeButton from 'components/AddNoticeButton/AddNoticeButton';
@@ -66,12 +62,9 @@ const NoticesCategoriesList = ({ category, searchQuery }) => {
 
   return (
     <>
-      {!isLoading &&
-        array.length === 0 &&
-        category !== 'favorite' &&
-        category !== 'own' && (
-          <p className={s.noResults}>{t('noticesPage.noResults.category')}</p>
-        )}
+      {!isLoading && array.length === 0 && category !== 'favorite' && category !== 'own' && (
+        <p className={s.noResults}>{t('noticesPage.noResults.category')}</p>
+      )}
       {!isLoading && array.length === 0 && category === 'favorite' && (
         <p className={s.noResults}>{t('noticesPage.noResults.favorite')}</p>
       )}

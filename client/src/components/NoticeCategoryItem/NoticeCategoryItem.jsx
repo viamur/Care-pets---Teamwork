@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { showAlertMessage, showInfoMessage } from '../../utils/showMessages';
-import sprite from '../../images/icons/sprite.svg';
 import { addFavoriteAd, removeFavoriteAd, deleteOwnAd } from '../../utils/api';
 import { getUserEmail } from '../../redux/auth/authSelectors';
 import ModalNotice from 'components/ModalNotice/ModalNotice';
-import { useTranslation } from 'react-i18next';
+import sprite from '../../images/icons/sprite.svg';
 import s from './NoticeCategoryItem.module.scss';
 
 const NoticeCategoryItem = ({ data, id, array, setArray, category: path }) => {

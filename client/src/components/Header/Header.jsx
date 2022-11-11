@@ -5,8 +5,8 @@ import Modal from 'components/ModalMobile/MobileModal';
 import MobileMenu from './MobileMenu';
 import Container from 'components/Container/Container';
 
-import s from './Header.module.scss';
 import useMail from 'hooks/useLogin';
+import s from './Header.module.scss';
 
 const Header = () => {
   const [menuStatus, setMenuStatus] = useState(false);

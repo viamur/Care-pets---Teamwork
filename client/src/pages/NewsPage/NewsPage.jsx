@@ -26,6 +26,7 @@ const NewsPage = () => {
       })
       .catch(err => console.log(err))
       .finally(() => setIsLoading(false));
+    // eslint-disable-next-line
   }, []);
 
   const onSubmitSearch = searchQuery => {
@@ -40,18 +41,12 @@ const NewsPage = () => {
     <Container>
       <h2 className={s.title}>{t('titles.newsPage')}</h2>
 
-      <NewsSearch
-        onSubmit={onSubmitSearch}
-        news={news}
-        onChange={onInputChange}
-      />
+      <NewsSearch onSubmit={onSubmitSearch} news={news} onChange={onInputChange} />
 
       {isLoading ? (
         <Loader />
       ) : (
-        <NewsList
-          news={searchQuery !== '' ? filterArrByTitle(news, searchQuery) : news}
-        />
+        <NewsList news={searchQuery !== '' ? filterArrByTitle(news, searchQuery) : news} />
       )}
 
       {/* {filterArrByTitle(news, searchQuery).length !== 0 && <p>Not Found</p>} */}

@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import DatePicker from 'react-date-picker';
+import { useTranslation } from 'react-i18next';
 import { getAllUserInfo } from '../../redux/user/userSelectrors';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { useTranslation } from 'react-i18next';
 import { pathInfoUser } from 'redux/user/userOperations';
 import Logout from '../Logout/Logout';
 
 import s from './UserInfoBlock.module.scss';
 import sprite from '../../images/icons/sprite.svg';
-import DatePicker from 'react-date-picker';
 
 /* ----------REGEX--------------- */
 const emailRegex = /^[a-zA-Z0-9^\s@]+@[a-zA-Z^\s@]+\.[a-zA-Z^\s@]+$/;

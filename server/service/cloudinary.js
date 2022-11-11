@@ -28,7 +28,6 @@ const clodinaryRemove = async (url, folder) => {
   const public_id = url.split('/').reverse()[0].split('.')[0];
 
   const response = await cloudinary.uploader.destroy(folder + '/' + public_id);
-  console.log(response);
 };
 
 module.exports = { clodinaryUpload, clodinaryRemove };
