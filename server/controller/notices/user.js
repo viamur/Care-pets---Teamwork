@@ -48,7 +48,7 @@ const add = async (req, res) => {
   }
 
   /* defaults img яку буде перезаписане якщо зображення прикріпленне к формі */
-  let imgURL = 'https://pet-support.herokuapp.com/notices/default.jpg';
+  let imgURL = 'https://care-pets-backend.goit.global/notices/default.jpg';
 
   try {
     /* =======Загрузка файла======= */
@@ -92,7 +92,7 @@ const remove = async (req, res) => {
     }
 
     /* Удалить изображение с cloudinary если изображение не равно default */
-    if (response.imgURL !== 'https://pet-support.herokuapp.com/notices/default.jpg') {
+    if (response.imgURL !== 'https://care-pets-backend.goit.global/notices/default.jpg') {
       await clodinaryRemove(response.imgURL, 'notices');
     }
 

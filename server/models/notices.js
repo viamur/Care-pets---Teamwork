@@ -45,7 +45,7 @@ const noticesSchema = new Schema(
     },
     imgURL: {
       type: String,
-      default: 'https://pet-support.herokuapp.com/notices/default.jpg',
+      default: 'https://care-pets-backend.goit.global/notices/default.jpg',
     },
     comments: {
       type: String,

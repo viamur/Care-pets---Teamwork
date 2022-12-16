@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://pet-support.herokuapp.com';
+axios.defaults.baseURL = 'https://care-pets-backend.goit.global';
 
 const savedToken = {
   set(token) {

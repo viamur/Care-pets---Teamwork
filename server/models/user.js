@@ -53,7 +53,7 @@ const userShema = new Schema(
         },
         imgURL: {
           type: String,
-          default: 'https://pet-support.herokuapp.com/pet/default.jpg',
+          default: 'https://care-pets-backend.goit.global/pet/default.jpg',
         },
         comments: {
           type: String,
@@ -64,7 +64,7 @@ const userShema = new Schema(
     ],
     avatarURL: {
       type: String,
-      default: 'https://pet-support.herokuapp.com/avatar/default.jpg',
+      default: 'https://care-pets-backend.goit.global/avatar/default.jpg',
     },
     token: {
       type: String,

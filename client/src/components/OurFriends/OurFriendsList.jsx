@@ -12,7 +12,7 @@ const OurFriendsList = ({ friends }) => {
             <h3 className={s.cardTitle}>{friend.title}</h3>
             <div className={s.iconDescriptionWrapper}>
               <img
-                src={`https://pet-support.herokuapp.com/${friend.icon}`}
+                src={`https://care-pets-backend.goit.global/${friend.icon}`}
                 className={s.icon}
                 alt="Our Friend Icon"
               />

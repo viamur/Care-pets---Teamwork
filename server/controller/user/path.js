@@ -17,7 +17,7 @@ const pathUser = async (req, res) => {
   }
 
   /* defaults img яку буде перезаписане якщо зображення прикріпленне к формі */
-  let avatarURL = 'https://pet-support.herokuapp.com/avatar/default.jpg';
+  let avatarURL = 'https://care-pets-backend.goit.global/avatar/default.jpg';
 
   try {
     const beforeUpdateInfoUser = await service.user.getUserInfo({ id: user.id });
@@ -29,7 +29,7 @@ const pathUser = async (req, res) => {
 
       /* Удалить изображение с cloudinary если изображение не равно default */
       if (
-        beforeUpdateInfoUser.avatarURL !== 'https://pet-support.herokuapp.com/avatar/default.jpg'
+        beforeUpdateInfoUser.avatarURL !== 'https://care-pets-backend.goit.global/avatar/default.jpg'
       ) {
         await clodinaryRemove(beforeUpdateInfoUser.avatarURL, 'avatar');
       }
