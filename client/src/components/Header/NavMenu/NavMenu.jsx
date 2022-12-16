@@ -74,7 +74,17 @@ const NavMenu = ({ isUserLoggedIn, onClose }) => {
           {isUserLoggedIn && (
             <NavLink className={s.account} to="/user">
               {userAvatar ? (
-                <img src={userAvatar} alt="avatar user" height={23} width={23} className={s.img} />
+                <img
+                  src={
+                    userAvatar === 'https://pet-support.herokuapp.com/avatar/default.jpg'
+                      ? 'https://care-pets-backend.goit.global/avatar/default.jpg'
+                      : userAvatar
+                  }
+                  alt="avatar user"
+                  height={23}
+                  width={23}
+                  className={s.img}
+                />
               ) : (
                 <svg viewBox="3 0 45 30" width={38} height={23} className={s.icon}>
                   <path

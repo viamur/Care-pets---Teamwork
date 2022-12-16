@@ -167,7 +167,17 @@ const UserInfoBlock = () => {
       <h2 className={s.title}>{t('userPage.infoBlock.title')}:</h2>
       <div className={s.infoWrapper}>
         <div className={s.avatarWrapper}>
-          <img src={photo} alt="avatar" width={200} height={200} className={s.avatar} />
+          <img
+            src={
+              photo === 'https://pet-support.herokuapp.com/avatar/default.jpg'
+                ? 'https://care-pets-backend.goit.global/avatar/default.jpg'
+                : photo
+            }
+            alt="avatar"
+            width={200}
+            height={200}
+            className={s.avatar}
+          />
           <label className={s.avatarInputFile}>
             <svg className={s.iconInputFile}>
               <use href={sprite + '#camera-icon'} />

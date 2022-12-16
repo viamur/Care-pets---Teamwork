@@ -20,7 +20,15 @@ const PetsList = () => {
         {petsList.length > 0 ? (
           petsList.map(pet => (
             <li key={pet._id} className={s.card}>
-              <img src={pet.imgURL} alt="Pet Foto" className={s.petFoto} />
+              <img
+                src={
+                  pet.imgURL === 'https://pet-support.herokuapp.com/pet/default.jpg'
+                    ? 'https://care-pets-backend.goit.global/pet/default.jpg'
+                    : pet.imgURL
+                }
+                alt="Pet Foto"
+                className={s.petFoto}
+              />
               <div className={s.cardDiscription}>
                 <button
                   type="button"
@@ -40,27 +48,19 @@ const PetsList = () => {
                   </svg>
                 </button>
                 <p className={s.categoryDiscription}>
-                  <span className={s.discriptionTitle}>
-                    {t('userPage.petsBlock.name')}:
-                  </span>{' '}
+                  <span className={s.discriptionTitle}>{t('userPage.petsBlock.name')}:</span>{' '}
                   {pet.name}
                 </p>
                 <p className={s.categoryDiscription}>
-                  <span className={s.discriptionTitle}>
-                    {t('userPage.petsBlock.date')}:
-                  </span>
+                  <span className={s.discriptionTitle}>{t('userPage.petsBlock.date')}:</span>
                   {convertDate(pet.birthday)}
                 </p>
                 <p className={s.categoryDiscription}>
-                  <span className={s.discriptionTitle}>
-                    {t('userPage.petsBlock.breed')}:
-                  </span>{' '}
+                  <span className={s.discriptionTitle}>{t('userPage.petsBlock.breed')}:</span>{' '}
                   {pet.breed}
                 </p>
                 <p className={s.categoryDiscription}>
-                  <span className={s.discriptionTitle}>
-                    {t('userPage.petsBlock.comments')}:
-                  </span>
+                  <span className={s.discriptionTitle}>{t('userPage.petsBlock.comments')}:</span>
                   {pet.comments}
                 </p>
               </div>

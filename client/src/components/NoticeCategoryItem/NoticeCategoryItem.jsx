@@ -114,7 +114,15 @@ const NoticeCategoryItem = ({ data, id, array, setArray, category: path }) => {
     <>
       <li className={s.item}>
         <div className={s.thumbImage}>
-          <img src={imgURL} className={s.imgCard} alt="animal" />
+          <img
+            src={
+              imgURL === 'https://pet-support.herokuapp.com/notices/default.jpg'
+                ? 'https://care-pets-backend.goit.global/notices/default.jpg'
+                : imgURL
+            }
+            className={s.imgCard}
+            alt="animal"
+          />
           <p className={s.status}>{categoriesForFront[category]}</p>
 
           <button type="button" className={s.btnToggleFavorite} onClick={onClickFavorite}>

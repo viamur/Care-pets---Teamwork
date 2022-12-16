@@ -5,7 +5,6 @@ import Modal from 'components/ModalMobile/MobileModal';
 import MobileMenu from './MobileMenu';
 import Container from 'components/Container/Container';
 
-
 import s from './header.module.scss';
 
 import useMail from 'hooks/useLogin';
@@ -26,9 +25,15 @@ const Header = () => {
       body.classList.remove('off');
       body.classList.add('on');
     }
+    if (document.body.style.overflow === 'hidden') {
+      document.body.style.overflow = 'auto';
+      return;
+    }
+    document.body.style.overflow = 'hidden';
   };
 
   const onClose = () => {
+    document.body.style.overflow = 'visible';
     setMenuStatus(false);
   };
 
