@@ -25,15 +25,15 @@ const Header = () => {
       body.classList.remove('off');
       body.classList.add('on');
     }
-    if (document.body.style.overflow === 'hidden') {
-      document.body.style.overflow = 'auto';
-      return;
-    }
-    document.body.style.overflow = 'hidden';
+    // if (document.body.style.overflow === 'hidden') {
+    //   document.body.style.overflow = 'auto';
+    //   return;
+    // }
+    // document.body.style.overflow = 'hidden';
   };
 
   const onClose = () => {
-    document.body.style.overflow = 'visible';
+    // document.body.style.overflow = 'visible';
     setMenuStatus(false);
   };
 

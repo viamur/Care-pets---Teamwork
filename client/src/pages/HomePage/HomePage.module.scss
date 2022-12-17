@@ -25,21 +25,24 @@
     background-size: 100% auto;
     background-position: center bottom;
 
-      @include mq(retina) {
-        background-image: url('../../images/bgs/home-waves-tab-2x.png');
-      }
+    @include mq(retina) {
+      background-image: url('../../images/bgs/home-waves-tab-2x.png');
+    }
   }
 
   @include mq(desk) {
     min-height: calc(100vh - 133px);
 
-    background-image: url('../../images/bgs/home-woman-desk-1x.png'), url('../../images/bgs-svg/main-bg-heart.svg'), url('../../images/bgs/home-waves-desk-1x.png');
+    background-image: url('../../images/bgs/home-woman-desk-1x.png'),
+      url('../../images/bgs-svg/main-bg-heart.svg'), url('../../images/bgs/home-waves-desk-1x.png');
     background-size: contain, auto, 100% auto;
     background-position: right bottom, top 5% right 40%, center bottom;
 
-      @include mq(retina) {
-        background-image: url('../../images/bgs/home-woman-desk-2x.png'), url('../../images/bgs-svg/main-bg-heart.svg'), url('../../images/bgs/home-waves-desk-2x.png');
-      }
+    @include mq(retina) {
+      background-image: url('../../images/bgs/home-woman-desk-2x.png'),
+        url('../../images/bgs-svg/main-bg-heart.svg'),
+        url('../../images/bgs/home-waves-desk-2x.png');
+    }
   }
 }
 
@@ -94,12 +97,12 @@
     background-size: contain;
     background-position: center bottom;
 
-      @include mq(retina) {
-        background-image: url('../../images/bgs/home-woman-tab-2x.png');
-      }
+    @include mq(retina) {
+      background-image: url('../../images/bgs/home-woman-tab-2x.png');
+    }
   }
 
-   @include mq(desk) {
-    background: none
+  @include mq(desk) {
+    background: none;
   }
 }
