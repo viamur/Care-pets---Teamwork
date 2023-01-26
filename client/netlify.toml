@@ -1,7 +1,0 @@
-[build]
-    publich = "build"
-
-[[redirects]]
-    from = "/*"
-    to = "/index.html"
-    status = 200

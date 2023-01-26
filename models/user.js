@@ -3,10 +3,10 @@ const Joi = require('joi');
 
 const { handleSchemaValidationErrors } = require('../helpers');
 
-const emailRegex = /^[a-zA-Z0-9^\s@]+@[a-zA-Z^\s@]+\.[a-zA-Z^\s@]+$/;
+// const emailRegex = /^[a-zA-Z0-9^\s@]+@[a-zA-Z^\s@]+\.[a-zA-Z^\s@]+$/;
 const phoneRegex = /^\+380\d{9}/;
-const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z0-9]).{7,32}$/;
-const cityRegex = /^(?=.*[a-zа-я])(?=.*[A-ZА-Я]).{3,32},(?=.*[a-zа-я])(?=.*[A-ZА-Я]).{3,32}$/;
+// const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z0-9]).{7,32}$/;
+// const cityRegex = /^(?=.*[a-zа-я])(?=.*[A-ZА-Я]).{3,32},(?=.*[a-zа-я])(?=.*[A-ZА-Я]).{3,32}$/;
 
 const userShema = new Schema(
   {
@@ -20,7 +20,6 @@ const userShema = new Schema(
       minlength: 6,
       maxLength: 63,
       required: [true, 'Email is required'],
-      match: emailRegex,
       unique: true,
     },
     password: {
@@ -41,7 +40,7 @@ const userShema = new Schema(
         name: {
           type: String,
           minlength: 2,
-          maxLength: 10,
+          maxLength: 16,
         },
         birthday: {
           type: Date,
@@ -58,7 +57,7 @@ const userShema = new Schema(
         comments: {
           type: String,
           minlength: 2,
-          maxLength: 50,
+          maxLength: 120,
         },
       },
     ],
@@ -77,37 +76,37 @@ const userShema = new Schema(
 userShema.post('save', handleSchemaValidationErrors);
 
 const singupSchema = Joi.object({
-  email: Joi.string().pattern(emailRegex).min(6).max(25).required(),
-  password: Joi.string().pattern(passwordRegex).min(7).max(32).required(),
+  email: Joi.string().email().min(5).max(40).required(),
+  password: Joi.string().min(6).max(40).required(),
   confirm_password: Joi.string().required().valid(Joi.ref('password')),
-  name: Joi.string().min(2).max(10).required(),
-  city: Joi.string().pattern(cityRegex).required(),
+  name: Joi.string().min(2).max(20).required(),
+  city: Joi.string().min(2).max(30).required(),
   phone: Joi.string().length(13).pattern(phoneRegex).required(),
 });
 
 const loginSchema = Joi.object({
-  email: Joi.string().min(6).max(25).pattern(emailRegex).required(),
-  password: Joi.string().min(7).max(32).required(),
+  email: Joi.string().min(5).max(40).required(),
+  password: Joi.string().min(6).max(40).required(),
 });
 
 const pathUser = Joi.object({
-  email: Joi.string().pattern(emailRegex).min(6).max(25),
-  name: Joi.string().min(2).max(10),
-  city: Joi.string().pattern(cityRegex),
+  email: Joi.string().email().min(5).max(40),
+  name: Joi.string().min(2).max(20),
+  city: Joi.string().min(2).max(30),
   phone: Joi.string().length(13).pattern(phoneRegex),
   birthday: Joi.date(),
 });
 
 const addPet = Joi.object({
-  name: Joi.string().min(2).max(16).required(),
+  name: Joi.string().min(2).max(20).required(),
   birthday: Joi.date().required(),
   breed: Joi.string().min(2).max(24).required(),
   imgURL: Joi.string(),
-  comments: Joi.string().min(8).max(120),
+  comments: Joi.string().min(2).max(120),
 });
 
 const checkEmail = Joi.object({
-  email: Joi.string().min(6).max(25).pattern(emailRegex).required(),
+  email: Joi.string().email().min(5).max(40).required(),
 });
 
 const schemas = {

@@ -36,7 +36,7 @@ const noticesSchema = new Schema(
     location: {
       type: String,
       minLength: 2,
-      maxLength: 24,
+      maxLength: 40,
       required: true,
     },
     price: {
