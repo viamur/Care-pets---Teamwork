@@ -11,9 +11,8 @@ import s from './UserInfoBlock.module.scss';
 import sprite from '../../images/icons/sprite.svg';
 
 /* ----------REGEX--------------- */
-const emailRegex = /^[a-zA-Z0-9^\s@]+@[a-zA-Z^\s@]+\.[a-zA-Z^\s@]+$/;
+const emailRegex = /\S+@\S+\.\S+/;
 const phoneRegex = /^\+380\d{9}/;
-const cityRegex = /^(?=.*[a-zа-я])(?=.*[A-ZА-Я]).{3,32},(?=.*[a-zа-я])(?=.*[A-ZА-Я]).{3,32}$/;
 
 const UserInfoBlock = () => {
   const {
@@ -105,16 +104,16 @@ const UserInfoBlock = () => {
             if (name.length < 2) {
               return Notify.failure(t('validation.nameMin'));
             }
-            if (name.length > 10) {
+            if (name.length > 20) {
               return Notify.failure(t('validation.nameMax'));
             }
             dispatch(pathInfoUser({ name }));
           }
           if (btn.name === 'email') {
-            if (email.length < 6) {
+            if (email.length < 5) {
               return Notify.failure(t('validation.emailMin'));
             }
-            if (email.length > 25) {
+            if (email.length > 40) {
               return Notify.failure(t('validation.emailMax'));
             }
             if (!emailRegex.exec(email)) {
@@ -134,9 +133,11 @@ const UserInfoBlock = () => {
             dispatch(pathInfoUser({ phone }));
           }
           if (btn.name === 'city') {
-            if (!cityRegex.exec(city)) {
-              /* REGEX надо провалидировать */
-              return Notify.failure(t('validation.cityRegion'));
+            if (city.length < 2) {
+              return Notify.failure(t('validation.cityMin'));
+            }
+            if (city.length > 30) {
+              return Notify.failure(t('validation.cityMax'));
             }
             dispatch(pathInfoUser({ city }));
           }
@@ -204,7 +205,12 @@ const UserInfoBlock = () => {
               value={name}
               className={s.item__input}
             />
-            <button type="button" name="name" className={'pencil'} onClick={handleClick}></button>
+            <button
+              type="button"
+              name="name"
+              className={'pencil'}
+              onClick={handleClick}
+            ></button>
           </li>
           <li className={language === 'ua' ? s.itemUA : s.itemUS}>
             <p className={s.item__title}>{t('userPage.infoBlock.email')}:</p>
@@ -216,7 +222,12 @@ const UserInfoBlock = () => {
               value={email}
               className={s.item__input}
             />
-            <button type="button" name="email" className={'pencil'} onClick={handleClick}></button>
+            <button
+              type="button"
+              name="email"
+              className={'pencil'}
+              onClick={handleClick}
+            ></button>
           </li>
           <li className={language === 'ua' ? s.itemUA : s.itemUS}>
             <p className={s.item__title}>{t('userPage.infoBlock.birthday')}:</p>
@@ -224,7 +235,9 @@ const UserInfoBlock = () => {
               clearIcon={null}
               calendarIcon={null}
               format="dd.MM.yyyy"
-              className={isDisabled ? s.itemDatepicker__disabled : s.item__input}
+              className={
+                isDisabled ? s.itemDatepicker__disabled : s.item__input
+              }
               disabled={isDisabled}
               selected={birthday}
               maxDate={new Date()}
@@ -257,7 +270,12 @@ const UserInfoBlock = () => {
               value={phone}
               className={s.item__input}
             />
-            <button type="button" name="phone" className={'pencil'} onClick={handleClick}></button>
+            <button
+              type="button"
+              name="phone"
+              className={'pencil'}
+              onClick={handleClick}
+            ></button>
           </li>
           <li className={language === 'ua' ? s.itemUA : s.itemUS}>
             <p className={s.item__title}>{t('userPage.infoBlock.city')}:</p>
@@ -269,7 +287,12 @@ const UserInfoBlock = () => {
               value={city}
               className={s.item__input}
             />
-            <button type="button" name="city" className={'pencil'} onClick={handleClick}></button>
+            <button
+              type="button"
+              name="city"
+              className={'pencil'}
+              onClick={handleClick}
+            ></button>
           </li>
         </ul>
         <Logout />

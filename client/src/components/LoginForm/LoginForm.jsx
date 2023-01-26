@@ -25,19 +25,15 @@ const LoginForm = () => {
 
     validationSchema: Yup.object({
       email: Yup.string()
-        .email(t('validation.email'))
-        .matches(
-          /^[a-zA-Z0-9^\s@]+@[a-zA-Z^\s@]+\.[a-zA-Z^\s@]+$/,
-          t('validation.emailLatin')
-        )
-        .max(25, t('validation.emailMax'))
-        .required(t('validation.required')),
-      password: Yup.string()
-        .min(7, t('validation.passwordMin'))
-        .max(32, t('validation.passwordMax'))
-        .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/, t('validation.password'))
-        .required(t('validation.required')),
-    }),
+      .email(t('validation.email'))
+      .min(5, t('validation.emailMin'))
+      .max(40, t('validation.emailMax'))
+      .required(t('validation.required')),
+    password: Yup.string()
+      .min(6, t('validation.passwordMin'))
+      .max(40, t('validation.passwordMax'))
+      .required(t('validation.required')),
+  }),
   });
 
   useEffect(() => {
