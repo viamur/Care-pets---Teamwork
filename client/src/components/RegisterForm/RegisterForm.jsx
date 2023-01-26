@@ -32,32 +32,27 @@ const RegisterForm = () => {
     validationSchema: Yup.object({
       email: Yup.string()
         .email(t('validation.email'))
-        .matches(
-          /^[a-zA-Z0-9^\s@]+@[a-zA-Z^\s@]+\.[a-zA-Z^\s@]+$/,
-          t('validation.emailLatin')
-        )
-        .max(25, t('validation.emailMax'))
+        .min(5, t('validation.emailMin'))
+        .max(40, t('validation.emailMax'))
         .required(t('validation.required')),
       password: Yup.string()
-        .min(7, t('validation.passwordMin'))
-        .max(32, t('validation.passwordMax'))
-        .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/, t('validation.password'))
+        .min(6, t('validation.passwordMin'))
+        .max(40, t('validation.passwordMax'))
         .required(t('validation.required')),
       confirm_password: Yup.string()
         .oneOf([Yup.ref('password'), null], t('validation.notMatchPasswords'))
         .required('This is a required field'),
       name: Yup.string()
         .min(2, t('validation.nameMin'))
-        .max(10, t('validation.nameMax'))
+        .max(20, t('validation.nameMax'))
         .required(t('validation.required')),
       city: Yup.string()
-        .matches(
-          /^(?=.*[a-zа-я])(?=.*[A-ZА-Я]).{3,32},(?=.*[a-zа-я])(?=.*[A-ZА-Я]).{3,32}$/,
-          t('validation.cityRegion')
-        )
+        .min(2, t('validation.cityMin'))
+        .max(30, t('validation.cityMax'))
         .required(t('validation.required')),
       phone: Yup.string()
-        .matches(/[+380]+[0-9].{11}/, t('validation.phone'))
+        .matches(/^\+380\d{9}/, t('validation.phone'))
+        .length(13, t('validation.phoneLength'))
         .required(t('validation.required')),
     }),
   });
