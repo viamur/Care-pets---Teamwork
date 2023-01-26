@@ -290,11 +290,19 @@
     font-size: 20px;
     line-height: 1.35;
   }
+
+  &:hover {
+    color: var(--accent-color);
+  }
 }
 
 .accentBtn {
   background-color: var(--accent-color);
   color: var(--white);
+
+  &:hover {
+    color: var(--white);
+  }
 }
 
 .button:first-child {

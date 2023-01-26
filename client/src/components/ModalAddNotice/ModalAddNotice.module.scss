@@ -256,13 +256,16 @@
 }
 
 .radioToolbar label:hover {
-  background-color: var(--accent-color);
-  color: var(--white);
+  color: var(--accent-color);
 }
 
 .activeCategory {
   background-color: #f59256 !important;
   color: #ffffff !important;
+
+  &:hover {
+    color: #ffffff !important;
+  }
 }
 
 .radioToolbarPage2 {
@@ -413,11 +416,19 @@
   @include mq(tab) {
     width: 180px;
   }
+
+  &:hover {
+    color: var(--accent-color);
+  }
 }
 
 .accentBtn {
   background-color: var(--accent-color);
   color: var(--white);
+
+  &:hover {
+    color: var(--white);
+  }
 }
 
 .button:first-child {

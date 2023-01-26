@@ -13,8 +13,7 @@
   cursor: pointer;
   &:hover,
   &:focus {
-    background-color: var(--accent-color);
-    color: var(--white);
+    color: var(--accent-color);
   }
 }
 .loclIconActive {
