@@ -238,6 +238,10 @@
   @include mq(tab) {
     width: 160px;
   }
+
+  &:hover {
+    color: var(--accent-color);
+  }
 }
 
 .btn:not(:last-child) {
@@ -256,6 +260,10 @@
 .accent {
   background-color: var(--accent-color);
   color: var(--white);
+
+  &:hover {
+    color: var(--white);   
+  }
 }
 
 .iconTitle {

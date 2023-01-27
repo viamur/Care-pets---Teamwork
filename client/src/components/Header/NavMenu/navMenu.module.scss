@@ -56,7 +56,6 @@
   &:hover,
   &:focus {
     color: var(--accent-color);
-    text-decoration: underline solid var(--accent-color);
   }
 }
 
@@ -115,11 +114,19 @@
   @include mq(desk) {
     padding: 10px 28px;
   }
+
+  &:hover {
+    color: var(--accent-color);
+  }
 }
 
 .buttonActive {
-  color: white;
+  color: var(--white);
   background-color: var(--accent-color);
+
+  &:hover {
+    color: var(--white);
+  }
 }
 
 .buttonL {

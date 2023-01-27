@@ -72,12 +72,21 @@
   margin-bottom: 16px;
 }
 
-.accent {
-  background-color: var(--accent-color);
-  color: var(--white);
-}
 
 .button--last {
   composes: button;
   margin-bottom: 40px;
+
+  &:hover {
+    color: var(--accent-color)
+  }
+}
+
+.accent {
+  background-color: var(--accent-color);
+  color: var(--white);
+
+  &:hover {
+    color: var(--white);
+  }
 }
